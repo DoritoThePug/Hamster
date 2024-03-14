@@ -1,4 +1,6 @@
 -- premake5.lua
+include "Dependencies.lua"
+
 workspace "Hamster"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }

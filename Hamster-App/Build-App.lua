@@ -5,14 +5,15 @@ project "Hamster-App"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
-   files { "Source/**.h", "Source/**.cpp" }
+   files { "src/**.h", "src/**.cpp" }
 
    includedirs
    {
-      "Source",
+      "src",
 
 	  -- Include Core
-	  "../Hamster-Core/Source"
+	  "%{wks.location}/Hamster-Core/src",
+      "%{wks.location}/Hamster-Core/Vendor/GLFW/include"
    }
 
    links
