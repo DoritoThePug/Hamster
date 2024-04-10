@@ -27,9 +27,6 @@ namespace Hamster {
 
 		template <typename T>
 		void Post(Event& e) {
-
-			std::cout << e.GetEventName() << std::endl;
-
 			if (m_Observers.find(e.GetEventType()) == m_Observers.end()) {
 				return;
 			}

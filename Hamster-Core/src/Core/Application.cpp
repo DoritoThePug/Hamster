@@ -32,7 +32,7 @@ namespace Hamster {
 
 		window.SetWindowEventDispatcher(&dispatcher);
 
-		dispatcher.Subscribe(WindowClose, FORWARD_CALLBACK_FUNCTION(Application::Close));
+		dispatcher.Subscribe(WindowClose, FORWARD_CALLBACK_FUNCTION(Application::Close, WindowCloseEvent));
 
 		glfwSetWindowCloseCallback(window.GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW) {
 			EventDispatcher* dispatcher = (EventDispatcher*)glfwGetWindowUserPointer(windowGLFW);
