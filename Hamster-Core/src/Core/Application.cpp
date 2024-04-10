@@ -5,10 +5,11 @@
 
 #include "Application.h"
 #include "Window.h"
+#include "Base.h"
 
 
 namespace Hamster {
-	Application::Application(){
+	Application::Application() {
 		std::cout << "Application created" << std::endl;
 	}
 
@@ -32,7 +33,7 @@ namespace Hamster {
 		window.SetWindowEventDispatcher(&dispatcher);
 
 		dispatcher.Subscribe(WindowClose, FORWARD_CALLBACK_FUNCTION(Application::Close));
-		
+
 		glfwSetWindowCloseCallback(window.GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW) {
 			EventDispatcher* dispatcher = (EventDispatcher*)glfwGetWindowUserPointer(windowGLFW);
 
@@ -41,7 +42,7 @@ namespace Hamster {
 			dispatcher->Post<WindowCloseEvent>(e);
 			});
 
-		
+
 
 		while (m_running) {
 			window.Update();
@@ -50,7 +51,7 @@ namespace Hamster {
 
 
 
-	void Application::Close(const WindowCloseEvent& e){
+	void Application::Close(WindowCloseEvent& e) {
 		m_running = false;
 
 		std::cout << "Application closed" << std::endl;

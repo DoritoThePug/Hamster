@@ -22,8 +22,8 @@ namespace Hamster {
 		~Application();
 
 		void Run();
-		void Close(const WindowCloseEvent& e);
-		
+		void Close(WindowCloseEvent& e);
+
 		/*
 		void WindowResize(WindowResizeEvent& e);
 

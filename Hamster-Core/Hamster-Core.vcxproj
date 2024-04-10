@@ -147,15 +147,16 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Events\Event.h" />
     <ClInclude Include="src\Core\Application.h" />
+    <ClInclude Include="src\Core\Base.h" />
     <ClInclude Include="src\Core\Window.h" />
+    <ClInclude Include="src\Events\Event.h" />
     <ClInclude Include="src\Events\WindowEvents.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Events\Event.cpp" />
     <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
+    <ClCompile Include="src\Events\Event.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

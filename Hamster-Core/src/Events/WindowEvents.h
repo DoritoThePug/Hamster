@@ -2,7 +2,8 @@
 
 #include <string>
 
-#include "Events/Event.h"
+#include "Event.h"
+#include "Core/Base.h"
 
 namespace Hamster {
 	class WindowCloseEvent : public Event {
