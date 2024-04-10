@@ -10,7 +10,5 @@ int main()
 
 	std::cin.get();
 
-	app->Close();
-
 	delete app;
 }

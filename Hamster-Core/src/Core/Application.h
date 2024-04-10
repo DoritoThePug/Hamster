@@ -1,7 +1,10 @@
 #pragma once
 
+//#include "Events/EventOld.h"
 #include "Events/Event.h"
 #include "Events/WindowEvents.h"
+/*
+#include "Events/WindowEventsOld.h"*/
 
 #include <glfw3.h>
 
@@ -12,16 +15,19 @@ namespace Hamster {
 		bool m_running = true;
 		//GLFWwindow* m_appWindow;
 
+		EventDispatcher m_Dispatcher;
 	public:
+
 		Application();
 		~Application();
 
 		void Run();
-		void Close();
+		void Close(const WindowCloseEvent& e);
 		
+		/*
 		void WindowResize(WindowResizeEvent& e);
 
-		void OnEvent(Event& e);
+		void OnEvent(Event& e);*/
 	};
 }
 

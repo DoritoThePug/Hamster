@@ -1,21 +1,23 @@
 #include <iostream>
+#include <functional>
 
 
 
 #include "Application.h"
 #include "Window.h"
-#include "Events/Event.h"
 
 
 namespace Hamster {
-	Application::Application() {
+	Application::Application(){
 		std::cout << "Application created" << std::endl;
-
-
 	}
 
 	Application::~Application() {
 		std::cout << "Application destroyed" << std::endl;
+	}
+
+	void foo(WindowCloseEvent& e) {
+		std::cout << "hi" << std::endl;
 	}
 
 	void Application::Run() {
@@ -25,24 +27,22 @@ namespace Hamster {
 
 		Window window(props);
 
-		window.SetWindowEventCallback(FORWARD_CALLBACK_FUNCTION(Application::OnEvent));
+		EventDispatcher dispatcher;
 
+		window.SetWindowEventDispatcher(&dispatcher);
+
+		dispatcher.Subscribe(WindowClose, FORWARD_CALLBACK_FUNCTION(Application::Close));
+		
 		glfwSetWindowCloseCallback(window.GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(windowGLFW);
-			
+			EventDispatcher* dispatcher = (EventDispatcher*)glfwGetWindowUserPointer(windowGLFW);
+
 			WindowCloseEvent e;
 
-			data.callbackEvent(e);
+			dispatcher->Post<WindowCloseEvent>(e);
 			});
 
-		glfwSetWindowSizeCallback(window.GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW, int width, int height) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(windowGLFW);
+		
 
-			WindowResizeEvent e(width, height);
-
-			data.callbackEvent(e);
-			});
-			
 		while (m_running) {
 			window.Update();
 		}
@@ -50,22 +50,15 @@ namespace Hamster {
 
 
 
-	void Application::Close(){
+	void Application::Close(const WindowCloseEvent& e){
 		m_running = false;
 
 		std::cout << "Application closed" << std::endl;
 	}
 
+	/*
+
 	void Application::WindowResize(WindowResizeEvent& e) {
 		std::cout << e.GetHeight() << std::endl;
-	}
-
-	void Application::OnEvent(Event& e) {
-		EventDispatcher dispatcher(e);
-		 
-		dispatcher.Dispatch<WindowCloseEvent>(FORWARD_CALLBACK_FUNCTION(Application::Close));
-		dispatcher.Dispatch<WindowResizeEvent>(FORWARD_CALLBACK_FUNCTION(Application::WindowResize));
-
-		//dispatcher.Dispatch<WindowCloseE();
-	}
+	}*/
 }

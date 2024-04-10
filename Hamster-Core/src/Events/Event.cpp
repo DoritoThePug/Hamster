@@ -1,12 +1,7 @@
 #include "Event.h"
-#include "Events/WindowEvents.h"
 
 namespace Hamster {
-	bool Event::IsInCategory(EventCategory category) const {
-		return category & GetEventCategoryFlags();
+	void EventDispatcher::Subscribe(EventType e, std::function<void(const Event&)>&& fn) {
+		m_Observers[e].push_back(fn);
 	}
-
-	
-
-	
 }

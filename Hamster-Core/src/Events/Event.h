@@ -1,47 +1,48 @@
 #pragma once
 
-#include <string>
-#include <utility>
-#include <iostream>
+#include <map>
+#include <vector>
 #include <functional>
+#include <string>
+#include <iostream>
 
 namespace Hamster {
-#define BIT_F(x) 1 << x
-#define CLASS_BIND_EVENT_TYPE(type) static EventType GetStaticEventType() {return EventType::type;} virtual EventType GetEventType() const override {return EventType::type;} virtual std::string GetName() const override {return #type;}
-#define CLASS_BIND_EVENT_CATEGORY(category) virtual int GetEventCategoryFlags() const override {return category;}
+#define BIND_EVENT_TYPE(type) static EventType GetStaticEventType() {return EventType::type;} virtual EventType GetEventType() const override {return GetStaticEventType();} virtual std::string GetEventName() const override {return #type;}
 #define FORWARD_CALLBACK_FUNCTION(func) [this](auto&&... args) -> void {return this->func(std::forward<decltype(args)>(args)...);}
+
 
 	enum EventType {
 		WindowClose, WindowResize
 	};
 
-	enum EventCategory {
-		WindowEvent = BIT_F(0)
-	};
-	
-	class Event {
+	class Event
+	{
 	public:
 		virtual EventType GetEventType() const = 0;
-		virtual int GetEventCategoryFlags() const = 0;
-		virtual std::string GetName() const = 0;
-		 
-		bool IsInCategory(EventCategory category) const;
+		virtual std::string GetEventName() const = 0;
 	};
 
 	class EventDispatcher {
-	private:
-		Event& m_Event;
 	public:
-		EventDispatcher(Event& e) : m_Event(e) { std::cout << e.GetName() << std::endl; };
-		
-		//template <typename T, typename F>
-		//void Dispatch(const F& func);
+		void Subscribe(EventType e, std::function<void(const Event&)>&& fn);
 
-		template <typename T, typename F>
-		void Dispatch(const F& func) {
-			if (m_Event.GetEventType() == T::GetStaticEventType()) {
-				func();
+		template <typename T>
+		void Post(Event& e) {
+			
+			std::cout << e.GetEventName() << std::endl;
+
+			if (m_Observers.find(e.GetEventType()) == m_Observers.end()) {
+				return;
+			}
+
+			auto&& observers = m_Observers.at(static_cast<T&>(e).GetEventType());
+
+			
+			for (auto&& observer : observers) {
+				observer(static_cast<T&>(e));
 			}
 		}
+	private:
+		std::map < EventType, std::vector<std::function<void(const Event&)>>> m_Observers;
 	};
 }

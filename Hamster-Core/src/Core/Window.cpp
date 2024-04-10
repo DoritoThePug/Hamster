@@ -46,12 +46,9 @@ namespace Hamster {
 		return m_Window;
 	}
 
-	WindowData& Window::GetGLFWUserPointer() {
-		return *(WindowData*)glfwGetWindowUserPointer(m_Window);
-	}
 
-	void Window::SetWindowEventCallback(const EventCallbackFunction& e) {
-		m_WindowData.callbackEvent = e;
+	void Window::SetWindowEventDispatcher(EventDispatcher* dispatcher) {
+		glfwSetWindowUserPointer(m_Window, dispatcher);
 	}
 
 	void Window::Update() {

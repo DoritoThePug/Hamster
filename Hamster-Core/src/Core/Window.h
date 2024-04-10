@@ -7,14 +7,13 @@
 
 #include "Events/Event.h"
 
-namespace Hamster {
-	using EventCallbackFunction = std::function<void(Event&)>;
 
+namespace Hamster {
 	struct WindowData {
 		uint16_t height, width;
 		std::string title;
 
-		EventCallbackFunction callbackEvent;
+		//EventDispatcher& dispatcher;
 	};
 
 	struct WindowProps {
@@ -34,9 +33,8 @@ namespace Hamster {
 		~Window();
 
 		GLFWwindow* GetGLFWWindowPointer();
-		WindowData& GetGLFWUserPointer();
 
-		void SetWindowEventCallback(const EventCallbackFunction& e);
+		void SetWindowEventDispatcher(EventDispatcher* dispatcher);
 
 		void Update();
 

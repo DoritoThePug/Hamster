@@ -153,10 +153,9 @@
     <ClInclude Include="src\Events\WindowEvents.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Events\Event.cpp" />
     <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
-    <ClCompile Include="src\Events\Event.cpp" />
-    <ClCompile Include="src\Events\WindowEvents.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
