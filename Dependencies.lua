@@ -1,6 +1,7 @@
 IncludeDir = {}
 
 IncludeDir["GLFW"] = "%{wks.location}/Hamster-Core/Vendor/GLFW/include"
+IncludeDir["glad"] = "%{wks.location}/Hamster-Core/Vendor/glad/include"
 
 LibraryDir = {}
 

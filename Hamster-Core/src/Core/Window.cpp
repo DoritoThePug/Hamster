@@ -6,7 +6,7 @@
 static uint8_t s_NumWindows = 0;
 
 namespace Hamster {
-	Window::Window(WindowProps& props){
+	Window::Window(WindowProps& props) {
 		if (s_NumWindows == 0) {
 			glfwInit();
 		}
@@ -22,13 +22,15 @@ namespace Hamster {
 
 		m_Window = window;
 
+		glfwMakeContextCurrent(window);
+
 		m_WindowData.height = props.height;
 		m_WindowData.width = props.width;
 		m_WindowData.title = props.title;
 
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
 
-		
+
 	}
 
 	Window::~Window() {
@@ -53,6 +55,7 @@ namespace Hamster {
 
 	void Window::Update() {
 		glfwPollEvents();
+		glfwSwapBuffers(m_Window);
 	}
 
 	void Window::TerminateAllWindows() {

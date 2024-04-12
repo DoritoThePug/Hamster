@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "Window.h"
 #include "Base.h"
+#include "Renderer/Renderer.h"
 
 
 namespace Hamster {
@@ -28,6 +29,8 @@ namespace Hamster {
 
 		Window window(props);
 
+		Renderer::Init(props.width, props.height);
+
 		EventDispatcher dispatcher;
 
 		window.SetWindowEventDispatcher(&dispatcher);
@@ -42,9 +45,22 @@ namespace Hamster {
 			dispatcher->Post<WindowCloseEvent>(e);
 			});
 
+		dispatcher.Subscribe(WindowResize, FORWARD_CALLBACK_FUNCTION(Application::ResizeWindow, WindowResizeEvent));
+
+		glfwSetWindowSizeCallback(window.GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW, int width, int height) {
+			EventDispatcher* dispatcher = (EventDispatcher*)glfwGetWindowUserPointer(windowGLFW);
+
+			WindowResizeEvent e(width, height);
+
+			dispatcher->Post<WindowResizeEvent>(e);
+			});
+
 
 
 		while (m_running) {
+			Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
+			Renderer::Clear();
+
 			window.Update();
 		}
 	}
@@ -55,6 +71,12 @@ namespace Hamster {
 		m_running = false;
 
 		std::cout << "Application closed" << std::endl;
+	}
+
+	void Application::ResizeWindow(WindowResizeEvent& e) {
+		Renderer::SetViewport(e.GetWidth(), e.GetHeight());
+
+		std::cout << "Window resized" << std::endl;
 	}
 
 	/*

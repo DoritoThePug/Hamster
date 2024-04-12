@@ -23,6 +23,7 @@ namespace Hamster {
 
 		void Run();
 		void Close(WindowCloseEvent& e);
+		void ResizeWindow(WindowResizeEvent& e);
 
 		/*
 		void WindowResize(WindowResizeEvent& e);

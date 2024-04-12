@@ -10,12 +10,14 @@ project "Hamster-Core"
    includedirs
    {
       "src",
-      "%{IncludeDir.GLFW}"
+      "%{IncludeDir.GLFW}",
+      "%{IncludeDir.glad}"
    }
 
    links 
    {
-      "%{Library.GLFW}"
+      "%{Library.GLFW}",
+      "glad"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")

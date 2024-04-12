@@ -12,6 +12,10 @@ workspace "Hamster"
 
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
+group "Dependencies"
+   include "Hamster-Core/Vendor/glad"
+
+
 group "Hamster-Core"
 	include "Hamster-Core/Build-Core.lua"
 group ""
