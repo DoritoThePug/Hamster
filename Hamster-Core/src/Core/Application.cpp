@@ -1,13 +1,14 @@
 #include <iostream>
 #include <functional>
 
+#include <glad/glad.h>
 
 
 #include "Application.h"
 #include "Window.h"
 #include "Base.h"
 #include "Renderer/Renderer.h"
-
+#include "Renderer/Shader.h"
 
 namespace Hamster {
 	Application::Application() {
@@ -30,6 +31,8 @@ namespace Hamster {
 		Window window(props);
 
 		Renderer::Init(props.width, props.height);
+
+		//glViewport(0, 0, 800, 600);
 
 		EventDispatcher dispatcher;
 
@@ -57,9 +60,13 @@ namespace Hamster {
 
 
 
+
+
 		while (m_running) {
 			Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
 			Renderer::Clear();
+
+			Renderer::DrawTriangle();
 
 			window.Update();
 		}

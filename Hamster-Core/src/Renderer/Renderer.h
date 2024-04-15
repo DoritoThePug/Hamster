@@ -12,5 +12,10 @@ namespace Hamster {
 
 		static void Clear();
 		static void SetClearColour(float r, float g, float b, float a);
+
+		static void DrawTriangle();
+
+	private:
+		static void InitTriangle();
 	};
 }
