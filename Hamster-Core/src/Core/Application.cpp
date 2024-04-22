@@ -2,6 +2,8 @@
 #include <functional>
 
 #include <glad/glad.h>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
 
 
 #include "Application.h"
@@ -9,6 +11,7 @@
 #include "Base.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Shader.h"
+#include "Utils/AssetManager.h"
 
 namespace Hamster {
 	Application::Application() {
@@ -58,15 +61,24 @@ namespace Hamster {
 			dispatcher->Post<WindowResizeEvent>(e);
 			});
 
+		
 
+		Texture face("C:/Users/Jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/src/Renderer/Assets/awesomeface.png");
+		AssetManager::AddTexture("face", face);
 
+		glm::mat4 projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
 
+		AssetManager::GetShader("sprite")->use();
+		AssetManager::GetShader("sprite")->setUniformi("image", 0);
+		AssetManager::GetShader("sprite")->setUniformMat4("projection", projection);
 
 		while (m_running) {
 			Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
 			Renderer::Clear();
 
-			Renderer::DrawTriangle();
+			//Renderer::DrawTriangle();
+
+			Renderer::DrawSprite(*AssetManager::GetTexture("face"), glm::vec2(200.0f, 200.0f), glm::vec2(300.0f, 400.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
 			window.Update();
 		}

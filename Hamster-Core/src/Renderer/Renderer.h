@@ -2,6 +2,11 @@
 
 #include <stdint.h>
 
+#include <glm.hpp>
+
+#include "Shader.h"
+#include "Texture.h"
+
 namespace Hamster {
 	class Renderer
 	{
@@ -13,9 +18,12 @@ namespace Hamster {
 		static void Clear();
 		static void SetClearColour(float r, float g, float b, float a);
 
-		static void DrawTriangle();
+		static void DrawSprite(Texture& texture, glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour);
 
 	private:
-		static void InitTriangle();
-	};
+		static void InitRendererData();
+
+		inline static Shader* m_Shader;
+		inline static unsigned int m_VAO;
+	} ;
 }

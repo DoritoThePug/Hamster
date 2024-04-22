@@ -1,11 +1,12 @@
 #include "Shader.h"
 
-#include <string>
+//#include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
 
 #include <glad/glad.h>
+#include <gtc/type_ptr.hpp>
 
 namespace Hamster {
 	Shader::Shader(const char* vertexShaderPath, const char* fragmentShaderPath) {
@@ -87,5 +88,19 @@ namespace Hamster {
 
 	void Shader::use() {
 		glUseProgram(m_shaderID);
+
+		//std::cout << m_shaderID << std::endl;
+	}
+
+	void Shader::setUniformi(const char* name, int value) {
+		glUniform1i(glGetUniformLocation(m_shaderID, name), value);
+	}
+
+	void Shader::setUniformMat4(const char* name, const glm::mat4& value) {
+		glUniformMatrix4fv(glGetUniformLocation(m_shaderID, name), 1, GL_FALSE, glm::value_ptr(value));
+	}
+
+	void Shader::setUniformVec3(const char* name, const glm::vec3& value) {
+		glUniform3fv(glGetUniformLocation(m_shaderID, name), 1, &value[0]);
 	}
 }

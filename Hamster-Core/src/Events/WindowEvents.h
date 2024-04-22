@@ -14,7 +14,7 @@ namespace Hamster {
 
 	class WindowResizeEvent : public Event {
 	public:
-		WindowResizeEvent(uint16_t width, uint16_t height) : m_Width(width), m_Height(height) {}
+		WindowResizeEvent(uint16_t width, uint16_t height) : m_Width(width), m_Height(height){}
 
 		uint16_t GetWidth() { return m_Width; }
 		uint16_t GetHeight() { return m_Height; }

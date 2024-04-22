@@ -31,4 +31,3 @@ namespace Hamster {
 		void OnEvent(Event& e);*/
 	};
 }
-
