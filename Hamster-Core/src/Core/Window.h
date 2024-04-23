@@ -12,8 +12,6 @@ namespace Hamster {
 	struct WindowData {
 		uint16_t height, width;
 		std::string title;
-
-		//EventDispatcher& dispatcher;
 	};
 
 	struct WindowProps {

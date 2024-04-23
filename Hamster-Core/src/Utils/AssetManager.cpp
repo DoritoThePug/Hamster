@@ -2,7 +2,6 @@
 
 namespace Hamster {
 	void AssetManager::AddShader(std::string name, Shader shader) {
-		//m_Shaders[name] = shader;
 		m_Shaders.emplace(name, shader);
 	}
 
@@ -11,7 +10,6 @@ namespace Hamster {
 	}
 
 	void AssetManager::AddTexture(std::string name, Texture texture) {
-		//m_Shaders[name] = shader;
 		m_Textures.emplace(name, texture);
 	}
 

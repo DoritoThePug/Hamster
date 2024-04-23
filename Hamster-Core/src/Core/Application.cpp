@@ -35,8 +35,6 @@ namespace Hamster {
 
 		Renderer::Init(props.width, props.height);
 
-		//glViewport(0, 0, 800, 600);
-
 		EventDispatcher dispatcher;
 
 		window.SetWindowEventDispatcher(&dispatcher);
@@ -75,8 +73,6 @@ namespace Hamster {
 		while (m_running) {
 			Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
 			Renderer::Clear();
-
-			//Renderer::DrawTriangle();
 
 			Renderer::DrawSprite(*AssetManager::GetTexture("face"), glm::vec2(200.0f, 200.0f), glm::vec2(300.0f, 400.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 

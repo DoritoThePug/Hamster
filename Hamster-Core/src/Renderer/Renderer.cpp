@@ -44,8 +44,6 @@ namespace Hamster {
 	void Renderer::InitRendererData() {
 		Shader shader("C:/Users/Jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/src/Renderer/DefaultShaders/SpriteShader.vs", "C:/Users/Jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/src/Renderer/DefaultShaders/SpriteShader.fs");
 
-		//m_Shader = &shader;
-
 		AssetManager::AddShader("sprite", shader);
 
 		m_Shader = AssetManager::GetShader("sprite");
@@ -60,17 +58,10 @@ namespace Hamster {
 			1.0f, 0.0f,   1.0f, 0.0f
 		};
 
-		/*float vertices[] = {
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
-		};*/
-
 		unsigned int VBO;
 
 		glGenVertexArrays(1, &m_VAO);
 		glGenBuffers(1, &VBO);
-		
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -78,8 +69,9 @@ namespace Hamster {
 		glBindVertexArray(m_VAO);
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
+
+		// Unbind the VAO and VBO
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
@@ -90,6 +82,7 @@ namespace Hamster {
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(position, 0.0f));
 
+		// Code from learnopengl.com, used to translate sprite so rotation is based around centre of sprite
 		model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
@@ -102,10 +95,9 @@ namespace Hamster {
 		glActiveTexture(GL_TEXTURE0);
 		texture.BindTexture();
 
-		//glBindTexture(GL_TEXTURE_2D, 0);
-
 		glBindVertexArray(m_VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
+
 		glBindVertexArray(0);
 	}
 }

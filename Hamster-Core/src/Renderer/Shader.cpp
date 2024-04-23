@@ -88,8 +88,6 @@ namespace Hamster {
 
 	void Shader::use() {
 		glUseProgram(m_shaderID);
-
-		//std::cout << m_shaderID << std::endl;
 	}
 
 	void Shader::setUniformi(const char* name, int value) {

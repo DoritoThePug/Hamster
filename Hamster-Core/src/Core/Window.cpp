@@ -32,8 +32,6 @@ namespace Hamster {
 		m_WindowData.title = props.title;
 
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
-
-
 	}
 
 	Window::~Window() {
@@ -50,7 +48,6 @@ namespace Hamster {
 	GLFWwindow* Window::GetGLFWWindowPointer() {
 		return m_Window;
 	}
-
 
 	void Window::SetWindowEventDispatcher(EventDispatcher* dispatcher) {
 		glfwSetWindowUserPointer(m_Window, dispatcher);

@@ -7,9 +7,6 @@
 #include <iostream>
 
 namespace Hamster {
-
-
-
 	enum EventType {
 		WindowClose, WindowResize
 	};
