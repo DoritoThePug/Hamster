@@ -1,18 +1,16 @@
 #pragma once
 
-
-
-
-
-#include "Events/Event.h"
-#include "Events/WindowEvents.h"
-
-
+#include <map>
 
 #include <glfw3.h>
 
+#include "Events/Event.h"
+#include "Events/WindowEvents.h"
+//#include "GameObject.h"
+//#include "Events/ApplicationEvents.h"
+
 namespace Hamster {
-	class GameObject;
+	//class GameObject;
 
 	//class EventDispatcher;
 
@@ -24,7 +22,7 @@ namespace Hamster {
 		EventDispatcher m_Dispatcher;
 
 		// ID, GameObject
-		std::map<int, GameObject*> m_GameObjects;
+		//std::map<int, GameObject*> m_GameObjects;
 	public:
 		Application();
 		~Application();
@@ -34,7 +32,7 @@ namespace Hamster {
 		void ResizeWindow(WindowResizeEvent& e);
 
 		//void AddGameObject(GameObjectCreatedEvent& e);
-		void AddGameObject(GameObject& gameObject);
+		//void AddGameObject(GameObject& gameObject);
 		//void RemoveGameObject(int ID);
 
 		void RenderScene();

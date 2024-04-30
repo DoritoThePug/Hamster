@@ -13,7 +13,8 @@ project "Hamster-App"
 
 	  -- Include Core
 	  "%{wks.location}/Hamster-Core/src",
-      "%{wks.location}/Hamster-Core/Vendor/GLFW/include"
+      "%{wks.location}/Hamster-Core/Vendor/GLFW/include",
+      "%{IncludeDir.glm}"
    }
 
    links

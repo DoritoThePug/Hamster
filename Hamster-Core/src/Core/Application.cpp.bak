@@ -110,11 +110,11 @@ namespace Hamster {
 
 
 
-	void Application::AddGameObject(GameObject& gameObject) {
+	/*void Application::AddGameObject(GameObject& gameObject) {
 		m_GameObjects[gameObject.GetID()] = &gameObject;
 
 		std::cout << gameObject.GetID() << std::endl;
-	}
+	}*/
 
 
 
