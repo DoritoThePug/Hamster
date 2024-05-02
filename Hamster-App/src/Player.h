@@ -10,9 +10,9 @@
 class Player : public Hamster::GameObject
 {
 public:
-	//Player(Hamster::Texture* texture, glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour, Hamster::Application& app);
+	Player(Hamster::Application* app, Hamster::Texture* texture, glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour);
 	Player(Hamster::Application* app);
 
-	void OnUpdate();
+	void OnUpdate(float deltaTime) override;
 };
 

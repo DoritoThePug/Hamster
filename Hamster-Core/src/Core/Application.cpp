@@ -7,7 +7,7 @@
 
 
 #include "Application.h"
-#include "Window.h"
+
 #include "Base.h"
 
 #include "Renderer/Renderer.h"
@@ -19,28 +19,23 @@
 namespace Hamster {
 	Application::Application() {
 		std::cout << "Application created" << std::endl;
-	}
-
-	Application::~Application() {
-		std::cout << "Application destroyed" << std::endl;
-	}
-
-	void Application::Run() {
-		std::cout << "Application running" << std::endl;
 
 		WindowProps props;
 
-		Window window(props);
+		//Window* window = new Window(props);
+
+		m_Window = std::unique_ptr<Window> (new Window(props));
 
 		Renderer::Init(props.width, props.height);
 
-		EventDispatcher dispatcher;
+		//EventDispatcher* dispatcher = new EventDispatcher;
+		m_Dispatcher = std::unique_ptr<EventDispatcher>(new EventDispatcher);
 
-		window.SetWindowEventDispatcher(&dispatcher);
+		m_Window->SetWindowEventDispatcher(m_Dispatcher.get());
 
-		dispatcher.Subscribe(WindowClose, FORWARD_CALLBACK_FUNCTION(Application::Close, WindowCloseEvent));
+		m_Dispatcher->Subscribe(WindowClose, FORWARD_CALLBACK_FUNCTION(Application::Close, WindowCloseEvent));
 
-		glfwSetWindowCloseCallback(window.GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW) {
+		glfwSetWindowCloseCallback(m_Window->GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW) {
 			EventDispatcher* dispatcher = (EventDispatcher*)glfwGetWindowUserPointer(windowGLFW);
 
 			WindowCloseEvent e;
@@ -48,9 +43,9 @@ namespace Hamster {
 			dispatcher->Post<WindowCloseEvent>(e);
 			});
 
-		dispatcher.Subscribe(WindowResize, FORWARD_CALLBACK_FUNCTION(Application::ResizeWindow, WindowResizeEvent));
+		m_Dispatcher->Subscribe(WindowResize, FORWARD_CALLBACK_FUNCTION(Application::ResizeWindow, WindowResizeEvent));
 
-		glfwSetWindowSizeCallback(window.GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW, int width, int height) {
+		glfwSetWindowSizeCallback(m_Window->GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW, int width, int height) {
 			EventDispatcher* dispatcher = (EventDispatcher*)glfwGetWindowUserPointer(windowGLFW);
 
 			WindowResizeEvent e(width, height);
@@ -63,16 +58,21 @@ namespace Hamster {
 
 		//dispatcher.Subscribe(GameObjectCreate, FORWARD_CALLBACK_FUNCTION(Application::AddGameObject, GameObjectCreatedEvent));
 
-
-		Texture face("C:/Users/Jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/src/Renderer/Assets/awesomeface.png");
-		AssetManager::AddTexture("face", face);
-
 		glm::mat4 projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
 
 		AssetManager::GetShader("sprite")->use();
 		AssetManager::GetShader("sprite")->setUniformi("image", 0);
 		AssetManager::GetShader("sprite")->setUniformMat4("projection", projection);
+	}
 
+	Application::~Application() {
+		std::cout << "Application destroyed" << std::endl;
+	}
+
+	void Application::Run() {
+		std::cout << "Application running" << std::endl;
+
+	
 		float deltaTime = 0.0f;
 		float lastFrame = 0.0f;
 
@@ -84,13 +84,16 @@ namespace Hamster {
 			deltaTime = lastFrame - currentFrame;
 			lastFrame = currentFrame;
 
-			Renderer::DrawSprite(*AssetManager::GetTexture("face"), glm::vec2(200.0f, 200.0f), glm::vec2(10.0f, 10.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+			//Renderer::DrawSprite(*AssetManager::GetTexture("face"), glm::vec2(200.0f, 200.0f), glm::vec2(10.0f, 10.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+			UpdateScene(deltaTime);
+			//RenderScene();
 
-			window.Update();
+			m_Window->Update();
 		}
 	}
 
 	void Application::Close(WindowCloseEvent& e) {
+		m_Window.reset();
 		m_running = false;
 
 		std::cout << "Application closed" << std::endl;
@@ -121,7 +124,7 @@ namespace Hamster {
 	/*
 	void Application::RemoveGameObject(int ID) {
 		m_GameObjects.erase(ID);
-	}
+	}*/
 
 	void Application::RenderScene() {
 		for (const auto& pair : m_GameObjects) {
@@ -133,5 +136,5 @@ namespace Hamster {
 		for (const auto& pair : m_GameObjects) {
 			pair.second->OnUpdate(deltaTime);
 		}
-	}*/
+	}
 }

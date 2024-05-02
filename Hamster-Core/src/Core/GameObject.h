@@ -29,9 +29,9 @@ namespace Hamster {
 		glm::vec3 GetColour() const;
 		int GetID() const;
 
-		/*virtual void OnStart() {};
+		virtual void OnStart() {};
 		virtual void OnUpdate(float deltaTime) {};
-		virtual void OnDestroyed() {};*/
+		virtual void OnDestroyed() {};
 	private:
 		Texture* m_SpriteTexture;
 		glm::vec2 m_Position;

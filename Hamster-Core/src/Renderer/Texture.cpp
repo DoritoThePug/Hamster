@@ -15,8 +15,11 @@ namespace Hamster {
 			std::cout << "Texture could not be loaded" << std::endl;
 		}
 
-		glGenTextures(1, &m_ID);
-		glBindTexture(GL_TEXTURE_2D, m_ID);
+		unsigned int id;
+
+		glGenTextures(1, &id);
+
+		glBindTexture(GL_TEXTURE_2D, id);
 
 		int imageFormat;
 
@@ -36,6 +39,7 @@ namespace Hamster {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
+
 
 		stbi_image_free(data);
 	}

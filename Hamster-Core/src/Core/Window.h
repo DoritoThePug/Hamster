@@ -27,7 +27,7 @@ namespace Hamster {
 		GLFWwindow* m_Window;
 		WindowData m_WindowData;
 	public:
-		Window(WindowProps& props);
+		Window(const WindowProps& props);
 		~Window();
 
 		GLFWwindow* GetGLFWWindowPointer();

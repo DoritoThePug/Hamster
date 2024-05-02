@@ -1,13 +1,12 @@
 #pragma once
 
 
-
+#include <memory>
 
 
 #include "Events/Event.h"
 #include "Events/WindowEvents.h"
-
-
+#include "Window.h"
 
 #include <glfw3.h>
 
@@ -21,10 +20,14 @@ namespace Hamster {
 	private:
 		bool m_running = true;
 
-		EventDispatcher m_Dispatcher;
+		std::unique_ptr<EventDispatcher> m_Dispatcher;
 
 		// ID, GameObject
 		std::map<int, GameObject*> m_GameObjects;
+		//Window m_Window;
+		std::unique_ptr<Window> m_Window;
+
+		//WindowProps m_WindowProps;
 	public:
 		Application();
 		~Application();

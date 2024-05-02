@@ -6,7 +6,7 @@
 static uint8_t s_NumWindows = 0;
 
 namespace Hamster {
-	Window::Window(WindowProps& props) {
+	Window::Window(const WindowProps& props){
 		if (s_NumWindows == 0) {
 			glfwInit();
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -31,7 +31,7 @@ namespace Hamster {
 		m_WindowData.width = props.width;
 		m_WindowData.title = props.title;
 
-		glfwSetWindowUserPointer(m_Window, &m_WindowData);
+		//glfwSetWindowUserPointer(m_Window, &m_WindowData);
 	}
 
 	Window::~Window() {
@@ -46,6 +46,7 @@ namespace Hamster {
 	}
 
 	GLFWwindow* Window::GetGLFWWindowPointer() {
+		std::cout << "hi" << std::endl;
 		return m_Window;
 	}
 
