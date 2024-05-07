@@ -11,12 +11,6 @@ namespace Hamster {
 		m_ID = s_CurrentID += 1;
 
 		app->AddGameObject(*this);
-
-		/*GameObjectCreatedEvent e(*this);
-
-		EventDispatcher dispatcher;
-
-		dispatcher.Post<GameObjectCreatedEvent>(e);*/
 	}
 
 	void GameObject::Draw() {

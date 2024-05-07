@@ -3,7 +3,6 @@
 #include <stdint.h>
 
 #include <glm.hpp>
-
 #include "Shader.h"
 #include "Texture.h"
 

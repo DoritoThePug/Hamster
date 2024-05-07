@@ -38,7 +38,7 @@ namespace Hamster {
 
 		//void AddGameObject(GameObjectCreatedEvent& e);
 		void AddGameObject(GameObject& gameObject);
-		//void RemoveGameObject(int ID);
+		void RemoveGameObject(int ID);
 
 		void RenderScene();
 		void UpdateScene(float deltaTime);

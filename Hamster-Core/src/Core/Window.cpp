@@ -46,7 +46,6 @@ namespace Hamster {
 	}
 
 	GLFWwindow* Window::GetGLFWWindowPointer() {
-		std::cout << "hi" << std::endl;
 		return m_Window;
 	}
 

@@ -12,17 +12,14 @@ int main()
 {
 	Hamster::Application* app = new Hamster::Application();
 
-	//Player p(app);
+	Hamster::Texture face("C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-App/Assets/awesomeface.png");
+	Hamster::AssetManager::AddTexture("face", face);
 
-	Hamster::Texture* face = new Hamster::Texture("C:/Users/jaden/awesomeface.png");
-	//Hamster::AssetManager::AddTexture("face", *face);
-
-	Player p(app, face, glm::vec2(200.0f, 200.0f), glm::vec2(10.0f, 10.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	Player p(app, Hamster::AssetManager::GetTexture("face"), glm::vec2(200.0f, 200.0f), glm::vec2(300.0f, 400.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
 	app->Run();
 
 	std::cin.get();
 
-	delete face;
 	delete app;
 }

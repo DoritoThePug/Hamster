@@ -51,18 +51,7 @@ namespace Hamster {
 			WindowResizeEvent e(width, height);
 
 			dispatcher->Post<WindowResizeEvent>(e);
-			});
-
-
-
-
-		//dispatcher.Subscribe(GameObjectCreate, FORWARD_CALLBACK_FUNCTION(Application::AddGameObject, GameObjectCreatedEvent));
-
-		glm::mat4 projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
-
-		AssetManager::GetShader("sprite")->use();
-		AssetManager::GetShader("sprite")->setUniformi("image", 0);
-		AssetManager::GetShader("sprite")->setUniformMat4("projection", projection);
+			});		
 	}
 
 	Application::~Application() {
@@ -76,6 +65,14 @@ namespace Hamster {
 		float deltaTime = 0.0f;
 		float lastFrame = 0.0f;
 
+
+		glm::mat4 projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
+
+		AssetManager::GetShader("sprite")->use();
+		AssetManager::GetShader("sprite")->setUniformi("image", 0);
+		AssetManager::GetShader("sprite")->setUniformMat4("projection", projection);
+
+
 		while (m_running) {
 			Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
 			Renderer::Clear();
@@ -84,9 +81,9 @@ namespace Hamster {
 			deltaTime = lastFrame - currentFrame;
 			lastFrame = currentFrame;
 
-			//Renderer::DrawSprite(*AssetManager::GetTexture("face"), glm::vec2(200.0f, 200.0f), glm::vec2(10.0f, 10.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 			UpdateScene(deltaTime);
-			//RenderScene();
+			
+			RenderScene();
 
 			m_Window->Update();
 		}
@@ -105,26 +102,13 @@ namespace Hamster {
 		std::cout << "Window resized" << std::endl;
 	}
 
-	/*oid Application::AddGameObject(GameObjectCreatedEvent& e) {
-		GameObject& gameObject = e.GetGameObject();
-
-		m_GameObjects[gameObject.GetID()] = &gameObject;
-	}*/
-
-
-
 	void Application::AddGameObject(GameObject& gameObject) {
 		m_GameObjects[gameObject.GetID()] = &gameObject;
-
-		std::cout << gameObject.GetID() << std::endl;
 	}
 
-
-
-	/*
 	void Application::RemoveGameObject(int ID) {
 		m_GameObjects.erase(ID);
-	}*/
+	}
 
 	void Application::RenderScene() {
 		for (const auto& pair : m_GameObjects) {
