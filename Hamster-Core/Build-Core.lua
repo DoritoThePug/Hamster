@@ -17,7 +17,8 @@ project "Hamster-Core"
       "%{IncludeDir.GLFW}",
       "%{IncludeDir.glad}",
       "%{IncludeDir.stb_image}",
-      "%{IncludeDir.glm}"
+      "%{IncludeDir.glm}",
+      "%{IncludeDir.py}"
    }
 
    links 

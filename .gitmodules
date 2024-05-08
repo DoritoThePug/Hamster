@@ -1,0 +1,3 @@
+[submodule "Hamster-Core/Vendor/glfw"]
+	path = Hamster-Core/Vendor/glfw
+	url = https://github.com/glfw/glfw.git
