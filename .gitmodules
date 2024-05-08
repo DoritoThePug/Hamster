@@ -1,3 +1,6 @@
 [submodule "Hamster-Core/Vendor/glfw"]
 	path = Hamster-Core/Vendor/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "Hamster-Core/Vendor/glad"]
+	path = Hamster-Core/Vendor/glad
+	url = https://github.com/Dav1dde/glad.git
