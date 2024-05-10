@@ -458,3 +458,74 @@ events:
         
       exitCode: 1
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "C:/Program Files/CMake/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "Hamster-Core/Vendor/pybind11/tools/pybind11Common.cmake:287 (check_cxx_compiler_flag)"
+      - "Hamster-Core/Vendor/pybind11/tools/pybind11Common.cmake:354 (_pybind11_return_if_cxx_and_linker_flags_work)"
+      - "Hamster-Core/Vendor/pybind11/tools/pybind11Common.cmake:399 (_pybind11_generate_lto)"
+      - "Hamster-Core/Vendor/pybind11/CMakeLists.txt:247 (include)"
+    checks:
+      - "Performing Test HAS_MSVC_GL_LTCG"
+    directories:
+      source: "C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/cmake-build/CMakeFiles/CMakeScratch/TryCompile-hpbql6"
+      binary: "C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/cmake-build/CMakeFiles/CMakeScratch/TryCompile-hpbql6"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HAS_MSVC_GL_LTCG"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/cmake-build/CMakeFiles/CMakeScratch/TryCompile-hpbql6'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e0dbb.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.7.2+d6990bcfa for .NET Framework
+        Build started 10/05/2024 14:28:32.
+        
+        Project "C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\cmTC_e0dbb.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_e0dbb.dir\\Debug\\".
+          Creating directory "C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\Debug\\".
+          Creating directory "cmTC_e0dbb.dir\\Debug\\cmTC_e0dbb.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_e0dbb.dir\\Debug\\cmTC_e0dbb.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_e0dbb.dir\\Debug\\cmTC_e0dbb.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /GL /D _MBCS /D WIN32 /D _WINDOWS /D HAS_MSVC_GL_LTCG /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_e0dbb.dir\\Debug\\\\" /Fd"cmTC_e0dbb.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\src.cxx"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.37.32822 for x64
+          src.cxx
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /GL /D _MBCS /D WIN32 /D _WINDOWS /D HAS_MSVC_GL_LTCG /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_e0dbb.dir\\Debug\\\\" /Fd"cmTC_e0dbb.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\src.cxx"
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\Debug\\cmTC_e0dbb.exe" /INCREMENTAL /ILK:"cmTC_e0dbb.dir\\Debug\\cmTC_e0dbb.ilk" /NOLOGO "-LTCG" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/cmake-build/CMakeFiles/CMakeScratch/TryCompile-hpbql6/Debug/cmTC_e0dbb.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/cmake-build/CMakeFiles/CMakeScratch/TryCompile-hpbql6/Debug/cmTC_e0dbb.lib" /MACHINE:X64  /machine:x64 cmTC_e0dbb.dir\\Debug\\src.obj
+        LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification [C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\cmTC_e0dbb.vcxproj]
+          Generating code
+          Finished generating code
+          cmTC_e0dbb.vcxproj -> C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\Debug\\cmTC_e0dbb.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_e0dbb.dir\\Debug\\cmTC_e0dbb.tlog\\unsuccessfulbuild".
+          Touching "cmTC_e0dbb.dir\\Debug\\cmTC_e0dbb.tlog\\cmTC_e0dbb.lastbuildstate".
+        Done Building Project "C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\cmTC_e0dbb.vcxproj" (default targets).
+        
+        Build succeeded.
+        
+        "C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\cmTC_e0dbb.vcxproj" (default target) (1) ->
+        (Link target) -> 
+          LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification [C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\CMakeFiles\\CMakeScratch\\TryCompile-hpbql6\\cmTC_e0dbb.vcxproj]
+        
+            1 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:02.21
+        
+      exitCode: 0
+...

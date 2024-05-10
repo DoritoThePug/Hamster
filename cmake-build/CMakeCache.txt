@@ -322,6 +322,42 @@ Hamster_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Hamster_SOURCE_DIR:STATIC=C:/Users/jaden/OneDrive/Documents/Hamster/Hamster
 
+//To enforce that a handle_type_name<> specialization exists
+PYBIND11_DISABLE_HANDLE_TYPE_NAME_DEFAULT_IMPLEMENTATION:BOOL=OFF
+
+//Force new FindPython
+PYBIND11_FINDPYTHON:BOOL=OFF
+
+//Install pybind11 header files?
+PYBIND11_INSTALL:BOOL=OFF
+
+//Override the ABI version, may be used to enable the unstable
+// ABI.
+PYBIND11_INTERNALS_VERSION:STRING=
+
+//Disable search for Python
+PYBIND11_NOPYTHON:BOOL=OFF
+
+//Disable NumPy 2 support to avoid changes to previous pybind11
+// versions.
+PYBIND11_NUMPY_1_ONLY:BOOL=OFF
+
+//Overwrite cached values read from Python library (classic search).
+// Turn off if cross-compiling and manually setting these values.
+PYBIND11_PYTHONLIBS_OVERWRITE:BOOL=ON
+
+//Python version to use for compiling modules
+PYBIND11_PYTHON_VERSION:STRING=
+
+//Use simpler GIL management logic that does not support disassociation
+PYBIND11_SIMPLE_GIL_MANAGEMENT:BOOL=OFF
+
+//Build pybind11 test suite?
+PYBIND11_TEST:BOOL=OFF
+
+//Path to a program.
+PYTHON_EXECUTABLE:FILEPATH=C:/Users/jaden/AppData/Local/Programs/Python/Python310/python.exe
+
 //Use MSVC runtime library DLL
 USE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON
 
@@ -333,6 +369,15 @@ glad_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 glad_SOURCE_DIR:STATIC=C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/Vendor/glad/cmake
+
+//Value Computed by CMake
+pybind11_BINARY_DIR:STATIC=C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/cmake-build/Hamster-Core/Vendor/pybind11
+
+//Value Computed by CMake
+pybind11_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+pybind11_SOURCE_DIR:STATIC=C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/Vendor/pybind11
 
 
 ########################
@@ -457,7 +502,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
@@ -505,6 +550,10 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: DOXYGEN_EXECUTABLE
 DOXYGEN_EXECUTABLE-ADVANCED:INTERNAL=1
+//Details about finding PYTHON
+FIND_PACKAGE_MESSAGE_DETAILS_PYTHON:INTERNAL=C:/Users/jaden/AppData/Local/Programs/Python/Python310/python.exe3.10
+//Details about finding PythonInterp
+FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[C:/Users/jaden/AppData/Local/Programs/Python/Python310/python.exe][v3.10(3.6)]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: GLAD_CMAKE_DIR
@@ -513,6 +562,28 @@ GLAD_CMAKE_DIR-ADVANCED:INTERNAL=1
 GLFW_PKG_CONFIG_LIBS_PRIVATE:INTERNAL= -lgdi32
 //GLFW pkg-config Requires.private
 GLFW_PKG_CONFIG_REQUIRES_PRIVATE:INTERNAL=
+//Test HAS_MSVC_GL_LTCG
+HAS_MSVC_GL_LTCG:INTERNAL=1
+PYBIND11_INCLUDE_DIR:INTERNAL=C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/Vendor/pybind11/include
+//ADVANCED property for variable: PYTHON_EXECUTABLE
+PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
+PYTHON_INCLUDE_DIRS:INTERNAL=C:/Users/jaden/AppData/Local/Programs/Python/Python310/Include
+PYTHON_IS_DEBUG:INTERNAL=0
+PYTHON_LIBRARIES:INTERNAL=C:/Users/jaden/AppData/Local/Programs/Python/Python310/libs/python310.lib
+PYTHON_MODULE_DEBUG_POSTFIX:INTERNAL=
+PYTHON_MODULE_EXTENSION:INTERNAL=.cp310-win_amd64.pyd
+PYTHON_MODULE_PREFIX:INTERNAL=
+PYTHON_VERSION:INTERNAL=3.10.0
+PYTHON_VERSION_MAJOR:INTERNAL=3
+PYTHON_VERSION_MINOR:INTERNAL=10
+Python_ADDITIONAL_VERSIONS:INTERNAL=3.12;3.11;3.10;3.9;3.8;3.7;3.6
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/Hamster
+_Python:INTERNAL=PYTHON
+//True if pybind11 and all required components found on the system
+pybind11_FOUND:INTERNAL=TRUE
+//Directory where pybind11 headers are located
+pybind11_INCLUDE_DIR:INTERNAL=C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/Vendor/pybind11/include
+//Directories where pybind11 and possibly Python headers are located
+pybind11_INCLUDE_DIRS:INTERNAL=C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/Vendor/pybind11/include;C:/Users/jaden/AppData/Local/Programs/Python/Python310/Include
 

@@ -65,3 +65,7 @@ target_include_directories(Hamster-Core PUBLIC Vendor/glfw/include)
 # )
 
 target_link_directories(Hamster-Core PUBLIC glfw)
+target_link_directories(Hamster-Core PUBLIC pybind11)
+
+# Pybind 11 files
+# pybind11_add_module(test src/Core/pytest.cpp)
