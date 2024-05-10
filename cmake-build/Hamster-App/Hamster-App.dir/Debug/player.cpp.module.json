@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Hamster-App.dir\\Debug\\Player.obj",
+            "outputs": [
+                "C:\\Users\\jaden\\OneDrive\\Documents\\Hamster\\Hamster\\cmake-build\\Hamster-App\\Hamster-App.dir\\Debug\\vc143.pdb",
+                "Hamster-App.dir\\Debug\\"
+            ],
+            "requires": []
+        }
+    ]
+}

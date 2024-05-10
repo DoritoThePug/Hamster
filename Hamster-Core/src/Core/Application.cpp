@@ -43,6 +43,7 @@ namespace Hamster {
 			dispatcher->Post<WindowCloseEvent>(e);
 			});
 
+
 		m_Dispatcher->Subscribe(WindowResize, FORWARD_CALLBACK_FUNCTION(Application::ResizeWindow, WindowResizeEvent));
 
 		glfwSetWindowSizeCallback(m_Window->GetGLFWWindowPointer(), [](GLFWwindow* windowGLFW, int width, int height) {

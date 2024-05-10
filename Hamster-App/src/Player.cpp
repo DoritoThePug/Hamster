@@ -8,5 +8,5 @@ Player::Player(Hamster::Application* app, Hamster::Texture* texture, glm::vec2 p
 Player::Player(Hamster::Application* app) : GameObject(app) {}
 
 void Player::OnUpdate(float deltaTime) {
-	//std::cout << "Hi" << std::endl;
+	//SetPosition(GetPosition() + glm::vec2(1, 0));
 }

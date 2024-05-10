@@ -1,0 +1,4 @@
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/build/CMakeFiles/module_name.dir
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/build/Vendor/pybind11/CMakeFiles/ALL_BUILD.dir

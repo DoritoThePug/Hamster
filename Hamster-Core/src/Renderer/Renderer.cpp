@@ -4,7 +4,7 @@
 
 
 #include <glad/glad.h>
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
 #include <gtc/matrix_transform.hpp>
 
 #include "Utils/AssetManager.h"

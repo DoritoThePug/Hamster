@@ -1,0 +1,6 @@
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/CMakeFiles/ALL_BUILD.dir
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/CMakeFiles/ZERO_CHECK.dir
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/CMakeFiles/Hamster-Core.dir
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/CMakeFiles/ALL_BUILD.dir
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-App/CMakeFiles/Hamster-App.dir
+C:/Users/jaden/OneDrive/Documents/Hamster/Hamster/Hamster-App/CMakeFiles/ALL_BUILD.dir
