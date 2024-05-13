@@ -42,13 +42,10 @@ namespace Hamster {
 
 
 	void Renderer::InitRendererData() {
-		Shader shader("C:/Users/Jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/src/Renderer/DefaultShaders/SpriteShader.vs", "C:/Users/Jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/src/Renderer/DefaultShaders/SpriteShader.fs");
+		m_Shader = AssetManager::AddShader("sprite", "C:/Users/Jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/src/Renderer/DefaultShaders/SpriteShader.vs", "C:/Users/Jaden/OneDrive/Documents/Hamster/Hamster/Hamster-Core/src/Renderer/DefaultShaders/SpriteShader.fs");
 
-		AssetManager::AddShader("sprite", shader);
-
-		m_Shader = AssetManager::GetShader("sprite");
-
-		
+		//AssetManager::AddShader("sprite", shader);
+	
 
 		float vertices[] = {
 			0.0f, 1.0f,   0.0f, 1.0f,

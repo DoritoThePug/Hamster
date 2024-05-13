@@ -10,3 +10,9 @@
 [submodule "Hamster-Core/Vendor/cmake_example"]
 	path = Hamster-Core/Vendor/cmake_example
 	url = https://github.com/pybind/cmake_example.git
+[submodule "Hamster-Core/Vendor/pybind11"]
+	path = Hamster-Core/Vendor/pybind11
+	url = https://github.com/pybind/pybind11.git
+[submodule "Hamster-Py/Vendor/pybind11"]
+	path = Hamster-Py/Vendor/pybind11
+	url = https://github.com/pybind/pybind11.git
