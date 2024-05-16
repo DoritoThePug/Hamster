@@ -1,0 +1,55 @@
+//-------------------------------------------------------------------------
+// Type definitions from libraries for python
+//-------------------------------------------------------------------------
+#include <pybind11/pybind11.h>
+
+namespace py = pybind11;
+
+//-------------------------------------------------------------------------
+// glm
+//-------------------------------------------------------------------------
+#include <pybind11/operators.h>
+#include <glm.hpp>
+
+void Vec2Binding (py::module_& m) {
+	py::class_<glm::vec2>(m, "vec2")
+		.def(py::init<float, float>())
+		.def(py::self + py::self)
+		.def(py::self * py::self)
+		.def(py::self - py::self)
+		.def(py::self * float());
+		/*.def("__add__", 
+			[](const glm::vec2& a, const glm::vec2& b) {
+				return a + b;
+			})
+
+		.def("__sub__",
+			[](const glm::vec2& a, const glm::vec2& b) {
+				return a - b;
+			})
+
+		.def("__mul__", 
+			[](const glm::vec2& a, const glm::vec2& b) {
+				return a * b;
+			});*/
+}
+
+void Vec3Binding(py::module_& m) {
+	py::class_<glm::vec3>(m, "vec3")
+		.def(py::init<float, float, float>())
+
+		.def("__add__",
+			[](const glm::vec3& a, const glm::vec3& b) {
+				return a + b;
+			})
+
+		.def("__sub__",
+			[](const glm::vec3& a, const glm::vec3& b) {
+				return a - b;
+			})
+
+		.def("__mul__",
+			[](const glm::vec3& a, const glm::vec3& b) {
+				return a * b;
+			});
+}

@@ -10,6 +10,8 @@ namespace Hamster {
 
 		void BindTexture();
 	private:
+		
+
 		unsigned int m_ID;
 	};
 }

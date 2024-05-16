@@ -1,7 +1,9 @@
 #pragma once
 
 #include <string>
+
 #include <glm.hpp>
+
 
 namespace Hamster {
 	class Shader

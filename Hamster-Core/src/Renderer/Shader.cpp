@@ -4,9 +4,12 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <memory>
 
 #include <glad/glad.h>
 #include <gtc/type_ptr.hpp>
+
+#include "Utils/AssetManager.h"
 
 namespace Hamster {
 	Shader::Shader(const char* vertexShaderPath, const char* fragmentShaderPath) {

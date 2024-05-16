@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <memory>
 
 #include <glm.hpp>
 #include "Shader.h"
@@ -22,7 +23,7 @@ namespace Hamster {
 	private:
 		static void InitRendererData();
 
-		inline static Shader* m_Shader;
+		inline static std::shared_ptr<Shader> m_Shader;
 		inline static unsigned int m_VAO;
 	} ;
 }

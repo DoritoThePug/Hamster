@@ -24,7 +24,8 @@ namespace Hamster {
 
 		//Window* window = new Window(props);
 
-		m_Window = std::unique_ptr<Window> (new Window(props));
+		//m_Window = std::unique_ptr<Window> (new Window(props));
+		m_Window = std::make_unique<Window>(props);
 
 		Renderer::Init(props.width, props.height);
 
@@ -79,7 +80,7 @@ namespace Hamster {
 			Renderer::Clear();
 
 			float currentFrame = static_cast<float>(glfwGetTime());
-			deltaTime = lastFrame - currentFrame;
+			deltaTime = currentFrame - lastFrame;
 			lastFrame = currentFrame;
 
 			UpdateScene(deltaTime);
@@ -91,8 +92,11 @@ namespace Hamster {
 	}
 
 	void Application::Close(WindowCloseEvent& e) {
-		m_Window.reset();
 		m_running = false;
+		m_Window.reset();
+		
+
+		AssetManager::Terminate();
 
 		std::cout << "Application closed" << std::endl;
 	}

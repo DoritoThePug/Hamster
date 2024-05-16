@@ -12,18 +12,32 @@ namespace Hamster {
 	}
 
 	std::shared_ptr<Shader> AssetManager::GetShader(std::string name) {
-		return m_Shaders.at(name);
+		if (name != "") {
+			return m_Shaders.at(name);
+		}
+		else {
+			return nullptr;
+		}
 	}
 
-	std::shared_ptr<Texture> AssetManager::AddTexture(std::string name, const std::string& texturePath) {
+	void AssetManager::AddTexture(std::string name, const std::string& texturePath) {
 		std::shared_ptr<Texture> texture = std::make_shared<Texture>(texturePath.c_str());
 		
 		m_Textures.emplace(name, texture);
-
-		return texture;
 	}
 
 	std::shared_ptr<Texture> AssetManager::GetTexture(std::string name) {
-		return m_Textures.at(name);
+		if (name != "") {
+			return m_Textures.at(name);
+		}
+		else {
+			return nullptr;
+		}
+	}
+
+
+	void AssetManager::Terminate() {
+		m_Textures.clear();
+		m_Shaders.clear();
 	}
 }

@@ -14,6 +14,7 @@ target_include_directories(Hamster-App PRIVATE
     ${CMAKE_SOURCE_DIR}/Hamster-Core/src
     ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/GLFW/include
     ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/glm
+    
 )
 
 target_link_libraries(Hamster-App PRIVATE Hamster-Core)

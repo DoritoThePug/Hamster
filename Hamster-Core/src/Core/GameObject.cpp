@@ -2,24 +2,25 @@
 
 #include "Renderer/Renderer.h"
 //#include "Events/Event.h"
+#include "Utils/AssetManager.h"
 #include "Core/Application.h"
 //#include "Events/ApplicationEvents.h"
 
 namespace Hamster {
-	GameObject::GameObject(Application* app, Texture* texture, glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour)
-		: m_SpriteTexture(texture), m_Position(position), m_Size(size), m_Rotation(rotation), m_SpriteColour(colour) {
+	GameObject::GameObject(Application* app, std::string textureName, glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour)
+		: m_SpriteTexture(textureName), m_Position(position), m_Size(size), m_Rotation(rotation), m_SpriteColour(colour) {
 		m_ID = s_CurrentID += 1;
 
 		app->AddGameObject(*this);
 	}
 
 	void GameObject::Draw() {
-		Renderer::DrawSprite(*m_SpriteTexture, m_Position, m_Size, m_Rotation, m_SpriteColour);
+		Renderer::DrawSprite(*AssetManager::GetTexture(m_SpriteTexture), m_Position, m_Size, m_Rotation, m_SpriteColour);
 	}
 
 	//Setters
-	void GameObject::SetSprite(Texture* texture) {
-		m_SpriteTexture = texture;
+	void GameObject::SetSprite(std::string textureName) {
+		m_SpriteTexture = textureName;
 	}
 
 	void GameObject::SetPosition(glm::vec2 position) {
@@ -39,7 +40,7 @@ namespace Hamster {
 	}
 
 	//Getters
-	Texture* GameObject::GetSprite() const {
+	std::string GameObject::GetSprite() const {
 		return m_SpriteTexture;
 	}
 

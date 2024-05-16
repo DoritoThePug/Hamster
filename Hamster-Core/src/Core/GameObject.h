@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 #include <glm.hpp>
 
@@ -12,17 +13,17 @@ namespace Hamster {
 	class GameObject
 	{
 	public:
-		GameObject(Application* app, Texture* texture = nullptr, glm::vec2 position = glm::vec2(0.0f, 0.0f), glm::vec2 size = glm::vec2(100.0f, 100.0f), float rotation = 0.0f, glm::vec3 colour = glm::vec3(255.0f, 255.0f, 255.0f));
+		GameObject(Application* app, std::string textureName = "", glm::vec2 position = glm::vec2(0.0f, 0.0f), glm::vec2 size = glm::vec2(100.0f, 100.0f), float rotation = 0.0f, glm::vec3 colour = glm::vec3(255.0f, 255.0f, 255.0f));
 
 		void Draw();
 
-		void SetSprite(Texture* texture);
+		void SetSprite(std::string textureName);
 		void SetPosition(glm::vec2 position);
 		void SetSize(glm::vec2 size);
 		void SetRotation(float rotation);
 		void SetColour(glm::vec3 colour);
 
-		Texture* GetSprite() const;
+		std::string GetSprite() const;
 		glm::vec2 GetPosition() const;
 		glm::vec2 GetSize() const;
 		float GetRotation() const;
@@ -33,7 +34,7 @@ namespace Hamster {
 		virtual void OnUpdate(float deltaTime) {};
 		virtual void OnDestroyed() {};
 	private:
-		Texture* m_SpriteTexture;
+		std::string m_SpriteTexture;
 		glm::vec2 m_Position;
 		glm::vec2 m_Size;
 		float m_Rotation;

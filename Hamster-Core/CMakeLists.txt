@@ -50,12 +50,19 @@ set(sources
 
 add_library(Hamster-Core STATIC ${sources})
 
+# find_package(Python COMPONENTS Interpreter Development REQUIRED)
+
 target_include_directories(Hamster-Core PRIVATE
     src
     vendor/glad/include
     vendor/glm
     vendor/stb_image
+    vendor/pybind11/include
+    ${Python_INCLUDE_DIRS}
 )
+
+# message("-----------------------------------------${Python_INCLUDE_DIRS}")
+
 
 target_include_directories(Hamster-Core PUBLIC Vendor/glfw/include)
 
@@ -64,8 +71,12 @@ target_include_directories(Hamster-Core PUBLIC Vendor/glfw/include)
 #     vendor/glad/bin
 # )
 
+
+
+# add_subdirectory(${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/pybind11)
+
 target_link_directories(Hamster-Core PUBLIC glfw)
-target_link_directories(Hamster-Core PUBLIC pybind11)
+# target_link_directories(Hamster-Core PUBLIC pybind11)
 
 # Pybind 11 files
-# pybind11_add_module(test src/Core/pytest.cpp)
+# pybind11_add_module(ass src/Core/pytest.cpp)

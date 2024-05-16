@@ -1,9 +1,12 @@
 #include "Texture.h"
 
 #include <iostream>
+#include <memory>
 
 #include <stb_image.h>
 #include <glad/glad.h>
+
+#include "Utils/AssetManager.h"
 
 namespace Hamster {
 	Texture::Texture(const char* texturePath) {
