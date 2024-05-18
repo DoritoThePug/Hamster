@@ -16,3 +16,12 @@ Currently, Hamster is being developed on Linux, Hamster's builds should support 
 ### Building Hamster
 
 To build and compile Hamster, go to `/Scripts` and run the os-specific setup command.
+
+## Using Hamster
+
+### Importing the Python library
+
+Having ran the setup command, a `.so` or `.pyd` file will be generated in `/Hamster-Py/`, copy this file to the working directory of your Python project. You can then import Hamster using 
+```python
+import Hamster
+```
