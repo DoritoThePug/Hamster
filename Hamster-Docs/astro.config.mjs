@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
   site: "https://doritothepug.github.io/Hamster",
-  base: "Hamster"
+  base: "Hamster",
 	integrations: [
 		starlight({
 			title: 'Hamster',
