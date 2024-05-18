@@ -3,20 +3,19 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://doritothepug.github.io",
-  base: "/Hamster-Docs",
+  site: "https://doritothepug.github.io/Hamster",
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: 'Hamster',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/DoritoThePug/Hamster',
 			},
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'Installation',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
+						{ label: 'Getting Started', link: 'guides/start/GettingStarted.md'},
 					],
 				},
 				{

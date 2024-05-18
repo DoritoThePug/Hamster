@@ -1,0 +1,46 @@
+---
+title: Getting Started
+description: This is a page is a guide on getting started to use Hamster
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Aside } from '@astrojs/starlight/components';
+
+This page is a guide on getting started with Hamster.
+
+### Introduction
+
+Hamster is a lightweight and easy-to-use game engine designed to help teach Python programming through the creation of games.
+
+### Installing Hamster
+
+Hamster is still in the early stages of development, therefore there are no prebuilt binaries or installation managers available. The Hamster library for Python will become available on pip once a stable version is released.
+
+Currently, in order to use Hamster, you need to build the project yourself. This can be done with the following commands:
+
+<Tabs>
+  <TabItem label="Windows" icon="seti:windows">
+    ```sh
+    ./scripts/setup-windows.bat
+    ```
+  </TabItem>
+  <TabItem label="Linux" icon="linux">
+    ```sh
+    ./scripts/setup-linux.sh
+    ``` 
+  </TabItem>
+</Tabs>
+
+### Using Hamster in Python
+
+A new file will be generated following this for the Python module, this file will be named `Hamster.cpython-...`. Copy this file and paste it into the directory of your python project.
+
+Import Hamster into your file.
+
+```Python
+import Hamster
+```
+
+And voila! You will now be able to use Hamster. 
+
+<Aside type="danger">Hamster is in the early stages of development so use at your own risk!</Aside>
