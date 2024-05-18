@@ -4,6 +4,8 @@ project(Hamster-Core)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+add_compile_definitions(GLFW_INCLUDE_NONE)
+
 # file(GLOB sources 
 #     src/Core/*.cpp src/Core/*.h 
 #     vendor/stb_image/stb_image.h vendor/stb_image/stb_image.cpp)
@@ -54,10 +56,10 @@ add_library(Hamster-Core STATIC ${sources})
 
 target_include_directories(Hamster-Core PRIVATE
     src
-    vendor/glad/include
-    vendor/glm
-    vendor/stb_image
-    vendor/pybind11/include
+    Vendor/glad/include
+    Vendor/glm
+    Vendor/stb_image
+    Vendor/pybind11/include
     ${Python_INCLUDE_DIRS}
 )
 

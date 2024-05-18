@@ -5,11 +5,10 @@ project(Hamster VERSION 1.0
                 LANGUAGES CXX
 )
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 add_subdirectory(Hamster-Core)
 add_subdirectory(Hamster-App)
 add_subdirectory(Hamster-Py)
 
 add_subdirectory(Hamster-Core/Vendor/glfw)
-
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Hamster-App)
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
