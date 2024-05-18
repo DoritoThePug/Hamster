@@ -15,7 +15,7 @@ export default defineConfig({
 					label: 'Installation',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Getting Started', link: 'guides/start/GettingStarted.md'},
+						{ label: 'Getting Started', link: 'guides/GettingStarted'},
 					],
 				},
 				{
