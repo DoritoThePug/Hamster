@@ -1,0 +1,21 @@
+# Directories
+.vs/
+Binaries/
+cmake-build/
+CMakeFiles/
+
+**/Build
+**/CMakeFiles
+**/Debug
+
+
+# Files
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.sln
+*.log
+Makefile
+*.Dir/
+# Exclude
+!Vendor/Binaries
