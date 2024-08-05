@@ -3,15 +3,13 @@
 #include <string>
 
 namespace Hamster {
-	class Texture
-	{
+	class Texture {
 	public:
-		Texture(const char* texturePath);
+		Texture(const char *texturePath);
 
 		void BindTexture();
-	private:
-		
 
+	private:
 		unsigned int m_ID;
 	};
 }

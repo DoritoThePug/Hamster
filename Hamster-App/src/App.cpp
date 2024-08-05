@@ -1,5 +1,7 @@
 #include <iostream>
 #include <memory>
+#include <GLFW/glfw3.h>
+
 
 #include "Core/Application.h"
 #include "Renderer/Texture.h"
@@ -11,17 +13,16 @@
 // static Hamster::Application* app;
 
 int main() {
-  Hamster::Application *app = new Hamster::Application();
+    Hamster::Application *app = new Hamster::Application();
 
-  Hamster::AssetManager::AddTexture(
-      "face",
-      "/home/jaden/Documents/dev/Hamster/Hamster-App/Assets/awesomeface.png");
-  // Hamster::AssetManager::AddTexture("face", face);
+    Hamster::AssetManager::AddTexture(
+        "face",
+        "/home/jaden/Documents/dev/Hamster/Hamster-App/Assets/awesomeface.png");
 
-  Player p(app, "face", glm::vec2(200.0f, 200.0f), glm::vec2(300.0f, 400.0f),
-           45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+    Player p(app, "face", glm::vec2(500.0f, 500.0f), glm::vec2(300.0f, 300.0f),
+             0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
-  app->Run();
+    app->Run();
 
-  delete app;
+    delete app;
 }
