@@ -13,4 +13,4 @@ add_subdirectory(Hamster-Py)
 
 add_subdirectory(Hamster-Core/Vendor/imgui)
 add_subdirectory(Hamster-Core/Vendor/glfw)
-#add_subdirectory(Hamster-Core/Vendor/entt)
+add_subdirectory(Hamster-Core/Vendor/entt)

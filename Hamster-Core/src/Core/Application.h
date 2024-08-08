@@ -10,8 +10,23 @@
 #include "LayerStack.h"
 
 #include <GLFW/glfw3.h>
+#include <entt/entt.hpp>
+#include <glm.hpp>
+
+#include "Renderer/Texture.h"
 
 namespace Hamster {
+	struct Transform {
+		glm::vec2 position;
+		float rotation;
+		glm::vec2 size;
+	};
+
+	struct Sprite {
+		std::shared_ptr<Texture> texture;
+		glm::vec3 colour;
+	};
+
 	class GameObject;
 
 	//class EventDispatcher;
@@ -45,6 +60,14 @@ namespace Hamster {
 		void SetViewportHeight(const int height) { m_ViewportHeight = height; }
 		void SetViewportWidth(const int width) { m_ViewportWidth = width; }
 
+		// ECS
+
+		[[nodiscard]] entt::registry &GetRegistry() { return m_Registry; }
+
+		void UpdateSystem(entt::registry &registry);
+
+		void RenderSystem(entt::registry &registry);
+
 	private:
 		bool m_running = true;
 
@@ -59,5 +82,8 @@ namespace Hamster {
 		std::unique_ptr<Window> m_Window;
 
 		WindowProps m_WindowProps;
+
+		// ECS
+		entt::registry m_Registry;
 	};
 }

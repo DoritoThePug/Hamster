@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include <glad/glad.h>
-#include <glm.hpp>
+
 #include <gtc/matrix_transform.hpp>
 #include <imgui.h>
 #include <functional>
@@ -106,12 +106,20 @@ namespace Hamster {
 
     Gui g(m_Window->GetGLFWWindowPointer());
     LevelEditor l([this]() {
-      this->RenderScene();
+      this->RenderSystem(m_Registry);
     }, m_ViewportWidth, m_ViewportHeight);
 
     bool show_another_window = true;
     bool f = true;
     Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
+
+    // layer p(app, "face", glm::vec2(500.0f, 500.0f), glm::vec2(300.0f, 300.0f),
+    //          0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+
+    auto face = m_Registry.create();
+
+    m_Registry.emplace<Sprite>(face, AssetManager::GetTexture("face"), glm::vec3(0.0f, 1.0f, 0.0f));
+    m_Registry.emplace<Transform>(face, glm::vec2(300.0f, 300.0f), 0.0f, glm::vec2(500.0f, 500.0f));
 
     while (m_running) {
       auto currentFrame = static_cast<float>(glfwGetTime());
@@ -127,7 +135,9 @@ namespace Hamster {
       g.Render();
 
 
-      UpdateScene(deltaTime);
+      // UpdateScene(deltaTime);
+
+      UpdateSystem(m_Registry);
 
       m_Window->Update(m_running);
     }
@@ -173,5 +183,21 @@ namespace Hamster {
     for (const auto &pair: m_GameObjects) {
       pair.second->OnUpdate(deltaTime);
     }
+  }
+
+  void Application::UpdateSystem(entt::registry &registry) {
+    auto view = registry.view<Transform>();
+
+    view.each([](auto &transform) {
+      transform.position = transform.position + glm::vec2(1.0f, 0.0f);
+    });
+  }
+
+  void Application::RenderSystem(entt::registry &registry) {
+    auto view = registry.view<Sprite, Transform>();
+
+    view.each([](auto &sprite, auto &transform) {
+      Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation, sprite.colour);
+    });
   }
 } // namespace Hamster

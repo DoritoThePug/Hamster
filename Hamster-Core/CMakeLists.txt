@@ -14,47 +14,47 @@ add_compile_definitions(GLFW_INCLUDE_NONE)
 # file(GLOB SOURCES  "vendor/stb_image/stb_image.cpp")
 
 file(GLOB source_core
-    src/Core/*.cpp src/Core/*.h
+        src/Core/*.cpp src/Core/*.h
 )
 
 source_group(Core FILES ${source_core})
 
 file(GLOB source_events
-    src/Events/*.cpp src/Events/*.h
+        src/Events/*.cpp src/Events/*.h
 )
 
 source_group(Events FILES ${source_events})
 
 file(GLOB source_renderer
-    src/Renderer/*.cpp src/Renderer/*.h
+        src/Renderer/*.cpp src/Renderer/*.h
 )
 
 source_group(Renderer FILES ${source_renderer})
 
 file(GLOB source_utils
-    src/Utils/*.cpp src/Utils/*.h
+        src/Utils/*.cpp src/Utils/*.h
 )
 
 source_group(Utils FILES ${source_utils})
 
 file(GLOB source_stb_image
-    Vendor/stb_image/*.cpp src/stb_image/*.h
+        Vendor/stb_image/*.cpp src/stb_image/*.h
 )
 
 file(GLOB source_gui
-    src/Gui/*.cpp src/Gui/*.h
+        src/Gui/*.cpp src/Gui/*.h
 )
 
 source_group(Gui FILES ${source_gui})
 
 set(sources
-    ${source_core}
-    ${source_events}
-    ${source_renderer}
-    ${source_utils}
-    ${source_stb_image}
-    ${source_gui}
-    Vendor/glad/src/glad.c
+        ${source_core}
+        ${source_events}
+        ${source_renderer}
+        ${source_utils}
+        ${source_stb_image}
+        ${source_gui}
+        Vendor/glad/src/glad.c
 )
 
 add_library(Hamster-Core STATIC ${sources})
@@ -62,14 +62,15 @@ add_library(Hamster-Core STATIC ${sources})
 # find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
 target_include_directories(Hamster-Core PUBLIC
-    src
-    Vendor/glad/include
-    Vendor/glm
-    Vendor/stb_image
-    Vendor/pybind11/include
-    ${Python_INCLUDE_DIRS}
+        src
+        Vendor/glad/include
+        Vendor/glm
+        Vendor/stb_image
+        Vendor/pybind11/include
+        ${Python_INCLUDE_DIRS}
         Vendor/imgui
         Vendor/imgui/backends
+        Vendor/entt/src
 )
 
 # message("-----------------------------------------${Python_INCLUDE_DIRS}")
@@ -81,7 +82,6 @@ target_include_directories(Hamster-Core PUBLIC Vendor/glfw/include)
 #     vendor/GLFW
 #     vendor/glad/bin
 # )
-
 
 
 # add_subdirectory(${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/pybind11)
