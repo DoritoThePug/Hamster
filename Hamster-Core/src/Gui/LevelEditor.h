@@ -8,24 +8,32 @@
 #include <functional>
 #include <utility>
 
+#include <GLFW/glfw3.h>
+
 #include "Renderer/FramebufferTexture.h"
 #include "Events/GuiEvents.h"
+#include "Events/InputEvents.h"
 #include "Core/Application.h"
 
 namespace Hamster {
     class LevelEditor {
     public:
-        LevelEditor(const std::function<void()> &renderFn, int viewportWidth, int viewportHeight);
+        LevelEditor(const std::function<void(bool)> &renderFn, int viewportWidth,
+                    int viewportHeight, GLFWwindow *window);
 
         void Render();
 
         void FramebufferSizeChange(LevelEditorViewportSizeChangedEvent &e);
 
+        void MouseClicked(MouseButtonClickedEvent &e);
+
     private:
-        std::function<void()> m_RenderFn;
+        std::function<void(bool)> m_RenderFn;
+        // std::function<void()> m_RenderFlatFn;
         int m_ViewportWidth, m_ViewportHeight;
         FramebufferTexture m_FramebufferTexture;
-        bool m_WindowOpen;
+        bool m_WindowOpen = true;
+        GLFWwindow *m_GLFWWindow;
     };
 } // Hamster
 

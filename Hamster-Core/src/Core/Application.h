@@ -66,7 +66,7 @@ namespace Hamster {
 
 		void UpdateSystem(entt::registry &registry);
 
-		void RenderSystem(entt::registry &registry);
+		void RenderSystem(entt::registry &registry, bool renderFlat);
 
 	private:
 		bool m_running = true;

@@ -23,10 +23,13 @@ namespace Hamster {
 
 		static void DrawSprite(Texture &texture, glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour);
 
+		static void DrawFlat(glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour);
+
 	private:
 		static void InitRendererData();
 
-		inline static std::shared_ptr<Shader> m_Shader;
+		inline static std::shared_ptr<Shader> m_SpriteShader;
+		inline static std::shared_ptr<Shader> m_FlatShader;
 		inline static unsigned int m_VAO;
 	};
 }

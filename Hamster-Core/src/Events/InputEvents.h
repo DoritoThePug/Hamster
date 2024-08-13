@@ -31,6 +31,25 @@ namespace Hamster {
     private:
         KeyCodes m_KeyCodeReleased;
     };
+
+    class MouseButtonClickedEvent : public Event {
+    public:
+        MouseButtonClickedEvent(MouseButtons mouseButton, double xPos, double yPos) : m_MouseButton(mouseButton),
+            m_XPos(xPos), m_YPos(yPos) {
+        };
+
+        [[nodiscard]] MouseButtons GetMouseButton() { return m_MouseButton; }
+
+        [[nodiscard]] double GetXPos() { return m_XPos; }
+
+        [[nodiscard]] double GetYPos() { return m_YPos; }
+
+        BIND_EVENT_TYPE(MouseButtonClicked)
+
+    private:
+        MouseButtons m_MouseButton;
+        double m_XPos, m_YPos;
+    };
 } // Hamster
 
 #endif //INPUTEVENTS_H

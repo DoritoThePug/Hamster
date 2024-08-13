@@ -15,7 +15,7 @@ namespace Hamster {
 		LevelEditorViewportSizeChanged,
 
 		// Input Events
-		KeyPressed, KeyReleased
+		KeyPressed, KeyReleased, MouseButtonClicked
 	};
 
 	class Event {
@@ -23,6 +23,12 @@ namespace Hamster {
 		[[nodiscard]] virtual EventType GetEventType() const = 0;
 
 		[[nodiscard]] virtual std::string GetEventName() const = 0;
+
+		[[nodiscard]] bool IsHandled() const { return m_Handled; }
+		void Handled() { m_Handled = true; }
+
+	private:
+		bool m_Handled = false;
 	};
 
 	class EventDispatcher {

@@ -96,6 +96,7 @@ namespace Hamster {
     int width, height;
     glfwGetFramebufferSize(m_Window->GetGLFWWindowPointer(), &width, &height);
 
+    InputManager inputManager(m_Window->GetGLFWWindowPointer());
 
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight),
                                       0.0f, -1.0f, 1.0f);
@@ -104,10 +105,16 @@ namespace Hamster {
     AssetManager::GetShader("sprite")->setUniformi("image", 0);
     AssetManager::GetShader("sprite")->setUniformMat4("projection", projection);
 
+    AssetManager::GetShader("flat")->use();
+    AssetManager::GetShader("flat")->setUniformi("image", 0);
+    AssetManager::GetShader("flat")->setUniformMat4("projection", projection);
+
     Gui g(m_Window->GetGLFWWindowPointer());
-    LevelEditor l([this]() {
-      this->RenderSystem(m_Registry);
-    }, m_ViewportWidth, m_ViewportHeight);
+    LevelEditor l([this](bool renderFlat) {
+                    this->RenderSystem(m_Registry, renderFlat);
+                  }, m_ViewportWidth,
+                  m_ViewportHeight,
+                  m_Window->GetGLFWWindowPointer());
 
     bool show_another_window = true;
     bool f = true;
@@ -116,17 +123,16 @@ namespace Hamster {
     // layer p(app, "face", glm::vec2(500.0f, 500.0f), glm::vec2(300.0f, 300.0f),
     //          0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
-    auto face = m_Registry.create();
-
-    m_Registry.emplace<Sprite>(face, AssetManager::GetTexture("face"), glm::vec3(0.0f, 1.0f, 0.0f));
-    m_Registry.emplace<Transform>(face, glm::vec2(300.0f, 300.0f), 0.0f, glm::vec2(500.0f, 500.0f));
-
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     while (m_running) {
       auto currentFrame = static_cast<float>(glfwGetTime());
       deltaTime = currentFrame - lastFrame;
       lastFrame = currentFrame;
 
+
       g.Start(&show_another_window);
+
+      // ImGui::GetWindowPos();
 
       l.Render();
       ImGui::ShowDemoWindow();
@@ -189,15 +195,34 @@ namespace Hamster {
     auto view = registry.view<Transform>();
 
     view.each([](auto &transform) {
-      transform.position = transform.position + glm::vec2(1.0f, 0.0f);
+      // transform.position = transform.position + glm::vec2(1.0f, 0.0f);
     });
   }
 
-  void Application::RenderSystem(entt::registry &registry) {
+  void Application::RenderSystem(entt::registry &registry, bool renderFlat) {
     auto view = registry.view<Sprite, Transform>();
 
-    view.each([](auto &sprite, auto &transform) {
-      Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation, sprite.colour);
-    });
+    if (!renderFlat) {
+      view.each([](auto &sprite, auto &transform) {
+        Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation, sprite.colour);
+      });
+    } else {
+      // render all sprites as a unique flat colour which can be used to identify to their id
+
+      // std::cout << "hi" << std::endl;
+
+      view.each([](auto entity, auto &sprite, auto &transform) {
+        int id = entt::to_integral(entity) + 1;
+        // +1 to ensure no ids are 0 as an invalid coordinate causes opengl to return 0 on read pixel
+        int r = (id & 0x000000FF) >> 0;
+        int g = (id & 0x0000FF00) >> 8;
+        int b = (id & 0x00FF0000) >> 16;
+
+        // std::cout << r / 255.0f << std::endl;
+
+        Renderer::DrawFlat(transform.position, transform.size, transform.rotation,
+                           glm::vec3(r / 255.0f, g / 255.0f, b / 255.0f));
+      });
+    }
   }
 } // namespace Hamster

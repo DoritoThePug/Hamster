@@ -39,12 +39,19 @@ namespace Hamster {
   }
 
   void Renderer::InitRendererData() {
-    m_Shader = AssetManager::AddShader(
+    m_SpriteShader = AssetManager::AddShader(
       "sprite",
       "/home/jaden/Documents/dev/Hamster/Hamster-Core/src/"
       "Renderer/DefaultShaders/SpriteShader.vs",
       "/home/jaden/Documents/dev/Hamster/Hamster-Core/src/"
       "Renderer/DefaultShaders/SpriteShader.fs");
+
+    m_FlatShader = AssetManager::AddShader("flat",
+                                           "/home/jaden/Documents/dev/Hamster/Hamster-Core/src/"
+                                           "Renderer/DefaultShaders/FlatShader.vs",
+                                           "/home/jaden/Documents/dev/Hamster/Hamster-Core/src/"
+                                           "Renderer/DefaultShaders/FlatShader.fs"
+    );
 
     // AssetManager::AddShader("sprite", shader);
 
@@ -78,7 +85,7 @@ namespace Hamster {
 
   void Renderer::DrawSprite(Texture &texture, glm::vec2 position, glm::vec2 size,
                             float rotation, glm::vec3 colour) {
-    m_Shader->use();
+    m_SpriteShader->use();
 
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(position, 0.0f));
@@ -93,11 +100,36 @@ namespace Hamster {
     //
     model = glm::scale(model, glm::vec3(size, 1.0f));
 
-    m_Shader->setUniformMat4("model", model);
-    m_Shader->setUniformVec3("spriteColour", colour);
+    m_SpriteShader->setUniformMat4("model", model);
+    m_SpriteShader->setUniformVec3("spriteColour", colour);
 
     glActiveTexture(GL_TEXTURE0);
     texture.BindTexture();
+
+    glBindVertexArray(m_VAO);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+
+    glBindVertexArray(0);
+  }
+
+  void Renderer::DrawFlat(glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour) {
+    m_FlatShader->use();
+
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(position, 0.0f));
+    //
+    // // Code from learnopengl.com, used to translate sprite so rotation is based
+    // // around centre of sprite
+    // model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+    // model =
+    //     glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+    // model =
+    //     glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+    //
+    model = glm::scale(model, glm::vec3(size, 1.0f));
+
+    m_FlatShader->setUniformMat4("model", model);
+    m_FlatShader->setUniformVec3("colour", colour);
 
     glBindVertexArray(m_VAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
