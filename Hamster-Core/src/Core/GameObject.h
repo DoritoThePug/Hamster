@@ -10,29 +10,45 @@
 namespace Hamster {
 	class Application;
 
-	class GameObject
-	{
+	class GameObject {
 	public:
-		GameObject(Application* app, std::string textureName = "", glm::vec2 position = glm::vec2(0.0f, 0.0f), glm::vec2 size = glm::vec2(100.0f, 100.0f), float rotation = 0.0f, glm::vec3 colour = glm::vec3(255.0f, 255.0f, 255.0f));
+		GameObject(Application *app, std::string textureName = "", glm::vec2 position = glm::vec2(0.0f, 0.0f),
+		           glm::vec2 size = glm::vec2(100.0f, 100.0f), float rotation = 0.0f,
+		           glm::vec3 colour = glm::vec3(255.0f, 255.0f, 255.0f));
 
 		void Draw();
 
 		void SetSprite(std::string textureName);
+
 		void SetPosition(glm::vec2 position);
+
 		void SetSize(glm::vec2 size);
+
 		void SetRotation(float rotation);
+
 		void SetColour(glm::vec3 colour);
 
-		std::string GetSprite() const;
-		glm::vec2 GetPosition() const;
-		glm::vec2 GetSize() const;
-		float GetRotation() const;
-		glm::vec3 GetColour() const;
-		int GetID() const;
+		[[nodiscard]] std::string GetSprite() const;
 
-		virtual void OnStart() {};
-		virtual void OnUpdate(float deltaTime) {};
-		virtual void OnDestroyed() {};
+		[[nodiscard]] glm::vec2 GetPosition() const;
+
+		[[nodiscard]] glm::vec2 GetSize() const;
+
+		[[nodiscard]] float GetRotation() const;
+
+		[[nodiscard]] glm::vec3 GetColour() const;
+
+		[[nodiscard]] int GetID() const;
+
+		virtual void OnStart() {
+		};
+
+		virtual void OnUpdate(float deltaTime) {
+		};
+
+		virtual void OnDestroyed() {
+		};
+
 	private:
 		std::string m_SpriteTexture;
 		glm::vec2 m_Position;

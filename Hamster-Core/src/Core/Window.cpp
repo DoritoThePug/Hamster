@@ -9,14 +9,12 @@ static uint8_t s_NumWindows = 0;
 
 namespace Hamster {
 Window::Window(const WindowProps &props) {
-  if (s_NumWindows == 0) {
-    if (glfwInit()) {
-      glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-      glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-      glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    } else {
-      std::cout << "glfw failed to initialise" << std::endl;
-    }
+  if (glfwInit()) {
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  } else {
+    std::cout << "glfw failed to initialise" << std::endl;
   }
 
   /*glfwInit();
@@ -36,37 +34,11 @@ Window::Window(const WindowProps &props) {
   m_Window = window;
 
   glfwMakeContextCurrent(window);
+  // glViewport(0, 0, 800, 600);
 
   m_WindowData.height = props.height;
   m_WindowData.width = props.width;
   m_WindowData.title = props.title;
-
-
-
-  // glfwSetWindowUserPointer(m_Window, &m_WindowData);
-
-
-  IMGUI_CHECKVERSION();
-  ImGui::CreateContext();
-  m_io = ImGui::GetIO();
-  (void)m_io;
-  m_io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-  m_io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
-  m_io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
-
-  ImGui::StyleColorsDark();
-
-  ImGuiStyle& style = ImGui::GetStyle();
-  if (m_io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-  {
-    style.WindowRounding = 0.0f;
-    style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-  }
-
-  // Setup Platform/Renderer backends
-  ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
-
-  ImGui_ImplOpenGL3_Init("#version 400 core");
 }
 
 Window::~Window() {
@@ -91,43 +63,42 @@ void Window::SetWindowEventDispatcher(EventDispatcher *dispatcher) {
 }
 
 void Window::Update(bool running) {
-
-
-  glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
-
-  ImGui_ImplOpenGL3_NewFrame();
-  ImGui_ImplGlfw_NewFrame();
-  ImGui::NewFrame();
+  glfwPollEvents();
 
 
 
-  if (show_another_window)
-  {
-    ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-    ImGui::Text("Hello from another window!");
-    if (ImGui::Button("Close Me"))
-      show_another_window = false;
-    ImGui::End();
-  }
-
-  ImGui::Render();
-
-  ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 
 
-  if (m_io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-  {
-    GLFWwindow* backup_current_context = glfwGetCurrentContext();
-    ImGui::UpdatePlatformWindows();
-    ImGui::RenderPlatformWindowsDefault();
-    glfwMakeContextCurrent(backup_current_context);
-  }
+
+
+  // if (show_another_window)
+  // {
+  //   ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
+  //   ImGui::Text("Hello from another window!");
+  //   if (ImGui::Button("Close Me"))
+  //     show_another_window = false;
+  //   ImGui::End();
+  // }
+
+  // ImGui::ShowDemoWindow();
+  //
+  // ImGui::End();
+  // ImGui::Render();
+  //
+  //
+  //
+  // ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+  // if (m_io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+  // {
+  //   GLFWwindow* backup_current_context = glfwGetCurrentContext();
+  //   ImGui::UpdatePlatformWindows();
+  //   ImGui::RenderPlatformWindowsDefault();
+  //   glfwMakeContextCurrent(backup_current_context);
+  // }
 
   glfwSwapBuffers(m_Window);
   
-  glfwPollEvents();
 }
 
 void Window::TerminateAllWindows() { glfwTerminate(); }
