@@ -4,6 +4,9 @@
 #include <string>
 
 #include <GLFW/glfw3.h>
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 #include "Events/Event.h"
 
@@ -26,6 +29,8 @@ class Window {
 private:
   GLFWwindow *m_Window;
   WindowData m_WindowData;
+  bool show_another_window = true;
+  ImGuiIO m_io;
 
 public:
   Window(const WindowProps &props);
@@ -35,7 +40,7 @@ public:
 
   void SetWindowEventDispatcher(EventDispatcher *dispatcher);
 
-  void Update();
+  void Update(bool running);
 
   static void TerminateAllWindows();
 };

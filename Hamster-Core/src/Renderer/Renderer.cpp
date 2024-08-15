@@ -10,9 +10,9 @@
 
 namespace Hamster {
 void Renderer::Init(uint16_t windowWidth, uint16_t windowHeight) {
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    std::cout << "Failed to initialise glad" << std::endl;
-  }
+      if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cout << "Failed to initialise glad" << std::endl;
+      }
 
   Renderer::SetViewport(windowWidth, windowHeight);
 

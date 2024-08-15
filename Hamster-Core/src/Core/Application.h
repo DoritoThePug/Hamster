@@ -7,6 +7,7 @@
 #include "Events/Event.h"
 #include "Events/WindowEvents.h"
 #include "Window.h"
+#include "LayerStack.h"
 
 #include <GLFW/glfw3.h>
 
@@ -34,13 +35,13 @@ namespace Hamster {
 
 		void Run();
 		void Close(WindowCloseEvent& e);
-		void ResizeWindow(WindowResizeEvent& e);
+		static void ResizeWindow(WindowResizeEvent& e);
 
 		//void AddGameObject(GameObjectCreatedEvent& e);
 		void AddGameObject(GameObject& gameObject);
 		void RemoveGameObject(int ID);
 
-		void RenderScene();
-		void UpdateScene(float deltaTime);
+		void RenderScene() const;
+		void UpdateScene(float deltaTime) const;
 	};
 }

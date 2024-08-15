@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.28)
 project(Hamster-Core)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -41,12 +41,19 @@ file(GLOB source_stb_image
     Vendor/stb_image/*.cpp src/stb_image/*.h
 )
 
+file(GLOB source_gui
+    src/Gui/*.cpp src/Gui/*.h
+)
+
+source_group(Gui FILES ${source_gui})
+
 set(sources
     ${source_core}
     ${source_events}
     ${source_renderer}
     ${source_utils}
     ${source_stb_image}
+    ${source_gui}
     Vendor/glad/src/glad.c
 )
 
@@ -54,13 +61,15 @@ add_library(Hamster-Core STATIC ${sources})
 
 # find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
-target_include_directories(Hamster-Core PRIVATE
+target_include_directories(Hamster-Core PUBLIC
     src
     Vendor/glad/include
     Vendor/glm
     Vendor/stb_image
     Vendor/pybind11/include
     ${Python_INCLUDE_DIRS}
+        Vendor/imgui
+        Vendor/imgui/backends
 )
 
 # message("-----------------------------------------${Python_INCLUDE_DIRS}")
@@ -77,7 +86,8 @@ target_include_directories(Hamster-Core PUBLIC Vendor/glfw/include)
 
 # add_subdirectory(${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/pybind11)
 
-target_link_directories(Hamster-Core PUBLIC glfw)
+target_link_libraries(Hamster-Core PUBLIC glfw)
+target_link_libraries(Hamster-Core PUBLIC imgui)
 # target_link_directories(Hamster-Core PUBLIC pybind11)
 
 # Pybind 11 files

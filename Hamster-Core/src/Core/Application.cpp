@@ -27,7 +27,7 @@ Application::Application() {
   Renderer::Init(props.width, props.height);
 
   // EventDispatcher* dispatcher = new EventDispatcher;
-  m_Dispatcher = std::unique_ptr<EventDispatcher>(new EventDispatcher);
+  m_Dispatcher = std::make_unique<EventDispatcher>();
 
   m_Window->SetWindowEventDispatcher(m_Dispatcher.get());
 
@@ -37,8 +37,8 @@ Application::Application() {
 
   glfwSetWindowCloseCallback(
       m_Window->GetGLFWWindowPointer(), [](GLFWwindow *windowGLFW) {
-        EventDispatcher *dispatcher =
-            (EventDispatcher *)glfwGetWindowUserPointer(windowGLFW);
+        auto *dispatcher =
+            static_cast<EventDispatcher *>(glfwGetWindowUserPointer(windowGLFW));
 
         WindowCloseEvent e;
 
@@ -51,9 +51,9 @@ Application::Application() {
 
   glfwSetWindowSizeCallback(m_Window->GetGLFWWindowPointer(),
                             [](GLFWwindow *windowGLFW, int width, int height) {
-                              EventDispatcher *dispatcher =
-                                  (EventDispatcher *)glfwGetWindowUserPointer(
-                                      windowGLFW);
+                              auto *dispatcher =
+                                  static_cast<EventDispatcher *>(glfwGetWindowUserPointer(
+                                      windowGLFW));
 
                               WindowResizeEvent e(width, height);
 
@@ -65,37 +65,45 @@ Application::~Application() {
   std::cout << "Application destroyed" << std::endl;
 }
 
-void Application::Run() {
-  std::cout << "Application running" << std::endl;
+  void Application::Run() {
+    std::cout << "Application running" << std::endl;
 
-  float deltaTime = 0.0f;
-  float lastFrame = 0.0f;
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
 
-  glm::mat4 projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
+    glm::mat4 projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
 
-  AssetManager::GetShader("sprite")->use();
-  AssetManager::GetShader("sprite")->setUniformi("image", 0);
-  AssetManager::GetShader("sprite")->setUniformMat4("projection", projection);
+    AssetManager::GetShader("sprite")->use();
+    AssetManager::GetShader("sprite")->setUniformi("image", 0);
+    AssetManager::GetShader("sprite")->setUniformMat4("projection", projection);
 
-  while (m_running) {
-    Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
-    Renderer::Clear();
+    while (m_running) {
 
-    float currentFrame = static_cast<float>(glfwGetTime());
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
 
-    UpdateScene(deltaTime);
 
-    RenderScene();
 
-    m_Window->Update();
+
+
+      float currentFrame = static_cast<float>(glfwGetTime());
+      deltaTime = currentFrame - lastFrame;
+      lastFrame = currentFrame;
+
+      m_Window->Update(m_running);
+
+      // UpdateScene(deltaTime);
+
+
+
+
+      // RenderScene(); --> causes an error if uncommented
+      // Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
+      // Renderer::Clear();
+    }
   }
-}
 
 void Application::Close(WindowCloseEvent &e) {
-  m_running = false;
   m_Window.reset();
+  m_running = false;
 
   AssetManager::Terminate();
 
@@ -112,15 +120,15 @@ void Application::AddGameObject(GameObject &gameObject) {
   m_GameObjects[gameObject.GetID()] = &gameObject;
 }
 
-void Application::RemoveGameObject(int ID) { m_GameObjects.erase(ID); }
+void Application::RemoveGameObject(const int ID) { m_GameObjects.erase(ID); }
 
-void Application::RenderScene() {
+void Application::RenderScene() const {
   for (const auto &pair : m_GameObjects) {
     pair.second->Draw();
   }
 }
 
-void Application::UpdateScene(float deltaTime) {
+void Application::UpdateScene(float deltaTime) const {
   for (const auto &pair : m_GameObjects) {
     pair.second->OnUpdate(deltaTime);
   }
