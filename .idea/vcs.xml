@@ -5,6 +5,7 @@
     <mapping directory="$PROJECT_DIR$/Hamster-Core/Vendor/entt" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Hamster-Core/Vendor/glfw" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Hamster-Core/Vendor/imgui" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Hamster-Core/Vendor/stb_image" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Hamster-Core/Vendor/stb" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Hamster-Py/Vendor/pybind11" vcs="Git" />
   </component>
 </project>

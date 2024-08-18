@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "Hamster-Core/Vendor/glfw/docs",
+		"source" : "Hamster-Core/Vendor/glfw/docs"
+	}
+}

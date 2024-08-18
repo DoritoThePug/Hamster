@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <memory>
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 #include "Shader.h"
 #include "Texture.h"
 #include "GLFW/glfw3.h"

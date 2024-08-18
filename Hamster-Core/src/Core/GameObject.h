@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 #include "Renderer/Texture.h"
 

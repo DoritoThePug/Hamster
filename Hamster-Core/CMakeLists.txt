@@ -65,7 +65,7 @@ target_include_directories(Hamster-Core PUBLIC
         src
         Vendor/glad/include
         Vendor/glm
-        Vendor/stb_image
+        Vendor/stb
         Vendor/pybind11/include
         ${Python_INCLUDE_DIRS}
         Vendor/imgui

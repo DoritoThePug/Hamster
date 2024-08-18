@@ -11,7 +11,7 @@
 
 #include <GLFW/glfw3.h>
 #include <entt/entt.hpp>
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 #include "Renderer/Texture.h"
 

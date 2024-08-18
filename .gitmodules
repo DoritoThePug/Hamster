@@ -4,12 +4,12 @@
 [submodule "Hamster-Py/Vendor/pybind11"]
 	path = Hamster-Py/Vendor/pybind11
 	url = https://github.com/pybind/pybind11.git
-[submodule "Hamster-Core/Vendor/stb_image"]
-	path = Hamster-Core/Vendor/stb_image
-	url = https://github.com/nothings/stb.git
 [submodule "Hamster-Core/Vendor/entt"]
     path = Hamster-Core/Vendor/entt
     url = https://github.com/skypjack/entt.git
 [submodule "Hamster-Core/Vendor/stb"]
 	path = Hamster-Core/Vendor/stb
 	url = https://github.com/nothings/stb.git/
+[submodule "Hamster-Core/Vendor/glm"]
+	path = Hamster-Core/Vendor/glm
+	url = https://github.com/g-truc/glm.git
