@@ -3,7 +3,9 @@
 #include <iostream>
 #include <memory>
 
+#define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
+
 #include <glad/glad.h>
 
 #include "Utils/AssetManager.h"

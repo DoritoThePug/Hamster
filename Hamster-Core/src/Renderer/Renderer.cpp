@@ -41,15 +41,15 @@ namespace Hamster {
   void Renderer::InitRendererData() {
     m_SpriteShader = AssetManager::AddShader(
       "sprite",
-      "/home/jaden/Documents/dev/Hamster/Hamster-Core/src/"
+      "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/"
       "Renderer/DefaultShaders/SpriteShader.vs",
-      "/home/jaden/Documents/dev/Hamster/Hamster-Core/src/"
+      "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/"
       "Renderer/DefaultShaders/SpriteShader.fs");
 
     m_FlatShader = AssetManager::AddShader("flat",
-                                           "/home/jaden/Documents/dev/Hamster/Hamster-Core/src/"
+                                           "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/"
                                            "Renderer/DefaultShaders/FlatShader.vs",
-                                           "/home/jaden/Documents/dev/Hamster/Hamster-Core/src/"
+                                           "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/"
                                            "Renderer/DefaultShaders/FlatShader.fs"
     );
 

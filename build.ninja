@@ -154,6 +154,14 @@ build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/pytest.cpp.obj: CXX_COMP
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/stb_image.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/stb_image.cpp || cmake_object_order_depends_target_Hamster-Core
+  DEFINES = -DGLFW_INCLUDE_NONE
+  DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\stb_image.cpp.obj.d
+  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
+  OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
+  OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
+
 build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Events/Event.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Events/Event.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Events\Event.cpp.obj.d
@@ -210,17 +218,17 @@ build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/InputManager.cpp.obj: C
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Utils
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/LevelEditor.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Gui/LevelEditor.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/Gui.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Gui/Gui.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
-  DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Gui\LevelEditor.cpp.obj.d
+  DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Gui\Gui.cpp.obj.d
   FLAGS = -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Gui
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/gui.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Gui/gui.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/LevelEditor.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Gui/LevelEditor.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
-  DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Gui\gui.cpp.obj.d
+  DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Gui\LevelEditor.cpp.obj.d
   FLAGS = -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
@@ -242,7 +250,7 @@ build Hamster-Core/CMakeFiles/Hamster-Core.dir/Vendor/glad/src/glad.c.obj: C_COM
 #############################################
 # Link the static library Hamster-Core\libHamster-Core.a
 
-build Hamster-Core/libHamster-Core.a: CXX_STATIC_LIBRARY_LINKER__Hamster-Core_ Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Application.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/GameObject.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/LayerStack.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Window.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/pytest.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Events/Event.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/FramebufferTexture.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Renderer.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Shader.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Texture.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/AssetManager.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/InputManager.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/LevelEditor.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/gui.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/Vendor/glad/src/glad.c.obj || Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a
+build Hamster-Core/libHamster-Core.a: CXX_STATIC_LIBRARY_LINKER__Hamster-Core_ Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Application.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/GameObject.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/LayerStack.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Window.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/pytest.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/stb_image.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Events/Event.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/FramebufferTexture.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Renderer.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Shader.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Texture.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/AssetManager.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/InputManager.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/Gui.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/LevelEditor.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/Vendor/glad/src/glad.c.obj || Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

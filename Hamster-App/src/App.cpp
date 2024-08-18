@@ -17,7 +17,7 @@ int main() {
 
     Hamster::AssetManager::AddTexture(
         "face",
-        "/home/jaden/Documents/dev/Hamster/Hamster-App/Assets/awesomeface.png");
+        "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/Assets/awesomeface.png");
 
     auto face = app->GetRegistry().create();
 

@@ -38,7 +38,7 @@ file(GLOB source_utils
 source_group(Utils FILES ${source_utils})
 
 file(GLOB source_stb_image
-        Vendor/stb_image/*.cpp src/stb_image/*.h
+        src/Core/stb_image.cpp src/stb/*.h
 )
 
 file(GLOB source_gui
