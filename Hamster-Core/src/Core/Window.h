@@ -20,7 +20,7 @@ namespace Hamster {
     float height, width;
     std::string title;
 
-    WindowProps(float height = 600, float width = 800,
+    WindowProps(float height = 500, float width = 500,
                 std::string title = "Hamster")
       : height(height), width(width), title(title) {
     };

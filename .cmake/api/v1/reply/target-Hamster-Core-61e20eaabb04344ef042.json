@@ -34,13 +34,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 89,
+				"line" : 90,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 90,
+				"line" : 89,
 				"parent" : 0
 			},
 			{
@@ -210,11 +210,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glfw::@5980d9434051264e402f"
+			"id" : "imgui::@bd7774a2938d6a9f01ea"
 		},
 		{
 			"backtrace" : 3,
-			"id" : "imgui::@bd7774a2938d6a9f01ea"
+			"id" : "glfw::@5980d9434051264e402f"
 		}
 	],
 	"id" : "Hamster-Core::@7fb26e8c688a3985960d",

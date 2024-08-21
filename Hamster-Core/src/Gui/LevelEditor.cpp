@@ -46,6 +46,12 @@ namespace Hamster {
       return;
     }
 
+    const float levelEditorAvailWidth = ImGui::GetContentRegionAvail().x;
+    const float levelEditorAvailHeight = ImGui::GetContentRegionAvail().y;
+
+
+
+
     ImGuiIO io = ImGui::GetIO();
     (void) io;
 
@@ -55,13 +61,17 @@ namespace Hamster {
       const ImVec2 windowSize = ImGui::GetWindowSize();
       const ImVec2 windowBorderSize = ImGui::GetStyle().WindowPadding;
 
-      float viewportPosX = mousePos.x - windowPos.x - windowBorderSize.x;
-      float viewportPosY = mousePos.y - windowPos.y - (
-                             windowSize.y - ImGui::GetContentRegionAvail().y - windowBorderSize.y);
+      float viewportPosX = mousePos.x - windowPos.x - (windowSize.x-levelEditorAvailWidth)/2;
+      float viewportPosY = mousePos.y - windowPos.y - (windowSize.y-levelEditorAvailHeight-windowBorderSize.y) + (1080-levelEditorAvailHeight);
 
       // std::cout << windowSize.y - ImGui::GetContentRegionAvail().y - windowBorderSize.y << std::endl;
       // std::cout << viewportPosX << " " << viewportPosY << std::endl;
 
+      glEnable(GL_SCISSOR_TEST);
+      glScissor(0, 0, levelEditorAvailWidth, levelEditorAvailHeight);
+      m_FramebufferTexture.Bind();
+      glViewport(0, 0, 1920, 1080);
+      Renderer::Clear();
       m_RenderFn(true);
       // glFlush();
       // glFinish();
@@ -75,7 +85,10 @@ namespace Hamster {
       unsigned char data[4];
 
 
-      glReadPixels(1920, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, data);
+      glReadPixels(viewportPosX, 1080-viewportPosY, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+      m_FramebufferTexture.Unbind();
+      glDisable(GL_SCISSOR_TEST);
 
       Renderer::Clear();
 
@@ -97,8 +110,6 @@ namespace Hamster {
     }
 
     // ImGui::SetConten
-    const float levelEditorAvailWidth = ImGui::GetContentRegionAvail().x;
-    const float levelEditorAvailHeight = ImGui::GetContentRegionAvail().y;
 
     m_FramebufferTexture.ResizeFrameBuffer(levelEditorAvailHeight, levelEditorAvailWidth);
 
@@ -112,7 +123,7 @@ namespace Hamster {
       ImVec2(1, 0)
     );
 
-    ImGui::End();
+
 
     glEnable(GL_SCISSOR_TEST);
     glScissor(0, 0, levelEditorAvailWidth, levelEditorAvailHeight);
@@ -139,6 +150,9 @@ namespace Hamster {
 
     m_FramebufferTexture.Unbind();
     glDisable(GL_SCISSOR_TEST);
+
+
+    ImGui::End();
   }
 
   void LevelEditor::FramebufferSizeChange(LevelEditorViewportSizeChangedEvent &e) {
@@ -155,4 +169,3 @@ namespace Hamster {
   //   }
   // }
 } // Hamster
-

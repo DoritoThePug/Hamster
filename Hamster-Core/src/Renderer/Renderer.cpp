@@ -14,7 +14,7 @@ namespace Hamster {
       std::cout << "Failed to initialise glad" << std::endl;
     }
 
-    Renderer::SetViewport(viewportWidth, viewportHeight);
+    Renderer::SetViewport(1920, 1080);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
