@@ -301,7 +301,7 @@
 				{
 					"directoryIndex" : 3,
 					"id" : "Hamster::@fab5c8536b855a6fa043",
-					"jsonFile" : "target-Hamster-f52ec915cd613f0e49dc.json",
+					"jsonFile" : "target-Hamster-10da4fb32c0390404cf4.json",
 					"name" : "Hamster",
 					"projectIndex" : 3
 				},
@@ -315,21 +315,21 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "Hamster-Core::@7fb26e8c688a3985960d",
-					"jsonFile" : "target-Hamster-Core-a188bb1dc89c94733cb5.json",
+					"jsonFile" : "target-Hamster-Core-e2808c0dd4aa9d4b8372.json",
 					"name" : "Hamster-Core",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "Hamster-Py::@fab5c8536b855a6fa043",
-					"jsonFile" : "target-Hamster-Py-54c7359bedde3f52936d.json",
+					"jsonFile" : "target-Hamster-Py-d46e58c1d20ddae729e6.json",
 					"name" : "Hamster-Py",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "Hamster-Wheel::@ed734c12dcbf6a995bd7",
-					"jsonFile" : "target-Hamster-Wheel-d91a4e3cb3a1042d6067.json",
+					"jsonFile" : "target-Hamster-Wheel-0fd793ba391b6e44c5cf.json",
 					"name" : "Hamster-Wheel",
 					"projectIndex" : 5
 				},

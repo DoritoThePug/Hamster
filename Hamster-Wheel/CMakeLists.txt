@@ -5,9 +5,10 @@ project(Hamster-Wheel)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+
 add_compile_definitions(GLFW_INCLUDE_NONE)
 
-file(GLOB_RECURSE PANELS src/Panels/*.cpp src/Panels/*.h)
+set(PANELS src/Panels/PropertyEditor.cpp src/Panels/PropertyEditor.h)
 
 add_executable(Hamster-Wheel ${PANELS} src/EditorLayer.cpp src/EditorLayer.h src/HamsterWheelApp.cpp)
 
@@ -20,3 +21,6 @@ target_include_directories(Hamster-Wheel PRIVATE
 )
 
 target_link_libraries(Hamster-Wheel PRIVATE Hamster-Core glfw imgui)
+
+
+

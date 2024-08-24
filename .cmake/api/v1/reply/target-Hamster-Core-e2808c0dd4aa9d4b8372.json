@@ -28,19 +28,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 60,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 90,
+				"line" : 103,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 89,
+				"line" : 102,
 				"parent" : 0
 			},
 			{
@@ -52,13 +52,13 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 64,
+				"line" : 77,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 79,
+				"line" : 92,
 				"parent" : 0
 			}
 		]
@@ -133,7 +133,7 @@
 				3,
 				6,
 				8,
-				10,
+				9,
 				12,
 				17,
 				19,
@@ -141,7 +141,7 @@
 				23,
 				25,
 				27,
-				29
+				30
 			]
 		},
 		{
@@ -200,7 +200,7 @@
 			"language" : "C",
 			"sourceIndexes" : 
 			[
-				31
+				32
 			]
 		}
 	],
@@ -226,70 +226,47 @@
 	"sourceGroups" : 
 	[
 		{
-			"name" : "Core",
-			"sourceIndexes" : 
-			[
-				0,
-				1,
-				2,
-				3,
-				4,
-				5,
-				6,
-				7,
-				8,
-				9,
-				10
-			]
-		},
-		{
-			"name" : "Events",
-			"sourceIndexes" : 
-			[
-				11,
-				12,
-				13,
-				14,
-				15,
-				16
-			]
-		},
-		{
-			"name" : "Renderer",
-			"sourceIndexes" : 
-			[
-				17,
-				18,
-				19,
-				20,
-				21,
-				22,
-				23,
-				24
-			]
-		},
-		{
-			"name" : "Utils",
-			"sourceIndexes" : 
-			[
-				25,
-				26,
-				27,
-				28
-			]
-		},
-		{
-			"name" : "Gui",
-			"sourceIndexes" : 
-			[
-				29,
-				30
-			]
-		},
-		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
+				0,
+				3,
+				6,
+				8,
+				9,
+				12,
+				17,
+				19,
+				21,
+				23,
+				25,
+				27,
+				30,
+				32
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				1,
+				2,
+				4,
+				5,
+				7,
+				10,
+				11,
+				13,
+				14,
+				15,
+				16,
+				18,
+				20,
+				22,
+				24,
+				26,
+				28,
+				29,
 				31
 			]
 		}
@@ -305,12 +282,12 @@
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Core/Application.h",
-			"sourceGroupIndex" : 0
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Core/Base.h",
-			"sourceGroupIndex" : 0
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
@@ -321,12 +298,12 @@
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Core/GameObject.h",
-			"sourceGroupIndex" : 0
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Core/Layer.h",
-			"sourceGroupIndex" : 0
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
@@ -337,6 +314,12 @@
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Core/LayerStack.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Hamster-Core/src/Core/stb_image.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -348,13 +331,7 @@
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Core/Window.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "Hamster-Core/src/Core/stb_image.cpp",
-			"sourceGroupIndex" : 0
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
@@ -365,7 +342,7 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Hamster-Core/src/Events/Event.cpp",
-			"sourceGroupIndex" : 1
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
@@ -391,84 +368,89 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Hamster-Core/src/Renderer/FramebufferTexture.cpp",
-			"sourceGroupIndex" : 2
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Renderer/FramebufferTexture.h",
-			"sourceGroupIndex" : 2
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Hamster-Core/src/Renderer/Renderer.cpp",
-			"sourceGroupIndex" : 2
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Renderer/Renderer.h",
-			"sourceGroupIndex" : 2
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Hamster-Core/src/Renderer/Shader.cpp",
-			"sourceGroupIndex" : 2
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Renderer/Shader.h",
-			"sourceGroupIndex" : 2
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Hamster-Core/src/Renderer/Texture.cpp",
-			"sourceGroupIndex" : 2
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Renderer/Texture.h",
-			"sourceGroupIndex" : 2
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Hamster-Core/src/Utils/AssetManager.cpp",
-			"sourceGroupIndex" : 3
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Utils/AssetManager.h",
-			"sourceGroupIndex" : 3
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Hamster-Core/src/Utils/InputManager.cpp",
-			"sourceGroupIndex" : 3
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Utils/InputManager.h",
-			"sourceGroupIndex" : 3
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Hamster-Core/Vendor/stb/stb_image.h",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Hamster-Core/src/Gui/ImGuiLayer.cpp",
-			"sourceGroupIndex" : 4
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "Hamster-Core/src/Gui/ImGuiLayer.h",
-			"sourceGroupIndex" : 4
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
 			"path" : "Hamster-Core/Vendor/glad/src/glad.c",
-			"sourceGroupIndex" : 5
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "STATIC_LIBRARY"

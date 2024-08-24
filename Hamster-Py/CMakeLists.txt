@@ -8,9 +8,13 @@ find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
 
 
-file(GLOB source
-    src/*.cpp
-    src/*.h
+set(source
+    src/Core.h
+        src/Library.h
+        src/main.cpp
+        src/Renderer.h
+        src/Utils.h
+
 )
 
 

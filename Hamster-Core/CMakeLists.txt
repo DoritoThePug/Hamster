@@ -6,54 +6,67 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_compile_definitions(GLFW_INCLUDE_NONE)
 
-# file(GLOB sources
-#     src/Core/*.cpp src/Core/*.h
-#     vendor/stb_image/stb_image.h vendor/stb_image/stb_image.cpp)
-# file(GLOB SOURCES "src/*.h")
-# file(GLOB SOURCES "vendor/stb_image/stb_image.h")
-# file(GLOB SOURCES  "vendor/stb_image/stb_image.cpp")
-
-file(GLOB source_core
-        src/Core/*.cpp src/Core/*.h
+set(Core
+        src/Core/Application.cpp
+        src/Core/Application.h
+        src/Core/Base.h
+        src/Core/GameObject.cpp
+        src/Core/GameObject.h
+        src/Core/Layer.h
+        src/Core/LayerStack.cpp
+        src/Core/LayerStack.h
+        src/Core/stb_image.cpp
+        src/Core/Window.cpp
+        src/Core/Window.h
 )
 
-source_group(Core FILES ${source_core})
-
-file(GLOB source_events
-        src/Events/*.cpp src/Events/*.h
+set(Events
+        src/Events/ApplicationEvents.h
+        src/Events/Event.cpp
+        src/Events/Event.h
+        src/Events/GuiEvents.h
+        src/Events/InputEvents.h
+        src/Events/WindowEvents.h
 )
 
-source_group(Events FILES ${source_events})
 
-file(GLOB source_renderer
-        src/Renderer/*.cpp src/Renderer/*.h
+
+set(Renderer
+        src/Renderer/FramebufferTexture.cpp
+        src/Renderer/FramebufferTexture.h
+        src/Renderer/Renderer.cpp
+        src/Renderer/Renderer.h
+        src/Renderer/Shader.cpp
+        src/Renderer/Shader.h
+        src/Renderer/Texture.cpp
+        src/Renderer/Texture.h
 )
 
-source_group(Renderer FILES ${source_renderer})
 
-file(GLOB source_utils
-        src/Utils/*.cpp src/Utils/*.h
+set(Utils
+        src/Utils/AssetManager.cpp
+        src/Utils/AssetManager.h
+        src/Utils/InputManager.cpp
+        src/Utils/InputManager.h
 )
 
-source_group(Utils FILES ${source_utils})
 
-file(GLOB source_stb_image
-        src/Core/stb_image.cpp src/stb/*.h
+set(Stb_Image
+        src/Core/stb_image.cpp Vendor/stb/stb_image.h
 )
 
-file(GLOB source_gui
-        src/Gui/*.cpp src/Gui/*.h
+set(Gui
+        src/Gui/ImGuiLayer.cpp
+        src/Gui/ImGuiLayer.h
 )
-
-source_group(Gui FILES ${source_gui})
 
 set(sources
-        ${source_core}
-        ${source_events}
-        ${source_renderer}
-        ${source_utils}
-        ${source_stb_image}
-        ${source_gui}
+        ${Core}
+        ${Events}
+        ${Renderer}
+        ${Utils}
+        ${Stb_Image}
+        ${Gui}
         Vendor/glad/src/glad.c
 )
 
@@ -92,3 +105,4 @@ target_link_libraries(Hamster-Core PUBLIC imgui)
 
 # Pybind 11 files
 # pybind11_add_module(ass src/Core/pytest.cpp)
+
