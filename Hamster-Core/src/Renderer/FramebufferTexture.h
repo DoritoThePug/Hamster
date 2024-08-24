@@ -14,7 +14,7 @@ namespace Hamster {
 
         void Unbind();
 
-        void ResizeFrameBuffer(unsigned int height, unsigned int widht);
+        void ResizeFrameBuffer(unsigned int width, unsigned int height);
 
         unsigned int GetTextureID();
 

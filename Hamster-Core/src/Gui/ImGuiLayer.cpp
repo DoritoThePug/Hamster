@@ -1,16 +1,18 @@
 //
-// Created by jaden on 17/07/24.
+// Created by Jaden on 23/08/2024.
 //
 
+#include "imgui.h"
+#include "imgui_impl_opengl3.h"
+#include "imgui_impl_glfw.h"
 
-#include "Gui.h"
-
+#include "Core/Application.h"
 #include "Renderer/Renderer.h"
-#include "Core/Window.h"
-#include "LevelEditor.h"
+
+#include "ImGuiLayer.h"
 
 namespace Hamster {
-    Gui::Gui(GLFWwindow *window){
+    void ImGuiLayer::OnAttach() {
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO();
@@ -26,13 +28,23 @@ namespace Hamster {
             style.Colors[ImGuiCol_WindowBg].w = 1.0f;
         }
 
+        Application& app = Application::GetApplicationInstance();
+        GLFWwindow* window = app.GetWindow();
+
+
         // Setup Platform/Renderer backends
         ImGui_ImplGlfw_InitForOpenGL(window, true);
 
         ImGui_ImplOpenGL3_Init("#version 400 core");
     }
 
-    void Gui::Start(bool *windowOpen) {
+    void ImGuiLayer::OnDetach() {
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
+    }
+
+    void ImGuiLayer::Begin() {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
 
@@ -41,10 +53,7 @@ namespace Hamster {
         ImGui::NewFrame();
     }
 
-    void Gui::End() {
-    }
-
-    void Gui::Render() {
+    void ImGuiLayer::End() {
         ImGui::Render();
 
         ImGuiIO &io = ImGui::GetIO();
@@ -57,4 +66,6 @@ namespace Hamster {
             glfwMakeContextCurrent(backup_current_context);
         }
     }
+
+
 } // Hamster

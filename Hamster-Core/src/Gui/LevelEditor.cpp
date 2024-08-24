@@ -46,6 +46,10 @@ namespace Hamster {
       return;
     }
 
+    // std::cout << m_WindowOpen << std::endl;
+
+
+
     const float levelEditorAvailWidth = ImGui::GetContentRegionAvail().x;
     const float levelEditorAvailHeight = ImGui::GetContentRegionAvail().y;
 
@@ -111,7 +115,7 @@ namespace Hamster {
 
     // ImGui::SetConten
 
-    m_FramebufferTexture.ResizeFrameBuffer(levelEditorAvailHeight, levelEditorAvailWidth);
+    m_FramebufferTexture.ResizeFrameBuffer(levelEditorAvailWidth,levelEditorAvailHeight);
 
     const ImVec2 pos = ImGui::GetCursorScreenPos();
 
@@ -150,6 +154,8 @@ namespace Hamster {
 
     m_FramebufferTexture.Unbind();
     glDisable(GL_SCISSOR_TEST);
+
+
 
 
     ImGui::End();

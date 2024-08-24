@@ -42,7 +42,7 @@ namespace Hamster {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
-    void FramebufferTexture::ResizeFrameBuffer(unsigned int height, unsigned int width) {
+    void FramebufferTexture::ResizeFrameBuffer(unsigned int width, unsigned int height) {
         glBindTexture(GL_TEXTURE_2D, m_TextureID);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

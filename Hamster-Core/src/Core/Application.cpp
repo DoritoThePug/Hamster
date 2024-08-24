@@ -17,18 +17,28 @@
 #include "Utils/AssetManager.h"
 #include "Gui/Gui.h"
 #include "Gui/LevelEditor.h"
+#include "Gui/PropertyEditor.h"
+#include "Gui/ImGuiLayer.h"
 
 namespace Hamster {
+  Application* Application::s_Instance = nullptr;
+
   Application::Application() {
     std::cout << "Application created" << std::endl;
+
+    s_Instance = this;
 
     m_Window = std::make_unique<Window>(m_WindowProps);
 
     Renderer::Init(m_ViewportHeight, m_ViewportWidth);
 
+
+
     // glViewport(0, 0, 800, 600);
 
     m_Dispatcher = std::make_unique<EventDispatcher>();
+
+    PushLayer(&m_ImGuiLayer);
 
     m_Window->SetWindowEventDispatcher(m_Dispatcher.get());
 
@@ -83,6 +93,7 @@ namespace Hamster {
     std::cout << "Application destroyed" << std::endl;
   }
 
+
   void Application::Run() {
     std::cout << "Application running" << std::endl;
 
@@ -115,10 +126,11 @@ namespace Hamster {
                   }, m_ViewportWidth,
                   m_ViewportHeight,
                   m_Window->GetGLFWWindowPointer());
+    PropertyEditor p;
 
     bool show_another_window = true;
     bool f = true;
-    Renderer::SetClearColour(0.2f, 0.3f, 0.3f, 1.0f);
+    Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 1.0f);
 
     // layer p(app, "face", glm::vec2(500.0f, 500.0f), glm::vec2(300.0f, 300.0f),
     //          0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
@@ -129,16 +141,31 @@ namespace Hamster {
       deltaTime = currentFrame - lastFrame;
       lastFrame = currentFrame;
 
+      for (Layer* layer : m_LayerStack) {
+        layer->OnUpdate();
+      }
 
-      g.Start(&show_another_window);
+      m_ImGuiLayer.Begin();
 
-      // ImGui::GetWindowPos();
+      for (Layer* layer : m_LayerStack) {
+        layer->OnImGuiUpdate();
+      }
 
-      l.Render();
-      ImGui::ShowDemoWindow();
+      m_ImGuiLayer.End();
 
 
-      g.Render();
+      // g.Start(&show_another_window);
+      //
+      //
+      // // ImGui::GetWindowPos();
+      // ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());
+      //
+      // l.Render();
+      // p.Render();
+      // ImGui::ShowDemoWindow();
+      //
+      //
+      // g.Render();
 
 
       // UpdateScene(deltaTime);
@@ -225,4 +252,14 @@ namespace Hamster {
       });
     }
   }
+
+  void Application::PushLayer(Layer *layer) {
+    m_LayerStack.PushLayer(layer);
+  }
+
+  void Application::PopLayer(Layer *layer) {
+    m_LayerStack.PopLayer(layer);
+  }
+
+
 } // namespace Hamster

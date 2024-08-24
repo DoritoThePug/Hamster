@@ -1075,7 +1075,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "10"
+			"value" : "11"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -2068,6 +2068,42 @@
 			],
 			"type" : "STATIC",
 			"value" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py"
+		},
+		{
+			"name" : "Hamster-Wheel_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel"
+		},
+		{
+			"name" : "Hamster-Wheel_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "OFF"
+		},
+		{
+			"name" : "Hamster-Wheel_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel"
 		},
 		{
 			"name" : "Hamster_BINARY_DIR",

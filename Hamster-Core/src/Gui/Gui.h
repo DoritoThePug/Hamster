@@ -24,7 +24,6 @@ namespace Hamster {
         void Render();
 
     private:
-        ImGuiIO m_IO;
         // LevelEditor m_LevelEditorWindow;
     };
 } // Hamster

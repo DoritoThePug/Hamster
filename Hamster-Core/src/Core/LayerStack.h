@@ -12,11 +12,8 @@
 namespace Hamster {
     class LayerStack {
     public:
-        LayerStack();
-
-        ~LayerStack();
-
         void PushLayer(Layer *layer);
+        void PopLayer(Layer* layer);
 
         std::vector<Layer *>::iterator begin();
 
@@ -27,7 +24,7 @@ namespace Hamster {
         std::vector<Layer *>::iterator rend();
 
     private:
-        std::vector<Layer *> m_layerStack;
+        std::vector<Layer *> m_LayerStack;
     };
 } // Hamster
 

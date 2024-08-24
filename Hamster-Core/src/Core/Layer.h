@@ -1,4 +1,4 @@
-//
+ //
 // Created by jaden on 17/07/24.
 //
 
@@ -8,18 +8,16 @@
 namespace Hamster {
     class Layer {
     public:
-        Layer();
-
-        ~Layer();
+        virtual ~Layer() = default;
 
 
-        virtual void OnAttach() = 0;
+        virtual void OnAttach() {};
 
-        virtual void OnDetach() = 0;
+        virtual void OnDetach() {};
 
-        virtual void OnUpdate() = 0;
+        virtual void OnUpdate() {};
 
-        virtual void OnEvent() = 0;
+        virtual void OnImGuiUpdate() {};
     };
 } // Hamster
 
