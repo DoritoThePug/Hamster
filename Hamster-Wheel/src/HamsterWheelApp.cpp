@@ -12,7 +12,7 @@ int main() {
 
   app->PushLayer(new EditorLayer([app](bool renderFlat) {
     app->RenderSystem(app->GetRegistry(), renderFlat);
-  }));
+  }, app->GetWindow()));
 
   Hamster::AssetManager::AddTexture(
        "face",
@@ -22,7 +22,7 @@ int main() {
 
   app->GetRegistry().emplace<Hamster::Sprite>(face, Hamster::AssetManager::GetTexture("face"),
                                               glm::vec3(0.0f, 1.0f, 0.0f));
-  app->GetRegistry().emplace<Hamster::Transform>(face, glm::vec2(0.0f, 0.0f), 0.0f, glm::vec2(300.0f, 300.0f));
+  app->GetRegistry().emplace<Hamster::Transform>(face, glm::vec2(0.0f, 780.0f), 0.0f, glm::vec2(300.0f, 300.0f));
 
   app->Run();
 

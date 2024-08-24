@@ -22,6 +22,7 @@ class ImGuiLayer : public Layer {
 
      void OnAttach() override;
      void OnDetach() override;
+    void OnUpdate() override;
 };
 
 } // Hamster

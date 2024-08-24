@@ -315,7 +315,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "Hamster-Core::@7fb26e8c688a3985960d",
-					"jsonFile" : "target-Hamster-Core-b4ef59e8f6530fb73074.json",
+					"jsonFile" : "target-Hamster-Core-a188bb1dc89c94733cb5.json",
 					"name" : "Hamster-Core",
 					"projectIndex" : 1
 				},
@@ -329,7 +329,7 @@
 				{
 					"directoryIndex" : 5,
 					"id" : "Hamster-Wheel::@ed734c12dcbf6a995bd7",
-					"jsonFile" : "target-Hamster-Wheel-4d1189c1a06d771c7912.json",
+					"jsonFile" : "target-Hamster-Wheel-d91a4e3cb3a1042d6067.json",
 					"name" : "Hamster-Wheel",
 					"projectIndex" : 5
 				},

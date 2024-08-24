@@ -5,9 +5,11 @@ project(Hamster-Wheel)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB_RECURSE SOURCES src/*.cpp src/*.h)
+add_compile_definitions(GLFW_INCLUDE_NONE)
 
-add_executable(Hamster-Wheel ${SOURCES})
+file(GLOB_RECURSE PANELS src/Panels/*.cpp src/Panels/*.h)
+
+add_executable(Hamster-Wheel ${PANELS} src/EditorLayer.cpp src/EditorLayer.h src/HamsterWheelApp.cpp)
 
 target_include_directories(Hamster-Wheel PRIVATE
         src

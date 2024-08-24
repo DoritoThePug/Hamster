@@ -60,9 +60,6 @@ namespace Hamster {
 		void PushLayer(Layer* layer);
 		void PopLayer(Layer* layer);
 
-		void RenderScene() const;
-
-		void UpdateScene(float deltaTime) const;
 
 		[[nodiscard]] int GetViewportHeight() const { return m_ViewportHeight; }
 		[[nodiscard]] int GetViewportWidth() const { return m_ViewportWidth; }
@@ -88,7 +85,7 @@ namespace Hamster {
 
 		std::unique_ptr<EventDispatcher> m_Dispatcher;
 		LayerStack m_LayerStack;
-		//
+
 		ImGuiLayer m_ImGuiLayer;
 
 		// ID, GameObject

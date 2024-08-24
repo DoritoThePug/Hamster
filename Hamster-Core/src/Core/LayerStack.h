@@ -23,6 +23,14 @@ namespace Hamster {
 
         std::vector<Layer *>::iterator rend();
 
+        std::vector<Layer *>::const_iterator begin()const;
+
+        std::vector<Layer *>::const_iterator end()const;
+
+        std::vector<Layer *>::const_iterator rbegin() const;
+
+        std::vector<Layer *>::const_iterator rend() const;
+
     private:
         std::vector<Layer *> m_LayerStack;
     };

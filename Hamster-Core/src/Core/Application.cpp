@@ -15,10 +15,8 @@
 #include "Renderer/Shader.h"
 #include "Renderer/FramebufferTexture.h"
 #include "Utils/AssetManager.h"
-#include "Gui/Gui.h"
-#include "Gui/LevelEditor.h"
-#include "Gui/PropertyEditor.h"
-#include "Gui/ImGuiLayer.h"
+#include "Layer.h"
+// #include "Gui/ImGuiLayer.h"
 
 namespace Hamster {
   Application* Application::s_Instance = nullptr;
@@ -33,8 +31,6 @@ namespace Hamster {
     Renderer::Init(m_ViewportHeight, m_ViewportWidth);
 
 
-
-    // glViewport(0, 0, 800, 600);
 
     m_Dispatcher = std::make_unique<EventDispatcher>();
 
@@ -97,17 +93,11 @@ namespace Hamster {
   void Application::Run() {
     std::cout << "Application running" << std::endl;
 
-    // Renderer::Init(m_Window->GetGLFWWindowPointer());
-    // glViewport(0, 0, 800, 600);
-
-
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
 
     int width, height;
     glfwGetFramebufferSize(m_Window->GetGLFWWindowPointer(), &width, &height);
-
-    InputManager inputManager(m_Window->GetGLFWWindowPointer());
 
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight),
                                       0.0f, -1.0f, 1.0f);
@@ -120,22 +110,8 @@ namespace Hamster {
     AssetManager::GetShader("flat")->setUniformi("image", 0);
     AssetManager::GetShader("flat")->setUniformMat4("projection", projection);
 
-    Gui g(m_Window->GetGLFWWindowPointer());
-    LevelEditor l([this](bool renderFlat) {
-                    this->RenderSystem(m_Registry, renderFlat);
-                  }, m_ViewportWidth,
-                  m_ViewportHeight,
-                  m_Window->GetGLFWWindowPointer());
-    PropertyEditor p;
-
-    bool show_another_window = true;
-    bool f = true;
     Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 1.0f);
 
-    // layer p(app, "face", glm::vec2(500.0f, 500.0f), glm::vec2(300.0f, 300.0f),
-    //          0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     while (m_running) {
       auto currentFrame = static_cast<float>(glfwGetTime());
       deltaTime = currentFrame - lastFrame;
@@ -143,7 +119,9 @@ namespace Hamster {
 
       for (Layer* layer : m_LayerStack) {
         layer->OnUpdate();
+
       }
+
 
       m_ImGuiLayer.Begin();
 
@@ -152,23 +130,6 @@ namespace Hamster {
       }
 
       m_ImGuiLayer.End();
-
-
-      // g.Start(&show_another_window);
-      //
-      //
-      // // ImGui::GetWindowPos();
-      // ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());
-      //
-      // l.Render();
-      // p.Render();
-      // ImGui::ShowDemoWindow();
-      //
-      //
-      // g.Render();
-
-
-      // UpdateScene(deltaTime);
 
       UpdateSystem(m_Registry);
 
@@ -206,17 +167,6 @@ namespace Hamster {
     m_GameObjects.erase(ID);
   }
 
-  void Application::RenderScene() const {
-    for (const auto &pair: m_GameObjects) {
-      pair.second->Draw();
-    }
-  }
-
-  void Application::UpdateScene(float deltaTime) const {
-    for (const auto &pair: m_GameObjects) {
-      pair.second->OnUpdate(deltaTime);
-    }
-  }
 
   void Application::UpdateSystem(entt::registry &registry) {
     auto view = registry.view<Transform>();

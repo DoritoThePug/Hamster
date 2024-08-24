@@ -6,11 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_compile_definitions(GLFW_INCLUDE_NONE)
 
-# file(GLOB sources 
-#     src/Core/*.cpp src/Core/*.h 
+# file(GLOB sources
+#     src/Core/*.cpp src/Core/*.h
 #     vendor/stb_image/stb_image.h vendor/stb_image/stb_image.cpp)
 # file(GLOB SOURCES "src/*.h")
-# file(GLOB SOURCES "vendor/stb_image/stb_image.h") 
+# file(GLOB SOURCES "vendor/stb_image/stb_image.h")
 # file(GLOB SOURCES  "vendor/stb_image/stb_image.cpp")
 
 file(GLOB source_core

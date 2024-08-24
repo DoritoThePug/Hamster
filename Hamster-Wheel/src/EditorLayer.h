@@ -8,13 +8,17 @@
 #include <glm/glm.hpp>
 #include <imgui.h>
 #include <functional>
+#include <memory>
 
 #include <Core/Layer.h>
 #include <Renderer/FramebufferTexture.h>
 
+#include "GLFW/glfw3.h"
+#include "Panels/PropertyEditor.h"
+
 class EditorLayer : public Hamster::Layer {
     public:
-    explicit EditorLayer(const std::function<void(bool)> &renderFn);
+    explicit EditorLayer(const std::function<void(bool)> &renderFn, GLFWwindow *window);
 
     void OnAttach() override;
 
@@ -28,6 +32,13 @@ private:
     ImVec2 m_LevelEditorAvailRegion = {0.0f, 0.0f};
     glm::vec2 m_ViewportOffset = {0.0f, 0.0f};
     Hamster::FramebufferTexture m_FramebufferTexture;
+
+    std::unique_ptr<PropertyEditor> m_PropertyEditor = std::make_unique<PropertyEditor>();
+
+    GLFWwindow *m_Window;
+
+    int m_ViewportWidth = 1920;
+    int m_ViewportHeight = 1080;
 };
 
 

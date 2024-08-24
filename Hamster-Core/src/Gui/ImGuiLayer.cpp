@@ -29,11 +29,8 @@ namespace Hamster {
         }
 
         Application& app = Application::GetApplicationInstance();
-        GLFWwindow* window = app.GetWindow();
 
-
-        // Setup Platform/Renderer backends
-        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplGlfw_InitForOpenGL(app.GetWindow(), true);
 
         ImGui_ImplOpenGL3_Init("#version 400 core");
     }
@@ -67,5 +64,8 @@ namespace Hamster {
         }
     }
 
+    void ImGuiLayer::OnUpdate() {
+
+    }
 
 } // Hamster

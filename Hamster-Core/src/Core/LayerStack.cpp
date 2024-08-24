@@ -9,6 +9,7 @@
 namespace Hamster {
 
     void LayerStack::PushLayer(Layer *layer) {
+        layer->OnAttach();
         m_LayerStack.emplace_back(layer);
     }
 
@@ -37,5 +38,19 @@ namespace Hamster {
         return m_LayerStack.end();
     }
 
+    std::vector<Layer *>::const_iterator LayerStack::begin() const{
+        return m_LayerStack.begin();
+    }
 
+    std::vector<Layer *>::const_iterator LayerStack::end() const{
+        return m_LayerStack.end();
+    }
+
+    std::vector<Layer *>::const_iterator LayerStack::rend() const{
+        return m_LayerStack.begin();
+    }
+
+    std::vector<Layer *>::const_iterator LayerStack::rbegin() const{
+        return m_LayerStack.end();
+    }
 } //Hamster
