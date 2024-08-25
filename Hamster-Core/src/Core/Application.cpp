@@ -96,6 +96,12 @@ namespace Hamster {
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
 
+    // std::cout << ColourToId(glm::vec3(1.0f, 1.0f, 1.0f)) << std::endl;
+    // std::cout << IdToColour(65792).r << ", " << IdToColour(65792).g << ", " << IdToColour(65792).b << std::endl;
+
+    std::cout << ColourToId(IdToColour(1324234)) << std::endl;
+
+
     int width, height;
     glfwGetFramebufferSize(m_Window->GetGLFWWindowPointer(), &width, &height);
 
@@ -221,11 +227,17 @@ namespace Hamster {
   }
 
   int Application::ColourToId(const glm::vec3 colour) {
-    int pickedID =
-            (colour.r +
-            colour.g * 256 +
-            colour.b * 256 * 256)-1;
+    // int pickedID =
+    //         (colour.r +
+    //         colour.g * 256 +
+    //         colour.b * 256 * 256)-1;
 
-    return pickedID;
+    // int id = static_cast<int>(colour.r * 255) +
+    //      static_cast<int>(colour.g * 255) * 256 +
+    //      static_cast<int>(colour.b * 255) * 256 * 256;
+
+    int id = static_cast<int>(colour.r) << 0 | static_cast<int>(colour.g) << 8 | static_cast<int>(colour.b) << 16;
+
+    return id-1;
   }
 } // namespace Hamster
