@@ -110,7 +110,7 @@ namespace Hamster {
     AssetManager::GetShader("flat")->setUniformi("image", 0);
     AssetManager::GetShader("flat")->setUniformMat4("projection", projection);
 
-    Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 1.0f);
+    Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 0.0f);
 
     while (m_running) {
       auto currentFrame = static_cast<float>(glfwGetTime());

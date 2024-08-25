@@ -1399,6 +1399,135 @@ build Hamster-Core/Vendor/entt/CMakeFiles/install/strip.util: CUSTOM_COMMAND Ham
 build Hamster-Core/Vendor/entt/install/strip: phony Hamster-Core/Vendor/entt/CMakeFiles/install/strip.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/Jaden/Documents/DevStuff/Hamster/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target ImGuizmo
+
+
+#############################################
+# Order-only phony target for ImGuizmo
+
+build cmake_object_order_depends_target_ImGuizmo: phony || .
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/GraphEditor.cpp.obj: CXX_COMPILER__ImGuizmo_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo/GraphEditor.cpp || cmake_object_order_depends_target_ImGuizmo
+  DEP_FILE = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir\GraphEditor.cpp.obj.d
+  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
+  OBJECT_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+  OBJECT_FILE_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/ImCurveEdit.cpp.obj: CXX_COMPILER__ImGuizmo_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo/ImCurveEdit.cpp || cmake_object_order_depends_target_ImGuizmo
+  DEP_FILE = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir\ImCurveEdit.cpp.obj.d
+  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
+  OBJECT_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+  OBJECT_FILE_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/ImGradient.cpp.obj: CXX_COMPILER__ImGuizmo_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo/ImGradient.cpp || cmake_object_order_depends_target_ImGuizmo
+  DEP_FILE = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir\ImGradient.cpp.obj.d
+  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
+  OBJECT_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+  OBJECT_FILE_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/ImGuizmo.cpp.obj: CXX_COMPILER__ImGuizmo_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo/ImGuizmo.cpp || cmake_object_order_depends_target_ImGuizmo
+  DEP_FILE = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir\ImGuizmo.cpp.obj.d
+  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
+  OBJECT_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+  OBJECT_FILE_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/ImSequencer.cpp.obj: CXX_COMPILER__ImGuizmo_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo/ImSequencer.cpp || cmake_object_order_depends_target_ImGuizmo
+  DEP_FILE = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir\ImSequencer.cpp.obj.d
+  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
+  OBJECT_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+  OBJECT_FILE_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target ImGuizmo
+
+
+#############################################
+# Link the static library Hamster-Core\Vendor\ImGuizmo\libImGuizmo.a
+
+build Hamster-Core/Vendor/ImGuizmo/libImGuizmo.a: CXX_STATIC_LIBRARY_LINKER__ImGuizmo_ Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/GraphEditor.cpp.obj Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/ImCurveEdit.cpp.obj Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/ImGradient.cpp.obj Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/ImGuizmo.cpp.obj Hamster-Core/Vendor/ImGuizmo/CMakeFiles/ImGuizmo.dir/ImSequencer.cpp.obj
+  OBJECT_DIR = Hamster-Core\Vendor\ImGuizmo\CMakeFiles\ImGuizmo.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Hamster-Core\Vendor\ImGuizmo\libImGuizmo.a
+  TARGET_PDB = ImGuizmo.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Jaden\Documents\DevStuff\Hamster\Hamster-Core\Vendor\ImGuizmo && C:\Users\Jaden\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build Hamster-Core/Vendor/ImGuizmo/edit_cache: phony Hamster-Core/Vendor/ImGuizmo/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Jaden\Documents\DevStuff\Hamster\Hamster-Core\Vendor\ImGuizmo && C:\Users\Jaden\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe --regenerate-during-build -SC:\Users\Jaden\Documents\DevStuff\Hamster -BC:\Users\Jaden\Documents\DevStuff\Hamster"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build Hamster-Core/Vendor/ImGuizmo/rebuild_cache: phony Hamster-Core/Vendor/ImGuizmo/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build Hamster-Core/Vendor/ImGuizmo/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/install.util: CUSTOM_COMMAND Hamster-Core/Vendor/ImGuizmo/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Jaden\Documents\DevStuff\Hamster\Hamster-Core\Vendor\ImGuizmo && C:\Users\Jaden\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build Hamster-Core/Vendor/ImGuizmo/install: phony Hamster-Core/Vendor/ImGuizmo/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/install/local.util: CUSTOM_COMMAND Hamster-Core/Vendor/ImGuizmo/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Jaden\Documents\DevStuff\Hamster\Hamster-Core\Vendor\ImGuizmo && C:\Users\Jaden\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build Hamster-Core/Vendor/ImGuizmo/install/local: phony Hamster-Core/Vendor/ImGuizmo/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build Hamster-Core/Vendor/ImGuizmo/CMakeFiles/install/strip.util: CUSTOM_COMMAND Hamster-Core/Vendor/ImGuizmo/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Jaden\Documents\DevStuff\Hamster\Hamster-Core\Vendor\ImGuizmo && C:\Users\Jaden\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build Hamster-Core/Vendor/ImGuizmo/install/strip: phony Hamster-Core/Vendor/ImGuizmo/CMakeFiles/install/strip.util
+
+# =============================================================================
 # Target aliases.
 
 build Hamster: phony Hamster-Py/Hamster.cp311-win_amd64.pyd
@@ -1417,6 +1546,8 @@ build Hamster-Wheel.exe: phony Hamster-Wheel/Hamster-Wheel.exe
 
 build Hamster.cp311-win_amd64.pyd: phony Hamster-Py/Hamster.cp311-win_amd64.pyd
 
+build ImGuizmo: phony Hamster-Core/Vendor/ImGuizmo/libImGuizmo.a
+
 build glfw: phony Hamster-Core/Vendor/glfw/src/libglfw3.a
 
 build imgui: phony Hamster-Core/Vendor/imgui/libimgui.a
@@ -1424,6 +1555,8 @@ build imgui: phony Hamster-Core/Vendor/imgui/libimgui.a
 build libHamster-Core.a: phony Hamster-Core/libHamster-Core.a
 
 build libHamster-Py.a: phony Hamster-Py/libHamster-Py.a
+
+build libImGuizmo.a: phony Hamster-Core/Vendor/ImGuizmo/libImGuizmo.a
 
 build libglfw3.a: phony Hamster-Core/Vendor/glfw/src/libglfw3.a
 
@@ -1441,7 +1574,7 @@ build update_mappings: phony Hamster-Core/Vendor/glfw/src/update_mappings
 #############################################
 # Folder: C:/Users/Jaden/Documents/DevStuff/Hamster
 
-build all: phony Hamster-Core/all Hamster-App/all Hamster-Py/all Hamster-Wheel/all Hamster-Core/Vendor/imgui/all Hamster-Core/Vendor/glfw/all Hamster-Core/Vendor/entt/all
+build all: phony Hamster-Core/all Hamster-App/all Hamster-Py/all Hamster-Wheel/all Hamster-Core/Vendor/imgui/all Hamster-Core/Vendor/glfw/all Hamster-Core/Vendor/entt/all Hamster-Core/Vendor/ImGuizmo/all
 
 # =============================================================================
 
@@ -1456,6 +1589,13 @@ build Hamster-App/all: phony Hamster-App/Hamster-App.exe
 # Folder: C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core
 
 build Hamster-Core/all: phony Hamster-Core/libHamster-Core.a
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/ImGuizmo
+
+build Hamster-Core/Vendor/ImGuizmo/all: phony Hamster-Core/Vendor/ImGuizmo/libImGuizmo.a
 
 # =============================================================================
 
@@ -1520,14 +1660,14 @@ build Hamster-Wheel/all: phony Hamster-Wheel/Hamster-Wheel.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCXXSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckIncludeFile.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckLibraryExists.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindDoxygen.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPython.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPythonInterp.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPython/Support.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindThreads.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/GNUInstallDirs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake CMakeLists.txt Hamster-App/CMakeLists.txt Hamster-Core/CMakeLists.txt Hamster-Core/Vendor/entt/CMakeLists.txt Hamster-Core/Vendor/entt/cmake/in/EnTTConfig.cmake.in Hamster-Core/Vendor/entt/cmake/in/entt.pc.in Hamster-Core/Vendor/entt/cmake/modules/JoinPaths.cmake Hamster-Core/Vendor/glfw/CMakeLists.txt Hamster-Core/Vendor/glfw/CMake/cmake_uninstall.cmake.in Hamster-Core/Vendor/glfw/CMake/glfw3.pc.in Hamster-Core/Vendor/glfw/CMake/glfw3Config.cmake.in Hamster-Core/Vendor/glfw/docs/CMakeLists.txt Hamster-Core/Vendor/glfw/src/CMakeLists.txt Hamster-Core/Vendor/imgui/CMakeLists.txt Hamster-Py/CMakeLists.txt Hamster-Py/Vendor/pybind11/CMakeLists.txt Hamster-Py/Vendor/pybind11/tools/FindPythonLibsNew.cmake Hamster-Py/Vendor/pybind11/tools/JoinPaths.cmake Hamster-Py/Vendor/pybind11/tools/pybind11Common.cmake Hamster-Py/Vendor/pybind11/tools/pybind11Tools.cmake Hamster-Wheel/CMakeLists.txt
+build build.ninja: RERUN_CMAKE | C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCXXSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckIncludeFile.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckLibraryExists.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindDoxygen.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPython.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPythonInterp.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPython/Support.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindThreads.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/GNUInstallDirs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake CMakeLists.txt Hamster-App/CMakeLists.txt Hamster-Core/CMakeLists.txt Hamster-Core/Vendor/ImGuizmo/CMakeLists.txt Hamster-Core/Vendor/entt/CMakeLists.txt Hamster-Core/Vendor/entt/cmake/in/EnTTConfig.cmake.in Hamster-Core/Vendor/entt/cmake/in/entt.pc.in Hamster-Core/Vendor/entt/cmake/modules/JoinPaths.cmake Hamster-Core/Vendor/glfw/CMakeLists.txt Hamster-Core/Vendor/glfw/CMake/cmake_uninstall.cmake.in Hamster-Core/Vendor/glfw/CMake/glfw3.pc.in Hamster-Core/Vendor/glfw/CMake/glfw3Config.cmake.in Hamster-Core/Vendor/glfw/docs/CMakeLists.txt Hamster-Core/Vendor/glfw/src/CMakeLists.txt Hamster-Core/Vendor/imgui/CMakeLists.txt Hamster-Py/CMakeLists.txt Hamster-Py/Vendor/pybind11/CMakeLists.txt Hamster-Py/Vendor/pybind11/tools/FindPythonLibsNew.cmake Hamster-Py/Vendor/pybind11/tools/JoinPaths.cmake Hamster-Py/Vendor/pybind11/tools/pybind11Common.cmake Hamster-Py/Vendor/pybind11/tools/pybind11Tools.cmake Hamster-Wheel/CMakeLists.txt
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCXXSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckIncludeFile.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckLibraryExists.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindDoxygen.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPython.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPythonInterp.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPython/Support.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindThreads.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/GNUInstallDirs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake CMakeLists.txt Hamster-App/CMakeLists.txt Hamster-Core/CMakeLists.txt Hamster-Core/Vendor/entt/CMakeLists.txt Hamster-Core/Vendor/entt/cmake/in/EnTTConfig.cmake.in Hamster-Core/Vendor/entt/cmake/in/entt.pc.in Hamster-Core/Vendor/entt/cmake/modules/JoinPaths.cmake Hamster-Core/Vendor/glfw/CMakeLists.txt Hamster-Core/Vendor/glfw/CMake/cmake_uninstall.cmake.in Hamster-Core/Vendor/glfw/CMake/glfw3.pc.in Hamster-Core/Vendor/glfw/CMake/glfw3Config.cmake.in Hamster-Core/Vendor/glfw/docs/CMakeLists.txt Hamster-Core/Vendor/glfw/src/CMakeLists.txt Hamster-Core/Vendor/imgui/CMakeLists.txt Hamster-Py/CMakeLists.txt Hamster-Py/Vendor/pybind11/CMakeLists.txt Hamster-Py/Vendor/pybind11/tools/FindPythonLibsNew.cmake Hamster-Py/Vendor/pybind11/tools/JoinPaths.cmake Hamster-Py/Vendor/pybind11/tools/pybind11Common.cmake Hamster-Py/Vendor/pybind11/tools/pybind11Tools.cmake Hamster-Wheel/CMakeLists.txt: phony
+build C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCXXSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckIncludeFile.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckLibraryExists.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindDoxygen.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPython.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPythonInterp.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPython/Support.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindThreads.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/GNUInstallDirs.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake C$:/Users/Jaden/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake CMakeLists.txt Hamster-App/CMakeLists.txt Hamster-Core/CMakeLists.txt Hamster-Core/Vendor/ImGuizmo/CMakeLists.txt Hamster-Core/Vendor/entt/CMakeLists.txt Hamster-Core/Vendor/entt/cmake/in/EnTTConfig.cmake.in Hamster-Core/Vendor/entt/cmake/in/entt.pc.in Hamster-Core/Vendor/entt/cmake/modules/JoinPaths.cmake Hamster-Core/Vendor/glfw/CMakeLists.txt Hamster-Core/Vendor/glfw/CMake/cmake_uninstall.cmake.in Hamster-Core/Vendor/glfw/CMake/glfw3.pc.in Hamster-Core/Vendor/glfw/CMake/glfw3Config.cmake.in Hamster-Core/Vendor/glfw/docs/CMakeLists.txt Hamster-Core/Vendor/glfw/src/CMakeLists.txt Hamster-Core/Vendor/imgui/CMakeLists.txt Hamster-Py/CMakeLists.txt Hamster-Py/Vendor/pybind11/CMakeLists.txt Hamster-Py/Vendor/pybind11/tools/FindPythonLibsNew.cmake Hamster-Py/Vendor/pybind11/tools/JoinPaths.cmake Hamster-Py/Vendor/pybind11/tools/pybind11Common.cmake Hamster-Py/Vendor/pybind11/tools/pybind11Tools.cmake Hamster-Wheel/CMakeLists.txt: phony
 
 
 #############################################

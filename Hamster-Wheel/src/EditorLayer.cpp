@@ -112,6 +112,8 @@ void EditorLayer::OnImGuiUpdate() {
       ImVec2(1, 0)
     );
 
+    //TODO background not transparent
+
     ImGui::End();
 
     ImGui::ShowDemoWindow();
