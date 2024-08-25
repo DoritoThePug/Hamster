@@ -58,6 +58,7 @@ set(Stb_Image
 set(Gui
         src/Gui/ImGuiLayer.cpp
         src/Gui/ImGuiLayer.h
+        src/Gui/Panel.h
 )
 
 set(sources

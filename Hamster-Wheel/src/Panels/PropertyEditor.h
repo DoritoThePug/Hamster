@@ -4,18 +4,21 @@
 
 #ifndef PROPERTYEDITOR_H
 #define PROPERTYEDITOR_H
+#include <iostream>
+#include <ostream>
+#include <glm/glm.hpp>
+
+#include "Gui/Panel.h"
 
 
-
-class PropertyEditor {
+class PropertyEditor : public Hamster::Panel {
 public:
-    void Render();
-    bool IsPanelOpen() {return m_WindowOpen;}
-private:
-    bool m_WindowOpen = true;
+    void Render() override;
 
+    void SetSelectedProperty(glm::vec2* transform) {m_Transform = transform;}
+private:
     //temp
-    float m_f = 0.0f;
+    glm::vec2* m_Transform;
 };
 
 

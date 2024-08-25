@@ -8,7 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_compile_definitions(GLFW_INCLUDE_NONE)
 
-set(PANELS src/Panels/PropertyEditor.cpp src/Panels/PropertyEditor.h)
+set(PANELS
+        src/Panels/PropertyEditor.cpp
+        src/Panels/PropertyEditor.h
+
+        src/Panels/Hierarchy.cpp
+        src/Panels/Hierarchy.h
+)
 
 add_executable(Hamster-Wheel ${PANELS} src/EditorLayer.cpp src/EditorLayer.h src/HamsterWheelApp.cpp)
 

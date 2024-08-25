@@ -5,6 +5,7 @@
 #include "PropertyEditor.h"
 
 #include <imgui.h>
+#include <glm/gtc/type_ptr.hpp>
 
 void PropertyEditor::Render() {
     if(!ImGui::Begin("Property Editor", &m_WindowOpen)) {
@@ -25,7 +26,7 @@ void PropertyEditor::Render() {
 
     ImGui::PopStyleColor(3); ImGui::SameLine();
 
-    ImGui::InputFloat("##X", &m_f); ImGui::SameLine();
+    ImGui::InputFloat("##X", &m_Transform->x); ImGui::SameLine();
 
 
     ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(81, 152, 114));
@@ -36,7 +37,7 @@ void PropertyEditor::Render() {
 
     ImGui::PopStyleColor(3); ImGui::SameLine();
 
-    ImGui::InputFloat("##Y", &m_f);
+    ImGui::InputFloat("##Y", &m_Transform->y);
 
 
     ImGui::PopItemWidth();

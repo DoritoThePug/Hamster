@@ -14,11 +14,12 @@
 #include <Renderer/FramebufferTexture.h>
 
 #include "GLFW/glfw3.h"
+#include "Panels/Hierarchy.h"
 #include "Panels/PropertyEditor.h"
 
 class EditorLayer : public Hamster::Layer {
     public:
-    explicit EditorLayer(const std::function<void(bool)> &renderFn, GLFWwindow *window);
+    explicit EditorLayer(const std::function<void(bool)> &renderFn,  Hamster::Application& app);
 
     void OnAttach() override;
 
@@ -34,8 +35,9 @@ private:
     Hamster::FramebufferTexture m_FramebufferTexture;
 
     std::unique_ptr<PropertyEditor> m_PropertyEditor = std::make_unique<PropertyEditor>();
+    std::unique_ptr<Hierarchy> m_Hierarchy;
 
-    GLFWwindow *m_Window;
+    Hamster::Application& m_App;
 
     int m_ViewportWidth = 1920;
     int m_ViewportHeight = 1080;

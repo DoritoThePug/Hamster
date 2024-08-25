@@ -29,6 +29,10 @@ namespace Hamster {
 		glm::vec3 colour;
 	};
 
+	struct Name {
+		std::string name;
+	};
+
 	class GameObject;
 
 	//class EventDispatcher;

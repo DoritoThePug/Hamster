@@ -8,7 +8,7 @@ uniform vec3 spriteColour;
 
 void main()
 {    
-    FragColour = vec4(spriteColour, 1.0) * texture(image, TexCoords);
+    FragColour = vec4(spriteColour, 1.0f) * texture(image, TexCoords);
 
     // FragColour = vec4(spriteColour, 1.0);
 
