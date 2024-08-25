@@ -48,6 +48,8 @@ namespace Hamster {
 
 		void Close(WindowCloseEvent &e);
 
+		glm::mat4 GetProjectionMatrix();
+
 		static Application& GetApplicationInstance() {return *s_Instance;}
 
 		static void ResizeWindow(WindowResizeEvent &e);
@@ -71,6 +73,9 @@ namespace Hamster {
 		void SetViewportHeight(const int height) { m_ViewportHeight = height; }
 		void SetViewportWidth(const int width) { m_ViewportWidth = width; }
 
+		static glm::vec3 IdToColour(int id);
+		static int ColourToId(glm::vec3 colour);
+
 		// ECS
 
 		[[nodiscard]] entt::registry &GetRegistry() { return m_Registry; }
@@ -87,10 +92,13 @@ namespace Hamster {
 		int m_ViewportWidth = 1920;
 		int m_ViewportHeight = 1080;
 
+		glm::mat4 m_Projection;
+
 		std::unique_ptr<EventDispatcher> m_Dispatcher;
 		LayerStack m_LayerStack;
 
 		ImGuiLayer m_ImGuiLayer;
+
 
 		// ID, GameObject
 		std::map<int, GameObject *> m_GameObjects;

@@ -99,16 +99,16 @@ namespace Hamster {
     int width, height;
     glfwGetFramebufferSize(m_Window->GetGLFWWindowPointer(), &width, &height);
 
-    glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight),
+    m_Projection = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight),
                                       0.0f, -1.0f, 1.0f);
 
     AssetManager::GetShader("sprite")->use();
     AssetManager::GetShader("sprite")->setUniformi("image", 0);
-    AssetManager::GetShader("sprite")->setUniformMat4("projection", projection);
+    AssetManager::GetShader("sprite")->setUniformMat4("projection", m_Projection);
 
     AssetManager::GetShader("flat")->use();
     AssetManager::GetShader("flat")->setUniformi("image", 0);
-    AssetManager::GetShader("flat")->setUniformMat4("projection", projection);
+    AssetManager::GetShader("flat")->setUniformMat4("projection", m_Projection);
 
     Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -189,16 +189,9 @@ namespace Hamster {
       // std::cout << "hi" << std::endl;
 
       view.each([](auto entity, auto &sprite, auto &transform) {
-        int id = entt::to_integral(entity) + 1;
-        // +1 to ensure no ids are 0 as an invalid coordinate causes opengl to return 0 on read pixel
-        int r = (id & 0x000000FF) >> 0;
-        int g = (id & 0x0000FF00) >> 8;
-        int b = (id & 0x00FF0000) >> 16;
-
-        // std::cout << r / 255.0f << std::endl;
 
         Renderer::DrawFlat(transform.position, transform.size, transform.rotation,
-                           glm::vec3(r / 255.0f, g / 255.0f, b / 255.0f));
+                           IdToColour(entt::to_integral(entity)));
       });
     }
   }
@@ -211,5 +204,28 @@ namespace Hamster {
     m_LayerStack.PopLayer(layer);
   }
 
+  glm::mat4 Application::GetProjectionMatrix() {
+    return m_Projection;
+  }
 
+  glm::vec3 Application::IdToColour(int id) {
+    id += 1;
+
+
+
+    int r = (id & 0x000000FF) >> 0;
+    int g = (id & 0x0000FF00) >> 8;
+    int b = (id & 0x00FF0000) >> 16;
+
+    return {r / 255.0f, g / 255.0f, b / 255.0f};
+  }
+
+  int Application::ColourToId(const glm::vec3 colour) {
+    int pickedID =
+            (colour.r +
+            colour.g * 256 +
+            colour.b * 256 * 256)-1;
+
+    return pickedID;
+  }
 } // namespace Hamster
