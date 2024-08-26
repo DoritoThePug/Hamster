@@ -41,6 +41,11 @@ private:
 
     int m_ViewportWidth = 1920;
     int m_ViewportHeight = 1080;
+
+    bool xGuizmoHeld = false;
+    bool yGuizmoHeld = false;
+    float mouseHeldOffsetX = 0.0f;
+    float mouseHeldOffsetY = 0.0f;
 };
 
 

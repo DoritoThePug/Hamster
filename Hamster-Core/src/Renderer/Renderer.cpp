@@ -151,7 +151,7 @@ namespace Hamster {
     m_FlatShader->setUniformMat4("model", model);
 
     if (selectionColour) {
-      m_FlatShader->setUniformVec3("colour", glm::vec3(1.0f, 1.0f, 1.0f));
+      m_FlatShader->setUniformVec3("colour", Application::IdToColour(YGuizmoID));
 
     } else {
       m_FlatShader->setUniformVec3("colour", glm::vec3(230.0f/255.0f, 57.0f/255.0f, 70.0f/255.0f));
@@ -170,7 +170,7 @@ namespace Hamster {
 
 
     if (selectionColour) {
-      m_FlatShader->setUniformVec3("colour", glm::vec3(254.0f/255.0f, 1.0f, 1.0f));
+      m_FlatShader->setUniformVec3("colour", Application::IdToColour(XGuizmoID));
 
     } else {
       m_FlatShader->setUniformVec3("colour", glm::vec3(81.0f/255.0f, 152.0f/255.0f, 114.0f/255.0f));

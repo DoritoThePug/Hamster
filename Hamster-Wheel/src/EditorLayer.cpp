@@ -23,7 +23,6 @@ void EditorLayer::OnAttach() {
 
 void EditorLayer::OnUpdate() {
     // std::cout << "hi" << std::endl;
-
     if (ImGui::IsMouseClicked(0))
     {
         glEnable(GL_SCISSOR_TEST);
@@ -70,7 +69,30 @@ void EditorLayer::OnUpdate() {
 
         if (pickedID != -1 && m_App.GetRegistry().valid(pickedEntity)) {
             m_Hierarchy->SetSelectedEntity(pickedEntity);
+        } else if (pickedID == XGuizmoID) {
+
+
+            xGuizmoHeld = true;
+            mouseHeldOffsetX = mousePosX - m_App.GetRegistry().get<Hamster::Transform>(selectedEntity).position.x;
+        } else if (pickedID == YGuizmoID) {
+            yGuizmoHeld = true;
+            mouseHeldOffsetY = mousePosY - m_App.GetRegistry().get<Hamster::Transform>(selectedEntity).position.y;
         }
+    }
+
+    if (ImGui::IsMouseReleased(0)) {
+        xGuizmoHeld = false;
+        yGuizmoHeld = false;
+    }
+
+    if (xGuizmoHeld) {
+        Hamster::Transform* entityTransform = &m_App.GetRegistry().get<Hamster::Transform>(m_Hierarchy->GetSelectedEntity());
+
+        entityTransform->position.x = ImGui::GetMousePos().x - m_ViewportOffset.x - mouseHeldOffsetX;
+    } else if (yGuizmoHeld) {
+        Hamster::Transform* entityTransform = &m_App.GetRegistry().get<Hamster::Transform>(m_Hierarchy->GetSelectedEntity());
+
+        entityTransform->position.y = ImGui::GetMousePos().y - m_ViewportOffset.y - mouseHeldOffsetY;
     }
 
     m_FramebufferTexture.ResizeFrameBuffer(m_LevelEditorAvailRegion.x, m_LevelEditorAvailRegion.y);
