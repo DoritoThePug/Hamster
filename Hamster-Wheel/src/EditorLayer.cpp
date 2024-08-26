@@ -167,7 +167,7 @@ void EditorLayer::OnImGuiUpdate() {
         entt::registry& registry = m_App.GetRegistry();
 
         if (registry.valid(e)) {
-            m_PropertyEditor->SetSelectedProperty(&registry.get<Hamster::Transform>(e).position);
+            m_PropertyEditor->SetSelectedProperty(&registry.get<Hamster::Transform>(e));
         }
 
         m_PropertyEditor->Render();

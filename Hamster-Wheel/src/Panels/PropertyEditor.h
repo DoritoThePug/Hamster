@@ -8,6 +8,7 @@
 #include <ostream>
 #include <glm/glm.hpp>
 
+#include "Core/Application.h"
 #include "Gui/Panel.h"
 
 
@@ -15,10 +16,10 @@ class PropertyEditor : public Hamster::Panel {
 public:
     void Render() override;
 
-    void SetSelectedProperty(glm::vec2* transform) {m_Transform = transform;}
+    void SetSelectedProperty(Hamster::Transform* transform) {m_Transform = transform;}
 private:
     //temp
-    glm::vec2* m_Transform = nullptr;
+    Hamster::Transform* m_Transform = nullptr;
 };
 
 
