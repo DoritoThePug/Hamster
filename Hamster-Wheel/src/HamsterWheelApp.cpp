@@ -21,14 +21,14 @@ int main() {
   auto face = app->GetRegistry().create();
 
   app->GetRegistry().emplace<Hamster::Sprite>(face, Hamster::AssetManager::GetTexture("face"),
-                                              glm::vec3(0.0f, 1.0f, 0.0f));
+                                              glm::vec3(1.0f, 1.0f, 1.0f));
   app->GetRegistry().emplace<Hamster::Transform>(face, glm::vec2(0.0f, 780.0f), 0.0f, glm::vec2(300.0f, 300.0f));
     app->GetRegistry().emplace<Hamster::Name>(face, "Face0");
 
   auto face1 = app->GetRegistry().create();
 
   app->GetRegistry().emplace<Hamster::Sprite>(face1, Hamster::AssetManager::GetTexture("face"),
-                                              glm::vec3(0.0f, 1.0f, 0.0f));
+                                              glm::vec3(1.0f, 1.0f, 1.0f));
   app->GetRegistry().emplace<Hamster::Transform>(face1, glm::vec2(100.0f, 780.0f), 0.0f, glm::vec2(300.0f, 300.0f));
   app->GetRegistry().emplace<Hamster::Name>(face1, "Face1");
 

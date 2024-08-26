@@ -16,7 +16,7 @@ namespace Hamster {
 
     Renderer::SetViewport(1920, 1080);
 
-    glEnable(GL_DEPTH_TEST);
+    // glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -97,7 +97,7 @@ namespace Hamster {
         glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
     model =
         glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
-    
+
     model = glm::scale(model, glm::vec3(size, 1.0f));
 
     m_SpriteShader->setUniformMat4("model", model);
@@ -182,7 +182,7 @@ namespace Hamster {
     glBindVertexArray(0);
 
 
-    glEnable(GL_DEPTH_TEST);
+    // glEnable(GL_DEPTH_TEST);
   }
 
 } // namespace Hamster

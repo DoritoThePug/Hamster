@@ -181,6 +181,9 @@ namespace Hamster {
   void Application::RenderSystem(entt::registry &registry, bool renderFlat) {
     auto view = registry.view<Sprite, Transform>();
 
+    // glEnable(GL_BLEND);
+    // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     if (!renderFlat) {
       view.each([](auto &sprite, auto &transform) {
         Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation, sprite.colour);
