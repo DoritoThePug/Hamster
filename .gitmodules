@@ -13,3 +13,6 @@
 [submodule "Hamster-Core/Vendor/glm"]
 	path = Hamster-Core/Vendor/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "Hamster-Core/Vendor/box2d"]
+	path = Hamster-Core/Vendor/box2d
+	url = https://github.com/erincatto/box2d.git
