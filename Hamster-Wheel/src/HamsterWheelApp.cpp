@@ -2,8 +2,7 @@
 // Created by Jaden on 24/08/2024.
 //
 
-#include <Core/Application.h>
-#include <Utils/AssetManager.h>
+#include <Hamster.h>
 
 #include "EditorLayer.h"
 

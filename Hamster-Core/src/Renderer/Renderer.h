@@ -9,6 +9,7 @@
 #include "GLFW/glfw3.h"
 
 #include "Core/Application.h"
+#include "Core/Components.h"
 
 namespace Hamster {
 	enum TransformType {

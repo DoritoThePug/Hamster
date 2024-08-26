@@ -8,8 +8,8 @@
 #include <ostream>
 #include <glm/glm.hpp>
 
-#include "Core/Application.h"
-#include "Gui/Panel.h"
+#include <Hamster.h>
+#include <Gui/Panel.h>
 
 
 class PropertyEditor : public Hamster::Panel {

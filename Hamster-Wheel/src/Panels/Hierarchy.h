@@ -6,9 +6,9 @@
 #define HIERARCHY_H
 
 #include <entt/entt.hpp>
-#include <Core/Application.h>
 
-#include "Gui/Panel.h"
+#include <Hamster.h>
+#include <Gui/Panel.h>
 
 class Hierarchy : public Hamster::Panel {
 public:

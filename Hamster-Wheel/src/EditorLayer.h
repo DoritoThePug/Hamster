@@ -10,10 +10,13 @@
 #include <functional>
 #include <memory>
 
-#include <Core/Layer.h>
-#include <Renderer/FramebufferTexture.h>
+
 
 #include "GLFW/glfw3.h"
+
+#include <Hamster.h>
+#include <Renderer/FramebufferTexture.h>
+
 #include "Panels/Hierarchy.h"
 #include "Panels/PropertyEditor.h"
 

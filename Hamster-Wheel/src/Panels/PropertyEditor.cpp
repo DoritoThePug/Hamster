@@ -78,5 +78,20 @@ void PropertyEditor::Render() {
     ImGui::InputFloat("##X#R1", &m_Transform->rotation);
 
 
+
+
+    if(ImGui::Button("Add Component")) {
+        ImGui::OpenPopup("Add Component");
+    }
+
+    if (ImGui::BeginPopup("Add Component")) {
+        ImGui::SeparatorText("Components");
+
+        ImGui::Selectable("Rigidbody");
+
+        ImGui::EndPopup();
+    }
+
+
     ImGui::End();
 }

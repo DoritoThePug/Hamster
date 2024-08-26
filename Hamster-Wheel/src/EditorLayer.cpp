@@ -62,7 +62,7 @@ void EditorLayer::OnUpdate() {
         int pickedID =
             Hamster::Application::ColourToId(glm::vec3(data[0], data[1], data[2]));
 
-        std::cout << pickedID << std::endl;
+        // std::cout << pickedID << std::endl;
         // std::cout << (float)data[0] << ", " << (float)data[1] << ", " << (float)data[2] << std::endl;
 
         auto pickedEntity = static_cast<entt::entity>(pickedID);

@@ -18,20 +18,7 @@
 #include "Renderer/Texture.h"
 
 namespace Hamster {
-	struct Transform {
-		glm::vec2 position;
-		float rotation;
-		glm::vec2 size;
-	};
 
-	struct Sprite {
-		std::shared_ptr<Texture> texture;
-		glm::vec3 colour;
-	};
-
-	struct Name {
-		std::string name;
-	};
 
 	class GameObject;
 

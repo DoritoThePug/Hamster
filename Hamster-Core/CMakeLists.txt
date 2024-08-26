@@ -71,7 +71,7 @@ set(sources
         Vendor/glad/src/glad.c
 )
 
-add_library(Hamster-Core STATIC ${sources})
+add_library(Hamster-Core STATIC ${sources} src/Hamster.h)
 
 # find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
