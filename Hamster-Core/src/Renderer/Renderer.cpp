@@ -92,12 +92,12 @@ namespace Hamster {
     //
     // // Code from learnopengl.com, used to translate sprite so rotation is based
     // // around centre of sprite
-    // model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
-    // model =
-    //     glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-    // model =
-    //     glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
-    //
+    model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+    model =
+        glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+    model =
+        glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+    
     model = glm::scale(model, glm::vec3(size, 1.0f));
 
     m_SpriteShader->setUniformMat4("model", model);
@@ -122,12 +122,12 @@ namespace Hamster {
     //
     // // Code from learnopengl.com, used to translate sprite so rotation is based
     // // around centre of sprite
-    // model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
-    // model =
-    //     glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-    // model =
-    //     glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
-    //
+    model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+    model =
+        glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+    model =
+        glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+
     model = glm::scale(model, glm::vec3(size, 1.0f));
 
     m_FlatShader->setUniformMat4("model", model);
