@@ -34,6 +34,12 @@ void EditorLayer::OnUpdate() {
         Hamster::Renderer::Clear();
         m_RenderFn(true);
 
+        entt::entity selectedEntity = m_Hierarchy->GetSelectedEntity();
+
+        if (selectedEntity != entt::null) {
+            Hamster::Renderer::DrawGuizmo(m_App.GetRegistry().get<Hamster::Transform>(selectedEntity), Hamster::Translate, true);
+        }
+
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
         unsigned char data[4];
 
@@ -55,9 +61,10 @@ void EditorLayer::OnUpdate() {
         Hamster::Renderer::Clear();
 
         int pickedID =
-            (data[0] +
-            data[1] * 256 +
-            data[2] * 256 * 256)-1;
+            Hamster::Application::ColourToId(glm::vec3(data[0], data[1], data[2]));
+
+        std::cout << pickedID << std::endl;
+        // std::cout << (float)data[0] << ", " << (float)data[1] << ", " << (float)data[2] << std::endl;
 
         auto pickedEntity = static_cast<entt::entity>(pickedID);
 
@@ -78,6 +85,12 @@ void EditorLayer::OnUpdate() {
 
     Hamster::Renderer::Clear();
     m_RenderFn(false);
+
+    entt::entity selectedEntity = m_Hierarchy->GetSelectedEntity();
+
+    if (selectedEntity != entt::null) {
+        Hamster::Renderer::DrawGuizmo(m_App.GetRegistry().get<Hamster::Transform>(selectedEntity), Hamster::Translate, false);
+    }
 
     m_FramebufferTexture.Unbind();
     glDisable(GL_SCISSOR_TEST);

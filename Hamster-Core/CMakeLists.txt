@@ -100,8 +100,8 @@ target_include_directories(Hamster-Core PUBLIC Vendor/glfw/include)
 
 # add_subdirectory(${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/pybind11)
 
-target_link_libraries(Hamster-Core PUBLIC glfw)
-target_link_libraries(Hamster-Core PUBLIC imgui)
+target_link_libraries(Hamster-Core PUBLIC glfw imgui)
+
 # target_link_directories(Hamster-Core PUBLIC pybind11)
 
 # Pybind 11 files

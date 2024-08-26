@@ -96,12 +96,6 @@ namespace Hamster {
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
 
-    // std::cout << ColourToId(glm::vec3(1.0f, 1.0f, 1.0f)) << std::endl;
-    // std::cout << IdToColour(65792).r << ", " << IdToColour(65792).g << ", " << IdToColour(65792).b << std::endl;
-
-    std::cout << ColourToId(IdToColour(1324234)) << std::endl;
-
-
     int width, height;
     glfwGetFramebufferSize(m_Window->GetGLFWWindowPointer(), &width, &height);
 
@@ -122,6 +116,8 @@ namespace Hamster {
       auto currentFrame = static_cast<float>(glfwGetTime());
       deltaTime = currentFrame - lastFrame;
       lastFrame = currentFrame;
+
+
 
       for (Layer* layer : m_LayerStack) {
         layer->OnUpdate();

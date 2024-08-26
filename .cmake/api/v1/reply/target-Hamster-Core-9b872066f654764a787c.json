@@ -34,12 +34,6 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 104,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
 				"line" : 103,
 				"parent" : 0
 			},
@@ -75,46 +69,46 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"define" : "GLFW_INCLUDE_NONE"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 5,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include"
 				}
 			],
@@ -154,46 +148,46 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"define" : "GLFW_INCLUDE_NONE"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 5,
 					"path" : "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include"
 				}
 			],
@@ -211,7 +205,7 @@
 			"id" : "imgui::@bd7774a2938d6a9f01ea"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "glfw::@5980d9434051264e402f"
 		}
 	],

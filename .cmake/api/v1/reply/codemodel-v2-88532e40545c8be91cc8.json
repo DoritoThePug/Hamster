@@ -14,8 +14,7 @@
 						5,
 						6,
 						7,
-						10,
-						11
+						10
 					],
 					"hasInstallRule" : true,
 					"jsonFile" : "directory-.-d0094a50bb2071803777.json",
@@ -114,7 +113,7 @@
 					"source" : "Hamster-Core/Vendor/imgui",
 					"targetIndexes" : 
 					[
-						7
+						6
 					]
 				},
 				{
@@ -125,7 +124,7 @@
 						9
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-Hamster-Core.Vendor.glfw-888a077e58a1e761052e.json",
+					"jsonFile" : "directory-Hamster-Core.Vendor.glfw-45c9c2413594d2b719fb.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -135,13 +134,13 @@
 					"source" : "Hamster-Core/Vendor/glfw",
 					"targetIndexes" : 
 					[
-						8
+						7
 					]
 				},
 				{
 					"build" : "Hamster-Core/Vendor/glfw/src",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-Hamster-Core.Vendor.glfw.src-df840b93edf82d3b49b4.json",
+					"jsonFile" : "directory-Hamster-Core.Vendor.glfw.src-0c32beb54eacf0fe7dcf.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -151,8 +150,8 @@
 					"source" : "Hamster-Core/Vendor/glfw/src",
 					"targetIndexes" : 
 					[
-						6,
-						9
+						5,
+						8
 					]
 				},
 				{
@@ -177,21 +176,6 @@
 					"parentIndex" : 0,
 					"projectIndex" : 8,
 					"source" : "Hamster-Core/Vendor/entt"
-				},
-				{
-					"build" : "Hamster-Core/Vendor/ImGuizmo",
-					"jsonFile" : "directory-Hamster-Core.Vendor.ImGuizmo-55524d5aa710031f96cd.json",
-					"minimumCMakeVersion" : 
-					{
-						"string" : "3.28"
-					},
-					"parentIndex" : 0,
-					"projectIndex" : 9,
-					"source" : "Hamster-Core/Vendor/ImGuizmo",
-					"targetIndexes" : 
-					[
-						5
-					]
 				}
 			],
 			"name" : "",
@@ -206,8 +190,7 @@
 						5,
 						6,
 						7,
-						8,
-						9
+						8
 					],
 					"directoryIndexes" : 
 					[
@@ -285,7 +268,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						7
+						6
 					]
 				},
 				{
@@ -299,9 +282,9 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						6,
-						8,
-						9
+						5,
+						7,
+						8
 					]
 				},
 				{
@@ -311,18 +294,6 @@
 					],
 					"name" : "EnTT",
 					"parentIndex" : 0
-				},
-				{
-					"directoryIndexes" : 
-					[
-						11
-					],
-					"name" : "ImGuizmo",
-					"parentIndex" : 0,
-					"targetIndexes" : 
-					[
-						5
-					]
 				}
 			],
 			"targets" : 
@@ -330,7 +301,7 @@
 				{
 					"directoryIndex" : 3,
 					"id" : "Hamster::@fab5c8536b855a6fa043",
-					"jsonFile" : "target-Hamster-1afc5534d1f0e84e8324.json",
+					"jsonFile" : "target-Hamster-10da4fb32c0390404cf4.json",
 					"name" : "Hamster",
 					"projectIndex" : 3
 				},
@@ -344,7 +315,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "Hamster-Core::@7fb26e8c688a3985960d",
-					"jsonFile" : "target-Hamster-Core-c0ca94faa008dc759071.json",
+					"jsonFile" : "target-Hamster-Core-9b872066f654764a787c.json",
 					"name" : "Hamster-Core",
 					"projectIndex" : 1
 				},
@@ -361,13 +332,6 @@
 					"jsonFile" : "target-Hamster-Wheel-2b2235206d89304e25be.json",
 					"name" : "Hamster-Wheel",
 					"projectIndex" : 5
-				},
-				{
-					"directoryIndex" : 11,
-					"id" : "ImGuizmo::@102d593e641d5319dccd",
-					"jsonFile" : "target-ImGuizmo-fa6828a4f4ad4d88da2a.json",
-					"name" : "ImGuizmo",
-					"projectIndex" : 9
 				},
 				{
 					"directoryIndex" : 8,

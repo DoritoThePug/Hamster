@@ -8,7 +8,13 @@
 #include "Texture.h"
 #include "GLFW/glfw3.h"
 
+#include "Core/Application.h"
+
 namespace Hamster {
+	enum TransformType {
+		Translate, Rotate, Scale
+	};
+
 	class Renderer {
 	public:
 		static void Init(int viewportHeight, int viewportWidt);
@@ -24,6 +30,8 @@ namespace Hamster {
 		static void DrawSprite(Texture &texture, glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour);
 
 		static void DrawFlat(glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 colour);
+
+		static void DrawGuizmo(Transform targetTransform, TransformType type, bool selectionColour);
 
 	private:
 		static void InitRendererData();

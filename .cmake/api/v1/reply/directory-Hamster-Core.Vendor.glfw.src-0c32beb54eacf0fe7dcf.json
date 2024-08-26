@@ -33,7 +33,7 @@
 				"Hamster-Core/Vendor/glfw/src/libglfw3.a"
 			],
 			"targetId" : "glfw::@5980d9434051264e402f",
-			"targetIndex" : 6,
+			"targetIndex" : 5,
 			"type" : "target"
 		}
 	],
