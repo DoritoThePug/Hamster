@@ -8,7 +8,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 void PropertyEditor::Render() {
-    if(!ImGui::Begin("Property Editor", &m_WindowOpen)) {
+    if(!ImGui::Begin("Property Editor", &m_WindowOpen) || m_Transform == nullptr) {
         ImGui::End();
         return;
     }
@@ -26,7 +26,10 @@ void PropertyEditor::Render() {
 
     ImGui::PopStyleColor(3); ImGui::SameLine();
 
-    ImGui::InputFloat("##X", &m_Transform->x); ImGui::SameLine();
+    ImGui::InputFloat("##X", &m_Transform->x);
+
+
+    ImGui::SameLine();
 
 
     ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(81, 152, 114));

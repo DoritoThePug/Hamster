@@ -26,10 +26,6 @@ void Hierarchy::Render() {
     view.each([&](auto entity, auto& name) {
         ImGui::PushID(entt::to_integral(entity));
 
-        if (m_SelectedEntity == entt::null) {
-            SetSelectedEntity(entity);
-        }
-
         if (entity == m_SelectedEntity) {
             ImGui::SetNextItemOpen(true, ImGuiCond_Once);
         }

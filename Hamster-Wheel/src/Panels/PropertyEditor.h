@@ -18,7 +18,7 @@ public:
     void SetSelectedProperty(glm::vec2* transform) {m_Transform = transform;}
 private:
     //temp
-    glm::vec2* m_Transform;
+    glm::vec2* m_Transform = nullptr;
 };
 
 

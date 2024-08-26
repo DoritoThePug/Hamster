@@ -69,7 +69,11 @@ void EditorLayer::OnUpdate() {
 
         if (pickedID != -1 && m_App.GetRegistry().valid(pickedEntity)) {
             m_Hierarchy->SetSelectedEntity(pickedEntity);
-        } else if (pickedID == XGuizmoID) {
+        } else if (pickedID == -1) {
+            m_Hierarchy->SetSelectedEntity(entt::null);
+            m_PropertyEditor->SetSelectedProperty(nullptr);
+        }
+        else if (pickedID == XGuizmoID) {
 
 
             xGuizmoHeld = true;
