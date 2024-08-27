@@ -14,6 +14,9 @@ set(PANELS
 
         src/Panels/Hierarchy.cpp
         src/Panels/Hierarchy.h
+
+        src/Panels/StartPauseModal.cpp
+        src/Panels/StartPauseModal.h
 )
 
 add_executable(Hamster-Wheel ${PANELS} src/EditorLayer.cpp src/EditorLayer.h src/HamsterWheelApp.cpp)

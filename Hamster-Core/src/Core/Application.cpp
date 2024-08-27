@@ -115,7 +115,7 @@ namespace Hamster {
 
     Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 0.0f);
 
-    while (m_running) {
+    while (m_Running) {
       auto currentFrame = static_cast<float>(glfwGetTime());
       deltaTime = currentFrame - lastFrame;
       lastFrame = currentFrame;
@@ -137,13 +137,13 @@ namespace Hamster {
 
       UpdateSystem(m_Registry);
 
-      m_Window->Update(m_running);
+      m_Window->Update(m_Running);
     }
   }
 
   void Application::Close(WindowCloseEvent &e) {
     m_Window.reset();
-    m_running = false;
+    m_Running = false;
 
     AssetManager::Terminate();
 
@@ -173,17 +173,21 @@ namespace Hamster {
 
 
   void Application::UpdateSystem(entt::registry &registry) {
-    Physics::Simulate();
+    if (!m_IsSimulationPaused) {
+      Physics::Simulate();
 
-    auto view = registry.view<Transform, Rigidbody>();
+      auto view = registry.view<Transform, Rigidbody>();
 
-    view.each([](auto &transform, auto& rb) {
-      b2Vec2 pos = b2Body_GetPosition(rb.id);
+      view.each([this](auto &transform, auto& rb) {
 
-      // std::cout << pos.x << ", " << pos.y << std::endl;
+          b2Vec2 pos = b2Body_GetPosition(rb.id);
 
-      transform.position = glm::vec2(pos.x * Physics::s_PixelsPerMeter, pos.y * Physics::s_PixelsPerMeter);
-    });
+         // std::cout << pos.x << ", " << pos.y << std::endl;
+
+         transform.position = glm::vec2(pos.x * Physics::s_PixelsPerMeter, pos.y * Physics::s_PixelsPerMeter);
+
+      });
+    }
   }
 
   void Application::RenderSystem(entt::registry &registry, bool renderFlat) {
@@ -247,4 +251,14 @@ namespace Hamster {
 
     return id-1;
   }
+
+  void Application::PauseSimulation() {
+    m_IsSimulationPaused = true;
+  }
+
+  void Application::ResumeSimulation() {
+    m_IsSimulationPaused = false;
+  }
+
+
 } // namespace Hamster

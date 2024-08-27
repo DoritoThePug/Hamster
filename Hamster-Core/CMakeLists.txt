@@ -59,6 +59,7 @@ set(Gui
         src/Gui/ImGuiLayer.cpp
         src/Gui/ImGuiLayer.h
         src/Gui/Panel.h
+        src/Gui/Modal.h
 )
 
 set(Physics

@@ -15,6 +15,7 @@
 
 EditorLayer::EditorLayer(const std::function<void(bool)> &renderFn,  Hamster::Application& app) : m_RenderFn(renderFn), m_FramebufferTexture(1920, 1080), m_App(app) {
     m_Hierarchy = std::make_unique<Hierarchy>(app);
+    m_StartPauseModal = std::make_unique<StartPauseModal>(app);
 }
 
 void EditorLayer::OnAttach() {
@@ -173,6 +174,6 @@ void EditorLayer::OnImGuiUpdate() {
         m_PropertyEditor->Render();
     }
 
-
+    m_StartPauseModal->Render();
 }
 

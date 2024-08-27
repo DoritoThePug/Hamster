@@ -43,6 +43,9 @@ namespace Hamster {
 
 		static void ResizeFramebuffer(FramebufferResizeEvent &e);
 
+		void PauseSimulation();
+		void ResumeSimulation();
+
 		GLFWwindow* GetWindow() { return m_Window->GetGLFWWindowPointer(); }
 
 		//void AddGameObject(GameObjectCreatedEvent& e);
@@ -74,7 +77,8 @@ namespace Hamster {
 	private:
 		static Application *s_Instance;
 
-		bool m_running = true;
+		bool m_Running = true;
+		bool m_IsSimulationPaused = true;
 
 		int m_ViewportWidth = 1920;
 		int m_ViewportHeight = 1080;

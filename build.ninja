@@ -659,6 +659,14 @@ build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/Hierarchy.cpp.obj: C
   OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
   OBJECT_FILE_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels
 
+build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/StartPauseModal.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/Panels/StartPauseModal.cpp || cmake_object_order_depends_target_Hamster-Wheel
+  DEFINES = -DGLFW_INCLUDE_NONE
+  DEP_FILE = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels\StartPauseModal.cpp.obj.d
+  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
+  OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
+  OBJECT_FILE_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels
+
 build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/EditorLayer.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/EditorLayer.cpp || cmake_object_order_depends_target_Hamster-Wheel
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\EditorLayer.cpp.obj.d
@@ -683,7 +691,7 @@ build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/HamsterWheelApp.cpp.obj: CX
 #############################################
 # Link the executable Hamster-Wheel\Hamster-Wheel.exe
 
-build Hamster-Wheel/Hamster-Wheel.exe: CXX_EXECUTABLE_LINKER__Hamster-Wheel_ Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/PropertyEditor.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/Hierarchy.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/EditorLayer.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/HamsterWheelApp.cpp.obj | Hamster-Core/libHamster-Core.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/Vendor/box2d/src/libbox2d.a || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+build Hamster-Wheel/Hamster-Wheel.exe: CXX_EXECUTABLE_LINKER__Hamster-Wheel_ Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/PropertyEditor.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/Hierarchy.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/StartPauseModal.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/EditorLayer.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/HamsterWheelApp.cpp.obj | Hamster-Core/libHamster-Core.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/Vendor/box2d/src/libbox2d.a || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
   LINK_LIBRARIES = Hamster-Core/libHamster-Core.a  Hamster-Core/Vendor/glfw/src/libglfw3.a  Hamster-Core/Vendor/imgui/libimgui.a  Hamster-Core/Vendor/box2d/src/libbox2d.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
   POST_BUILD = cd .
