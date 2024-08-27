@@ -61,6 +61,11 @@ set(Gui
         src/Gui/Panel.h
 )
 
+set(Physics
+    src/Physics/Physics.cpp
+        src/Physics/Physics.h
+)
+
 set(sources
         ${Core}
         ${Events}
@@ -68,6 +73,7 @@ set(sources
         ${Utils}
         ${Stb_Image}
         ${Gui}
+        ${Physics}
         Vendor/glad/src/glad.c
 )
 
@@ -78,6 +84,7 @@ add_library(Hamster-Core STATIC ${sources} src/Hamster.h)
 target_include_directories(Hamster-Core PUBLIC
         src
         Vendor/glad/include
+        Vendor/glfw/include
         Vendor/glm
         Vendor/stb
         Vendor/pybind11/include
@@ -85,25 +92,9 @@ target_include_directories(Hamster-Core PUBLIC
         Vendor/imgui
         Vendor/imgui/backends
         Vendor/entt/src
+        Vendor/box2d/include
 )
 
-# message("-----------------------------------------${Python_INCLUDE_DIRS}")
 
-
-target_include_directories(Hamster-Core PUBLIC Vendor/glfw/include)
-
-# link_directories(
-#     vendor/GLFW
-#     vendor/glad/bin
-# )
-
-
-# add_subdirectory(${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/pybind11)
-
-target_link_libraries(Hamster-Core PUBLIC glfw imgui)
-
-# target_link_directories(Hamster-Core PUBLIC pybind11)
-
-# Pybind 11 files
-# pybind11_add_module(ass src/Core/pytest.cpp)
+target_link_libraries(Hamster-Core PUBLIC glfw imgui box2d)
 

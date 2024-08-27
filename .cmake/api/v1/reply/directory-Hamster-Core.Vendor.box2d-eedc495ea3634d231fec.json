@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "Hamster-Core/Vendor/box2d",
+		"source" : "Hamster-Core/Vendor/box2d"
+	}
+}

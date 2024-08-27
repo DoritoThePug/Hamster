@@ -8,6 +8,7 @@
 #include <memory>
 
 #include <glm/glm.hpp>
+#include <box2d/box2d.h>
 
 #include "Renderer/Texture.h"
 
@@ -26,6 +27,10 @@ namespace Hamster {
 
     struct Name {
         std::string name;
+    };
+
+    struct Rigidbody {
+        b2BodyId id;
     };
 
 } // Hamster

@@ -16,6 +16,7 @@
 #include "Renderer/FramebufferTexture.h"
 #include "Utils/AssetManager.h"
 #include "Layer.h"
+#include "Physics/Physics.h"
 // #include "Gui/ImGuiLayer.h"
 
 namespace Hamster {
@@ -83,6 +84,8 @@ namespace Hamster {
     //
     //                                    dispatcher->Post<FramebufferResizeEvent>(e);
     //                                  });
+
+    Physics::Init();
   }
 
   Application::~Application() {
@@ -121,7 +124,6 @@ namespace Hamster {
 
       for (Layer* layer : m_LayerStack) {
         layer->OnUpdate();
-
       }
 
 
@@ -171,10 +173,16 @@ namespace Hamster {
 
 
   void Application::UpdateSystem(entt::registry &registry) {
-    auto view = registry.view<Transform>();
+    Physics::Simulate();
 
-    view.each([](auto &transform) {
-      // transform.position = transform.position + glm::vec2(1.0f, 0.0f);
+    auto view = registry.view<Transform, Rigidbody>();
+
+    view.each([](auto &transform, auto& rb) {
+      b2Vec2 pos = b2Body_GetPosition(rb.id);
+
+      // std::cout << pos.x << ", " << pos.y << std::endl;
+
+      transform.position = glm::vec2(pos.x * Physics::s_PixelsPerMeter, pos.y * Physics::s_PixelsPerMeter);
     });
   }
 

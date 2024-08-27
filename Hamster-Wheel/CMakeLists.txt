@@ -24,9 +24,10 @@ target_include_directories(Hamster-Wheel PRIVATE
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/GLFW/include
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/glm
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/imgui
+        ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/box2d/include
 )
 
-target_link_libraries(Hamster-Wheel PRIVATE Hamster-Core glfw imgui)
+target_link_libraries(Hamster-Wheel PRIVATE Hamster-Core glfw imgui box2d)
 
 
 
