@@ -23,13 +23,14 @@ int main() {
 
   Hamster::AssetManager::AddTexture(
        "face",
-       "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/Assets/awesomeface.png");
+       "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/Assets/mario-sprite.png");
 
-    Hamster::UUID face = scene->CreateEntity();
-scene->AddEntityComponent<Hamster::Transform>(face, glm::vec2(400.0f, 0.0f), 0.0f, glm::vec2(300.0f, 300.0f));
-  scene->AddEntityComponent<Hamster::Sprite>(face, Hamster::AssetManager::GetTexture("face"),
+    Hamster::UUID mario = scene->CreateEntity();
+scene->AddEntityComponent<Hamster::Transform>(mario, glm::vec2(400.0f, 0.0f), 0.0f, glm::vec2(300.0f, 300.0f));
+  scene->AddEntityComponent<Hamster::Sprite>(mario, Hamster::AssetManager::GetTexture("face"),
   glm::vec3(1.0f, 1.0f, 1.0f));
-  scene->AddEntityComponent<Hamster::Name>(face, "Face0");
+  scene->AddEntityComponent<Hamster::Name>(mario, "Mario");
+  Hamster::Physics::CreateBody(scene->GetWorldId(), b2_dynamicBody, scene->GetEntity(mario), scene->GetRegistry());
 
   // auto face = app->GetRegistry().create();
   //

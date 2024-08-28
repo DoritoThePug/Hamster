@@ -24,6 +24,8 @@ public:
     UUID CreateEntity();
     void DestroyEntity(UUID entityUUID);
 
+    entt::entity& GetEntity(UUID entityUUID) {return m_Entities[entityUUID];}
+
     entt::registry& GetRegistry() {return m_Registry; }
 
     // template <typename T>
@@ -54,6 +56,8 @@ public:
 
     void PauseScene() {m_IsRunning = false;}
     void PauseSceneSimulation() {m_IsSimulationPaused = true;}
+
+    b2WorldId GetWorldId () {return m_WorldId;}
 
     UUID GetUUID() const {return m_UUID; }
 private:
