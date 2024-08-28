@@ -14,18 +14,14 @@ namespace Hamster {
 
 class Physics {
 public:
-    static void Init();
+    static b2WorldId InitBox2dWorld();
 
-    static void CreateBody(b2BodyType bodyType, entt::entity& entity, entt::registry& registry);
+    static void CreateBody(b2WorldId worldId, b2BodyType bodyType, entt::entity& entity, entt::registry& registry);
 
     inline static constexpr float s_PixelsPerMeter = 100.0f;
 
-    static void Simulate();
+    static void Simulate(b2WorldId worldId);
 private:
-    static void InitBox2dWorld();
-
-    inline static b2WorldId m_WorldId;
-
     inline static float m_TimeStep = 1.0f / 60.0f;
     inline static int m_SubStepCount = 4;
 };

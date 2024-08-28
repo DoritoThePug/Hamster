@@ -10,6 +10,7 @@
 #include "Core/Base.h"
 #include "Core/Components.h"
 #include "Core/Layer.h"
+#include "Core/Scene.h"
 
 // Events
 #include "Events/Event.h"

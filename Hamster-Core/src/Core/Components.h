@@ -11,6 +11,7 @@
 #include <box2d/box2d.h>
 
 #include "Renderer/Texture.h"
+#include "UUID.h"
 
 namespace Hamster {
 
@@ -31,6 +32,10 @@ namespace Hamster {
 
     struct Rigidbody {
         b2BodyId id;
+    };
+
+    struct ID {
+        UUID uuid;
     };
 
 } // Hamster

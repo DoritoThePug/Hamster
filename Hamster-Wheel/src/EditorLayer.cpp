@@ -13,9 +13,9 @@
 #include "Core/Application.h"
 #include "Core/Application.h"
 
-EditorLayer::EditorLayer(const std::function<void(bool)> &renderFn,  Hamster::Application& app) : m_RenderFn(renderFn), m_FramebufferTexture(1920, 1080), m_App(app) {
-    m_Hierarchy = std::make_unique<Hierarchy>(app);
-    m_StartPauseModal = std::make_unique<StartPauseModal>(app);
+EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene), m_FramebufferTexture(1920, 1080) {
+    m_Hierarchy = std::make_unique<Hierarchy>(scene);
+    m_StartPauseModal = std::make_unique<StartPauseModal>(scene);
 }
 
 void EditorLayer::OnAttach() {
@@ -23,7 +23,6 @@ void EditorLayer::OnAttach() {
 }
 
 void EditorLayer::OnUpdate() {
-    // std::cout << "hi" << std::endl;
     if (ImGui::IsMouseClicked(0))
     {
         glEnable(GL_SCISSOR_TEST);
@@ -32,12 +31,12 @@ void EditorLayer::OnUpdate() {
         m_FramebufferTexture.Bind();
         glViewport(0, 0, m_ViewportWidth, m_ViewportHeight);
         Hamster::Renderer::Clear();
-        m_RenderFn(true);
+        m_Scene->OnRender(true);
 
         entt::entity selectedEntity = m_Hierarchy->GetSelectedEntity();
 
         if (selectedEntity != entt::null) {
-            Hamster::Renderer::DrawGuizmo(m_App.GetRegistry().get<Hamster::Transform>(selectedEntity), Hamster::Translate, true);
+            Hamster::Renderer::DrawGuizmo(m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity), Hamster::Translate, true);
         }
 
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -68,7 +67,7 @@ void EditorLayer::OnUpdate() {
 
         auto pickedEntity = static_cast<entt::entity>(pickedID);
 
-        if (pickedID != -1 && m_App.GetRegistry().valid(pickedEntity)) {
+        if (pickedID != -1 && m_Scene->GetRegistry().valid(pickedEntity)) {
             m_Hierarchy->SetSelectedEntity(pickedEntity);
         } else if (pickedID == -1) {
             m_Hierarchy->SetSelectedEntity(entt::null);
@@ -78,10 +77,10 @@ void EditorLayer::OnUpdate() {
 
 
             xGuizmoHeld = true;
-            mouseHeldOffsetX = mousePosX - m_App.GetRegistry().get<Hamster::Transform>(selectedEntity).position.x;
+            mouseHeldOffsetX = mousePosX - m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity).position.x;
         } else if (pickedID == YGuizmoID) {
             yGuizmoHeld = true;
-            mouseHeldOffsetY = mousePosY - m_App.GetRegistry().get<Hamster::Transform>(selectedEntity).position.y;
+            mouseHeldOffsetY = mousePosY - m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity).position.y;
         }
     }
 
@@ -91,11 +90,11 @@ void EditorLayer::OnUpdate() {
     }
 
     if (xGuizmoHeld) {
-        Hamster::Transform* entityTransform = &m_App.GetRegistry().get<Hamster::Transform>(m_Hierarchy->GetSelectedEntity());
+        Hamster::Transform* entityTransform = &m_Scene->GetRegistry().get<Hamster::Transform>(m_Hierarchy->GetSelectedEntity());
 
         entityTransform->position.x = ImGui::GetMousePos().x - m_ViewportOffset.x - mouseHeldOffsetX;
     } else if (yGuizmoHeld) {
-        Hamster::Transform* entityTransform = &m_App.GetRegistry().get<Hamster::Transform>(m_Hierarchy->GetSelectedEntity());
+        Hamster::Transform* entityTransform = &m_Scene->GetRegistry().get<Hamster::Transform>(m_Hierarchy->GetSelectedEntity());
 
         entityTransform->position.y = ImGui::GetMousePos().y - m_ViewportOffset.y - mouseHeldOffsetY;
     }
@@ -111,12 +110,12 @@ void EditorLayer::OnUpdate() {
 
 
     Hamster::Renderer::Clear();
-    m_RenderFn(false);
+    m_Scene->OnRender(false);
 
     entt::entity selectedEntity = m_Hierarchy->GetSelectedEntity();
 
     if (selectedEntity != entt::null) {
-        Hamster::Renderer::DrawGuizmo(m_App.GetRegistry().get<Hamster::Transform>(selectedEntity), Hamster::Translate, false);
+        Hamster::Renderer::DrawGuizmo(m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity), Hamster::Translate, false);
     }
 
     m_FramebufferTexture.Unbind();
@@ -165,7 +164,7 @@ void EditorLayer::OnImGuiUpdate() {
     if (m_PropertyEditor->IsPanelOpen()) {
         entt::entity e = m_Hierarchy->GetSelectedEntity();
 
-        entt::registry& registry = m_App.GetRegistry();
+        entt::registry& registry = m_Scene->GetRegistry();
 
         if (registry.valid(e)) {
             m_PropertyEditor->SetSelectedProperty(&registry.get<Hamster::Transform>(e));

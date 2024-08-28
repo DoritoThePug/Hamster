@@ -17,13 +17,14 @@
 #include <Hamster.h>
 #include <Renderer/FramebufferTexture.h>
 
+#include "Core/Scene.h"
 #include "Panels/StartPauseModal.h"
 #include "Panels/Hierarchy.h"
 #include "Panels/PropertyEditor.h"
 
 class EditorLayer : public Hamster::Layer {
     public:
-    explicit EditorLayer(const std::function<void(bool)> &renderFn,  Hamster::Application& app);
+    explicit EditorLayer(std::shared_ptr<Hamster::Scene> scene);
 
     void OnAttach() override;
 
@@ -32,7 +33,8 @@ class EditorLayer : public Hamster::Layer {
 private:
     bool m_WindowOpen = true;
 
-    std::function<void(bool)> m_RenderFn;
+    // std::function<void(bool)> m_RenderFn;
+    std::shared_ptr<Hamster::Scene> m_Scene;
 
     ImVec2 m_LevelEditorAvailRegion = {0.0f, 0.0f};
     glm::vec2 m_ViewportOffset = {0.0f, 0.0f};
@@ -43,7 +45,6 @@ private:
 
     std::unique_ptr<StartPauseModal> m_StartPauseModal;
 
-    Hamster::Application& m_App;
 
     int m_ViewportWidth = 1920;
     int m_ViewportHeight = 1080;

@@ -11,12 +11,12 @@
 
 class StartPauseModal : public Hamster::Panel {
 public:
-    StartPauseModal(Hamster::Application& app);
+    StartPauseModal(std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene) {};
 
     void Render() override;
 
 private:
-    Hamster::Application& m_App;
+    std::shared_ptr<Hamster::Scene> m_Scene;
 };
 
 

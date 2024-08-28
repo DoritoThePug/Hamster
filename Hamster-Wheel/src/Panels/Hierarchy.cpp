@@ -4,7 +4,7 @@
 
 #include "Hierarchy.h"
 
-Hierarchy::Hierarchy( Hamster::Application& app) : m_App(app) {
+Hierarchy::Hierarchy( std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene) {
 }
 
 entt::entity Hierarchy::GetSelectedEntity() const {
@@ -21,7 +21,7 @@ void Hierarchy::Render() {
         return;
     }
 
-    const auto view = m_App.GetRegistry().view<Hamster::Name>();
+    const auto view = m_Scene->GetRegistry().view<Hamster::Name>();
 
     view.each([&](auto entity, auto& name) {
         ImGui::PushID(entt::to_integral(entity));

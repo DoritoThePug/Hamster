@@ -85,7 +85,7 @@ namespace Hamster {
     //                                    dispatcher->Post<FramebufferResizeEvent>(e);
     //                                  });
 
-    Physics::Init();
+    // Physics::Init();
   }
 
   Application::~Application() {
@@ -135,7 +135,11 @@ namespace Hamster {
 
       m_ImGuiLayer.End();
 
-      UpdateSystem(m_Registry);
+      if (m_ActiveScene != nullptr) {
+        m_ActiveScene->OnUpdate();
+      }
+
+      // UpdateSystem(m_Registry);
 
       m_Window->Update(m_Running);
     }
@@ -173,21 +177,22 @@ namespace Hamster {
 
 
   void Application::UpdateSystem(entt::registry &registry) {
-    if (!m_IsSimulationPaused) {
-      Physics::Simulate();
-
-      auto view = registry.view<Transform, Rigidbody>();
-
-      view.each([this](auto &transform, auto& rb) {
-
-          b2Vec2 pos = b2Body_GetPosition(rb.id);
-
-         // std::cout << pos.x << ", " << pos.y << std::endl;
-
-         transform.position = glm::vec2(pos.x * Physics::s_PixelsPerMeter, pos.y * Physics::s_PixelsPerMeter);
-
-      });
-    }
+    // if (!m_IsSimulationPaused) {
+    //   Physics::Simulate();
+    //
+    //   auto view = registry.view<Transform, Rigidbody>();
+    //
+    //   view.each([this](auto &transform, auto& rb) {
+    //
+    //    b2Transform physicsTransform =  b2Body_GetTransform(rb.id);
+    //      // std::cout << pos.x << ", " << pos.y << std::endl;
+    //
+    //      transform.position = glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter, physicsTransform.p.y * Physics::s_PixelsPerMeter);
+    //
+    //       transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
+    //
+    //   });
+    // }
   }
 
   void Application::RenderSystem(entt::registry &registry, bool renderFlat) {
@@ -260,5 +265,35 @@ namespace Hamster {
     m_IsSimulationPaused = false;
   }
 
+  bool Application::IsSimulationPaused() {
+    return m_IsSimulationPaused;
+  }
 
+  void Application::AddScene(std::shared_ptr<Scene> scene) {
+    m_Scenes[scene->GetUUID()] = scene;
+  }
+
+  void Application::RemoveScene(UUID uuid) {
+    m_Scenes.erase(uuid);
+  }
+
+  void Application::SetSceneActive(UUID uuid) {
+    if (m_ActiveScene != nullptr) {
+      m_ActiveScene->PauseScene();
+      m_ActiveScene->PauseSceneSimulation();
+    }
+
+    std::shared_ptr<Scene> scene = m_Scenes[uuid];
+
+    if (scene) {
+      m_ActiveScene = scene;
+      m_ActiveScene->RunScene();
+    } else {
+      m_ActiveScene = nullptr;
+    }
+  }
+
+
+
+  // TODO make it so that when you press play you start simulation, editor screen goes full screen and you can edit like Unity
 } // namespace Hamster

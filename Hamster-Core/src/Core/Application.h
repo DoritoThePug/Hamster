@@ -14,8 +14,10 @@
 #include <glm/glm.hpp>
 
 
+#include "Scene.h"
 #include "Gui/ImGuiLayer.h"
 #include "Renderer/Texture.h"
+#include "UUID.h"
 
 namespace Hamster {
 
@@ -45,6 +47,7 @@ namespace Hamster {
 
 		void PauseSimulation();
 		void ResumeSimulation();
+		bool IsSimulationPaused();
 
 		GLFWwindow* GetWindow() { return m_Window->GetGLFWWindowPointer(); }
 
@@ -74,6 +77,10 @@ namespace Hamster {
 
 		void RenderSystem(entt::registry &registry, bool renderFlat);
 
+		void AddScene(std::shared_ptr<Scene> scene);
+		void RemoveScene(UUID uuid);
+		void SetSceneActive(UUID uuid);
+
 	private:
 		static Application *s_Instance;
 
@@ -95,6 +102,9 @@ namespace Hamster {
 		std::map<int, GameObject *> m_GameObjects;
 		//Window m_Window;
 		std::unique_ptr<Window> m_Window;
+
+		std::unordered_map<UUID, std::shared_ptr<Scene>> m_Scenes;
+		std::shared_ptr<Scene> m_ActiveScene = nullptr;
 
 		WindowProps m_WindowProps;
 

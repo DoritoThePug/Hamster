@@ -9,26 +9,23 @@
 
 
 namespace Hamster {
-    void Physics::Init() {
-        InitBox2dWorld();
-    }
-
-    void Physics::InitBox2dWorld() {
+    b2WorldId Physics::InitBox2dWorld() {
         b2WorldDef worldDef = b2DefaultWorldDef();
         worldDef.gravity = (b2Vec2){0.0f, 1.0f};
 
-        m_WorldId = b2CreateWorld(&worldDef);
+        return b2CreateWorld(&worldDef);
     }
 
-    void Physics::CreateBody(b2BodyType bodyType, entt::entity& entity, entt::registry& registry) {
+    void Physics::CreateBody(b2WorldId worldId, b2BodyType bodyType, entt::entity& entity, entt::registry& registry) {
         b2BodyDef bodyDef = b2DefaultBodyDef();
         bodyDef.type = bodyType;
 
         Transform entityTransform = registry.get<Transform>(entity);
 
         bodyDef.position = (b2Vec2){entityTransform.position.x/s_PixelsPerMeter, entityTransform.position.y/s_PixelsPerMeter};
+        bodyDef.rotation = b2MakeRot(glm::radians(entityTransform.rotation));
 
-        b2BodyId bodyId = b2CreateBody(m_WorldId, &bodyDef);
+        b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
 
         b2Polygon bodyPolygon = b2MakeBox((entityTransform.size.x/s_PixelsPerMeter)/2, (entityTransform.size.y/s_PixelsPerMeter)/2);
 
@@ -38,8 +35,8 @@ namespace Hamster {
         registry.emplace<Rigidbody>(entity, bodyId);
     }
 
-    void Physics::Simulate() {
-        b2World_Step(m_WorldId, m_TimeStep, m_SubStepCount);
+    void Physics::Simulate(b2WorldId worldId) {
+        b2World_Step(worldId, m_TimeStep, m_SubStepCount);
     }
 
 } // Hamster
