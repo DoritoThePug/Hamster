@@ -4,9 +4,12 @@
 
 #include "Scene.h"
 
+#include <utility>
+
 #include "Physics/Physics.h"
 #include "Renderer/Renderer.h"
 #include "Application.h"
+#include "SceneSerialiser.h"
 
 namespace Hamster {
     UUID Scene::CreateEntity() {
@@ -19,6 +22,15 @@ namespace Hamster {
 
         return uuid;
     }
+
+    void Scene::CreateEntityWithUUID(UUID uuid) {
+        auto entity = m_Registry.create();
+
+        m_Registry.emplace<ID>(entity, uuid);
+        m_Entities[uuid] =  entity;
+
+    }
+
 
     void Scene::DestroyEntity(UUID entityUUID) {
         m_Registry.destroy(m_Entities[entityUUID]);
@@ -78,5 +90,16 @@ namespace Hamster {
         }
     }
 
+    void Scene::SaveScene(std::shared_ptr<Scene> scene) {
+        std::cout << "Saving scene" << std::endl;
+
+        SceneSerialiser serialiser(std::move(scene));
+
+        std::ofstream out("hi.hs", std::ios::binary);
+
+        serialiser.Serialise(out);
+
+        out.close();
+    }
 
 }   // Hamster

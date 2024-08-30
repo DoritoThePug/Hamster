@@ -16,6 +16,7 @@
 EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene), m_FramebufferTexture(1920, 1080) {
     m_Hierarchy = std::make_unique<Hierarchy>(scene);
     m_StartPauseModal = std::make_unique<StartPauseModal>(scene);
+    m_MenuBar = std::make_unique<MenuBar>(scene);
 }
 
 void EditorLayer::OnAttach() {
@@ -174,5 +175,6 @@ void EditorLayer::OnImGuiUpdate() {
     }
 
     m_StartPauseModal->Render();
+    m_MenuBar->Render();
 }
 

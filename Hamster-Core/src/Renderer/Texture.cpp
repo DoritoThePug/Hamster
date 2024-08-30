@@ -11,10 +11,10 @@
 #include "Utils/AssetManager.h"
 
 namespace Hamster {
-	Texture::Texture(const char* texturePath) {
+	Texture::Texture(const std::string& texturePath) : m_TexturePath(texturePath) {
 		int width, height, nrChannels;
 
-		unsigned char* data = stbi_load(texturePath, &width, &height, &nrChannels, STBI_rgb_alpha);
+		unsigned char* data = stbi_load(texturePath.c_str(), &width, &height, &nrChannels, STBI_rgb_alpha);
 
 		if (!data) {
 			std::cout << "Texture could not be loaded" << std::endl;

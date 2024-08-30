@@ -4,6 +4,12 @@
 
 #include "UUID.h"
 
-Hamster::UUID::UUID()  : m_UUID(boost::uuids::random_generator()())  {
+#include <iostream>
 
+Hamster::UUID::UUID()  : m_UUID(boost::uuids::random_generator()())  {
+    // std::cout << m_UUID << std::endl;
+}
+
+Hamster::UUID::UUID(boost::uuids::uuid uuid) {
+    m_UUID = uuid;
 }

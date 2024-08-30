@@ -22,6 +22,7 @@ public:
     Scene() {};
 
     UUID CreateEntity();
+    void CreateEntityWithUUID(UUID uuid);
     void DestroyEntity(UUID entityUUID);
 
     entt::entity& GetEntity(UUID entityUUID) {return m_Entities[entityUUID];}
@@ -60,6 +61,11 @@ public:
     b2WorldId GetWorldId () {return m_WorldId;}
 
     UUID GetUUID() const {return m_UUID; }
+
+    uint32_t GetEntityCount() const {return static_cast<uint32_t>(m_Entities.size());}
+    const std::unordered_map<UUID, entt::entity>& GetEntityMap() {return m_Entities;}
+
+    static void SaveScene(std::shared_ptr<Scene> scene);
 private:
     bool m_IsRunning = false;
     bool m_IsSimulationPaused = true;

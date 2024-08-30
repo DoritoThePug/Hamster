@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "Hamster-Py/Vendor/pybind11",
+		"source" : "Hamster-Py/Vendor/pybind11"
+	}
+}

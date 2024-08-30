@@ -26,6 +26,8 @@ set(Core
         src/Core/Entity.cpp src/Core/Entity.h
 
         src/Core/UUID.cpp src/Core/UUID.h
+
+        src/Core/SceneSerialiser.cpp src/Core/SceneSerialiser.h
 )
 
 set(Events

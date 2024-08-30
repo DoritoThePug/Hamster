@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: Hamster
-# Configurations: 
+# Configurations: Debug
 # =============================================================================
 
 #############################################
@@ -20,6 +20,11 @@
 
 ninja_required_version = 1.5
 
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
 # =============================================================================
 # Include auxiliary files.
 
@@ -114,146 +119,154 @@ build install/strip: phony CMakeFiles/install/strip.util
 
 build cmake_object_order_depends_target_Hamster-Core: phony || cmake_object_order_depends_target_box2d cmake_object_order_depends_target_glfw cmake_object_order_depends_target_imgui
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Application.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/Application.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Application.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/Application.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\Application.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/GameObject.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/GameObject.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/GameObject.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/GameObject.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\GameObject.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/LayerStack.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/LayerStack.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/LayerStack.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/LayerStack.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\LayerStack.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/stb_image.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/stb_image.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/stb_image.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/stb_image.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\stb_image.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Window.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/Window.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Window.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/Window.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\Window.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Scene.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/Scene.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Scene.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/Scene.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\Scene.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Entity.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/Entity.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Entity.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/Entity.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\Entity.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/UUID.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/UUID.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/UUID.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/UUID.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\UUID.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Events/Event.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Events/Event.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/SceneSerialiser.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Core/SceneSerialiser.cpp || cmake_object_order_depends_target_Hamster-Core
+  DEFINES = -DGLFW_INCLUDE_NONE
+  DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core\SceneSerialiser.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
+  OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
+  OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Core
+
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Events/Event.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Events/Event.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Events\Event.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Events
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/FramebufferTexture.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Renderer/FramebufferTexture.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/FramebufferTexture.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Renderer/FramebufferTexture.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Renderer\FramebufferTexture.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Renderer
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Renderer.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Renderer/Renderer.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Renderer.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Renderer/Renderer.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Renderer\Renderer.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Renderer
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Shader.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Renderer/Shader.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Shader.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Renderer/Shader.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Renderer\Shader.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Renderer
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Texture.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Renderer/Texture.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Texture.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Renderer/Texture.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Renderer\Texture.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Renderer
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/AssetManager.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Utils/AssetManager.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/AssetManager.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Utils/AssetManager.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Utils\AssetManager.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Utils
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/InputManager.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Utils/InputManager.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/InputManager.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Utils/InputManager.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Utils\InputManager.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Utils
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/ImGuiLayer.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Gui/ImGuiLayer.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/ImGuiLayer.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Gui/ImGuiLayer.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Gui\ImGuiLayer.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Gui
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Physics/Physics.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Physics/Physics.cpp || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Physics/Physics.cpp.obj: CXX_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/Physics/Physics.cpp || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Physics\Physics.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\src\Physics
 
-build Hamster-Core/CMakeFiles/Hamster-Core.dir/Vendor/glad/src/glad.c.obj: C_COMPILER__Hamster-Core_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/src/glad.c || cmake_object_order_depends_target_Hamster-Core
+build Hamster-Core/CMakeFiles/Hamster-Core.dir/Vendor/glad/src/glad.c.obj: C_COMPILER__Hamster-Core_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/src/glad.c || cmake_object_order_depends_target_Hamster-Core
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Core\CMakeFiles\Hamster-Core.dir\Vendor\glad\src\glad.c.obj.d
-  FLAGS = -fdiagnostics-color=always
+  FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   OBJECT_FILE_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir\Vendor\glad\src
@@ -266,7 +279,8 @@ build Hamster-Core/CMakeFiles/Hamster-Core.dir/Vendor/glad/src/glad.c.obj: C_COM
 #############################################
 # Link the static library Hamster-Core\libHamster-Core.a
 
-build Hamster-Core/libHamster-Core.a: CXX_STATIC_LIBRARY_LINKER__Hamster-Core_ Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Application.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/GameObject.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/LayerStack.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/stb_image.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Window.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Scene.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Entity.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/UUID.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Events/Event.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/FramebufferTexture.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Renderer.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Shader.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Texture.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/AssetManager.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/InputManager.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/ImGuiLayer.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Physics/Physics.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/Vendor/glad/src/glad.c.obj || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a
+build Hamster-Core/libHamster-Core.a: CXX_STATIC_LIBRARY_LINKER__Hamster-Core_Debug Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Application.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/GameObject.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/LayerStack.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/stb_image.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Window.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Scene.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/Entity.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/UUID.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Core/SceneSerialiser.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Events/Event.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/FramebufferTexture.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Renderer.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Shader.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Renderer/Texture.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/AssetManager.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Utils/InputManager.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Gui/ImGuiLayer.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/src/Physics/Physics.cpp.obj Hamster-Core/CMakeFiles/Hamster-Core.dir/Vendor/glad/src/glad.c.obj || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a
+  LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Hamster-Core\CMakeFiles\Hamster-Core.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -352,16 +366,16 @@ build Hamster-Core/install/strip: phony Hamster-Core/CMakeFiles/install/strip.ut
 
 build cmake_object_order_depends_target_Hamster-App: phony || cmake_object_order_depends_target_Hamster-Core cmake_object_order_depends_target_box2d cmake_object_order_depends_target_glfw cmake_object_order_depends_target_imgui
 
-build Hamster-App/CMakeFiles/Hamster-App.dir/src/App.cpp.obj: CXX_COMPILER__Hamster-App_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/src/App.cpp || cmake_object_order_depends_target_Hamster-App
+build Hamster-App/CMakeFiles/Hamster-App.dir/src/App.cpp.obj: CXX_COMPILER__Hamster-App_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/src/App.cpp || cmake_object_order_depends_target_Hamster-App
   DEP_FILE = Hamster-App\CMakeFiles\Hamster-App.dir\src\App.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-App\CMakeFiles\Hamster-App.dir
   OBJECT_FILE_DIR = Hamster-App\CMakeFiles\Hamster-App.dir\src
 
-build Hamster-App/CMakeFiles/Hamster-App.dir/src/Player.cpp.obj: CXX_COMPILER__Hamster-App_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/src/Player.cpp || cmake_object_order_depends_target_Hamster-App
+build Hamster-App/CMakeFiles/Hamster-App.dir/src/Player.cpp.obj: CXX_COMPILER__Hamster-App_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/src/Player.cpp || cmake_object_order_depends_target_Hamster-App
   DEP_FILE = Hamster-App\CMakeFiles\Hamster-App.dir\src\Player.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-App\CMakeFiles\Hamster-App.dir
   OBJECT_FILE_DIR = Hamster-App\CMakeFiles\Hamster-App.dir\src
@@ -374,7 +388,8 @@ build Hamster-App/CMakeFiles/Hamster-App.dir/src/Player.cpp.obj: CXX_COMPILER__H
 #############################################
 # Link the executable Hamster-App\Hamster-App.exe
 
-build Hamster-App/Hamster-App.exe: CXX_EXECUTABLE_LINKER__Hamster-App_ Hamster-App/CMakeFiles/Hamster-App.dir/src/App.cpp.obj Hamster-App/CMakeFiles/Hamster-App.dir/src/Player.cpp.obj | Hamster-Core/libHamster-Core.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/Vendor/box2d/src/libbox2d.a || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+build Hamster-App/Hamster-App.exe: CXX_EXECUTABLE_LINKER__Hamster-App_Debug Hamster-App/CMakeFiles/Hamster-App.dir/src/App.cpp.obj Hamster-App/CMakeFiles/Hamster-App.dir/src/Player.cpp.obj | Hamster-Core/libHamster-Core.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/Vendor/box2d/src/libbox2d.a || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+  FLAGS = -g
   LINK_LIBRARIES = Hamster-Core/libHamster-Core.a  Hamster-Core/Vendor/glfw/src/libglfw3.a  Hamster-Core/Vendor/imgui/libimgui.a  Hamster-Core/Vendor/box2d/src/libbox2d.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Hamster-App\CMakeFiles\Hamster-App.dir
   POST_BUILD = cd .
@@ -462,9 +477,9 @@ build Hamster-App/install/strip: phony Hamster-App/CMakeFiles/install/strip.util
 
 build cmake_object_order_depends_target_Hamster-Py: phony || cmake_object_order_depends_target_Hamster-Core cmake_object_order_depends_target_box2d cmake_object_order_depends_target_glfw cmake_object_order_depends_target_imgui
 
-build Hamster-Py/CMakeFiles/Hamster-Py.dir/src/main.cpp.obj: CXX_COMPILER__Hamster-Py_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/src/main.cpp || cmake_object_order_depends_target_Hamster-Py
+build Hamster-Py/CMakeFiles/Hamster-Py.dir/src/main.cpp.obj: CXX_COMPILER__Hamster-Py_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/src/main.cpp || cmake_object_order_depends_target_Hamster-Py
   DEP_FILE = Hamster-Py\CMakeFiles\Hamster-Py.dir\src\main.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/Vendor/pybind11/include -IC:/Users/Jaden/AppData/Local/Programs/Python/Python311/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Py\CMakeFiles\Hamster-Py.dir
   OBJECT_FILE_DIR = Hamster-Py\CMakeFiles\Hamster-Py.dir\src
@@ -477,7 +492,8 @@ build Hamster-Py/CMakeFiles/Hamster-Py.dir/src/main.cpp.obj: CXX_COMPILER__Hamst
 #############################################
 # Link the static library Hamster-Py\libHamster-Py.a
 
-build Hamster-Py/libHamster-Py.a: CXX_STATIC_LIBRARY_LINKER__Hamster-Py_ Hamster-Py/CMakeFiles/Hamster-Py.dir/src/main.cpp.obj || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+build Hamster-Py/libHamster-Py.a: CXX_STATIC_LIBRARY_LINKER__Hamster-Py_Debug Hamster-Py/CMakeFiles/Hamster-Py.dir/src/main.cpp.obj || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+  LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Hamster-Py\CMakeFiles\Hamster-Py.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -493,10 +509,10 @@ build Hamster-Py/libHamster-Py.a: CXX_STATIC_LIBRARY_LINKER__Hamster-Py_ Hamster
 
 build cmake_object_order_depends_target_Hamster: phony || cmake_object_order_depends_target_Hamster-Core cmake_object_order_depends_target_box2d cmake_object_order_depends_target_glfw cmake_object_order_depends_target_imgui
 
-build Hamster-Py/CMakeFiles/Hamster.dir/src/main.cpp.obj: CXX_COMPILER__Hamster_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/src/main.cpp || cmake_object_order_depends_target_Hamster
+build Hamster-Py/CMakeFiles/Hamster.dir/src/main.cpp.obj: CXX_COMPILER__Hamster_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/src/main.cpp || cmake_object_order_depends_target_Hamster
   DEFINES = -DHamster_EXPORTS
   DEP_FILE = Hamster-Py\CMakeFiles\Hamster.dir\src\main.cpp.obj.d
-  FLAGS = -std=gnu++20 -fvisibility=hidden -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fvisibility=hidden -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/AppData/Local/Programs/Python/Python311/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src -isystem C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/Vendor/pybind11/include -isystem C:/Users/Jaden/AppData/Local/Programs/Python/Python311/Include
   OBJECT_DIR = Hamster-Py\CMakeFiles\Hamster.dir
   OBJECT_FILE_DIR = Hamster-Py\CMakeFiles\Hamster.dir\src
@@ -509,10 +525,11 @@ build Hamster-Py/CMakeFiles/Hamster.dir/src/main.cpp.obj: CXX_COMPILER__Hamster_
 #############################################
 # Link the shared module Hamster-Py\Hamster.cp311-win_amd64.pyd
 
-build Hamster-Py/Hamster.cp311-win_amd64.pyd: CXX_MODULE_LIBRARY_LINKER__Hamster_ Hamster-Py/CMakeFiles/Hamster.dir/src/main.cpp.obj | Hamster-Core/libHamster-Core.a Hamster-Core/Vendor/glfw/src/libglfw3.a C$:/Users/Jaden/AppData/Local/Programs/Python/Python311/libs/python311.lib Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/Vendor/box2d/src/libbox2d.a || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+build Hamster-Py/Hamster.cp311-win_amd64.pyd: CXX_MODULE_LIBRARY_LINKER__Hamster_Debug Hamster-Py/CMakeFiles/Hamster.dir/src/main.cpp.obj | Hamster-Core/libHamster-Core.a Hamster-Core/Vendor/glfw/src/libglfw3.a C$:/Users/Jaden/AppData/Local/Programs/Python/Python311/libs/python311.lib Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/Vendor/box2d/src/libbox2d.a || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+  LANGUAGE_COMPILE_FLAGS = -g
   LINK_LIBRARIES = Hamster-Core/libHamster-Core.a  Hamster-Core/Vendor/glfw/src/libglfw3.a  C:/Users/Jaden/AppData/Local/Programs/Python/Python311/libs/python311.lib  Hamster-Core/Vendor/imgui/libimgui.a  Hamster-Core/Vendor/box2d/src/libbox2d.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Hamster-Py\CMakeFiles\Hamster.dir
-  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Jaden\Documents\DevStuff\Hamster\Hamster-Py && C:\Users\Jaden\AppData\Local\Programs\CLion\bin\mingw\bin\strip.exe C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/Hamster.cp311-win_amd64.pyd"
+  POST_BUILD = cd .
   PRE_LINK = cd .
   TARGET_FILE = Hamster-Py\Hamster.cp311-win_amd64.pyd
   TARGET_IMPLIB = Hamster-Py\libHamster.dll.a
@@ -667,42 +684,50 @@ build Hamster-Py/Vendor/pybind11/install/strip: phony Hamster-Py/Vendor/pybind11
 
 build cmake_object_order_depends_target_Hamster-Wheel: phony || cmake_object_order_depends_target_Hamster-Core cmake_object_order_depends_target_box2d cmake_object_order_depends_target_glfw cmake_object_order_depends_target_imgui
 
-build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/PropertyEditor.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/Panels/PropertyEditor.cpp || cmake_object_order_depends_target_Hamster-Wheel
+build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/PropertyEditor.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/Panels/PropertyEditor.cpp || cmake_object_order_depends_target_Hamster-Wheel
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels\PropertyEditor.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
   OBJECT_FILE_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels
 
-build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/Hierarchy.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/Panels/Hierarchy.cpp || cmake_object_order_depends_target_Hamster-Wheel
+build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/Hierarchy.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/Panels/Hierarchy.cpp || cmake_object_order_depends_target_Hamster-Wheel
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels\Hierarchy.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
   OBJECT_FILE_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels
 
-build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/StartPauseModal.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/Panels/StartPauseModal.cpp || cmake_object_order_depends_target_Hamster-Wheel
+build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/StartPauseModal.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/Panels/StartPauseModal.cpp || cmake_object_order_depends_target_Hamster-Wheel
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels\StartPauseModal.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
   OBJECT_FILE_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels
 
-build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/EditorLayer.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/EditorLayer.cpp || cmake_object_order_depends_target_Hamster-Wheel
+build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/MenuBar.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/Panels/MenuBar.cpp || cmake_object_order_depends_target_Hamster-Wheel
+  DEFINES = -DGLFW_INCLUDE_NONE
+  DEP_FILE = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels\MenuBar.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
+  OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
+  OBJECT_FILE_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\Panels
+
+build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/EditorLayer.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/EditorLayer.cpp || cmake_object_order_depends_target_Hamster-Wheel
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\EditorLayer.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
   OBJECT_FILE_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src
 
-build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/HamsterWheelApp.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/HamsterWheelApp.cpp || cmake_object_order_depends_target_Hamster-Wheel
+build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/HamsterWheelApp.cpp.obj: CXX_COMPILER__Hamster-Wheel_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src/HamsterWheelApp.cpp || cmake_object_order_depends_target_Hamster-Wheel
   DEFINES = -DGLFW_INCLUDE_NONE
   DEP_FILE = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src\HamsterWheelApp.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Wheel/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/GLFW/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glm -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glad/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/stb -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/pybind11/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/entt/src -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/boost_1_86_0 -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
   OBJECT_FILE_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir\src
@@ -715,7 +740,8 @@ build Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/HamsterWheelApp.cpp.obj: CX
 #############################################
 # Link the executable Hamster-Wheel\Hamster-Wheel.exe
 
-build Hamster-Wheel/Hamster-Wheel.exe: CXX_EXECUTABLE_LINKER__Hamster-Wheel_ Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/PropertyEditor.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/Hierarchy.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/StartPauseModal.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/EditorLayer.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/HamsterWheelApp.cpp.obj | Hamster-Core/libHamster-Core.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/Vendor/box2d/src/libbox2d.a || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+build Hamster-Wheel/Hamster-Wheel.exe: CXX_EXECUTABLE_LINKER__Hamster-Wheel_Debug Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/PropertyEditor.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/Hierarchy.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/StartPauseModal.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/Panels/MenuBar.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/EditorLayer.cpp.obj Hamster-Wheel/CMakeFiles/Hamster-Wheel.dir/src/HamsterWheelApp.cpp.obj | Hamster-Core/libHamster-Core.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/Vendor/box2d/src/libbox2d.a || Hamster-Core/Vendor/box2d/src/libbox2d.a Hamster-Core/Vendor/glfw/src/libglfw3.a Hamster-Core/Vendor/imgui/libimgui.a Hamster-Core/libHamster-Core.a
+  FLAGS = -g
   LINK_LIBRARIES = Hamster-Core/libHamster-Core.a  Hamster-Core/Vendor/glfw/src/libglfw3.a  Hamster-Core/Vendor/imgui/libimgui.a  Hamster-Core/Vendor/box2d/src/libbox2d.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Hamster-Wheel\CMakeFiles\Hamster-Wheel.dir
   POST_BUILD = cd .
@@ -803,58 +829,58 @@ build Hamster-Wheel/install/strip: phony Hamster-Wheel/CMakeFiles/install/strip.
 
 build cmake_object_order_depends_target_imgui: phony || .
 
-build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui.cpp.obj: CXX_COMPILER__imgui_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui.cpp || cmake_object_order_depends_target_imgui
+build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\imgui.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
 
-build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_demo.cpp.obj: CXX_COMPILER__imgui_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui_demo.cpp || cmake_object_order_depends_target_imgui
+build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_demo.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui_demo.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\imgui_demo.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
 
-build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_draw.cpp.obj: CXX_COMPILER__imgui_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui_draw.cpp || cmake_object_order_depends_target_imgui
+build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_draw.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui_draw.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\imgui_draw.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
 
-build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_tables.cpp.obj: CXX_COMPILER__imgui_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui_tables.cpp || cmake_object_order_depends_target_imgui
+build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_tables.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui_tables.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\imgui_tables.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
 
-build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_widgets.cpp.obj: CXX_COMPILER__imgui_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui_widgets.cpp || cmake_object_order_depends_target_imgui
+build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_widgets.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/imgui_widgets.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\imgui_widgets.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
 
-build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/misc/cpp/imgui_stdlib.cpp.obj: CXX_COMPILER__imgui_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/misc/cpp/imgui_stdlib.cpp || cmake_object_order_depends_target_imgui
+build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/misc/cpp/imgui_stdlib.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/misc/cpp/imgui_stdlib.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\misc\cpp\imgui_stdlib.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\misc\cpp
 
-build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_glfw.cpp.obj: CXX_COMPILER__imgui_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends/imgui_impl_glfw.cpp || cmake_object_order_depends_target_imgui
+build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_glfw.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends/imgui_impl_glfw.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\backends\imgui_impl_glfw.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\backends
 
-build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3.cpp.obj: CXX_COMPILER__imgui_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends/imgui_impl_opengl3.cpp || cmake_object_order_depends_target_imgui
+build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui/backends/imgui_impl_opengl3.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\backends\imgui_impl_opengl3.cpp.obj.d
-  FLAGS = -std=gnu++20 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/imgui -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir\backends
@@ -867,7 +893,8 @@ build Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3
 #############################################
 # Link the static library Hamster-Core\Vendor\imgui\libimgui.a
 
-build Hamster-Core/Vendor/imgui/libimgui.a: CXX_STATIC_LIBRARY_LINKER__imgui_ Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_demo.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_draw.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_tables.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_widgets.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/misc/cpp/imgui_stdlib.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_glfw.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3.cpp.obj
+build Hamster-Core/Vendor/imgui/libimgui.a: CXX_STATIC_LIBRARY_LINKER__imgui_Debug Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_demo.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_draw.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_tables.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/imgui_widgets.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/misc/cpp/imgui_stdlib.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_glfw.cpp.obj Hamster-Core/Vendor/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Hamster-Core\Vendor\imgui\CMakeFiles\imgui.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1036,170 +1063,170 @@ build Hamster-Core/Vendor/glfw/CMakeFiles/uninstall | ${cmake_ninja_workdir}Hams
 
 build cmake_object_order_depends_target_glfw: phony || .
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/context.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\context.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/init.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\init.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/input.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/input.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/input.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/input.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\input.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/monitor.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/platform.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/platform.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/platform.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/platform.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\platform.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/vulkan.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/vulkan.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/window.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\window.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/egl_context.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/egl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/osmesa_context.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/osmesa_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/null_init.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/null_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/null_monitor.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/null_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/null_window.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/null_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/null_joystick.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/null_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_module.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_module.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_time.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_time.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_thread.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_thread.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_init.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_joystick.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_monitor.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_window.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/win32_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
 
-build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/wgl_context.c || cmake_object_order_depends_target_glfw
+build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src/wgl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj.d
-  FLAGS = -std=c99 -fdiagnostics-color=always -Wall
+  FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/glfw/src
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
@@ -1212,7 +1239,8 @@ build Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: C_COMP
 #############################################
 # Link the static library Hamster-Core\Vendor\glfw\src\libglfw3.a
 
-build Hamster-Core/Vendor/glfw/src/libglfw3.a: C_STATIC_LIBRARY_LINKER__glfw_ Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/context.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/init.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/input.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/platform.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/window.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj
+build Hamster-Core/Vendor/glfw/src/libglfw3.a: C_STATIC_LIBRARY_LINKER__glfw_Debug Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/context.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/init.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/input.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/platform.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/window.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj Hamster-Core/Vendor/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj
+  LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Hamster-Core\Vendor\glfw\src\CMakeFiles\glfw.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1522,282 +1550,282 @@ build Hamster-Core/Vendor/box2d/install/strip: phony Hamster-Core/Vendor/box2d/C
 
 build cmake_object_order_depends_target_box2d: phony || .
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/aabb.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/aabb.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/aabb.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/aabb.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\aabb.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/allocate.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/allocate.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/allocate.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/allocate.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\allocate.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/array.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/array.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/array.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/array.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\array.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/bitset.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/bitset.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/bitset.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/bitset.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\bitset.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/block_array.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/block_array.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/block_array.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/block_array.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\block_array.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/body.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/body.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/body.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/body.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\body.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/broad_phase.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/broad_phase.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/broad_phase.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/broad_phase.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\broad_phase.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/constraint_graph.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/constraint_graph.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/constraint_graph.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/constraint_graph.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\constraint_graph.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/contact.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/contact.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/contact.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/contact.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\contact.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/contact_solver.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/contact_solver.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/contact_solver.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/contact_solver.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\contact_solver.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/core.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/core.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/core.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/core.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\core.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/distance.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/distance.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/distance.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/distance.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\distance.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/distance_joint.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/distance_joint.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/distance_joint.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/distance_joint.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\distance_joint.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/dynamic_tree.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/dynamic_tree.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/dynamic_tree.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/dynamic_tree.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\dynamic_tree.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/geometry.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/geometry.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/geometry.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/geometry.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\geometry.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/hull.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/hull.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/hull.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/hull.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\hull.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/id_pool.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/id_pool.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/id_pool.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/id_pool.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\id_pool.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/island.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/island.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/island.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/island.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\island.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/joint.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/joint.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/joint.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/joint.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\joint.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/manifold.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/manifold.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/manifold.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/manifold.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\manifold.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/math_functions.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/math_functions.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/math_functions.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/math_functions.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\math_functions.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/motor_joint.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/motor_joint.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/motor_joint.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/motor_joint.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\motor_joint.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/mouse_joint.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/mouse_joint.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/mouse_joint.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/mouse_joint.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\mouse_joint.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/prismatic_joint.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/prismatic_joint.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/prismatic_joint.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/prismatic_joint.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\prismatic_joint.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/revolute_joint.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/revolute_joint.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/revolute_joint.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/revolute_joint.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\revolute_joint.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/shape.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/shape.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/shape.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/shape.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\shape.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/solver.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/solver.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/solver.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/solver.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\solver.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/solver_set.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/solver_set.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/solver_set.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/solver_set.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\solver_set.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/stack_allocator.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/stack_allocator.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/stack_allocator.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/stack_allocator.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\stack_allocator.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/table.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/table.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/table.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/table.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\table.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/timer.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/timer.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/timer.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/timer.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\timer.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/types.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/types.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/types.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/types.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\types.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/weld_joint.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/weld_joint.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/weld_joint.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/weld_joint.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\weld_joint.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/wheel_joint.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/wheel_joint.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/wheel_joint.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/wheel_joint.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\wheel_joint.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
 
-build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/world.c.obj: C_COMPILER__box2d_unscanned_ C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/world.c || cmake_object_order_depends_target_box2d
+build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/world.c.obj: C_COMPILER__box2d_unscanned_Debug C$:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/world.c || cmake_object_order_depends_target_box2d
   DEFINES = -DBOX2D_ENABLE_SIMD
   DEP_FILE = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir\world.c.obj.d
-  FLAGS = -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
+  FLAGS = -g -std=gnu17 -fvisibility=hidden -fdiagnostics-color=always -Wno-psabi -Werror
   INCLUDES = -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src/../include -IC:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/Vendor/box2d/src
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   OBJECT_FILE_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
@@ -1810,7 +1838,8 @@ build Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/world.c.obj: C_COMPILER
 #############################################
 # Link the static library Hamster-Core\Vendor\box2d\src\libbox2d.a
 
-build Hamster-Core/Vendor/box2d/src/libbox2d.a: C_STATIC_LIBRARY_LINKER__box2d_ Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/aabb.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/allocate.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/array.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/bitset.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/block_array.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/body.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/broad_phase.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/constraint_graph.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/contact.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/contact_solver.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/core.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/distance.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/distance_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/dynamic_tree.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/geometry.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/hull.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/id_pool.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/island.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/manifold.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/math_functions.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/motor_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/mouse_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/prismatic_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/revolute_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/shape.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/solver.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/solver_set.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/stack_allocator.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/table.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/timer.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/types.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/weld_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/wheel_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/world.c.obj
+build Hamster-Core/Vendor/box2d/src/libbox2d.a: C_STATIC_LIBRARY_LINKER__box2d_Debug Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/aabb.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/allocate.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/array.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/bitset.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/block_array.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/body.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/broad_phase.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/constraint_graph.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/contact.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/contact_solver.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/core.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/distance.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/distance_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/dynamic_tree.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/geometry.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/hull.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/id_pool.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/island.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/manifold.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/math_functions.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/motor_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/mouse_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/prismatic_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/revolute_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/shape.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/solver.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/solver_set.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/stack_allocator.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/table.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/timer.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/types.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/weld_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/wheel_joint.c.obj Hamster-Core/Vendor/box2d/src/CMakeFiles/box2d.dir/world.c.obj
+  LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Hamster-Core\Vendor\box2d\src\CMakeFiles\box2d.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

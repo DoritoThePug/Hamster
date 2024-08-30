@@ -9,14 +9,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_compile_definitions(GLFW_INCLUDE_NONE)
 
 set(PANELS
-        src/Panels/PropertyEditor.cpp
-        src/Panels/PropertyEditor.h
+        src/Panels/PropertyEditor.cpp src/Panels/PropertyEditor.h
 
-        src/Panels/Hierarchy.cpp
-        src/Panels/Hierarchy.h
 
-        src/Panels/StartPauseModal.cpp
-        src/Panels/StartPauseModal.h
+        src/Panels/Hierarchy.cpp src/Panels/Hierarchy.h
+
+
+        src/Panels/StartPauseModal.cpp src/Panels/StartPauseModal.h
+
+        src/Panels/MenuBar.cpp src/Panels/MenuBar.h
 )
 
 add_executable(Hamster-Wheel ${PANELS} src/EditorLayer.cpp src/EditorLayer.h src/HamsterWheelApp.cpp)

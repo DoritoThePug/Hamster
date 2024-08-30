@@ -20,6 +20,7 @@
 #include "Core/Scene.h"
 #include "Panels/StartPauseModal.h"
 #include "Panels/Hierarchy.h"
+#include "Panels/MenuBar.h"
 #include "Panels/PropertyEditor.h"
 
 class EditorLayer : public Hamster::Layer {
@@ -44,6 +45,7 @@ private:
     std::unique_ptr<Hierarchy> m_Hierarchy;
 
     std::unique_ptr<StartPauseModal> m_StartPauseModal;
+    std::unique_ptr<MenuBar> m_MenuBar;
 
 
     int m_ViewportWidth = 1920;

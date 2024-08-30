@@ -8,10 +8,12 @@
 #include <Hamster.h>
 #include <Gui/Panel.h>
 
+#include <utility>
+
 
 class StartPauseModal : public Hamster::Panel {
 public:
-    StartPauseModal(std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene) {};
+    StartPauseModal(std::shared_ptr<Hamster::Scene> scene) : m_Scene(std::move(scene)) {};
 
     void Render() override;
 

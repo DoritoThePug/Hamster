@@ -15,6 +15,7 @@ namespace Hamster
     class UUID {
 public:
     UUID();
+        UUID(boost::uuids::uuid uuid);
 
     std::string GetUUIDString() {return boost::uuids::to_string(m_UUID);}
     [[nodiscard]] boost::uuids::uuid GetUUID() const {return m_UUID;}

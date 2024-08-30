@@ -14,6 +14,13 @@
 #include "UUID.h"
 
 namespace Hamster {
+    enum ComponentID {
+        Transform_ID = 1,
+        Sprite_ID = 2,
+        Name_ID = 3,
+        Rigidbody_ID = 4,
+        ID_ID = 5
+    };
 
     struct Transform {
         glm::vec2 position;
@@ -22,6 +29,7 @@ namespace Hamster {
     };
 
     struct Sprite {
+        std::string textureName;
         std::shared_ptr<Texture> texture;
         glm::vec3 colour;
     };

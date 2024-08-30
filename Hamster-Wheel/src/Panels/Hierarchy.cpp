@@ -4,7 +4,9 @@
 
 #include "Hierarchy.h"
 
-Hierarchy::Hierarchy( std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene) {
+#include <utility>
+
+Hierarchy::Hierarchy( std::shared_ptr<Hamster::Scene> scene) : m_Scene(std::move(scene)) {
 }
 
 entt::entity Hierarchy::GetSelectedEntity() const {
