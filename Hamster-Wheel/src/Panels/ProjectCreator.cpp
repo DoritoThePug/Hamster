@@ -14,17 +14,33 @@ void ProjectCreator::Render() {
         return;
     }
 
-    if (ImGui::Button("Create Project")) {
+    ImGui::Text("Project Name");
+    ImGui::SameLine();
+    ImGui::InputText("##textInput#", m_ProjectNameInput, IM_ARRAYSIZE(m_ProjectNameInput));
+
+    ImGui::Text("Project Directory");
+    ImGui::SameLine();
+
+    if (ImGui::Button("Select Directory")) {
         HWND owner = glfwGetWin32Window(Hamster::Application::GetApplicationInstance().GetWindow());
 
-        std::string path = OpenWindowsFileDialog(owner);
-
-        std::cout << path << std::endl;
+        m_ProjectConfig.ProjectDirectory = OpenWindowsFileDialog(owner);
     }
 
-    ImGui::End();
-}
+    if (ImGui::Button("Create Project")) {
+        if (m_ProjectConfig.ProjectDirectory.empty()) {
+            HWND owner = glfwGetWin32Window(Hamster::Application::GetApplicationInstance().GetWindow());
 
+            m_ProjectConfig.ProjectDirectory = OpenWindowsFileDialog(owner);
+        } else {
+            CreateProject();
+
+            m_ProjectConfig = Hamster::ProjectConfig();
+        }
+
+        ImGui::End();
+    }
+}
 
 std::string ProjectCreator::OpenWindowsFileDialog(HWND owner) {
     BROWSEINFO bi = {0};
@@ -45,3 +61,7 @@ std::string ProjectCreator::OpenWindowsFileDialog(HWND owner) {
     return "";
 }
 
+
+void CreateProject() {
+    
+}

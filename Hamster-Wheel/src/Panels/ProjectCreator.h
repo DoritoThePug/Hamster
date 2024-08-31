@@ -14,6 +14,8 @@
 
 #include <Hamster.h>
 
+#include "Core/Project.h"
+
 
 class ProjectCreator : public Hamster::Panel {
 public:
@@ -28,6 +30,11 @@ private:
     std::shared_ptr<Hamster::Scene> m_Scene;
 
     std::string OpenWindowsFileDialog(HWND owner);
+
+    void CreateProject();
+
+    Hamster::ProjectConfig m_ProjectConfig;
+    char m_ProjectNameInput[100] = "Untitled";
 };
 
 
