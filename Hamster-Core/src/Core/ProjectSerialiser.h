@@ -4,9 +4,22 @@
 
 #ifndef PROJECTSERIALISER_H
 #define PROJECTSERIALISER_H
+#include <memory>
+
+#include "Project.h"
 
 namespace Hamster {
     class ProjectSerialiser {
+    public:
+        explicit ProjectSerialiser(std::shared_ptr<Project> project) : m_Project(std::move(project)) {
+        };
+
+        void Serialise(std::ostream &out);
+
+        ProjectConfig Deserialise(std::istream &in);
+
+    private:
+        std::shared_ptr<Project> m_Project;
     };
 } // Hamster
 

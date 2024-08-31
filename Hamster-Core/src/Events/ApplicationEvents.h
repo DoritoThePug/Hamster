@@ -1,18 +1,28 @@
-//#pragma once
 //
-//#include "Core/Base.h"
-//#include "Core/GameObject.h"
-//#include "Event.h"
+// Created by Jaden on 31/08/2024.
 //
-//namespace Hamster {
-//	class GameObjectCreatedEvent : public Event {
-//	public:
-//		GameObjectCreatedEvent(GameObject& gameObject) : m_GameObject(gameObject) { ; }
-//
-//		GameObject& GetGameObject() { return m_GameObject; }
-//
-//		BIND_EVENT_TYPE(GameObjectCreate)
-//	private: 
-//		GameObject& m_GameObject;
-//	};
-//}
+
+#ifndef APPLICATIONEVENTS_H
+#define APPLICATIONEVENTS_H
+
+#include "Event.h"
+#include "Core/Base.h"
+#include "Core/Scene.h"
+
+namespace Hamster {
+    class ActiveSceneChangedEvent : public Event {
+    public:
+        explicit ActiveSceneChangedEvent(std::shared_ptr<Scene> scene) : m_ActiveScene(std::move(scene)) {
+        };
+
+        [[nodiscard]] std::shared_ptr<Scene> GetActiveScene() { return m_ActiveScene; }
+
+        BIND_EVENT_TYPE(ActiveSceneChanged);
+
+    private:
+        std::shared_ptr<Scene> m_ActiveScene;
+    };
+}
+
+
+#endif //APPLICATIONEVENTS_H

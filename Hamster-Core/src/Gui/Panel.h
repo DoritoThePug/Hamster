@@ -4,6 +4,10 @@
 
 #ifndef PANEL_H
 #define PANEL_H
+#include <memory>
+#include <utility>
+
+#include "Core/Scene.h"
 
 namespace Hamster {
     class Panel {
@@ -18,8 +22,13 @@ namespace Hamster {
         void OpenPanel() { m_WindowOpen = true; }
         void ClosePanel() { m_WindowOpen = false; }
 
+        void ChangeActiveScene(std::shared_ptr<Scene> scene) {
+            m_Scene = std::move(scene);
+        };
+
     protected:
         bool m_WindowOpen = true;
+        std::shared_ptr<Scene> m_Scene = nullptr;
     };
 } // Hamster
 

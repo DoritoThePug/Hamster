@@ -9,18 +9,17 @@
 #include "Application.h"
 
 #include "Base.h"
-
-#include "GameObject.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Shader.h"
 #include "Renderer/FramebufferTexture.h"
 #include "Utils/AssetManager.h"
 #include "Layer.h"
+#include "Events/ApplicationEvents.h"
 #include "Physics/Physics.h"
 // #include "Gui/ImGuiLayer.h"
 
 namespace Hamster {
-  Application* Application::s_Instance = nullptr;
+  Application *Application::s_Instance = nullptr;
 
   Application::Application() {
     std::cout << "Application created" << std::endl;
@@ -32,8 +31,7 @@ namespace Hamster {
     Renderer::Init(m_ViewportHeight, m_ViewportWidth);
 
 
-
-    m_Dispatcher = std::make_unique<EventDispatcher>();
+    m_Dispatcher = std::make_shared<EventDispatcher>();
 
     PushLayer(&m_ImGuiLayer);
 
@@ -103,7 +101,7 @@ namespace Hamster {
     glfwGetFramebufferSize(m_Window->GetGLFWWindowPointer(), &width, &height);
 
     m_Projection = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight),
-                                      0.0f, -1.0f, 1.0f);
+                              0.0f, -1.0f, 1.0f);
 
     AssetManager::GetShader("sprite")->use();
     AssetManager::GetShader("sprite")->setUniformi("image", 0);
@@ -121,15 +119,14 @@ namespace Hamster {
       lastFrame = currentFrame;
 
 
-
-      for (Layer* layer : m_LayerStack) {
+      for (Layer *layer: m_LayerStack) {
         layer->OnUpdate();
       }
 
 
       m_ImGuiLayer.Begin();
 
-      for (Layer* layer : m_LayerStack) {
+      for (Layer *layer: m_LayerStack) {
         layer->OnImGuiUpdate();
       }
 
@@ -166,58 +163,6 @@ namespace Hamster {
     std::cout << "Framebuffer resized" << std::endl;
   }
 
-
-  void Application::AddGameObject(GameObject &gameObject) {
-    m_GameObjects[gameObject.GetID()] = &gameObject;
-  }
-
-  void Application::RemoveGameObject(const int ID) {
-    m_GameObjects.erase(ID);
-  }
-
-
-  void Application::UpdateSystem(entt::registry &registry) {
-    // if (!m_IsSimulationPaused) {
-    //   Physics::Simulate();
-    //
-    //   auto view = registry.view<Transform, Rigidbody>();
-    //
-    //   view.each([this](auto &transform, auto& rb) {
-    //
-    //    b2Transform physicsTransform =  b2Body_GetTransform(rb.id);
-    //      // std::cout << pos.x << ", " << pos.y << std::endl;
-    //
-    //      transform.position = glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter, physicsTransform.p.y * Physics::s_PixelsPerMeter);
-    //
-    //       transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
-    //
-    //   });
-    // }
-  }
-
-  void Application::RenderSystem(entt::registry &registry, bool renderFlat) {
-    auto view = registry.view<Sprite, Transform>();
-
-    // glEnable(GL_BLEND);
-    // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    if (!renderFlat) {
-      view.each([](auto &sprite, auto &transform) {
-        Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation, sprite.colour);
-      });
-    } else {
-      // render all sprites as a unique flat colour which can be used to identify to their id
-
-      // std::cout << "hi" << std::endl;
-
-      view.each([](auto entity, auto &sprite, auto &transform) {
-
-        Renderer::DrawFlat(transform.position, transform.size, transform.rotation,
-                           IdToColour(entt::to_integral(entity)));
-      });
-    }
-  }
-
   void Application::PushLayer(Layer *layer) {
     m_LayerStack.PushLayer(layer);
   }
@@ -232,7 +177,6 @@ namespace Hamster {
 
   glm::vec3 Application::IdToColour(int id) {
     id += 1;
-
 
 
     int r = (id & 0x000000FF) >> 0;
@@ -254,7 +198,7 @@ namespace Hamster {
 
     int id = static_cast<int>(colour.r) << 0 | static_cast<int>(colour.g) << 8 | static_cast<int>(colour.b) << 16;
 
-    return id-1;
+    return id - 1;
   }
 
   void Application::PauseSimulation() {
@@ -277,6 +221,20 @@ namespace Hamster {
     m_Scenes.erase(uuid);
   }
 
+  void Application::RemoveAllScenes() {
+    m_ActiveScene = nullptr;
+    m_Scenes.clear();
+  }
+
+
+  void Application::StopActiveScene() {
+    if (m_ActiveScene != nullptr) {
+      m_ActiveScene->PauseScene();
+      m_ActiveScene->PauseSceneSimulation();
+    }
+  }
+
+
   void Application::SetSceneActive(UUID uuid) {
     if (m_ActiveScene != nullptr) {
       m_ActiveScene->PauseScene();
@@ -287,6 +245,12 @@ namespace Hamster {
 
     if (scene) {
       m_ActiveScene = scene;
+
+      ActiveSceneChangedEvent e(m_ActiveScene);
+
+      m_Dispatcher->Post<ActiveSceneChangedEvent>(e);
+
+
       m_ActiveScene->RunScene();
     } else {
       m_ActiveScene = nullptr;
@@ -301,9 +265,6 @@ namespace Hamster {
   std::shared_ptr<Scene> Application::GetActiveScene() {
     return m_ActiveScene;
   }
-
-
-
 
 
   // TODO make it so that when you press play you start simulation, editor screen goes full screen and you can edit like Unity

@@ -18,7 +18,7 @@ namespace Hamster {
         UUID uuid;
 
         m_Registry.emplace<ID>(entity, uuid);
-        m_Entities[uuid] =  entity;
+        m_Entities[uuid] = entity;
 
         return uuid;
     }
@@ -27,8 +27,7 @@ namespace Hamster {
         auto entity = m_Registry.create();
 
         m_Registry.emplace<ID>(entity, uuid);
-        m_Entities[uuid] =  entity;
-
+        m_Entities[uuid] = entity;
     }
 
 
@@ -54,15 +53,14 @@ namespace Hamster {
 
             auto view = m_Registry.view<Transform, Rigidbody>();
 
-            view.each([this](auto &transform, auto& rb) {
+            view.each([this](auto &transform, auto &rb) {
+                b2Transform physicsTransform = b2Body_GetTransform(rb.id);
+                // std::cout << pos.x << ", " << pos.y << std::endl;
 
-             b2Transform physicsTransform =  b2Body_GetTransform(rb.id);
-               // std::cout << pos.x << ", " << pos.y << std::endl;
-
-               transform.position = glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter, physicsTransform.p.y * Physics::s_PixelsPerMeter);
+                transform.position = glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter,
+                                               physicsTransform.p.y * Physics::s_PixelsPerMeter);
 
                 transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
-
             });
         }
     }
@@ -75,7 +73,8 @@ namespace Hamster {
 
         if (!renderFlat) {
             view.each([](auto &sprite, auto &transform) {
-              Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation, sprite.colour);
+                Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation,
+                                     sprite.colour);
             });
         } else {
             // render all sprites as a unique flat colour which can be used to identify to their id
@@ -83,9 +82,8 @@ namespace Hamster {
             // std::cout << "hi" << std::endl;
 
             view.each([](auto entity, auto &sprite, auto &transform) {
-
-              Renderer::DrawFlat(transform.position, transform.size, transform.rotation,
-                                 Application::IdToColour(entt::to_integral(entity)));
+                Renderer::DrawFlat(transform.position, transform.size, transform.rotation,
+                                   Application::IdToColour(entt::to_integral(entity)));
             });
         }
     }
@@ -101,5 +99,4 @@ namespace Hamster {
 
         out.close();
     }
-
-}   // Hamster
+} // Hamster

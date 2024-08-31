@@ -20,14 +20,11 @@
 #include "UUID.h"
 
 namespace Hamster {
-
-
 	class GameObject;
 
 	//class EventDispatcher;
 
 	class Application {
-
 	public:
 		Application();
 
@@ -39,25 +36,26 @@ namespace Hamster {
 
 		glm::mat4 GetProjectionMatrix();
 
-		static Application& GetApplicationInstance() {return *s_Instance;}
+		std::shared_ptr<EventDispatcher> GetEventDispatcher() { return m_Dispatcher; }
+
+		static Application &GetApplicationInstance() { return *s_Instance; }
 
 		static void ResizeWindow(WindowResizeEvent &e);
 
 		static void ResizeFramebuffer(FramebufferResizeEvent &e);
 
 		void PauseSimulation();
+
 		void ResumeSimulation();
+
 		bool IsSimulationPaused();
 
-		GLFWwindow* GetWindow() { return m_Window->GetGLFWWindowPointer(); }
+		GLFWwindow *GetWindow() { return m_Window->GetGLFWWindowPointer(); }
 
-		//void AddGameObject(GameObjectCreatedEvent& e);
-		void AddGameObject(GameObject &gameObject);
 
-		void RemoveGameObject(int ID);
+		void PushLayer(Layer *layer);
 
-		void PushLayer(Layer* layer);
-		void PopLayer(Layer* layer);
+		void PopLayer(Layer *layer);
 
 
 		[[nodiscard]] int GetViewportHeight() const { return m_ViewportHeight; }
@@ -67,20 +65,21 @@ namespace Hamster {
 		void SetViewportWidth(const int width) { m_ViewportWidth = width; }
 
 		static glm::vec3 IdToColour(int id);
+
 		static int ColourToId(glm::vec3 colour);
 
-		// ECS
-
-		[[nodiscard]] entt::registry &GetRegistry() { return m_Registry; }
-
-		void UpdateSystem(entt::registry &registry);
-
-		void RenderSystem(entt::registry &registry, bool renderFlat);
-
 		void AddScene(std::shared_ptr<Scene> scene);
+
 		void RemoveScene(UUID uuid);
+
+		void RemoveAllScenes();
+
+		void StopActiveScene();
+
 		void SetSceneActive(UUID uuid);
+
 		std::shared_ptr<Scene> GetScene(UUID uuid);
+
 		std::shared_ptr<Scene> GetActiveScene();
 
 	private:
@@ -94,23 +93,19 @@ namespace Hamster {
 
 		glm::mat4 m_Projection;
 
-		std::unique_ptr<EventDispatcher> m_Dispatcher;
+		std::shared_ptr<EventDispatcher> m_Dispatcher;
 		LayerStack m_LayerStack;
 
 		ImGuiLayer m_ImGuiLayer;
 
 
 		// ID, GameObject
-		std::map<int, GameObject *> m_GameObjects;
 		//Window m_Window;
 		std::unique_ptr<Window> m_Window;
 
-		std::unordered_map<UUID, std::shared_ptr<Scene>> m_Scenes;
+		std::unordered_map<UUID, std::shared_ptr<Scene> > m_Scenes;
 		std::shared_ptr<Scene> m_ActiveScene = nullptr;
 
 		WindowProps m_WindowProps;
-
-		// ECS
-		entt::registry m_Registry;
 	};
 }

@@ -12,8 +12,6 @@ set(Core
 
         src/Core/Base.h
 
-        src/Core/GameObject.cpp src/Core/GameObject.h
-
         src/Core/Layer.h
 
         src/Core/LayerStack.cpp src/Core/LayerStack.h
@@ -43,6 +41,7 @@ set(Events
         src/Events/InputEvents.h
 
         src/Events/WindowEvents.h
+        src/Events/SceneEvents.h
 )
 
 

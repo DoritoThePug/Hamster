@@ -20,12 +20,13 @@ EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene)
 }
 
 void EditorLayer::OnAttach() {
-
+    Hamster::Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+        Hamster::ActiveSceneChanged,
+        FORWARD_CALLBACK_FUNCTION(EditorLayer::ActiveSceneChanged, Hamster::ActiveSceneChangedEvent));
 }
 
 void EditorLayer::OnUpdate() {
-    if (ImGui::IsMouseClicked(0))
-    {
+    if (ImGui::IsMouseClicked(0)) {
         glEnable(GL_SCISSOR_TEST);
         glScissor(0, 0, m_LevelEditorAvailRegion.x, m_LevelEditorAvailRegion.y);
 
@@ -37,7 +38,8 @@ void EditorLayer::OnUpdate() {
         entt::entity selectedEntity = m_Hierarchy->GetSelectedEntity();
 
         if (selectedEntity != entt::null) {
-            Hamster::Renderer::DrawGuizmo(m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity), Hamster::Translate, true);
+            Hamster::Renderer::DrawGuizmo(m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity),
+                                          Hamster::Translate, true);
         }
 
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -49,11 +51,8 @@ void EditorLayer::OnUpdate() {
         float mousePosY = imGuiMousePos.y - m_ViewportOffset.y;
 
 
-
-
-
         // dont forget to check mousepos is valid
-        glReadPixels(mousePosX, m_ViewportHeight-mousePosY, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glReadPixels(mousePosX, m_ViewportHeight - mousePosY, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
         m_FramebufferTexture.Unbind();
         glDisable(GL_SCISSOR_TEST);
@@ -61,7 +60,7 @@ void EditorLayer::OnUpdate() {
         Hamster::Renderer::Clear();
 
         int pickedID =
-            Hamster::Application::ColourToId(glm::vec3(data[0], data[1], data[2]));
+                Hamster::Application::ColourToId(glm::vec3(data[0], data[1], data[2]));
 
         // std::cout << pickedID << std::endl;
         // std::cout << (float)data[0] << ", " << (float)data[1] << ", " << (float)data[2] << std::endl;
@@ -73,10 +72,7 @@ void EditorLayer::OnUpdate() {
         } else if (pickedID == -1) {
             m_Hierarchy->SetSelectedEntity(entt::null);
             m_PropertyEditor->SetSelectedProperty(nullptr);
-        }
-        else if (pickedID == XGuizmoID) {
-
-
+        } else if (pickedID == XGuizmoID) {
             xGuizmoHeld = true;
             mouseHeldOffsetX = mousePosX - m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity).position.x;
         } else if (pickedID == YGuizmoID) {
@@ -91,11 +87,13 @@ void EditorLayer::OnUpdate() {
     }
 
     if (xGuizmoHeld) {
-        Hamster::Transform* entityTransform = &m_Scene->GetRegistry().get<Hamster::Transform>(m_Hierarchy->GetSelectedEntity());
+        Hamster::Transform *entityTransform = &m_Scene->GetRegistry().get<Hamster::Transform>(
+            m_Hierarchy->GetSelectedEntity());
 
         entityTransform->position.x = ImGui::GetMousePos().x - m_ViewportOffset.x - mouseHeldOffsetX;
     } else if (yGuizmoHeld) {
-        Hamster::Transform* entityTransform = &m_Scene->GetRegistry().get<Hamster::Transform>(m_Hierarchy->GetSelectedEntity());
+        Hamster::Transform *entityTransform = &m_Scene->GetRegistry().get<Hamster::Transform>(
+            m_Hierarchy->GetSelectedEntity());
 
         entityTransform->position.y = ImGui::GetMousePos().y - m_ViewportOffset.y - mouseHeldOffsetY;
     }
@@ -116,7 +114,8 @@ void EditorLayer::OnUpdate() {
     entt::entity selectedEntity = m_Hierarchy->GetSelectedEntity();
 
     if (selectedEntity != entt::null) {
-        Hamster::Renderer::DrawGuizmo(m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity), Hamster::Translate, false);
+        Hamster::Renderer::DrawGuizmo(m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity),
+                                      Hamster::Translate, false);
     }
 
     m_FramebufferTexture.Unbind();
@@ -138,18 +137,19 @@ void EditorLayer::OnImGuiUpdate() {
     const ImVec2 windowSize = ImGui::GetWindowSize();
     const ImVec2 windowBorderSize = ImGui::GetStyle().WindowPadding;
 
-    m_ViewportOffset.x = windowPos.x + (windowSize.x-m_LevelEditorAvailRegion.x)/2;
-    m_ViewportOffset.y = windowPos.y + (windowSize.y-m_LevelEditorAvailRegion.y-windowBorderSize.y) - (1080-m_LevelEditorAvailRegion.y);
+    m_ViewportOffset.x = windowPos.x + (windowSize.x - m_LevelEditorAvailRegion.x) / 2;
+    m_ViewportOffset.y = windowPos.y + (windowSize.y - m_LevelEditorAvailRegion.y - windowBorderSize.y) - (
+                             1080 - m_LevelEditorAvailRegion.y);
 
 
     const ImVec2 pos = ImGui::GetCursorScreenPos();
 
     ImGui::GetWindowDrawList()->AddImage(
-      (void *) (intptr_t) m_FramebufferTexture.GetTextureID(),
-      ImVec2(pos.x, pos.y),
-      ImVec2(pos.x + m_LevelEditorAvailRegion.x, pos.y + m_LevelEditorAvailRegion.y),
-      ImVec2(0, 1),
-      ImVec2(1, 0)
+        (void *) (intptr_t) m_FramebufferTexture.GetTextureID(),
+        ImVec2(pos.x, pos.y),
+        ImVec2(pos.x + m_LevelEditorAvailRegion.x, pos.y + m_LevelEditorAvailRegion.y),
+        ImVec2(0, 1),
+        ImVec2(1, 0)
     );
 
     //TODO background not transparent
@@ -165,7 +165,7 @@ void EditorLayer::OnImGuiUpdate() {
     if (m_PropertyEditor->IsPanelOpen()) {
         entt::entity e = m_Hierarchy->GetSelectedEntity();
 
-        entt::registry& registry = m_Scene->GetRegistry();
+        entt::registry &registry = m_Scene->GetRegistry();
 
         if (registry.valid(e)) {
             m_PropertyEditor->SetSelectedProperty(&registry.get<Hamster::Transform>(e));
@@ -176,5 +176,13 @@ void EditorLayer::OnImGuiUpdate() {
 
     m_StartPauseModal->Render();
     m_MenuBar->Render();
+}
+
+void EditorLayer::ActiveSceneChanged(Hamster::ActiveSceneChangedEvent &e) {
+    m_Scene = e.GetActiveScene();
+
+    m_Hierarchy->ChangeActiveScene(e.GetActiveScene());
+    m_StartPauseModal->ChangeActiveScene(e.GetActiveScene());
+    m_MenuBar->ChangeActiveScene(e.GetActiveScene());
 }
 

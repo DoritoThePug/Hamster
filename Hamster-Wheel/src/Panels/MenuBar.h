@@ -18,6 +18,10 @@ public:
 
     void Render();
 
+    void ChangeActiveScene(std::shared_ptr<Hamster::Scene> scene) {
+        m_Scene = std::move(scene);
+    };
+
 private:
     std::shared_ptr<Hamster::Scene> m_Scene;
     std::unique_ptr<ProjectCreator> m_ProjectCreator = std::make_unique<ProjectCreator>();

@@ -15,7 +15,10 @@ namespace Hamster {
 		LevelEditorViewportSizeChanged,
 
 		// Input Events
-		KeyPressed, KeyReleased, MouseButtonClicked
+		KeyPressed, KeyReleased, MouseButtonClicked,
+
+		// Application Events
+		ActiveSceneChanged
 	};
 
 	class Event {

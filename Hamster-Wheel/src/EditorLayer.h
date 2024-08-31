@@ -11,7 +11,6 @@
 #include <memory>
 
 
-
 #include "GLFW/glfw3.h"
 
 #include <Hamster.h>
@@ -24,13 +23,17 @@
 #include "Panels/PropertyEditor.h"
 
 class EditorLayer : public Hamster::Layer {
-    public:
+public:
     explicit EditorLayer(std::shared_ptr<Hamster::Scene> scene);
 
     void OnAttach() override;
 
     void OnUpdate() override;
+
     void OnImGuiUpdate() override;
+
+    void ActiveSceneChanged(Hamster::ActiveSceneChangedEvent &e);
+
 private:
     bool m_WindowOpen = true;
 
@@ -56,7 +59,6 @@ private:
     float mouseHeldOffsetX = 0.0f;
     float mouseHeldOffsetY = 0.0f;
 };
-
 
 
 #endif //EDITOR_H
