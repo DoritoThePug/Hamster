@@ -15,10 +15,14 @@ namespace Hamster {
 
     class Project {
     public:
-        Project(const std::string &name, const std::filesystem::path &projectDirectory);
+        Project(ProjectConfig config);
+
+        static bool New(const ProjectConfig &config);
 
     private:
         ProjectConfig m_Config;
+
+        inline static std::unique_ptr<Project> s_ActiveProject;
     };
 } // Hamster
 

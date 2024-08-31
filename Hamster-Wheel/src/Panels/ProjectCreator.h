@@ -35,6 +35,9 @@ private:
 
     Hamster::ProjectConfig m_ProjectConfig;
     char m_ProjectNameInput[100] = "Untitled";
+
+    bool m_NoDirectorySelected = false;
+    bool m_DirectoryExists = false;
 };
 
 

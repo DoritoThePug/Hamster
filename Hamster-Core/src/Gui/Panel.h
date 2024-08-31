@@ -16,6 +16,7 @@ namespace Hamster {
         [[nodiscard]] bool IsPanelOpen() const { return m_WindowOpen; }
 
         void OpenPanel() { m_WindowOpen = true; }
+        void ClosePanel() { m_WindowOpen = false; }
 
     protected:
         bool m_WindowOpen = true;
