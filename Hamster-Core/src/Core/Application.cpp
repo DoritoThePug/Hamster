@@ -293,6 +293,17 @@ namespace Hamster {
     }
   }
 
+  std::shared_ptr<Scene> Application::GetScene(UUID uuid) {
+    return m_Scenes[uuid];
+  }
+
+
+  std::shared_ptr<Scene> Application::GetActiveScene() {
+    return m_ActiveScene;
+  }
+
+
+
 
 
   // TODO make it so that when you press play you start simulation, editor screen goes full screen and you can edit like Unity

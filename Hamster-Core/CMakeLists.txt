@@ -4,6 +4,7 @@ project(Hamster-Core)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+add_compile_definitions(GLFW_EXPOSE_NATIVE_WIN32)
 add_compile_definitions(GLFW_INCLUDE_NONE)
 
 set(Core
@@ -28,6 +29,8 @@ set(Core
         src/Core/UUID.cpp src/Core/UUID.h
 
         src/Core/SceneSerialiser.cpp src/Core/SceneSerialiser.h
+        src/Core/ProjectSerialiser.cpp
+        src/Core/ProjectSerialiser.h
 )
 
 set(Events
@@ -41,7 +44,6 @@ set(Events
 
         src/Events/WindowEvents.h
 )
-
 
 
 set(Renderer
@@ -75,7 +77,7 @@ set(Gui
 )
 
 set(Physics
-    src/Physics/Physics.cpp src/Physics/Physics.h
+        src/Physics/Physics.cpp src/Physics/Physics.h
 )
 
 set(sources
@@ -87,6 +89,8 @@ set(sources
         ${Gui}
         ${Physics}
         Vendor/glad/src/glad.c
+        src/Core/Project.cpp
+        src/Core/Project.h
 )
 
 add_library(Hamster-Core STATIC ${sources} src/Hamster.h)

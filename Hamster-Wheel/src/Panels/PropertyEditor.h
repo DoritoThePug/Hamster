@@ -14,14 +14,17 @@
 
 class PropertyEditor : public Hamster::Panel {
 public:
+    PropertyEditor() : Hamster::Panel() {
+    };
+
     void Render() override;
 
-    void SetSelectedProperty(Hamster::Transform* transform) {m_Transform = transform;}
+    void SetSelectedProperty(Hamster::Transform *transform) { m_Transform = transform; }
+
 private:
     //temp
-    Hamster::Transform* m_Transform = nullptr;
+    Hamster::Transform *m_Transform = nullptr;
 };
-
 
 
 #endif //PROPERTYEDITOR_H

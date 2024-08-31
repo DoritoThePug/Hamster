@@ -6,7 +6,7 @@
 
 #include <utility>
 
-Hierarchy::Hierarchy( std::shared_ptr<Hamster::Scene> scene) : m_Scene(std::move(scene)) {
+Hierarchy::Hierarchy(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(), m_Scene(std::move(scene)) {
 }
 
 entt::entity Hierarchy::GetSelectedEntity() const {
@@ -18,14 +18,14 @@ void Hierarchy::SetSelectedEntity(const entt::entity entity) {
 }
 
 void Hierarchy::Render() {
-    if(!ImGui::Begin("Hierarchy", &m_WindowOpen)) {
+    if (!ImGui::Begin("Hierarchy", &m_WindowOpen)) {
         ImGui::End();
         return;
     }
 
     const auto view = m_Scene->GetRegistry().view<Hamster::Name>();
 
-    view.each([&](auto entity, auto& name) {
+    view.each([&](auto entity, auto &name) {
         ImGui::PushID(entt::to_integral(entity));
 
         if (entity == m_SelectedEntity) {
@@ -33,10 +33,7 @@ void Hierarchy::Render() {
         }
 
 
-
         if (ImGui::TreeNode(name.name.c_str())) {
-
-
             ImGui::TreePop();
         }
 

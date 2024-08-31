@@ -11,6 +11,7 @@
 #include "Core/Components.h"
 #include "Core/Layer.h"
 #include "Core/Scene.h"
+#include "Core/Entity.h"
 
 // Events
 #include "Events/Event.h"

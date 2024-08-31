@@ -80,6 +80,8 @@ namespace Hamster {
 		void AddScene(std::shared_ptr<Scene> scene);
 		void RemoveScene(UUID uuid);
 		void SetSceneActive(UUID uuid);
+		std::shared_ptr<Scene> GetScene(UUID uuid);
+		std::shared_ptr<Scene> GetActiveScene();
 
 	private:
 		static Application *s_Instance;

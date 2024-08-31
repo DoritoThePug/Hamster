@@ -13,14 +13,14 @@
 
 class StartPauseModal : public Hamster::Panel {
 public:
-    StartPauseModal(std::shared_ptr<Hamster::Scene> scene) : m_Scene(std::move(scene)) {};
+    StartPauseModal(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(), m_Scene(std::move(scene)) {
+    };
 
     void Render() override;
 
 private:
     std::shared_ptr<Hamster::Scene> m_Scene;
 };
-
 
 
 #endif //STARTPAUSEMODAL_H

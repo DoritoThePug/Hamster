@@ -15,9 +15,15 @@ namespace Hamster {
 
 class Entity {
 public:
+    Entity();
+
+    virtual void OnCreate() {};
+    virtual void OnUpdate(float deltaTime) {};
+    virtual void OnDestroyed() {};
+
 private:
-    entt::entity m_EnttEntityHandle;
-    Scene* m_Scene;
+    UUID m_UUID;
+    std::shared_ptr<Scene> m_Scene;
 };
 
 } // Hamster

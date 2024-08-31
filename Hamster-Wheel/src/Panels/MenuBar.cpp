@@ -10,10 +10,8 @@
 #include "Core/SceneSerialiser.h"
 
 void MenuBar::Render() {
-    if (ImGui::BeginMainMenuBar())
-    {
-        if (ImGui::BeginMenu("File"))
-        {
+    if (ImGui::BeginMainMenuBar()) {
+        if (ImGui::BeginMenu("File")) {
             if (ImGui::MenuItem("Save", "Ctrl+S")) {
                 Hamster::Scene::SaveScene(m_Scene);
                 // std::cout << "Saving scene" << std::endl;
@@ -26,8 +24,16 @@ void MenuBar::Render() {
                 //
                 // out.close();
             }
+
+            if (ImGui::MenuItem("New Project")) {
+                m_ProjectCreator->OpenPanel();
+            }
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
+    }
+
+    if (m_ProjectCreator->IsPanelOpen()) {
+        m_ProjectCreator->Render();
     }
 }

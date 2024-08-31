@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
+add_compile_definitions(GLFW_EXPOSE_NATIVE_WIN32)
 add_compile_definitions(GLFW_INCLUDE_NONE)
 
 set(PANELS
@@ -18,6 +19,8 @@ set(PANELS
         src/Panels/StartPauseModal.cpp src/Panels/StartPauseModal.h
 
         src/Panels/MenuBar.cpp src/Panels/MenuBar.h
+        src/Panels/ProjectCreator.cpp
+        src/Panels/ProjectCreator.h
 )
 
 add_executable(Hamster-Wheel ${PANELS} src/EditorLayer.cpp src/EditorLayer.h src/HamsterWheelApp.cpp)

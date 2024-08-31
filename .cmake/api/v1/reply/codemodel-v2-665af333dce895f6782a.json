@@ -1,0 +1,432 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						10,
+						11
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "Hamster-Core",
+					"jsonFile" : "directory-Hamster-Core-Debug-34c2045a9b79c0cc4c00.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "Hamster-Core",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "Hamster-App",
+					"jsonFile" : "directory-Hamster-App-Debug-e5427cb50eddce64c81d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "Hamster-App",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "Hamster-Py",
+					"childIndexes" : 
+					[
+						4
+					],
+					"jsonFile" : "directory-Hamster-Py-Debug-32ce352178d006cf8add.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "Hamster-Py",
+					"targetIndexes" : 
+					[
+						0,
+						3
+					]
+				},
+				{
+					"build" : "Hamster-Py/Vendor/pybind11",
+					"jsonFile" : "directory-Hamster-Py.Vendor.pybind11-Debug-201f4f2c90c36c3ad59b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 4,
+					"source" : "Hamster-Py/Vendor/pybind11"
+				},
+				{
+					"build" : "Hamster-Wheel",
+					"jsonFile" : "directory-Hamster-Wheel-Debug-60a7b3ce8a31fd82871a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 5,
+					"source" : "Hamster-Wheel",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "Hamster-Core/Vendor/imgui",
+					"jsonFile" : "directory-Hamster-Core.Vendor.imgui-Debug-3c8525a821e2502df48f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 6,
+					"source" : "Hamster-Core/Vendor/imgui",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "Hamster-Core/Vendor/glfw",
+					"childIndexes" : 
+					[
+						8,
+						9
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Hamster-Core.Vendor.glfw-Debug-888a077e58a1e761052e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 7,
+					"source" : "Hamster-Core/Vendor/glfw",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "Hamster-Core/Vendor/glfw/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Hamster-Core.Vendor.glfw.src-Debug-df840b93edf82d3b49b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 7,
+					"source" : "Hamster-Core/Vendor/glfw/src",
+					"targetIndexes" : 
+					[
+						6,
+						9
+					]
+				},
+				{
+					"build" : "Hamster-Core/Vendor/glfw/docs",
+					"jsonFile" : "directory-Hamster-Core.Vendor.glfw.docs-Debug-cc814863428f87ab6982.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 7,
+					"source" : "Hamster-Core/Vendor/glfw/docs"
+				},
+				{
+					"build" : "Hamster-Core/Vendor/entt",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Hamster-Core.Vendor.entt-Debug-4fe9b14432924a3afecc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15.7"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 8,
+					"source" : "Hamster-Core/Vendor/entt"
+				},
+				{
+					"build" : "Hamster-Core/Vendor/box2d",
+					"childIndexes" : 
+					[
+						12
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Hamster-Core.Vendor.box2d-Debug-eedc495ea3634d231fec.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 9,
+					"source" : "Hamster-Core/Vendor/box2d"
+				},
+				{
+					"build" : "Hamster-Core/Vendor/box2d/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Hamster-Core.Vendor.box2d.src-Debug-802fe5f5033a9b44f707.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"parentIndex" : 11,
+					"projectIndex" : 9,
+					"source" : "Hamster-Core/Vendor/box2d/src",
+					"targetIndexes" : 
+					[
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						8,
+						9
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Hamster"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "Hamster-Core",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "Hamster-App",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						4
+					],
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "Hamster-Py",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "pybind11",
+					"parentIndex" : 3
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "Hamster-Wheel",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "imgui",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						7,
+						8,
+						9
+					],
+					"name" : "GLFW",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						6,
+						8,
+						9
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						10
+					],
+					"name" : "EnTT",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						11,
+						12
+					],
+					"name" : "box2d",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "Hamster::@fab5c8536b855a6fa043",
+					"jsonFile" : "target-Hamster-Debug-8391f4df6a642a8c2810.json",
+					"name" : "Hamster",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Hamster-App::@ca630c27bc204024aa14",
+					"jsonFile" : "target-Hamster-App-Debug-e05c5075e9a8fed3b79a.json",
+					"name" : "Hamster-App",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Hamster-Core::@7fb26e8c688a3985960d",
+					"jsonFile" : "target-Hamster-Core-Debug-335f8daf3542f6c0f8af.json",
+					"name" : "Hamster-Core",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "Hamster-Py::@fab5c8536b855a6fa043",
+					"jsonFile" : "target-Hamster-Py-Debug-876fa79648824d2820b7.json",
+					"name" : "Hamster-Py",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "Hamster-Wheel::@ed734c12dcbf6a995bd7",
+					"jsonFile" : "target-Hamster-Wheel-Debug-a71b2265583fe163caf8.json",
+					"name" : "Hamster-Wheel",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "box2d::@e26b644a7faeaf375250",
+					"jsonFile" : "target-box2d-Debug-c852e9fbdcfa974095b2.json",
+					"name" : "box2d",
+					"projectIndex" : 9
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "glfw::@5980d9434051264e402f",
+					"jsonFile" : "target-glfw-Debug-8304a0cb058f67176185.json",
+					"name" : "glfw",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "imgui::@bd7774a2938d6a9f01ea",
+					"jsonFile" : "target-imgui-Debug-59d0e390c49a0ba0f6e4.json",
+					"name" : "imgui",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "uninstall::@85accf17548707bc9544",
+					"jsonFile" : "target-uninstall-Debug-1177274172dc8fb3ea03.json",
+					"name" : "uninstall",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "update_mappings::@5980d9434051264e402f",
+					"jsonFile" : "target-update_mappings-Debug-953ca8f59b29e2ea7b65.json",
+					"name" : "update_mappings",
+					"projectIndex" : 7
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Jaden/Documents/DevStuff/Hamster",
+		"source" : "C:/Users/Jaden/Documents/DevStuff/Hamster"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
