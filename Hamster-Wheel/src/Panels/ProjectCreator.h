@@ -19,19 +19,13 @@
 
 class ProjectCreator : public Hamster::Panel {
 public:
-    ProjectCreator() : Hamster::Panel(false) {
+    ProjectCreator(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(scene, false) {
     };
 
     void Render() override;
 
 private:
-    bool m_WindowOpen = false;
-
-    std::shared_ptr<Hamster::Scene> m_Scene;
-
     std::string OpenWindowsFileDialog(HWND owner);
-
-    void CreateProject();
 
     Hamster::ProjectConfig m_ProjectConfig;
     char m_ProjectNameInput[100] = "Untitled";

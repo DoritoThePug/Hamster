@@ -44,7 +44,7 @@ private:
     glm::vec2 m_ViewportOffset = {0.0f, 0.0f};
     Hamster::FramebufferTexture m_FramebufferTexture;
 
-    std::unique_ptr<PropertyEditor> m_PropertyEditor = std::make_unique<PropertyEditor>();
+    std::unique_ptr<PropertyEditor> m_PropertyEditor;
     std::unique_ptr<Hierarchy> m_Hierarchy;
 
     std::unique_ptr<StartPauseModal> m_StartPauseModal;

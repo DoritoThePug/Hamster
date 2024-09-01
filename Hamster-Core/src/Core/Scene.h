@@ -10,74 +10,83 @@
 #include <unordered_map>
 #include <boost/container_hash/hash.hpp>
 
+#include <boost/uuid/uuid_io.hpp>
+
 #include "Components.h"
 
 #include "UUID.h"
 #include "Physics/Physics.h"
 
 namespace Hamster {
+    class Scene {
+    public:
+        Scene() {
+        };
 
-class Scene {
-public:
-    Scene() {};
+        UUID CreateEntity();
 
-    UUID CreateEntity();
-    void CreateEntityWithUUID(UUID uuid);
-    void DestroyEntity(UUID entityUUID);
+        void CreateEntityWithUUID(UUID uuid);
 
-    entt::entity& GetEntity(UUID entityUUID) {return m_Entities[entityUUID];}
+        void DestroyEntity(UUID entityUUID);
 
-    entt::registry& GetRegistry() {return m_Registry; }
+        entt::entity &GetEntity(UUID entityUUID) { return m_Entities[entityUUID]; }
 
-    // template <typename T>
-    // T GetEntityComponent(UUID uuid);
-    //
-    // template <typename T, typename... Args>
-    // void AddEntityComponent(UUID entityUUID, Args&&... args);
+        entt::registry &GetRegistry() { return m_Registry; }
 
-    template<typename T>
-    T GetEntityComponent(UUID uuid) {
-        return m_Registry.get<T>(uuid);
-    }
+        // template <typename T>
+        // T GetEntityComponent(UUID uuid);
+        //
+        // template <typename T, typename... Args>
+        // void AddEntityComponent(UUID entityUUID, Args&&... args);
 
-    template<typename T, typename... Args>
-    void AddEntityComponent(UUID entityUUID, Args &&... args) {
-        m_Registry.emplace<T>(m_Entities[entityUUID], std::forward<Args>(args)...);
-    }
+        template<typename T>
+        T GetEntityComponent(UUID uuid) {
+            return m_Registry.get<T>(uuid);
+        }
+
+        template<typename T, typename... Args>
+        void AddEntityComponent(UUID entityUUID, Args &&... args) {
+            m_Registry.emplace<T>(m_Entities[entityUUID], std::forward<Args>(args)...);
+        }
 
 
-    void OnUpdate();
-    void OnRender(bool renderFlat);
+        void OnUpdate();
 
-    bool IsSceneRunning() const {return m_IsRunning; }
-    bool IsSceneSimulationPaused() const {return m_IsSimulationPaused; }
+        void OnRender(bool renderFlat);
 
-    void RunScene() {m_IsRunning = true;}
-    void RunSceneSimulation() {m_IsSimulationPaused = false;}
+        bool IsSceneRunning() const { return m_IsRunning; }
+        bool IsSceneSimulationPaused() const { return m_IsSimulationPaused; }
 
-    void PauseScene() {m_IsRunning = false;}
-    void PauseSceneSimulation() {m_IsSimulationPaused = true;}
+        void RunScene() { m_IsRunning = true; }
+        void RunSceneSimulation() { m_IsSimulationPaused = false; }
 
-    b2WorldId GetWorldId () {return m_WorldId;}
+        void PauseScene() { m_IsRunning = false; }
+        void PauseSceneSimulation() { m_IsSimulationPaused = true; }
 
-    UUID GetUUID() const {return m_UUID; }
+        b2WorldId GetWorldId() { return m_WorldId; }
 
-    uint32_t GetEntityCount() const {return static_cast<uint32_t>(m_Entities.size());}
-    const std::unordered_map<UUID, entt::entity>& GetEntityMap() {return m_Entities;}
+        UUID GetUUID() const { return m_UUID; }
 
-    static void SaveScene(std::shared_ptr<Scene> scene);
-private:
-    bool m_IsRunning = false;
-    bool m_IsSimulationPaused = true;
+        void SetUUID(const UUID uuid) {
+            std::cout << m_UUID.GetUUID() << std::endl;
+        }
 
-    entt::registry m_Registry;
-    std::unordered_map<UUID, entt::entity> m_Entities;
+        uint32_t GetEntityCount() const { return static_cast<uint32_t>(m_Entities.size()); }
+        const std::unordered_map<UUID, entt::entity> &GetEntityMap() { return m_Entities; }
 
-    b2WorldId m_WorldId = Physics::InitBox2dWorld();
+        static void SaveScene(std::shared_ptr<Scene> scene);
 
-    UUID m_UUID;
-};
+    private:
+        bool m_IsRunning = false;
+        bool m_IsSimulationPaused = true;
 
+        entt::registry m_Registry;
+        std::unordered_map<UUID, entt::entity> m_Entities;
+
+        b2WorldId m_WorldId = Physics::InitBox2dWorld();
+
+        UUID m_UUID;
+    };
 } // Hamster
 
 #endif //SCENE_H

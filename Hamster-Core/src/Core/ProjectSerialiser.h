@@ -16,7 +16,7 @@ namespace Hamster {
 
         void Serialise(std::ostream &out);
 
-        ProjectConfig Deserialise(std::istream &in);
+        static ProjectConfig Deserialise(std::istream &in);
 
     private:
         std::shared_ptr<Project> m_Project;

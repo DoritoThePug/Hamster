@@ -118,11 +118,9 @@ namespace Hamster {
       deltaTime = currentFrame - lastFrame;
       lastFrame = currentFrame;
 
-
       for (Layer *layer: m_LayerStack) {
         layer->OnUpdate();
       }
-
 
       m_ImGuiLayer.Begin();
 
@@ -136,7 +134,6 @@ namespace Hamster {
         m_ActiveScene->OnUpdate();
       }
 
-      // UpdateSystem(m_Registry);
 
       m_Window->Update(m_Running);
     }
@@ -252,7 +249,11 @@ namespace Hamster {
 
 
       m_ActiveScene->RunScene();
+
+      std::cout << scene->GetUUID().GetUUIDString() << std::endl;
     } else {
+      std::cout << "Scene not found" << std::endl;
+
       m_ActiveScene = nullptr;
     }
   }

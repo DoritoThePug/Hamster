@@ -51,5 +51,7 @@ namespace Hamster {
         in.read(startScenePathStr.data(), startScenePathLength);
 
         projectConfig.StartScenePath = startScenePathStr;
+
+        return projectConfig;
     }
 } // Hamster

@@ -12,17 +12,18 @@
 
 class Hierarchy : public Hamster::Panel {
 public:
-    Hierarchy(std::shared_ptr<Hamster::Scene> scene);
+    Hierarchy(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(scene, true) {
+    };
 
     void SetSelectedEntity(const entt::entity entity);
+
     entt::entity GetSelectedEntity() const;
 
     void Render() override;
+
 private:
     entt::entity m_SelectedEntity = entt::null;
-    std::shared_ptr<Hamster::Scene> m_Scene;
 };
-
 
 
 #endif //HIERARCHY_H

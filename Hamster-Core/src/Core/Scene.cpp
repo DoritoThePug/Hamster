@@ -70,21 +70,22 @@ namespace Hamster {
 
         // glEnable(GL_BLEND);
         // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        if (m_IsRunning) {
+            if (!renderFlat) {
+                view.each([](auto &sprite, auto &transform) {
+                    Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation,
+                                         sprite.colour);
+                });
+            } else {
+                // render all sprites as a unique flat colour which can be used to identify to their id
 
-        if (!renderFlat) {
-            view.each([](auto &sprite, auto &transform) {
-                Renderer::DrawSprite(*sprite.texture, transform.position, transform.size, transform.rotation,
-                                     sprite.colour);
-            });
-        } else {
-            // render all sprites as a unique flat colour which can be used to identify to their id
+                // std::cout << "hi" << std::endl;
 
-            // std::cout << "hi" << std::endl;
-
-            view.each([](auto entity, auto &sprite, auto &transform) {
-                Renderer::DrawFlat(transform.position, transform.size, transform.rotation,
-                                   Application::IdToColour(entt::to_integral(entity)));
-            });
+                view.each([](auto entity, auto &sprite, auto &transform) {
+                    Renderer::DrawFlat(transform.position, transform.size, transform.rotation,
+                                       Application::IdToColour(entt::to_integral(entity)));
+                });
+            }
         }
     }
 

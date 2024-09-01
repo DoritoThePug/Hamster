@@ -21,6 +21,10 @@ set(PANELS
         src/Panels/MenuBar.cpp src/Panels/MenuBar.h
         src/Panels/ProjectCreator.cpp
         src/Panels/ProjectCreator.h
+        src/Panels/ProjectSelector.cpp
+        src/Panels/ProjectSelector.h
+        src/ProjectHubLayer.cpp
+
 )
 
 add_executable(Hamster-Wheel ${PANELS} src/EditorLayer.cpp src/EditorLayer.h src/HamsterWheelApp.cpp)

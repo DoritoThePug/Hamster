@@ -6,8 +6,6 @@
 
 #include <utility>
 
-Hierarchy::Hierarchy(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(), m_Scene(std::move(scene)) {
-}
 
 entt::entity Hierarchy::GetSelectedEntity() const {
     return m_SelectedEntity;

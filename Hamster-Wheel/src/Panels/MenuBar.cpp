@@ -28,6 +28,11 @@ void MenuBar::Render() {
             if (ImGui::MenuItem("New Project")) {
                 m_ProjectCreator->OpenPanel();
             }
+
+            if (ImGui::MenuItem("Open Project")) {
+                m_ProjectSelector->OpenPanel();
+            }
+
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
@@ -35,5 +40,9 @@ void MenuBar::Render() {
 
     if (m_ProjectCreator->IsPanelOpen()) {
         m_ProjectCreator->Render();
+    }
+
+    if (m_ProjectSelector->IsPanelOpen()) {
+        m_ProjectSelector->Render();
     }
 }

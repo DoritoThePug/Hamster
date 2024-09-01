@@ -7,12 +7,21 @@
 #include <memory>
 #include <utility>
 
+#include "Core/Application.h"
 #include "Core/Scene.h"
+#include "Events/Event.h"
 
 namespace Hamster {
     class Panel {
     public:
-        explicit Panel(bool defaultOpen = true) : m_WindowOpen(defaultOpen) {
+        Panel(std::shared_ptr<Scene> scene, bool defaultOpen = true) : m_WindowOpen(defaultOpen),
+                                                                       m_Scene(std::move(scene)) {
+            Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+                ActiveSceneChanged,
+                FORWARD_CALLBACK_FUNCTION(Panel::OnActiveSceneChanged, ActiveSceneChangedEvent));
+        };
+
+        Panel() {
         };
 
         virtual void Render() = 0;
@@ -22,13 +31,13 @@ namespace Hamster {
         void OpenPanel() { m_WindowOpen = true; }
         void ClosePanel() { m_WindowOpen = false; }
 
-        void ChangeActiveScene(std::shared_ptr<Scene> scene) {
-            m_Scene = std::move(scene);
-        };
-
     protected:
         bool m_WindowOpen = true;
         std::shared_ptr<Scene> m_Scene = nullptr;
+
+        void OnActiveSceneChanged(ActiveSceneChangedEvent &e) {
+            m_Scene = std::move(e.GetActiveScene());
+        };
     };
 } // Hamster
 

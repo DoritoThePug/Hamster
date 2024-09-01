@@ -22,6 +22,11 @@ namespace Hamster {
     private:
         std::shared_ptr<Scene> m_ActiveScene;
     };
+
+    class ProjectOpenedEvent : public Event {
+    public:
+        BIND_EVENT_TYPE(ProjectOpened);
+    };
 }
 
 

@@ -18,20 +18,22 @@ namespace Hamster {
 
     class Project {
     public:
-        Project(ProjectConfig config);
+        Project(const ProjectConfig &config);
 
-        static bool New(const ProjectConfig &config);
+        static bool New(ProjectConfig &config);
+
+        static bool Open(std::filesystem::path projectPath);
 
         static void SaveCurrentProject();
 
         void SetStartScene(std::shared_ptr<Scene> scene);
 
-        [[nodiscard]] const ProjectConfig &GetConfig() const;
+        [[nodiscard]] ProjectConfig &GetConfig();
 
     private:
         ProjectConfig m_Config;
 
-        inline static std::unique_ptr<Project> s_ActiveProject;
+        inline static std::shared_ptr<Project> s_ActiveProject = nullptr;
 
         std::shared_ptr<Scene> m_StartScene = nullptr;
     };

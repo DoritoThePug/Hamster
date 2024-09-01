@@ -14,9 +14,10 @@
 #include "Core/Application.h"
 
 EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene), m_FramebufferTexture(1920, 1080) {
-    m_Hierarchy = std::make_unique<Hierarchy>(scene);
-    m_StartPauseModal = std::make_unique<StartPauseModal>(scene);
-    m_MenuBar = std::make_unique<MenuBar>(scene);
+    m_PropertyEditor = std::make_unique<PropertyEditor>(m_Scene);
+    m_Hierarchy = std::make_unique<Hierarchy>(m_Scene);
+    m_StartPauseModal = std::make_unique<StartPauseModal>(m_Scene);
+    m_MenuBar = std::make_unique<MenuBar>(m_Scene);
 }
 
 void EditorLayer::OnAttach() {
@@ -180,9 +181,5 @@ void EditorLayer::OnImGuiUpdate() {
 
 void EditorLayer::ActiveSceneChanged(Hamster::ActiveSceneChangedEvent &e) {
     m_Scene = e.GetActiveScene();
-
-    m_Hierarchy->ChangeActiveScene(e.GetActiveScene());
-    m_StartPauseModal->ChangeActiveScene(e.GetActiveScene());
-    m_MenuBar->ChangeActiveScene(e.GetActiveScene());
 }
 
