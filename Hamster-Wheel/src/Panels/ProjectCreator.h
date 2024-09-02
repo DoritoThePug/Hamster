@@ -11,6 +11,7 @@
 #include <windows.h>
 #include<shlobj.h>
 #include <memory>
+#include <utility>
 
 #include <Hamster.h>
 
@@ -19,7 +20,10 @@
 
 class ProjectCreator : public Hamster::Panel {
 public:
-    ProjectCreator(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(scene, false) {
+    ProjectCreator(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(std::move(scene), false) {
+    };
+
+    ProjectCreator() : Hamster::Panel(false) {
     };
 
     void Render() override;

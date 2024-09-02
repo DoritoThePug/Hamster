@@ -8,20 +8,25 @@
 #include <entt/entt.hpp>
 #include <box2d/box2d.h>
 #include <unordered_map>
+
 #include <boost/container_hash/hash.hpp>
+#include <filesystem>
 
 #include <boost/uuid/uuid_io.hpp>
 
 #include "Components.h"
 
 #include "UUID.h"
+#include "Events/ApplicationEvents.h"
+#include "Events/WindowEvents.h"
 #include "Physics/Physics.h"
 
 namespace Hamster {
+    class SceneCreatedEvent;
+
     class Scene {
     public:
-        Scene() {
-        };
+        Scene();
 
         UUID CreateEntity();
 
@@ -77,6 +82,12 @@ namespace Hamster {
 
         static void SaveScene(std::shared_ptr<Scene> scene);
 
+        std::string &GetName() { return m_Name; }
+
+        std::filesystem::path &GetPath() { return m_Path; }
+
+        void OnSceneCreated(SceneCreatedEvent &e);
+
     private:
         bool m_IsRunning = false;
         bool m_IsSimulationPaused = true;
@@ -87,6 +98,8 @@ namespace Hamster {
         b2WorldId m_WorldId = Physics::InitBox2dWorld();
 
         UUID m_UUID;
+        std::string m_Name = "Untitled Scene";
+        std::filesystem::path m_Path;
     };
 } // Hamster
 

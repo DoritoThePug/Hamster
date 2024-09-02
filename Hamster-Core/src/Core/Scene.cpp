@@ -12,6 +12,19 @@
 #include "SceneSerialiser.h"
 
 namespace Hamster {
+    Scene::Scene() {
+        Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+            SceneCreated, FORWARD_CALLBACK_FUNCTION(Scene::OnSceneCreated, SceneCreatedEvent));
+
+        std::string sceneName = m_Name;
+        std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
+
+        m_Path =
+                std::filesystem::path("Scenes") / std::filesystem::path(sceneName
+                                                                        + "_" + m_UUID.
+                                                                        GetUUIDString() + ".scene");
+    }
+
     UUID Scene::CreateEntity() {
         auto entity = m_Registry.create();
 
@@ -96,12 +109,17 @@ namespace Hamster {
     void Scene::SaveScene(std::shared_ptr<Scene> scene) {
         std::cout << "Saving scene" << std::endl;
 
-        SceneSerialiser serialiser(std::move(scene));
+        SceneSerialiser serialiser(scene);
 
-        std::ofstream out("hi.hs", std::ios::binary);
+
+        std::ofstream out(scene->GetPath(), std::ios::binary);
 
         serialiser.Serialise(out);
 
         out.close();
+    }
+
+    void Scene::OnSceneCreated(SceneCreatedEvent &e) {
+        SaveScene(e.GetScene());
     }
 } // Hamster

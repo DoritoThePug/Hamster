@@ -143,6 +143,11 @@ namespace Hamster {
     m_Window.reset();
     m_Running = false;
 
+    for (auto const &[uuid, scene]: m_Scenes) {
+      std::cout << "Currently saving scene with uuid: " << uuid.GetUUID() << std::endl;
+      Scene::SaveScene(scene);
+    }
+
     AssetManager::Terminate();
 
     std::cout << "Application closed" << std::endl;

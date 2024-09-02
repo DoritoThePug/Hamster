@@ -34,25 +34,41 @@ namespace Hamster {
 
         Application::GetApplicationInstance().RemoveAllScenes();
 
-
-        s_ActiveProject = std::make_shared<Project>(config);
-
-
+        std::filesystem::create_directory(config.ProjectDirectory);
         std::filesystem::current_path(config.ProjectDirectory);
+
+        std::filesystem::create_directory("Scenes");
+
 
         std::shared_ptr<Scene> scene = std::make_shared<Scene>();
 
+
+        Application::GetApplicationInstance().AddScene(scene);
+
+        std::cout << scene->GetUUID().GetUUID() << std::endl;
+
         SceneSerialiser sceneSerialiser(scene);
 
-        std::ofstream sceneOut("Scene.hs", std::ios::binary);
-        sceneSerialiser.Serialise(sceneOut);
+        std::filesystem::path scenePath = config.ProjectDirectory / scene->GetPath();
 
-        s_ActiveProject->GetConfig().StartScenePath = config.ProjectDirectory / "Scene.hs";
+        std::ofstream sceneOut(scenePath, std::ios::binary);
+        sceneSerialiser.Serialise(sceneOut);
+        sceneOut.close();
+
+        config.StartScenePath = scenePath;
+
+        Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
+
+        s_ActiveProject = std::make_shared<Project>(config);
+
+        SaveCurrentProject();
 
         Application::GetApplicationInstance().AddScene(scene);
         Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
 
-        SaveCurrentProject();
+        ProjectOpenedEvent e;
+
+        Application::GetApplicationInstance().GetEventDispatcher()->Post<ProjectOpenedEvent>(e);
 
         return true;
     }
@@ -86,6 +102,8 @@ namespace Hamster {
         ProjectOpenedEvent e;
 
         Application::GetApplicationInstance().GetEventDispatcher()->Post<ProjectOpenedEvent>(e);
+
+        std::filesystem::current_path(config.ProjectDirectory);
 
         return true;
     }

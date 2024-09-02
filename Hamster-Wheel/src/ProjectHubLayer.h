@@ -22,6 +22,7 @@ public:
 
 private:
     std::unique_ptr<ProjectSelector> m_ProjectSelector = std::make_unique<ProjectSelector>();
+    std::unique_ptr<ProjectCreator> m_ProjectCreator = std::make_unique<ProjectCreator>();
     EditorLayer *m_EditorLayer = nullptr;
 };
 

@@ -10,6 +10,8 @@
 #include "Core/Scene.h"
 
 namespace Hamster {
+    class Scene;
+
     class ActiveSceneChangedEvent : public Event {
     public:
         explicit ActiveSceneChangedEvent(std::shared_ptr<Scene> scene) : m_ActiveScene(std::move(scene)) {
@@ -26,6 +28,19 @@ namespace Hamster {
     class ProjectOpenedEvent : public Event {
     public:
         BIND_EVENT_TYPE(ProjectOpened);
+    };
+
+    class SceneCreatedEvent : public Event {
+    public:
+        SceneCreatedEvent(std::shared_ptr<Scene> scene) : m_Scene(scene) {
+        };
+
+        std::shared_ptr<Scene> GetScene() { return m_Scene; }
+
+        BIND_EVENT_TYPE(SceneCreated);
+
+    private:
+        std::shared_ptr<Scene> m_Scene;
     };
 }
 

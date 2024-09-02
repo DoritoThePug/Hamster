@@ -21,7 +21,16 @@ namespace Hamster {
                 FORWARD_CALLBACK_FUNCTION(Panel::OnActiveSceneChanged, ActiveSceneChangedEvent));
         };
 
+        Panel(bool defaultOpen) : m_WindowOpen(defaultOpen) {
+            Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+                ActiveSceneChanged,
+                FORWARD_CALLBACK_FUNCTION(Panel::OnActiveSceneChanged, ActiveSceneChangedEvent));
+        };
+
         Panel() {
+            Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+                ActiveSceneChanged,
+                FORWARD_CALLBACK_FUNCTION(Panel::OnActiveSceneChanged, ActiveSceneChangedEvent));
         };
 
         virtual void Render() = 0;

@@ -24,8 +24,6 @@ namespace Hamster {
 
         uint32_t entityCount = m_Scene->GetEntityCount();
 
-        std::cout << "Entity count: " << sizeof(entityCount) << std::endl;
-
         out.write(reinterpret_cast<const char *>(&entityCount), sizeof(entityCount));
 
         for (auto const &[uuid, entity]: m_Scene->GetEntityMap()) {

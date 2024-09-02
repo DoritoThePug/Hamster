@@ -18,7 +18,7 @@ namespace Hamster {
 		KeyPressed, KeyReleased, MouseButtonClicked,
 
 		// Application Events
-		ActiveSceneChanged, ProjectOpened
+		ActiveSceneChanged, ProjectOpened, SceneCreated
 	};
 
 	class Event {
