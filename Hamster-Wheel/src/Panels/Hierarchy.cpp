@@ -13,6 +13,11 @@ entt::entity Hierarchy::GetSelectedEntity() const {
 
 void Hierarchy::SetSelectedEntity(const entt::entity entity) {
     m_SelectedEntity = entity;
+
+    if (entity != entt::null) {
+        Hamster::Renderer::DrawGuizmo(m_Scene->GetRegistry().get<Hamster::Transform>(m_SelectedEntity),
+                                      Hamster::Translate, false);
+    }
 }
 
 void Hierarchy::Render() {
@@ -37,11 +42,16 @@ void Hierarchy::Render() {
 
         if (ImGui::IsItemClicked()) {
             SetSelectedEntity(entity);
-            std::cout << name.name << std::endl;
         }
 
         ImGui::PopID();
     });
+
+    ImGui::Separator();
+
+    if (ImGui::Button("Add")) {
+        Hamster::UUID entityUUID = m_Scene->CreateEntity();
+    }
 
     ImGui::End();
 }

@@ -15,7 +15,7 @@ public:
     Hierarchy(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(scene, true) {
     };
 
-    void SetSelectedEntity(const entt::entity entity);
+    void SetSelectedEntity(entt::entity entity);
 
     entt::entity GetSelectedEntity() const;
 

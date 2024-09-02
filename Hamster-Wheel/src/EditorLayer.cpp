@@ -58,7 +58,7 @@ void EditorLayer::OnUpdate() {
         m_FramebufferTexture.Unbind();
         glDisable(GL_SCISSOR_TEST);
 
-        Hamster::Renderer::Clear();
+        // Hamster::Renderer::Clear();
 
         int pickedID =
                 Hamster::Application::ColourToId(glm::vec3(data[0], data[1], data[2]));
@@ -72,7 +72,7 @@ void EditorLayer::OnUpdate() {
             m_Hierarchy->SetSelectedEntity(pickedEntity);
         } else if (pickedID == -1) {
             m_Hierarchy->SetSelectedEntity(entt::null);
-            m_PropertyEditor->SetSelectedProperty(nullptr);
+            m_PropertyEditor->SetSelectedEntity(boost::uuids::nil_uuid());
         } else if (pickedID == XGuizmoID) {
             xGuizmoHeld = true;
             mouseHeldOffsetX = mousePosX - m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity).position.x;
@@ -118,6 +118,7 @@ void EditorLayer::OnUpdate() {
         Hamster::Renderer::DrawGuizmo(m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity),
                                       Hamster::Translate, false);
     }
+
 
     m_FramebufferTexture.Unbind();
     glDisable(GL_SCISSOR_TEST);
@@ -169,7 +170,7 @@ void EditorLayer::OnImGuiUpdate() {
         entt::registry &registry = m_Scene->GetRegistry();
 
         if (registry.valid(e)) {
-            m_PropertyEditor->SetSelectedProperty(&registry.get<Hamster::Transform>(e));
+            m_PropertyEditor->SetSelectedEntity(m_Scene->GetEntityUUID(e));
         }
 
         m_PropertyEditor->Render();

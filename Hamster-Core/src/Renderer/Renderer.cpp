@@ -145,16 +145,18 @@ namespace Hamster {
     glDisable(GL_DEPTH_TEST);
 
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(targetTransform.position.x+0.5*targetTransform.size.x-5.0f, targetTransform.position.y+0.5*targetTransform.size.y-110.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(targetTransform.position.x + 0.5 * targetTransform.size.x - 5.0f,
+                                            targetTransform.position.y + 0.5 * targetTransform.size.y - 110.0f, 0.0f));
     model = glm::scale(model, glm::vec3(10.0f, 100.0f, 1.0f));
+    // model = glm::scale(model, glm::vec3(1000.0f));
+
 
     m_FlatShader->setUniformMat4("model", model);
 
     if (selectionColour) {
       m_FlatShader->setUniformVec3("colour", Application::IdToColour(YGuizmoID));
-
     } else {
-      m_FlatShader->setUniformVec3("colour", glm::vec3(230.0f/255.0f, 57.0f/255.0f, 70.0f/255.0f));
+      m_FlatShader->setUniformVec3("colour", glm::vec3(230.0f / 255.0f, 57.0f / 255.0f, 70.0f / 255.0f));
     }
 
     glBindVertexArray(m_VAO);
@@ -163,7 +165,8 @@ namespace Hamster {
     glBindVertexArray(0);
 
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(targetTransform.position.x+0.5*targetTransform.size.x+5.0f, targetTransform.position.y+0.5*targetTransform.size.y-10.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(targetTransform.position.x + 0.5 * targetTransform.size.x + 5.0f,
+                                            targetTransform.position.y + 0.5 * targetTransform.size.y - 10.0f, 0.0f));
     model = glm::scale(model, glm::vec3(100.0f, 10.0f, 1.0f));
 
     m_FlatShader->setUniformMat4("model", model);
@@ -171,9 +174,8 @@ namespace Hamster {
 
     if (selectionColour) {
       m_FlatShader->setUniformVec3("colour", Application::IdToColour(XGuizmoID));
-
     } else {
-      m_FlatShader->setUniformVec3("colour", glm::vec3(81.0f/255.0f, 152.0f/255.0f, 114.0f/255.0f));
+      m_FlatShader->setUniformVec3("colour", glm::vec3(81.0f / 255.0f, 152.0f / 255.0f, 114.0f / 255.0f));
     }
 
     glBindVertexArray(m_VAO);
@@ -181,8 +183,6 @@ namespace Hamster {
 
     glBindVertexArray(0);
 
-
     // glEnable(GL_DEPTH_TEST);
   }
-
 } // namespace Hamster

@@ -30,6 +30,7 @@ namespace Hamster {
         void DestroyEntity(UUID entityUUID);
 
         entt::entity &GetEntity(UUID entityUUID) { return m_Entities[entityUUID]; }
+        UUID GetEntityUUID(entt::entity entity) { return m_Registry.get<ID>(entity).uuid; }
 
         entt::registry &GetRegistry() { return m_Registry; }
 
@@ -40,8 +41,8 @@ namespace Hamster {
         // void AddEntityComponent(UUID entityUUID, Args&&... args);
 
         template<typename T>
-        T GetEntityComponent(UUID uuid) {
-            return m_Registry.get<T>(uuid);
+        T &GetEntityComponent(UUID uuid) {
+            return m_Registry.get<T>(m_Entities[uuid]);
         }
 
         template<typename T, typename... Args>

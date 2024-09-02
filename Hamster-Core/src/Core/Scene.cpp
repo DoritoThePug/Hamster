@@ -20,6 +20,10 @@ namespace Hamster {
         m_Registry.emplace<ID>(entity, uuid);
         m_Entities[uuid] = entity;
 
+        AddEntityComponent<Transform>(uuid);
+        AddEntityComponent<Name>(uuid);
+
+
         return uuid;
     }
 

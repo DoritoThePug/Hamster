@@ -19,10 +19,10 @@ public:
 
     void Render() override;
 
-    void SetSelectedProperty(Hamster::Transform *transform) { m_Transform = transform; }
+    void SetSelectedEntity(Hamster::UUID uuid);
 
 private:
-    //temp
+    Hamster::UUID m_SelectedEntity = Hamster::UUID::GetNil();
     Hamster::Transform *m_Transform = nullptr;
 };
 

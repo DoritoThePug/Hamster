@@ -23,19 +23,19 @@ namespace Hamster {
     };
 
     struct Transform {
-        glm::vec2 position;
-        float rotation;
-        glm::vec2 size;
+        glm::vec2 position = glm::vec2(0.0f);
+        float rotation = 0.0f;
+        glm::vec2 size = glm::vec2(10.0f);
     };
 
     struct Sprite {
         std::string textureName;
         std::shared_ptr<Texture> texture;
-        glm::vec3 colour;
+        glm::vec3 colour = glm::vec3(1.0f);
     };
 
     struct Name {
-        std::string name;
+        std::string name = "Entity";
     };
 
     struct Rigidbody {
@@ -45,7 +45,6 @@ namespace Hamster {
     struct ID {
         UUID uuid;
     };
-
 } // Hamster
 
 #endif //COMPONENTS_H
