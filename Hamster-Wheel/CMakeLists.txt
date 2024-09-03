@@ -24,6 +24,10 @@ set(PANELS
         src/Panels/ProjectSelector.cpp
         src/Panels/ProjectSelector.h
         src/ProjectHubLayer.cpp
+        src/Panels/FileBrowser.cpp
+        src/Panels/FileBrowser.h
+        src/Panels/AssetBrowser.cpp
+        src/Panels/AssetBrowser.h
 
 )
 

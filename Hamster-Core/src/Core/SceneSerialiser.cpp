@@ -24,6 +24,8 @@ namespace Hamster {
 
         uint32_t entityCount = m_Scene->GetEntityCount();
 
+        std::cout << "Entity count: " << entityCount << std::endl;
+
         out.write(reinterpret_cast<const char *>(&entityCount), sizeof(entityCount));
 
         for (auto const &[uuid, entity]: m_Scene->GetEntityMap()) {
@@ -34,6 +36,8 @@ namespace Hamster {
     void SceneSerialiser::Deserialise(std::istream &in) {
         boost::uuids::uuid boostUUID;
         in.read(reinterpret_cast<char *>(&boostUUID), boostUUID.size());
+
+        std::cout << "Boost UUID: " << boostUUID << std::endl;
 
         UUID uuid(boostUUID);
 
@@ -79,12 +83,11 @@ namespace Hamster {
         return v;
     }
 
+
     void SceneSerialiser::SerialiseEntity(std::ostream &out, entt::entity const &entity, UUID const &entity_uuid) {
         std::cout << "Serialising entity with UUID: " << entity_uuid.GetUUID() << std::endl;
 
-        boost::uuids::uuid uuidValue = entity_uuid.GetUUID();
-
-        out.write(reinterpret_cast<const char *>(&uuidValue), uuidValue.size());
+        UUID::Serialise(out, entity_uuid);
 
         if (m_Scene->GetRegistry().all_of<Transform>(entity)) {
             int id = static_cast<int>(Transform_ID);
@@ -109,13 +112,7 @@ namespace Hamster {
 
             Sprite &sprite = m_Scene->GetRegistry().get<Sprite>(entity);
 
-            std::size_t spriteNameLength = sprite.textureName.size();
-            out.write(reinterpret_cast<const char *>(&spriteNameLength), sizeof(spriteNameLength));
-            out.write(sprite.textureName.data(), spriteNameLength);
-
-            std::size_t filePathLength = sprite.texture->GetTexturePath().size();
-            out.write(reinterpret_cast<const char *>(&filePathLength), sizeof(filePathLength));
-            out.write(reinterpret_cast<const char *>(sprite.texture->GetTexturePath().data()), filePathLength);
+            UUID::Serialise(out, entity_uuid);
 
             SerialiseVec3(out, sprite.colour);
         }
@@ -142,12 +139,9 @@ namespace Hamster {
     }
 
     UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
-        boost::uuids::uuid boostUUID;
-        in.read(reinterpret_cast<char *>(&boostUUID), boostUUID.size());
+        UUID uuid = UUID::Deserialise(in);
 
-        UUID uuid(boostUUID);
-
-        std::cout << "Deserialising entity with uuid: " << uuid.GetUUID() << std::endl;
+        std::cout << "Deserialising entity with uuid: " << uuid.GetUUIDString() << std::endl;
 
         m_Scene->CreateEntityWithUUID(uuid);
 
@@ -174,25 +168,12 @@ namespace Hamster {
                     break;
                 }
                 case Sprite_ID: {
-                    std::size_t textureNameLength;
-
-                    in.read(reinterpret_cast<char *>(&textureNameLength), sizeof(textureNameLength));
-
-                    std::string textureName(textureNameLength, '\0');
-                    in.read(textureName.data(), textureNameLength);
-
-                    std::size_t filePathLength;
-
-                    in.read(reinterpret_cast<char *>(&filePathLength), sizeof(filePathLength));
-
-                    std::string filePath(filePathLength, '\0');
-                    in.read(filePath.data(), filePathLength);
+                    UUID textureUUID = UUID::Deserialise(in);
 
                     glm::vec3 colour = DeserialiseVec3(in);
 
-                    AssetManager::AddTexture(textureName, filePath);
 
-                    m_Scene->AddEntityComponent<Sprite>(uuid, textureName, AssetManager::GetTexture(textureName),
+                    m_Scene->AddEntityComponent<Sprite>(uuid, AssetManager::GetTexture(textureUUID),
                                                         colour);
 
                     break;

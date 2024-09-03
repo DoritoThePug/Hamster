@@ -28,6 +28,8 @@ namespace Hamster {
 
         void SetStartScene(std::shared_ptr<Scene> scene);
 
+        static std::shared_ptr<Project> GetCurrentProject() { return s_ActiveProject; }
+
         [[nodiscard]] ProjectConfig &GetConfig();
 
     private:

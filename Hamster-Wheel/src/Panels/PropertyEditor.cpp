@@ -92,10 +92,10 @@ void PropertyEditor::Render() {
         ImGui::Selectable("Rigidbody");
 
         if (ImGui::Selectable("Sprite")) {
-            m_Scene->AddEntityComponent<Hamster::Sprite>(m_SelectedEntity, "mario",
-                                                         Hamster::AssetManager::GetTexture("mario"),
-                                                         glm::vec3(1.0f, 1.0f, 1.0f)
-            );
+            // m_Scene->AddEntityComponent<Hamster::Sprite>(m_SelectedEntity, "mario",
+            //                                              Hamster::AssetManager::GetTexture("mario"),
+            //                                              glm::vec3(1.0f, 1.0f, 1.0f)
+            // );
         }
 
         ImGui::EndPopup();

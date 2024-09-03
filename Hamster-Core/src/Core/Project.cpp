@@ -51,6 +51,8 @@ namespace Hamster {
 
         std::filesystem::path scenePath = config.ProjectDirectory / scene->GetPath();
 
+        std::cout << scenePath << std::endl;
+
         std::ofstream sceneOut(scenePath, std::ios::binary);
         sceneSerialiser.Serialise(sceneOut);
         sceneOut.close();

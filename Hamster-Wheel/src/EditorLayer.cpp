@@ -16,6 +16,8 @@
 EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene), m_FramebufferTexture(1920, 1080) {
     m_PropertyEditor = std::make_unique<PropertyEditor>(m_Scene);
     m_Hierarchy = std::make_unique<Hierarchy>(m_Scene);
+    m_FileBrowser = std::make_unique<FileBrowser>(m_Scene);
+    m_AssetBrowser = std::make_unique<AssetBrowser>(m_Scene);
     m_StartPauseModal = std::make_unique<StartPauseModal>(m_Scene);
     m_MenuBar = std::make_unique<MenuBar>(m_Scene);
 }
@@ -174,6 +176,14 @@ void EditorLayer::OnImGuiUpdate() {
         }
 
         m_PropertyEditor->Render();
+    }
+
+    if (m_FileBrowser->IsPanelOpen()) {
+        m_FileBrowser->Render();
+    }
+
+    if (m_AssetBrowser->IsPanelOpen()) {
+        m_AssetBrowser->Render();
     }
 
     m_StartPauseModal->Render();

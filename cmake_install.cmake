@@ -44,11 +44,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-App/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
   include("C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Py/cmake_install.cmake")
 endif()
 

@@ -73,9 +73,7 @@ namespace Hamster {
 
         UUID GetUUID() const { return m_UUID; }
 
-        void SetUUID(const UUID uuid) {
-            m_UUID = uuid;
-        }
+        void SetUUID(const UUID &uuid);
 
         uint32_t GetEntityCount() const { return static_cast<uint32_t>(m_Entities.size()); }
         const std::unordered_map<UUID, entt::entity> &GetEntityMap() { return m_Entities; }

@@ -8,7 +8,6 @@ project(Hamster VERSION 1.0
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_subdirectory(Hamster-Core)
-add_subdirectory(Hamster-App)
 add_subdirectory(Hamster-Py)
 add_subdirectory(Hamster-Wheel)
 

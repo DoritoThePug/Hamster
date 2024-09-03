@@ -15,15 +15,21 @@ namespace Hamster {
 
 		static std::shared_ptr<Shader> GetShader(std::string name);
 
-		static void AddTexture(std::string name, const std::string &texturePath);
+		static void AddTexture(UUID uuid, const std::string &texturePath, const std::string &textureName);
 
-		static std::shared_ptr<Texture> GetTexture(std::string name);
+		static void AddTexture(const std::string &texturePath);
+
+		static std::shared_ptr<Texture> GetTexture(UUID uuid);
+
+		static const std::unordered_map<UUID, std::shared_ptr<Texture> > &GetTextureMap() { return m_Textures; }
+
+		static uint32_t GetTextureCount() { return static_cast<uint32_t>(m_Textures.size()); }
 
 		static void Terminate();
 
 	private:
-		inline static std::map<std::string, std::shared_ptr<Shader> > m_Shaders;
-		inline static std::map<std::string, std::shared_ptr<Texture> > m_Textures;
+		inline static std::unordered_map<std::string, std::shared_ptr<Shader> > m_Shaders;
+		inline static std::unordered_map<UUID, std::shared_ptr<Texture> > m_Textures;
 	};
 }
 

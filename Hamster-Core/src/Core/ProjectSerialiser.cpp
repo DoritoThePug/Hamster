@@ -4,6 +4,8 @@
 
 #include "ProjectSerialiser.h"
 
+#include "Utils/AssetManager.h"
+
 namespace Hamster {
     void ProjectSerialiser::Serialise(std::ostream &out) {
         const ProjectConfig &projectConfig = m_Project->GetConfig();
@@ -23,6 +25,21 @@ namespace Hamster {
         std::size_t startScenePathLength = startScenePathStr.size();
         out.write(reinterpret_cast<const char *>(&startScenePathLength), sizeof(startScenePathLength));
         out.write(startScenePathStr.data(), startScenePathLength);
+
+        uint32_t textureCount = AssetManager::GetTextureCount();
+
+        out.write(reinterpret_cast<const char *>(&textureCount), sizeof(textureCount));
+
+        // serialise texture asset manager
+        for (const auto &[uuid, texture]: AssetManager::GetTextureMap()) {
+            UUID::Serialise(out, uuid);
+
+            std::string texturePathStr = texture->GetTexturePath();
+
+            std::size_t texturePathLength = texturePathStr.size();
+            out.write(reinterpret_cast<const char *>(&texturePathLength), sizeof(texturePathLength));
+            out.write(texturePathStr.data(), texturePathLength);
+        }
     }
 
     ProjectConfig ProjectSerialiser::Deserialise(std::istream &in) {
@@ -51,6 +68,27 @@ namespace Hamster {
         in.read(startScenePathStr.data(), startScenePathLength);
 
         projectConfig.StartScenePath = startScenePathStr;
+
+        uint32_t textureCount;
+        in.read(reinterpret_cast<char *>(&textureCount), sizeof(textureCount));
+
+        for (uint32_t i = 0; i < textureCount; i++) {
+            UUID uuid = UUID::Deserialise(in);
+
+            std::size_t texturePathLength;
+            in.read(reinterpret_cast<char *>(&texturePathLength), sizeof(texturePathLength));
+
+            std::string texturePathStr(texturePathLength, '\0');
+            in.read(texturePathStr.data(), texturePathLength);
+
+            std::size_t textureNameLength;
+            in.read(reinterpret_cast<char *>(&textureNameLength), sizeof(textureNameLength));
+
+            std::string textureNameStr(textureNameLength, '\0');
+            in.read(textureNameStr.data(), textureNameLength);
+
+            AssetManager::AddTexture(uuid, texturePathStr, textureNameStr);
+        }
 
         return projectConfig;
     }

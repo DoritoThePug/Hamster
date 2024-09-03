@@ -29,7 +29,6 @@ namespace Hamster {
     };
 
     struct Sprite {
-        std::string textureName;
         std::shared_ptr<Texture> texture;
         glm::vec3 colour = glm::vec3(1.0f);
     };

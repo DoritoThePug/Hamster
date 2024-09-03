@@ -111,6 +111,8 @@ namespace Hamster {
 
         SceneSerialiser serialiser(scene);
 
+        std::cout << scene->GetPath() << std::endl;
+
 
         std::ofstream out(scene->GetPath(), std::ios::binary);
 
@@ -121,5 +123,20 @@ namespace Hamster {
 
     void Scene::OnSceneCreated(SceneCreatedEvent &e) {
         SaveScene(e.GetScene());
+    }
+
+    void Scene::SetUUID(const UUID &uuid) {
+        m_UUID = uuid;
+
+        std::cout << m_UUID.GetUUID() << std::endl;
+
+        std::string sceneName = m_Name;
+
+        std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
+
+        m_Path =
+                std::filesystem::path("Scenes") / std::filesystem::path(sceneName
+                                                                        + "_" + m_UUID.
+                                                                        GetUUIDString() + ".scene");
     }
 } // Hamster
