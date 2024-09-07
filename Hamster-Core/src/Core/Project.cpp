@@ -34,10 +34,15 @@ namespace Hamster {
 
         Application::GetApplicationInstance().RemoveAllScenes();
 
+
+
         std::filesystem::create_directory(config.ProjectDirectory);
         std::filesystem::current_path(config.ProjectDirectory);
 
         std::filesystem::create_directory("Scenes");
+
+
+
 
 
         std::shared_ptr<Scene> scene = std::make_shared<Scene>();

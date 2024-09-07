@@ -50,7 +50,7 @@ void Hierarchy::Render() {
     ImGui::Separator();
 
     if (ImGui::Button("Add")) {
-        Hamster::UUID entityUUID = m_Scene->CreateEntity();
+        m_Scene->CreateEntity();
     }
 
     ImGui::End();

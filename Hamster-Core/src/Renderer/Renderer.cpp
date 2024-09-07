@@ -1,4 +1,4 @@
-#include "Renderer.h"
+  #include "Renderer.h"
 
 #include <iostream>
 
@@ -28,6 +28,8 @@ namespace Hamster {
 
   void Renderer::SetViewport(uint16_t width, uint16_t height) {
     glViewport(0, 0, width, height);
+
+    // std::cout << width << ", " << height << std::endl;
   }
 
   void Renderer::Clear() {
@@ -39,18 +41,16 @@ namespace Hamster {
   }
 
   void Renderer::InitRendererData() {
+    std::string hamsterCorePath = HAMSTER_CORE_SRC_DIR;
+
     m_SpriteShader = AssetManager::AddShader(
       "sprite",
-      "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/"
-      "Renderer/DefaultShaders/SpriteShader.vs",
-      "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/"
-      "Renderer/DefaultShaders/SpriteShader.fs");
+      hamsterCorePath + "/Renderer/DefaultShaders/SpriteShader.vs",
+      hamsterCorePath + "/Renderer/DefaultShaders/SpriteShader.fs");
 
     m_FlatShader = AssetManager::AddShader("flat",
-                                           "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/"
-                                           "Renderer/DefaultShaders/FlatShader.vs",
-                                           "C:/Users/Jaden/Documents/DevStuff/Hamster/Hamster-Core/src/"
-                                           "Renderer/DefaultShaders/FlatShader.fs"
+                                           hamsterCorePath + "/Renderer/DefaultShaders/FlatShader.vs",
+                                           hamsterCorePath + "/Renderer/DefaultShaders/FlatShader.fs"
     );
 
     // AssetManager::AddShader("sprite", shader);

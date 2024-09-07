@@ -5,8 +5,10 @@
 #include "ProjectCreator.h"
 
 #include <imgui.h>
-#include <GLFW/glfw3.h>
-#include <GLFW/glfw3native.h>
+
+#include "tinyfiledialogs.h"
+// #include <GLFW/glfw3.h>
+// #include <GLFW/glfw3native.h>
 
 void ProjectCreator::Render() {
     if (!ImGui::Begin("Project Creator", &m_WindowOpen)) {
@@ -28,9 +30,15 @@ void ProjectCreator::Render() {
     if (ImGui::Button("Select Directory")) {
         m_NoDirectorySelected = false;
 
-        HWND owner = glfwGetWin32Window(Hamster::Application::GetApplicationInstance().GetWindow());
+        // HWND owner = glfwGetWin32Window(Hamster::Application::GetApplicationInstance().GetWindow());
+        //
+        // m_ProjectConfig.ProjectDirectory = OpenWindowsFileDialog(owner);
 
-        m_ProjectConfig.ProjectDirectory = OpenWindowsFileDialog(owner);
+        const char* selectedDirectory = tinyfd_selectFolderDialog("Select directory for project", "");
+
+        if (selectedDirectory != NULL) {
+            m_ProjectConfig.ProjectDirectory = selectedDirectory;
+        }
     }
 
     if (m_NoDirectorySelected) {
@@ -44,6 +52,7 @@ void ProjectCreator::Render() {
         ImGui::Text("Folder with same name as project already exists at chosen directory!");
         ImGui::PopStyleColor();
     }
+
 
     if (ImGui::Button("Create Project")) {
         if (m_ProjectConfig.ProjectDirectory.empty()) {
@@ -69,25 +78,25 @@ void ProjectCreator::Render() {
 
     ImGui::End();
 }
-
-std::string ProjectCreator::OpenWindowsFileDialog(HWND owner) {
-    BROWSEINFO bi = {0};
-    bi.lpszTitle = "Select Directory";
-    bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_NEWDIALOGSTYLE;
-    bi.hwndOwner = owner;
-
-    LPITEMIDLIST pidl = SHBrowseForFolder(&bi);
-
-    if (pidl != 0) {
-        char path[MAX_PATH];
-        if (SHGetPathFromIDList(pidl, path)) {
-            // Free the PIDL allocated by SHBrowseForFolder
-            CoTaskMemFree(pidl);
-            return std::string(path);
-        }
-    }
-    return "";
-}
+//
+// std::string ProjectCreator::OpenWindowsFileDialog(HWND owner) {
+//     BROWSEINFO bi = {0};
+//     bi.lpszTitle = "Select Directory";
+//     bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_NEWDIALOGSTYLE;
+//     bi.hwndOwner = owner;
+//
+//     LPITEMIDLIST pidl = SHBrowseForFolder(&bi);
+//
+//     if (pidl != 0) {
+//         char path[MAX_PATH];
+//         if (SHGetPathFromIDList(pidl, path)) {
+//             // Free the PIDL allocated by SHBrowseForFolder
+//             CoTaskMemFree(pidl);
+//             return std::string(path);
+//         }
+//     }
+//     return "";
+// }
 
 
 void CreateProject() {

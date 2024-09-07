@@ -92,6 +92,8 @@ set(sources
         src/Core/Project.h
 )
 
+set(HAMSTER_CORE_SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+
 add_library(Hamster-Core STATIC ${sources} src/Hamster.h)
 
 # find_package(Python COMPONENTS Interpreter Development REQUIRED)
@@ -110,6 +112,8 @@ target_include_directories(Hamster-Core PUBLIC
         Vendor/box2d/include
         Vendor/boost_1_86_0
 )
+
+target_compile_definitions(Hamster-Core PRIVATE HAMSTER_CORE_SRC_DIR="${CMAKE_SOURCE_DIR}/Hamster-Core/src")
 
 
 target_link_libraries(Hamster-Core PUBLIC glfw imgui box2d)

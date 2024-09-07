@@ -8,8 +8,8 @@
 #include "Gui/Panel.h"
 
 #include <string>
-#include <windows.h>
-#include<shlobj.h>
+// #include <windows.h>
+// #include<shlobj.h>
 #include <memory>
 #include <utility>
 
@@ -29,7 +29,7 @@ public:
     void Render() override;
 
 private:
-    std::string OpenWindowsFileDialog(HWND owner);
+    // std::string OpenWindowsFileDialog(HWND owner);
 
     Hamster::ProjectConfig m_ProjectConfig;
     char m_ProjectNameInput[100] = "Untitled";

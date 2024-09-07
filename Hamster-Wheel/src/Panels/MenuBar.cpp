@@ -33,6 +33,10 @@ void MenuBar::Render() {
                 m_ProjectSelector->OpenPanel();
             }
 
+            if (ImGui::MenuItem("Save Dock")) {
+                ImGui::SaveIniSettingsToDisk("default.ini");
+            }
+
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();

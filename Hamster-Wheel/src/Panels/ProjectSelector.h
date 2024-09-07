@@ -9,8 +9,8 @@
 #include <Gui/Panel.h>
 #include <Core/Project.h>
 
-#include <windows.h>
-#include <shlobj.h>
+// #include <windows.h>
+// #include <shlobj.h>
 
 
 class ProjectSelector : public Hamster::Panel {
@@ -24,11 +24,12 @@ public:
     void Render() override;
 
 private:
-    std::string OpenWindowsFileDialog(HWND owner);
+    // std::string OpenWindowsFileDialog(HWND owner);
 
     std::filesystem::path m_ProjectFilePath;
 
     bool m_NoPathSelected = false;
+    bool m_WrongFileExtension = false;
 };
 
 

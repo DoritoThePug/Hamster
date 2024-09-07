@@ -7,89 +7,106 @@
 #include "Utils/AssetManager.h"
 
 namespace Hamster {
-    void ProjectSerialiser::Serialise(std::ostream &out) {
-        const ProjectConfig &projectConfig = m_Project->GetConfig();
+void ProjectSerialiser::Serialise(std::ostream &out) {
+  const ProjectConfig &projectConfig = m_Project->GetConfig();
 
-        std::size_t nameLength = projectConfig.Name.size();
-        out.write(reinterpret_cast<const char *>(&nameLength), sizeof(nameLength));
-        out.write(projectConfig.Name.data(), nameLength);
+  std::size_t nameLength = projectConfig.Name.size();
+  out.write(reinterpret_cast<const char *>(&nameLength), sizeof(nameLength));
+  out.write(projectConfig.Name.data(), nameLength);
 
-        std::string projectPathStr = projectConfig.ProjectDirectory.string();
+  std::string projectPathStr = projectConfig.ProjectDirectory.string();
 
-        std::size_t projectPathLength = projectPathStr.size();
-        out.write(reinterpret_cast<const char *>(&projectPathLength), sizeof(projectPathLength));
-        out.write(projectPathStr.data(), projectPathLength);
+  std::size_t projectPathLength = projectPathStr.size();
+  out.write(reinterpret_cast<const char *>(&projectPathLength),
+            sizeof(projectPathLength));
+  out.write(projectPathStr.data(), projectPathLength);
 
-        std::string startScenePathStr = projectConfig.StartScenePath.string();
+  std::string startScenePathStr = projectConfig.StartScenePath.string();
 
-        std::size_t startScenePathLength = startScenePathStr.size();
-        out.write(reinterpret_cast<const char *>(&startScenePathLength), sizeof(startScenePathLength));
-        out.write(startScenePathStr.data(), startScenePathLength);
+  std::size_t startScenePathLength = startScenePathStr.size();
+  out.write(reinterpret_cast<const char *>(&startScenePathLength),
+            sizeof(startScenePathLength));
+  out.write(startScenePathStr.data(), startScenePathLength);
 
-        uint32_t textureCount = AssetManager::GetTextureCount();
+  uint32_t textureCount = AssetManager::GetTextureCount();
 
-        out.write(reinterpret_cast<const char *>(&textureCount), sizeof(textureCount));
+  out.write(reinterpret_cast<const char *>(&textureCount),
+            sizeof(textureCount));
 
-        // serialise texture asset manager
-        for (const auto &[uuid, texture]: AssetManager::GetTextureMap()) {
-            UUID::Serialise(out, uuid);
+  // serialise texture asset manager
+  for (auto const &[uuid, texture] : AssetManager::GetTextureMap()) {
+    std::cout << "Serialising texture with uuid: " << uuid.GetUUID()
+              << std::endl;
 
-            std::string texturePathStr = texture->GetTexturePath();
+    UUID::Serialise(out, uuid);
 
-            std::size_t texturePathLength = texturePathStr.size();
-            out.write(reinterpret_cast<const char *>(&texturePathLength), sizeof(texturePathLength));
-            out.write(texturePathStr.data(), texturePathLength);
-        }
-    }
+    std::string texturePathStr = texture->GetTexturePath();
 
-    ProjectConfig ProjectSerialiser::Deserialise(std::istream &in) {
-        ProjectConfig projectConfig;
+    std::size_t texturePathLength = texturePathStr.size();
+    out.write(reinterpret_cast<const char *>(&texturePathLength),
+              sizeof(texturePathLength));
+    out.write(texturePathStr.data(), texturePathLength);
 
-        std::size_t nameLength;
-        in.read(reinterpret_cast<char *>(&nameLength), sizeof(nameLength));
+    std::string textureNameStr = texture->GetName();
+    std::size_t textureNameLength = textureNameStr.size();
+    out.write(reinterpret_cast<const char *>(&textureNameLength),
+              sizeof(textureNameLength));
+    out.write(textureNameStr.data(), textureNameLength);
+  }
+}
 
-        std::string nameStr(nameLength, '\0');
-        in.read(nameStr.data(), nameLength);
+ProjectConfig ProjectSerialiser::Deserialise(std::istream &in) {
+  ProjectConfig projectConfig;
 
-        projectConfig.Name = nameStr;
+  std::size_t nameLength;
+  in.read(reinterpret_cast<char *>(&nameLength), sizeof(nameLength));
 
-        std::size_t projectPathLength;
-        in.read(reinterpret_cast<char *>(&projectPathLength), sizeof(projectPathLength));
+  std::string nameStr(nameLength, '\0');
+  in.read(nameStr.data(), nameLength);
 
-        std::string projectPathStr(projectPathLength, '\0');
-        in.read(projectPathStr.data(), projectPathLength);
+  projectConfig.Name = nameStr;
 
-        projectConfig.ProjectDirectory = projectPathStr;
+  std::size_t projectPathLength;
+  in.read(reinterpret_cast<char *>(&projectPathLength),
+          sizeof(projectPathLength));
 
-        std::size_t startScenePathLength;
-        in.read(reinterpret_cast<char *>(&startScenePathLength), sizeof(startScenePathLength));
+  std::string projectPathStr(projectPathLength, '\0');
+  in.read(projectPathStr.data(), projectPathLength);
 
-        std::string startScenePathStr(startScenePathLength, '\0');
-        in.read(startScenePathStr.data(), startScenePathLength);
+  projectConfig.ProjectDirectory = projectPathStr;
 
-        projectConfig.StartScenePath = startScenePathStr;
+  std::size_t startScenePathLength;
+  in.read(reinterpret_cast<char *>(&startScenePathLength),
+          sizeof(startScenePathLength));
 
-        uint32_t textureCount;
-        in.read(reinterpret_cast<char *>(&textureCount), sizeof(textureCount));
+  std::string startScenePathStr(startScenePathLength, '\0');
+  in.read(startScenePathStr.data(), startScenePathLength);
 
-        for (uint32_t i = 0; i < textureCount; i++) {
-            UUID uuid = UUID::Deserialise(in);
+  projectConfig.StartScenePath = startScenePathStr;
 
-            std::size_t texturePathLength;
-            in.read(reinterpret_cast<char *>(&texturePathLength), sizeof(texturePathLength));
+  uint32_t textureCount;
+  in.read(reinterpret_cast<char *>(&textureCount), sizeof(textureCount));
 
-            std::string texturePathStr(texturePathLength, '\0');
-            in.read(texturePathStr.data(), texturePathLength);
+  for (uint32_t i = 0; i < textureCount; i++) {
+    UUID uuid = UUID::Deserialise(in);
 
-            std::size_t textureNameLength;
-            in.read(reinterpret_cast<char *>(&textureNameLength), sizeof(textureNameLength));
+    std::size_t texturePathLength;
+    in.read(reinterpret_cast<char *>(&texturePathLength),
+            sizeof(texturePathLength));
 
-            std::string textureNameStr(textureNameLength, '\0');
-            in.read(textureNameStr.data(), textureNameLength);
+    std::string texturePathStr(texturePathLength, '\0');
+    in.read(texturePathStr.data(), texturePathLength);
 
-            AssetManager::AddTexture(uuid, texturePathStr, textureNameStr);
-        }
+    std::size_t textureNameLength;
+    in.read(reinterpret_cast<char *>(&textureNameLength),
+            sizeof(textureNameLength));
 
-        return projectConfig;
-    }
-} // Hamster
+    std::string textureNameStr(textureNameLength, '\0');
+    in.read(textureNameStr.data(), textureNameLength);
+
+    AssetManager::AddTexture(uuid, texturePathStr, textureNameStr);
+  }
+
+  return projectConfig;
+}
+} // namespace Hamster

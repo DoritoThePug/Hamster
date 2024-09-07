@@ -7,8 +7,8 @@
 #include "Gui/Panel.h"
 
 
-#include <GLFW/glfw3.h>
-#include <GLFW/glfw3native.h>
+// #include <GLFW/glfw3.h>
+// #include <GLFW/glfw3native.h>
 
 class AssetBrowser : public Hamster::Panel {
 public:
@@ -17,7 +17,7 @@ public:
 
     void Render() override;
 
-    std::string OpenWindowsFileDialog(HWND owner);
+    // std::string OpenWindowsFileDialog(HWND owner);
 };
 
 
