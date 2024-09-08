@@ -167,12 +167,17 @@ namespace Hamster {
   }
 
   void Application::ResizeWindow(WindowResizeEvent &e) {
-    Renderer::SetViewport(e.GetWidth(), e.GetHeight());
+    // Renderer::SetViewport(e.GetWidth(), e.GetHeight());
+
+    // m_Projection =
 
     // std::cout << "Window resized" << std::endl;
   }
 
   void Application::ResizeFramebuffer(FramebufferResizeEvent &e) {
+    m_ViewportHeight = e.GetHeight();
+    m_ViewportWidth = e.GetWidth();
+
     Renderer::SetViewport(e.GetWidth(), e.GetHeight());
 
     std::cout << e.GetHeight() << ", " << e.GetWidth() << std::endl;

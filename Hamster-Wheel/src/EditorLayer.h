@@ -54,6 +54,8 @@ private:
     std::unique_ptr<StartPauseModal> m_StartPauseModal;
     std::unique_ptr<MenuBar> m_MenuBar;
 
+    void FramebufferSizeChanged(Hamster::FramebufferResizeEvent &e);
+
 
     int m_ViewportWidth = 1920;
     int m_ViewportHeight = 1080;

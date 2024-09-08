@@ -66,27 +66,26 @@ namespace Hamster {
 
   void Scene::OnUpdate() {
     if (!m_IsSimulationPaused) {
-      Physics::Simulate(m_WorldId);
+      auto scripts = m_Registry.view<Script>();
 
-      auto view = m_Registry.view<Transform, Rigidbody>();
+      // scripts.each(
+      // [](auto &script) { script.scriptModule.attr("OnUpdate")(333); });
 
-      view.each([this](auto &transform, auto &rb) {
-        b2Transform physicsTransform = b2Body_GetTransform(rb.id);
-        // std::cout << pos.x << ", " << pos.y << std::endl;
-
-        transform.position =
-            glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter,
-                      physicsTransform.p.y * Physics::s_PixelsPerMeter);
-
-        transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
-      });
+      // Physics::Simulate(m_WorldId);
+      //
+      // auto view = m_Registry.view<Transform, Rigidbody>();
+      //
+      // view.each([this](auto &transform, auto &rb) {
+      //   b2Transform physicsTransform = b2Body_GetTransform(rb.id);
+      //   // std::cout << pos.x << ", " << pos.y << std::endl;
+      //
+      //   transform.position =
+      //       glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter,
+      //                 physicsTransform.p.y * Physics::s_PixelsPerMeter);
+      //
+      //   transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
+      // });
     }
-
-    auto scripts = m_Registry.view<Script>();
-
-    scripts.each([](auto &script) {
-      script.scriptModule.attr("OnUpdate")();
-    });
   }
 
   void Scene::OnRender(bool renderFlat) {

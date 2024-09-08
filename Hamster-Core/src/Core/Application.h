@@ -42,7 +42,7 @@ namespace Hamster {
 
 		static void ResizeWindow(WindowResizeEvent &e);
 
-		static void ResizeFramebuffer(FramebufferResizeEvent &e);
+		void ResizeFramebuffer(FramebufferResizeEvent &e);
 
 		void PauseSimulation();
 
