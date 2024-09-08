@@ -5,6 +5,7 @@ project(Hamster-Wheel)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
 add_compile_definitions(GLFW_EXPOSE_NATIVE_WIN32)
 add_compile_definitions(GLFW_INCLUDE_NONE)
@@ -41,6 +42,15 @@ target_include_directories(Hamster-Wheel PRIVATE
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/imgui
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/box2d/include
         Vendor/tinyfiledialogs
+        Vendor/pybind11/include
+        #        ${CMAKE_SOURCE_DIR}/Hamster-Py/Vendor/pybind11/include
+        ${Python_INCLUDE_DIRS}
 )
 
-target_link_libraries(Hamster-Wheel PRIVATE Hamster-Core glfw imgui box2d tinyfiledialogs)
+#add_subdirectory(Vendor/pybind11)
+
+target_link_libraries(Hamster-Wheel PRIVATE Hamster-Core glfw imgui box2d tinyfiledialogs pybind11::embed)
+
+
+
+

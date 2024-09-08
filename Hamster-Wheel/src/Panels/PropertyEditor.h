@@ -24,7 +24,8 @@ public:
 private:
     Hamster::UUID m_SelectedEntity = Hamster::UUID::GetNil();
     Hamster::Transform *m_Transform = nullptr;
-    Hamster::Sprite* m_Sprite = nullptr;
+    Hamster::Sprite *m_Sprite = nullptr;
+    Hamster::Script *m_Script = nullptr;
 };
 
 

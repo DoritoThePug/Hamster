@@ -4,6 +4,8 @@ project(Hamster-Core)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+find_package(Python COMPONENTS Interpreter Development REQUIRED)
+
 add_compile_definitions(GLFW_EXPOSE_NATIVE_WIN32)
 add_compile_definitions(GLFW_INCLUDE_NONE)
 
@@ -29,6 +31,9 @@ set(Core
         src/Core/SceneSerialiser.cpp src/Core/SceneSerialiser.h
         src/Core/ProjectSerialiser.cpp
         src/Core/ProjectSerialiser.h
+
+        src/Core/Project.cpp
+        src/Core/Project.h
 )
 
 set(Events
@@ -79,6 +84,10 @@ set(Physics
         src/Physics/Physics.cpp src/Physics/Physics.h
 )
 
+set(Scripting
+        src/Scripting/Scripting.cpp src/Scripting/Scripting.h
+)
+
 set(sources
         ${Core}
         ${Events}
@@ -87,9 +96,9 @@ set(sources
         ${Stb_Image}
         ${Gui}
         ${Physics}
+        ${Scripting}
         Vendor/glad/src/glad.c
-        src/Core/Project.cpp
-        src/Core/Project.h
+
 )
 
 set(HAMSTER_CORE_SRC_DIR ${CMAKE_SOURCE_DIR}/src)
@@ -104,17 +113,17 @@ target_include_directories(Hamster-Core PUBLIC
         Vendor/glfw/include
         Vendor/glm
         Vendor/stb
-        Vendor/pybind11/include
+        #        Vendor/pybind11/include
         ${Python_INCLUDE_DIRS}
         Vendor/imgui
         Vendor/imgui/backends
         Vendor/entt/src
         Vendor/box2d/include
         Vendor/boost_1_86_0
+        ${CMAKE_SOURCE_DIR}/Hamster-Py/Vendor/pybind11/include
 )
 
 target_compile_definitions(Hamster-Core PRIVATE HAMSTER_CORE_SRC_DIR="${CMAKE_SOURCE_DIR}/Hamster-Core/src")
-
 
 target_link_libraries(Hamster-Core PUBLIC glfw imgui box2d)
 

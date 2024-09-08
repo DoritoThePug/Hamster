@@ -12,136 +12,141 @@
 #include "SceneSerialiser.h"
 
 namespace Hamster {
-Scene::Scene() {
-  Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+  Scene::Scene() {
+    Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
       SceneCreated,
       FORWARD_CALLBACK_FUNCTION(Scene::OnSceneCreated, SceneCreatedEvent));
 
-  std::string sceneName = m_Name;
-  std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
+    std::string sceneName = m_Name;
+    std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
 
-  m_Path = std::filesystem::path("Scenes") /
-           std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
-                                 ".scene");
-}
-
-UUID Scene::CreateEntity() {
-  auto entity = m_Registry.create();
-
-  UUID uuid;
-
-  std::cout << "Created " << uuid.GetUUID() << std::endl;
-
-  m_Registry.emplace<ID>(entity, uuid);
-  m_Entities[uuid] = entity;
-
-  AddEntityComponent<Transform>(uuid);
-  AddEntityComponent<Name>(uuid);
-
-  return uuid;
-}
-
-void Scene::CreateEntityWithUUID(UUID uuid) {
-  auto entity = m_Registry.create();
-
-  m_Registry.emplace<ID>(entity, uuid);
-  m_Entities[uuid] = entity;
-}
-
-void Scene::DestroyEntity(UUID entityUUID) {
-  m_Registry.destroy(m_Entities[entityUUID]);
-  m_Entities.erase(entityUUID);
-}
-
-// template<typename T>
-// T Scene::GetEntityComponent(UUID uuid) {
-//     return m_Registry.get<T>(uuid);
-// }
-//
-// template<typename T, typename... Args>
-// void Scene::AddEntityComponent(UUID entityUUID, Args &&... args) {
-//     m_Registry.emplace<T>(m_Entities[entityUUID],
-//     std::forward<Args>(args)...);
-// }
-
-void Scene::OnUpdate() {
-  if (!m_IsSimulationPaused) {
-    Physics::Simulate(m_WorldId);
-
-    auto view = m_Registry.view<Transform, Rigidbody>();
-
-    view.each([this](auto &transform, auto &rb) {
-      b2Transform physicsTransform = b2Body_GetTransform(rb.id);
-      // std::cout << pos.x << ", " << pos.y << std::endl;
-
-      transform.position =
-          glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter,
-                    physicsTransform.p.y * Physics::s_PixelsPerMeter);
-
-      transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
-    });
+    m_Path = std::filesystem::path("Scenes") /
+             std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
+                                   ".scene");
   }
-}
 
-void Scene::OnRender(bool renderFlat) {
-  auto view = m_Registry.view<Sprite, Transform>();
+  UUID Scene::CreateEntity() {
+    auto entity = m_Registry.create();
 
-  // glEnable(GL_BLEND);
-  // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  if (m_IsRunning) {
-    if (!renderFlat) {
-      view.each([](auto &sprite, auto &transform) {
-        if (sprite.texture != nullptr) {
+    UUID uuid;
 
-          Renderer::DrawSprite(*sprite.texture, transform.position,
-                               transform.size, transform.rotation,
-                               sprite.colour);
-        }
-      });
-    } else {
-      // render all sprites as a unique flat colour which can be used to
-      // identify to their id
+    std::cout << "Created " << uuid.GetUUID() << std::endl;
 
-      // std::cout << "hi" << std::endl;
+    m_Registry.emplace<ID>(entity, uuid);
+    m_Entities[uuid] = entity;
 
-      view.each([](auto entity, auto &sprite, auto &transform) {
-        if (sprite.texture != nullptr) {
-          Renderer::DrawFlat(
-              transform.position, transform.size, transform.rotation,
-              Application::IdToColour(entt::to_integral(entity)));
-        }
+    AddEntityComponent<Transform>(uuid);
+    AddEntityComponent<Name>(uuid);
+
+    return uuid;
+  }
+
+  void Scene::CreateEntityWithUUID(UUID uuid) {
+    auto entity = m_Registry.create();
+
+    m_Registry.emplace<ID>(entity, uuid);
+    m_Entities[uuid] = entity;
+  }
+
+  void Scene::DestroyEntity(UUID entityUUID) {
+    m_Registry.destroy(m_Entities[entityUUID]);
+    m_Entities.erase(entityUUID);
+  }
+
+  // template<typename T>
+  // T Scene::GetEntityComponent(UUID uuid) {
+  //     return m_Registry.get<T>(uuid);
+  // }
+  //
+  // template<typename T, typename... Args>
+  // void Scene::AddEntityComponent(UUID entityUUID, Args &&... args) {
+  //     m_Registry.emplace<T>(m_Entities[entityUUID],
+  //     std::forward<Args>(args)...);
+  // }
+
+  void Scene::OnUpdate() {
+    if (!m_IsSimulationPaused) {
+      Physics::Simulate(m_WorldId);
+
+      auto view = m_Registry.view<Transform, Rigidbody>();
+
+      view.each([this](auto &transform, auto &rb) {
+        b2Transform physicsTransform = b2Body_GetTransform(rb.id);
+        // std::cout << pos.x << ", " << pos.y << std::endl;
+
+        transform.position =
+            glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter,
+                      physicsTransform.p.y * Physics::s_PixelsPerMeter);
+
+        transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
       });
     }
+
+    auto scripts = m_Registry.view<Script>();
+
+    scripts.each([](auto &script) {
+      script.scriptModule.attr("OnUpdate")();
+    });
   }
-}
 
-void Scene::SaveScene(std::shared_ptr<Scene> scene) {
-  std::cout << "Saving scene" << std::endl;
+  void Scene::OnRender(bool renderFlat) {
+    auto view = m_Registry.view<Sprite, Transform>();
 
-  SceneSerialiser serialiser(scene);
+    // glEnable(GL_BLEND);
+    // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    if (m_IsRunning) {
+      if (!renderFlat) {
+        view.each([](auto &sprite, auto &transform) {
+          if (sprite.texture != nullptr) {
+            Renderer::DrawSprite(*sprite.texture, transform.position,
+                                 transform.size, transform.rotation,
+                                 sprite.colour);
+          }
+        });
+      } else {
+        // render all sprites as a unique flat colour which can be used to
+        // identify to their id
 
-  std::cout << scene->GetPath() << std::endl;
+        // std::cout << "hi" << std::endl;
 
-  std::ofstream out(scene->GetPath(), std::ios::binary);
+        view.each([](auto entity, auto &sprite, auto &transform) {
+          if (sprite.texture != nullptr) {
+            Renderer::DrawFlat(
+              transform.position, transform.size, transform.rotation,
+              Application::IdToColour(entt::to_integral(entity)));
+          }
+        });
+      }
+    }
+  }
 
-  serialiser.Serialise(out);
+  void Scene::SaveScene(std::shared_ptr<Scene> scene) {
+    std::cout << "Saving scene" << std::endl;
 
-  out.close();
-}
+    SceneSerialiser serialiser(scene);
 
-void Scene::OnSceneCreated(SceneCreatedEvent &e) { SaveScene(e.GetScene()); }
+    std::cout << scene->GetPath() << std::endl;
 
-void Scene::SetUUID(const UUID &uuid) {
-  m_UUID = uuid;
+    std::ofstream out(scene->GetPath(), std::ios::binary);
 
-  std::cout << m_UUID.GetUUID() << std::endl;
+    serialiser.Serialise(out);
 
-  std::string sceneName = m_Name;
+    out.close();
+  }
 
-  std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
+  void Scene::OnSceneCreated(SceneCreatedEvent &e) { SaveScene(e.GetScene()); }
 
-  m_Path = std::filesystem::path("Scenes") /
-           std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
-                                 ".scene");
-}
+  void Scene::SetUUID(const UUID &uuid) {
+    m_UUID = uuid;
+
+    std::cout << m_UUID.GetUUID() << std::endl;
+
+    std::string sceneName = m_Name;
+
+    std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
+
+    m_Path = std::filesystem::path("Scenes") /
+             std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
+                                   ".scene");
+  }
 } // namespace Hamster

@@ -6,6 +6,10 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <imgui.h>
 
+#include <Scripting/Scripting.h>
+
+// #include "Scripting/Scripting.h"
+
 void PropertyEditor::Render() {
   if (!ImGui::Begin("Property Editor", &m_WindowOpen) ||
       Hamster::UUID::IsNil(m_SelectedEntity)) {
@@ -23,6 +27,10 @@ void PropertyEditor::Render() {
       m_Sprite =
           &m_Scene->GetEntityComponent<Hamster::Sprite>(m_SelectedEntity);
     }
+
+    if (m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
+      m_Script = &m_Scene->GetEntityComponent<Hamster::Script>(m_SelectedEntity);
+    }
   }
 
   if (m_Transform != nullptr) {
@@ -32,9 +40,9 @@ void PropertyEditor::Render() {
     ImGui::Text("Position");
     ImGui::SameLine();
 
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(230, 57, 70));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor(216, 77, 89));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(220, 40, 52));
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4) ImColor(230, 57, 70));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4) ImColor(216, 77, 89));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4) ImColor(220, 40, 52));
 
     ImGui::Button("X##P1", ImVec2(20, 20));
 
@@ -45,10 +53,10 @@ void PropertyEditor::Render() {
 
     ImGui::SameLine();
 
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(81, 152, 114));
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4) ImColor(81, 152, 114));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered,
-                          (ImVec4)ImColor(97, 193, 142));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(50, 145, 95));
+                          (ImVec4) ImColor(97, 193, 142));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4) ImColor(50, 145, 95));
 
     ImGui::Button("Y##P1", ImVec2(20, 20));
 
@@ -60,9 +68,9 @@ void PropertyEditor::Render() {
     ImGui::Text("Scale");
     ImGui::SameLine();
 
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(230, 57, 70));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor(216, 77, 89));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(220, 40, 52));
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4) ImColor(230, 57, 70));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4) ImColor(216, 77, 89));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4) ImColor(220, 40, 52));
 
     ImGui::Button("X##S1", ImVec2(20, 20));
 
@@ -73,10 +81,10 @@ void PropertyEditor::Render() {
 
     ImGui::SameLine();
 
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(81, 152, 114));
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4) ImColor(81, 152, 114));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered,
-                          (ImVec4)ImColor(97, 193, 142));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(50, 145, 95));
+                          (ImVec4) ImColor(97, 193, 142));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4) ImColor(50, 145, 95));
 
     ImGui::Button("Y##S1", ImVec2(20, 20));
 
@@ -107,7 +115,7 @@ void PropertyEditor::Render() {
     }
 
     if (ImGui::BeginPopup("Select Asset")) {
-      for (const auto &[uuid, texture] :
+      for (const auto &[uuid, texture]:
            Hamster::AssetManager::GetTextureMap()) {
         if (ImGui::Selectable(texture->GetName().c_str())) {
           m_Sprite->texture = texture;
@@ -118,6 +126,12 @@ void PropertyEditor::Render() {
     }
   }
 
+  if (m_Script != nullptr) {
+    ImGui::SeparatorText("Script");
+
+    ImGui::Text(m_Script->scriptPath.c_str());
+  }
+
   if (ImGui::Button("Add Component")) {
     ImGui::OpenPopup("Add Component");
   }
@@ -125,10 +139,18 @@ void PropertyEditor::Render() {
   if (ImGui::BeginPopup("Add Component")) {
     ImGui::SeparatorText("Components");
 
-    ImGui::Selectable("Rigidbody");
+    if (!m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) { ImGui::Selectable("Rigidbody"); }
 
-    if (ImGui::Selectable("Sprite")) {
-      m_Scene->AddEntityComponent<Hamster::Sprite>(m_SelectedEntity);
+    if (!m_Scene->EntityHasComponent<Hamster::Sprite>(m_SelectedEntity)) {
+      if (ImGui::Selectable("Sprite")) {
+        m_Scene->AddEntityComponent<Hamster::Sprite>(m_SelectedEntity);
+      }
+    }
+
+    if (!m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
+      if (ImGui::Selectable(("Script"))) {
+        Hamster::Scripting::AddScriptComponent(m_Scene->GetEntity(m_SelectedEntity), m_Scene->GetRegistry());
+      }
     }
 
     ImGui::EndPopup();

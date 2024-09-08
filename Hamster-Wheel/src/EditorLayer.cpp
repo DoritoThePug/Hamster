@@ -11,7 +11,6 @@
 #include <Renderer/Renderer.h>
 
 #include "Core/Application.h"
-#include "Core/Application.h"
 
 EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene) : m_Scene(scene), m_FramebufferTexture(1920, 1080) {
     m_PropertyEditor = std::make_unique<PropertyEditor>(m_Scene);
