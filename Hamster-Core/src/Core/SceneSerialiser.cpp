@@ -82,20 +82,79 @@ glm::vec3 DeserialiseVec3(std::istream &in) {
   return v;
 }
 
-void SceneSerialiser::SerialiseEntity(std::ostream &out,
-                                      entt::entity const &entity,
-                                      UUID const &entity_uuid) {
-  std::cout << "Serialising entity with UUID: " << entity_uuid.GetUUID()
-            << std::endl;
+// void SceneSerialiser::SerialiseEntity(std::ostream &out,
+//                                       entt::entity const &entity,
+//                                       UUID const &entity_uuid) {
+//   std::cout << "Serialising entity with UUID: " << entity_uuid.GetUUID()
+//             << std::endl;
+//
+//   UUID::Serialise(out, entity_uuid);
+//
+//   if (m_Scene->GetRegistry().all_of<Transform>(entity)) {
+//     int id = static_cast<int>(Transform_ID);
+//
+//     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
+//
+//     Transform &transform = m_Scene->GetRegistry().get<Transform>(entity);
+//
+//     SerialiseVec2(out, transform.position);
+//
+//     out.write(reinterpret_cast<const char *>(&transform.rotation),
+//               sizeof(transform.rotation));
+//
+//     SerialiseVec2(out, transform.size);
+//   }
+//
+//   if (m_Scene->GetRegistry().all_of<Sprite>(entity)) {
+//     int id = static_cast<int>(Sprite_ID);
+//
+//     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
+//
+//     Sprite &sprite = m_Scene->GetRegistry().get<Sprite>(entity);
+//
+//     if (sprite.texture != nullptr) {
+//       UUID::Serialise(out, sprite.texture->GetUUID());
+//     } else {
+//       UUID::Serialise(out, UUID::GetNil());
+//     }
+//
+//     SerialiseVec3(out, sprite.colour);
+//   }
+//
+//   if (m_Scene->GetRegistry().all_of<Name>(entity)) {
+//     int id = static_cast<int>(Name_ID);
+//     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
+//
+//     Name &name = m_Scene->GetRegistry().get<Name>(entity);
+//
+//     std::size_t nameLength = name.name.size();
+//     out.write(reinterpret_cast<const char *>(&nameLength),
+//     sizeof(nameLength)); out.write(reinterpret_cast<const char
+//     *>(name.name.data()), nameLength);
+//   }
+//
+// if (m_Scene->GetRegistry().all_of<Rigidbody>(entity)) {
+//     int id = static_cast<int>(Rigidbody_ID);
+//     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
+//   }
+//
+//   int endId = -1;
+//
+//   out.write(reinterpret_cast<const char *>(&endId), sizeof(endId));
+// }
 
-  UUID::Serialise(out, entity_uuid);
+void SceneSerialiser::SerialiseEntity(std::ostream &out, Entity const &entity) {
+  std::cout << "Serialising entity with UUID: "
+            << entity.GetUUID().GetUUIDString() << std::endl;
 
-  if (m_Scene->GetRegistry().all_of<Transform>(entity)) {
+  UUID::Serialise(out, Entity.GetUUID())'
+
+      if (entity.HasComponent<Transform>()) {
     int id = static_cast<int>(Transform_ID);
 
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Transform &transform = m_Scene->GetRegistry().get<Transform>(entity);
+    Transform &transform = entity.GetComponent<Transform>();
 
     SerialiseVec2(out, transform.position);
 
@@ -105,12 +164,12 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
     SerialiseVec2(out, transform.size);
   }
 
-  if (m_Scene->GetRegistry().all_of<Sprite>(entity)) {
+  if (entity.HasComponent<Sprite>()) {
     int id = static_cast<int>(Sprite_ID);
 
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Sprite &sprite = m_Scene->GetRegistry().get<Sprite>(entity);
+    Sprite &sprite = entity.HasComponent<Sprite>();
 
     if (sprite.texture != nullptr) {
       UUID::Serialise(out, sprite.texture->GetUUID());
@@ -121,18 +180,18 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
     SerialiseVec3(out, sprite.colour);
   }
 
-  if (m_Scene->GetRegistry().all_of<Name>(entity)) {
+  if (entity.HasComponent<Name>) {
     int id = static_cast<int>(Name_ID);
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Name &name = m_Scene->GetRegistry().get<Name>(entity);
+    Name &name = entity.GetComponent<Name>();
 
     std::size_t nameLength = name.name.size();
     out.write(reinterpret_cast<const char *>(&nameLength), sizeof(nameLength));
     out.write(reinterpret_cast<const char *>(name.name.data()), nameLength);
   }
 
-  if (m_Scene->GetRegistry().all_of<Rigidbody>(entity)) {
+  if (entity.HasComponent<Rigidbody>) {
     int id = static_cast<int>(Rigidbody_ID);
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
   }
@@ -142,13 +201,13 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
   out.write(reinterpret_cast<const char *>(&endId), sizeof(endId));
 }
 
-UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
-  UUID uuid = UUID::Deserialise(in);
+Entity SceneSerialiser::DeserialiseEntity(std::istream &in) {
+  entity.SetScene(m_Scene);
 
   std::cout << "Deserialising entity with uuid: " << uuid.GetUUIDString()
             << std::endl;
 
-  m_Scene->CreateEntityWithUUID(uuid);
+  // m_Scene->CreateEntityWithUUID(uuid);
 
   int componentId;
 

@@ -35,14 +35,10 @@ namespace Hamster {
         Application::GetApplicationInstance().RemoveAllScenes();
 
 
-
         std::filesystem::create_directory(config.ProjectDirectory);
         std::filesystem::current_path(config.ProjectDirectory);
 
         std::filesystem::create_directory("Scenes");
-
-
-
 
 
         std::shared_ptr<Scene> scene = std::make_shared<Scene>();
@@ -117,15 +113,17 @@ namespace Hamster {
 
 
     void Project::SaveCurrentProject() {
-        ProjectSerialiser serialiser(s_ActiveProject);
+        if (s_ActiveProject != nullptr) {
+            ProjectSerialiser serialiser(s_ActiveProject);
 
-        std::cout << s_ActiveProject->GetConfig().Name << std::endl;
+            std::cout << s_ActiveProject->GetConfig().Name << std::endl;
 
-        std::ofstream out(s_ActiveProject->GetConfig().Name + ".hamproj", std::ios::binary);
+            std::ofstream out(s_ActiveProject->GetConfig().Name + ".hamproj", std::ios::binary);
 
-        serialiser.Serialise(out);
+            serialiser.Serialise(out);
 
-        out.close();
+            out.close();
+        }
     }
 
     void Project::SetStartScene(std::shared_ptr<Scene> scene) {

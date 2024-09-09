@@ -15,6 +15,7 @@
 #include <boost/uuid/uuid_io.hpp>
 
 #include "Components.h"
+#include "Entity.h"
 
 #include "Events/ApplicationEvents.h"
 #include "Events/WindowEvents.h"
@@ -22,91 +23,106 @@
 #include "UUID.h"
 
 namespace Hamster {
-class SceneCreatedEvent;
+  class SceneCreatedEvent;
 
-class Scene {
-public:
-  Scene();
+  class Scene {
+  public:
+    Scene();
 
-  UUID CreateEntity();
+    UUID CreateEntity();
 
-  void CreateEntityWithUUID(UUID uuid);
+    void CreateEntityWithUUID(UUID uuid);
 
-  void DestroyEntity(UUID entityUUID);
+    void DestroyEntity(UUID entityUUID);
 
-  entt::entity &GetEntity(UUID entityUUID) { return m_Entities[entityUUID]; }
-  UUID GetEntityUUID(entt::entity entity) {
-    return m_Registry.get<ID>(entity).uuid;
-  }
+    // entt::entity &GetEntity(UUID entityUUID) { return m_Entities[entityUUID]; }
 
-  entt::registry &GetRegistry() { return m_Registry; }
+    Entity &GetEntity(UUID entityUUID) { return m_Entities[entityUUID]; }
 
-  // template <typename T>
-  // T GetEntityComponent(UUID uuid);
-  //
-  // template <typename T, typename... Args>
-  // void AddEntityComponent(UUID entityUUID, Args&&... args);
+    // UUID GetEntityUUID(entt::entity entity) {
+    //   return m_Registry.get<ID>(entity).uuid;
+    // }
 
-  template <typename T> T &GetEntityComponent(UUID uuid) {
-    return m_Registry.get<T>(m_Entities[uuid]);
-  }
+    entt::registry &GetRegistry() { return m_Registry; }
 
-  template <typename T, typename... Args>
-  void AddEntityComponent(UUID entityUUID, Args &&...args) {
-    m_Registry.emplace<T>(m_Entities[entityUUID], std::forward<Args>(args)...);
-  }
+    // template <typename T>
+    // T GetEntityComponent(UUID uuid);
+    //
+    // template <typename T, typename... Args>
+    // void AddEntityComponent(UUID entityUUID, Args&&... args);
 
-  template <typename T> bool EntityHasComponent(UUID entityUUID) {
-    return m_Registry.all_of<T>(m_Entities[entityUUID]);
-  }
+    template<typename T>
+    T &GetEntityComponent(UUID uuid) {
+      return m_Registry.get<T>(m_Entities[uuid]);
+    }
 
-  void OnUpdate();
+    template<typename T, typename... Args>
+    void AddEntityComponent(UUID entityUUID, Args &&... args) {
+      m_Registry.emplace<T>(m_Entities[entityUUID], std::forward<Args>(args)...);
+    }
 
-  void OnRender(bool renderFlat);
+    template<typename T>
+    bool EntityHasComponent(UUID entityUUID) {
+      return m_Registry.all_of<T>(m_Entities[entityUUID]);
+    }
 
-  bool IsSceneRunning() const { return m_IsRunning; }
-  bool IsSceneSimulationPaused() const { return m_IsSimulationPaused; }
+    void OnUpdate();
 
-  void RunScene() { m_IsRunning = true; }
-  void RunSceneSimulation() { m_IsSimulationPaused = false; }
+    void OnRender(bool renderFlat);
 
-  void PauseScene() { m_IsRunning = false; }
-  void PauseSceneSimulation() { m_IsSimulationPaused = true; }
+    bool IsSceneRunning() const { return m_IsRunning; }
+    bool IsSceneSimulationPaused() const { return m_IsSimulationPaused; }
 
-  b2WorldId GetWorldId() { return m_WorldId; }
+    void RunScene() { m_IsRunning = true; }
+    void RunSceneSimulation() { m_IsSimulationPaused = false; }
 
-  UUID GetUUID() const { return m_UUID; }
+    void PauseScene() { m_IsRunning = false; }
+    void PauseSceneSimulation() { m_IsSimulationPaused = true; }
 
-  void SetUUID(const UUID &uuid);
+    b2WorldId GetWorldId() { return m_WorldId; }
 
-  uint32_t GetEntityCount() const {
-    return static_cast<uint32_t>(m_Entities.size());
-  }
-  const std::unordered_map<UUID, entt::entity> &GetEntityMap() {
-    return m_Entities;
-  }
+    UUID GetUUID() const { return m_UUID; }
 
-  static void SaveScene(std::shared_ptr<Scene> scene);
+    void SetUUID(const UUID &uuid);
 
-  std::string &GetName() { return m_Name; }
+    uint32_t GetEntityCount() const {
+      return static_cast<uint32_t>(m_Entities.size());
+    }
 
-  std::filesystem::path &GetPath() { return m_Path; }
+    uint32_t GetEntityMapCount() const {
+      return static_cast<uint32_t>(m_EntityMap.size());
+    }
 
-  void OnSceneCreated(SceneCreatedEvent &e);
+    // const std::unordered_map<UUID, entt::entity> &GetEntityMap() {
+    //   return m_Entities;
+    // }
 
-private:
-  bool m_IsRunning = false;
-  bool m_IsSimulationPaused = true;
+    const std::unordered_map<UUID, Entity> &GetEntityMap() {
+      return m_EntityMap;
+    }
 
-  entt::registry m_Registry;
-  std::unordered_map<UUID, entt::entity> m_Entities;
+    static void SaveScene(std::shared_ptr<Scene> scene);
 
-  b2WorldId m_WorldId = Physics::InitBox2dWorld();
+    std::string &GetName() { return m_Name; }
 
-  UUID m_UUID;
-  std::string m_Name = "Untitled Scene";
-  std::filesystem::path m_Path;
-};
+    std::filesystem::path &GetPath() { return m_Path; }
+
+    void OnSceneCreated(SceneCreatedEvent &e);
+
+  private:
+    bool m_IsRunning = false;
+    bool m_IsSimulationPaused = true;
+
+    entt::registry m_Registry;
+    std::unordered_map<UUID, entt::entity> m_Entities;
+    std::unordered_map<UUID, Entity> m_EntityMap;
+
+    b2WorldId m_WorldId = Physics::InitBox2dWorld();
+
+    UUID m_UUID;
+    std::string m_Name = "Untitled Scene";
+    std::filesystem::path m_Path;
+  };
 } // namespace Hamster
 
 #endif // SCENE_H
