@@ -23,6 +23,10 @@
 
 namespace Hamster {
 class SceneCreatedEvent;
+// class HamsterBehaviour;
+// class HamsterScript;
+// struct ID;
+// class UUID;
 
 class Scene {
 public:
@@ -35,6 +39,7 @@ public:
   void DestroyEntity(UUID entityUUID);
 
   entt::entity &GetEntity(UUID entityUUID) { return m_Entities[entityUUID]; }
+
   UUID GetEntityUUID(entt::entity entity) {
     return m_Registry.get<ID>(entity).uuid;
   }
@@ -68,10 +73,10 @@ public:
   bool IsSceneSimulationPaused() const { return m_IsSimulationPaused; }
 
   void RunScene() { m_IsRunning = true; }
-  void RunSceneSimulation() { m_IsSimulationPaused = false; }
+  void RunSceneSimulation();
 
   void PauseScene() { m_IsRunning = false; }
-  void PauseSceneSimulation() { m_IsSimulationPaused = true; }
+  void PauseSceneSimulation();
 
   b2WorldId GetWorldId() { return m_WorldId; }
 
@@ -82,6 +87,7 @@ public:
   uint32_t GetEntityCount() const {
     return static_cast<uint32_t>(m_Entities.size());
   }
+
   const std::unordered_map<UUID, entt::entity> &GetEntityMap() {
     return m_Entities;
   }

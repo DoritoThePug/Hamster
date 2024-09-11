@@ -1,3 +1,0 @@
-import Hamster
-
-Hamster.Application()

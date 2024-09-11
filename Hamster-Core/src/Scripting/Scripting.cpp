@@ -12,53 +12,91 @@
 #include <pybind11/pybind11.h>
 
 #include "Core/Project.h"
+#include "Utils/AssetManager.h"
 
 namespace Hamster {
-    // std::filesystem::path Scripting::GenerateDefaultPythonScript(const
-    // std::filesystem::path &path, std::string &entityName, UUID &entityUUID) {
-    //     std::string fileName = entityName + entityUUID.GetUUIDString() + ".py";
-    //
-    //     std::ofstream out(path / fileName);
-    //
-    //     if (out.is_open()) {
-    //         out << "import Hamster\n\n";
-    //         out << "class" << entityName << ":\n";
-    //         out << "def OnUpdate():\n";
-    //         out << "pass\n";
-    //
-    //         out.close();
-    //     }
+  // std::filesystem::path Scripting::GenerateDefaultPythonScript(const
+  // std::filesystem::path &path, std::string &entityName, UUID &entityUUID) {
+  //     std::string fileName = entityName + entityUUID.GetUUIDString() + ".py";
+  //
+  //     std::ofstream out(path / fileName);
+  //
+  //     if (out.is_open()) {
+  //         out << "import Hamster\n\n";
+  //         out << "class" << entityName << ":\n";
+  //         out << "def OnUpdate():\n";
+  //         out << "pass\n";
+  //
+  //         out.close();
+  //     }
+  // }
+
+  void Scripting::Init() {
+    // pybind11::globals()["GetPosition"] = []() {
+    //   std::cout << num << std::endl;
     // }
 
-    void Scripting::Init() {
-        // pybind11::globals()["GetPosition"] = []() {
-        //   std::cout << num << std::endl;
-        // };
+    if (!guard) {
+      guard = std::make_unique<pybind11::scoped_interpreter>();
+    }
+  }
+
+  void Scripting::Terminate() { pybind11::finalize_interpreter(); }
+
+  void Scripting::AddScriptComponent(UUID &entityUUID,
+                                     std::shared_ptr<Scene> scene) {
+    Init();
+
+    // std::string fileName = registry.get<ID>(entity).uuid.GetUUIDString();
+    std::string fileName = entityUUID.GetUUIDString();
+
+    std::filesystem::path scriptPath =
+        Project::GetCurrentProject()->GetConfig().ProjectDirectory /
+        (fileName + ".py");
+
+    // Init();
+
+    std::ofstream scriptOut(scriptPath);
+
+    std::string defaultContent = "import Hamster \n\n"
+        "class test(Hamster.HamsterBehaviour):\n"
+        "    def OnUpdate(self):\n"
+        "        print(' hi ')\n"
+        "class hi(Hamster.HamsterBehaviour):\n"
+        "    def OnUpdate(self):\n"
+        "        pass\n";
+
+    scriptOut << defaultContent;
+
+    scriptOut.close();
+
+    UUID uuidt = AssetManager::AddScript(scriptPath, fileName);
+
+    if (!scene->EntityHasComponent<Behaviour>(entityUUID)) {
+      scene->AddEntityComponent<Behaviour>(entityUUID);
     }
 
-    void Scripting::AddScriptComponent(entt::entity &entity,
-                                       entt::registry &registry) {
-        std::string fileName = registry.get<ID>(entity).uuid.GetUUIDString();
+    scene->GetEntityComponent<Behaviour>(entityUUID).scripts.push_back(AssetManager::GetScript(uuidt));
 
-        std::filesystem::path scriptPath =
-                Project::GetCurrentProject()->GetConfig().ProjectDirectory /
-                (fileName + ".py");
+    // Terminate();
 
-        pybind11::module sys = pybind11::module::import("sys");
-        sys.attr("path").attr("append")(scriptPath.string());
+    // pybind11::module_ script = pybind11::module_::import(fileName.c_str());
 
-        std::ofstream scriptOut(scriptPath);
+    // ReadScript(fileName);
 
-        std::string defaultContent = "#import Hamster \n\n"
-                "def OnUpdate(Entity):\n"
-                "    GetPosition(Entity)\n";
+    // pybind11::module_ scriptModule =
+    // pybind11::module::import(fileName.c_str());
 
-        scriptOut << defaultContent;
+    // registry.emplace<Script>(entity, scriptModule, scriptPath);
+    //
 
-        scriptOut.close();
+    // scripts.push_back(scriptPath);
+    // behaviours.push_back(ReadScript(defaultContent));
+  }
 
-        pybind11::module_ scriptModule = pybind11::module::import(fileName.c_str());
+  void Scripting::ReadScript(std::string &fileName) {
+    // pybind11::scoped_interpreter guard{};
 
-        registry.emplace<Script>(entity, scriptModule, scriptPath);
-    }
+    // Terminate();
+  }
 } // namespace Hamster

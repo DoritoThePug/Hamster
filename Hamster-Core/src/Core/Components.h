@@ -8,20 +8,26 @@
 #include <memory>
 
 #include <box2d/box2d.h>
+#include <filesystem>
 #include <glm/glm.hpp>
 #include <pybind11/pybind11.h>
-#include <filesystem>
 
 #include "Renderer/Texture.h"
+#include "Scripting/HamsterScript.h"
 #include "UUID.h"
 
 namespace Hamster {
+  // class HamsterScript;
+  // class Scne;
+  // class Physics;
+
   enum ComponentID {
     Transform_ID = 1,
     Sprite_ID = 2,
     Name_ID = 3,
     Rigidbody_ID = 4,
-    ID_ID = 5
+    ID_ID = 5,
+    Behaviour_ID
   };
 
   struct Transform {
@@ -57,9 +63,9 @@ namespace Hamster {
     UUID uuid;
   };
 
-  struct Script {
-    pybind11::module_ scriptModule;
-    std::filesystem::path scriptPath;
+  struct Behaviour {
+    std::vector<std::shared_ptr<HamsterScript> > scripts;
+    std::vector<pybind11::object> pyObjects;
   };
 } // namespace Hamster
 

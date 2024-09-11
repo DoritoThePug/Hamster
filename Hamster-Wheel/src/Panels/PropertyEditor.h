@@ -4,29 +4,28 @@
 
 #ifndef PROPERTYEDITOR_H
 #define PROPERTYEDITOR_H
+#include <glm/glm.hpp>
 #include <iostream>
 #include <ostream>
-#include <glm/glm.hpp>
 
-#include <Hamster.h>
 #include <Gui/Panel.h>
-
+#include <Hamster.h>
 
 class PropertyEditor : public Hamster::Panel {
 public:
-    PropertyEditor(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(scene, true) {
-    };
+  PropertyEditor(std::shared_ptr<Hamster::Scene> scene)
+      : Hamster::Panel(scene, true) {};
 
-    void Render() override;
+  void Render() override;
 
-    void SetSelectedEntity(Hamster::UUID uuid);
+  void SetSelectedEntity(Hamster::UUID uuid);
 
 private:
-    Hamster::UUID m_SelectedEntity = Hamster::UUID::GetNil();
-    Hamster::Transform *m_Transform = nullptr;
-    Hamster::Sprite *m_Sprite = nullptr;
-    Hamster::Script *m_Script = nullptr;
+  Hamster::UUID m_SelectedEntity = Hamster::UUID::GetNil();
+  Hamster::Transform *m_Transform = nullptr;
+  Hamster::Sprite *m_Sprite = nullptr;
+  Hamster::Behaviour *m_Behaviour = nullptr;
+  // Hamster::Script *m_Script = nullptr;
 };
 
-
-#endif //PROPERTYEDITOR_H
+#endif // PROPERTYEDITOR_H

@@ -1,111 +1,105 @@
 #pragma once
 
-
 #include <memory>
-
 
 #include "Events/Event.h"
 #include "Events/WindowEvents.h"
-#include "Window.h"
 #include "LayerStack.h"
+#include "Window.h"
 
 #include <GLFW/glfw3.h>
 #include <entt/entt.hpp>
 #include <glm/glm.hpp>
 
-
-#include "Scene.h"
 #include "Gui/ImGuiLayer.h"
 #include "Renderer/Texture.h"
+#include "Scene.h"
 #include "UUID.h"
 
 namespace Hamster {
-	class GameObject;
+class GameObject;
 
-	//class EventDispatcher;
+// class EventDispatcher;
 
-	class Application {
-	public:
-		Application();
+class Application {
+public:
+  Application();
 
-		~Application();
+  ~Application();
 
-		void Run();
+  void Run();
 
-		void Close(WindowCloseEvent &e);
+  void Close(WindowCloseEvent &e);
 
-		glm::mat4 GetProjectionMatrix();
+  glm::mat4 GetProjectionMatrix();
 
-		std::shared_ptr<EventDispatcher> GetEventDispatcher() { return m_Dispatcher; }
+  std::shared_ptr<EventDispatcher> GetEventDispatcher() { return m_Dispatcher; }
 
-		static Application &GetApplicationInstance() { return *s_Instance; }
+  static Application &GetApplicationInstance() { return *s_Instance; }
 
-		static void ResizeWindow(WindowResizeEvent &e);
+  static void ResizeWindow(WindowResizeEvent &e);
 
-		void ResizeFramebuffer(FramebufferResizeEvent &e);
+  void ResizeFramebuffer(FramebufferResizeEvent &e);
 
-		void PauseSimulation();
+  void PauseSimulation();
 
-		void ResumeSimulation();
+  void ResumeSimulation();
 
-		bool IsSimulationPaused();
+  bool IsSimulationPaused();
 
-		GLFWwindow *GetWindow() { return m_Window->GetGLFWWindowPointer(); }
+  GLFWwindow *GetWindow() { return m_Window->GetGLFWWindowPointer(); }
 
+  void PushLayer(Layer *layer);
 
-		void PushLayer(Layer *layer);
+  void PopLayer(Layer *layer);
 
-		void PopLayer(Layer *layer);
+  [[nodiscard]] int GetViewportHeight() const { return m_ViewportHeight; }
+  [[nodiscard]] int GetViewportWidth() const { return m_ViewportWidth; }
 
+  void SetViewportHeight(const int height) { m_ViewportHeight = height; }
+  void SetViewportWidth(const int width) { m_ViewportWidth = width; }
 
-		[[nodiscard]] int GetViewportHeight() const { return m_ViewportHeight; }
-		[[nodiscard]] int GetViewportWidth() const { return m_ViewportWidth; }
+  static glm::vec3 IdToColour(int id);
 
-		void SetViewportHeight(const int height) { m_ViewportHeight = height; }
-		void SetViewportWidth(const int width) { m_ViewportWidth = width; }
+  static int ColourToId(glm::vec3 colour);
 
-		static glm::vec3 IdToColour(int id);
+  void AddScene(std::shared_ptr<Scene> scene);
 
-		static int ColourToId(glm::vec3 colour);
+  void RemoveScene(UUID uuid);
 
-		void AddScene(std::shared_ptr<Scene> scene);
+  void RemoveAllScenes();
 
-		void RemoveScene(UUID uuid);
+  void StopActiveScene();
 
-		void RemoveAllScenes();
+  void SetSceneActive(UUID uuid);
 
-		void StopActiveScene();
+  std::shared_ptr<Scene> GetScene(UUID uuid);
 
-		void SetSceneActive(UUID uuid);
+  std::shared_ptr<Scene> GetActiveScene();
 
-		std::shared_ptr<Scene> GetScene(UUID uuid);
+private:
+  static Application *s_Instance;
 
-		std::shared_ptr<Scene> GetActiveScene();
+  bool m_Running = true;
+  bool m_IsSimulationPaused = true;
 
-	private:
-		static Application *s_Instance;
+  int m_ViewportWidth = 1920;
+  int m_ViewportHeight = 1080;
 
-		bool m_Running = true;
-		bool m_IsSimulationPaused = true;
+  glm::mat4 m_Projection;
 
-		int m_ViewportWidth = 1920;
-		int m_ViewportHeight = 1080;
+  std::shared_ptr<EventDispatcher> m_Dispatcher;
+  LayerStack m_LayerStack;
 
-		glm::mat4 m_Projection;
+  ImGuiLayer m_ImGuiLayer;
 
-		std::shared_ptr<EventDispatcher> m_Dispatcher;
-		LayerStack m_LayerStack;
+  // ID, GameObject
+  // Window m_Window;
+  std::unique_ptr<Window> m_Window;
 
-		ImGuiLayer m_ImGuiLayer;
+  std::unordered_map<UUID, std::shared_ptr<Scene>> m_Scenes;
+  std::shared_ptr<Scene> m_ActiveScene = nullptr;
 
-
-		// ID, GameObject
-		//Window m_Window;
-		std::unique_ptr<Window> m_Window;
-
-		std::unordered_map<UUID, std::shared_ptr<Scene> > m_Scenes;
-		std::shared_ptr<Scene> m_ActiveScene = nullptr;
-
-		WindowProps m_WindowProps;
-	};
-}
+  WindowProps m_WindowProps;
+};
+} // namespace Hamster

@@ -7,7 +7,6 @@
 #include <imgui.h>
 
 #include <Scripting/Scripting.h>
-
 // #include "Scripting/Scripting.h"
 
 void PropertyEditor::Render() {
@@ -28,8 +27,14 @@ void PropertyEditor::Render() {
           &m_Scene->GetEntityComponent<Hamster::Sprite>(m_SelectedEntity);
     }
 
-    if (m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
-      m_Script = &m_Scene->GetEntityComponent<Hamster::Script>(m_SelectedEntity);
+    // if (m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
+    //   m_Script =
+    //   &m_Scene->GetEntityComponent<Hamster::Script>(m_SelectedEntity);
+    // }
+
+    if (m_Scene->EntityHasComponent<Hamster::Behaviour>(m_SelectedEntity)) {
+      m_Behaviour =
+          &m_Scene->GetEntityComponent<Hamster::Behaviour>(m_SelectedEntity);
     }
   }
 
@@ -126,11 +131,21 @@ void PropertyEditor::Render() {
     }
   }
 
-  if (m_Script != nullptr) {
-    ImGui::SeparatorText("Script");
+  if (m_Behaviour != nullptr) {
+    ImGui::SeparatorText("Scripts");
 
-    ImGui::Text(m_Script->scriptPath.c_str());
+    ImGui::PushItemWidth(80);
+
+    for (auto &script: m_Behaviour->scripts) {
+      ImGui::Text(script->GetScriptPath().string().c_str());
+    }
   }
+
+  // if (m_Script != nullptr) {
+  //   ImGui::SeparatorText("Script");
+  //
+  //   ImGui::Text(m_Script->scriptPath.c_str());
+  // }
 
   if (ImGui::Button("Add Component")) {
     ImGui::OpenPopup("Add Component");
@@ -139,7 +154,9 @@ void PropertyEditor::Render() {
   if (ImGui::BeginPopup("Add Component")) {
     ImGui::SeparatorText("Components");
 
-    if (!m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) { ImGui::Selectable("Rigidbody"); }
+    if (!m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) {
+      ImGui::Selectable("Rigidbody");
+    }
 
     if (!m_Scene->EntityHasComponent<Hamster::Sprite>(m_SelectedEntity)) {
       if (ImGui::Selectable("Sprite")) {
@@ -147,11 +164,11 @@ void PropertyEditor::Render() {
       }
     }
 
-    if (!m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
-      if (ImGui::Selectable(("Script"))) {
-        Hamster::Scripting::AddScriptComponent(m_Scene->GetEntity(m_SelectedEntity), m_Scene->GetRegistry());
-      }
+    // if (!m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
+    if (ImGui::Selectable(("Script"))) {
+      Hamster::Scripting::AddScriptComponent(m_SelectedEntity, m_Scene);
     }
+    // }
 
     ImGui::EndPopup();
   }

@@ -66,7 +66,7 @@ namespace Hamster {
 
   void Scene::OnUpdate() {
     if (!m_IsSimulationPaused) {
-      auto scripts = m_Registry.view<Script>();
+      // auto scripts = m_Registry.view<Script>();
 
       // scripts.each(
       // [](auto &script) { script.scriptModule.attr("OnUpdate")(333); });
@@ -85,6 +85,25 @@ namespace Hamster {
       //
       //   transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
       // });
+      //
+
+      //   auto behaviours = m_Registry.view<Behaviour>();
+      //
+      //   behaviours.each([](auto &behaviour) {
+      //     for (auto &script : behaviour.scripts) {
+      //       for (auto &objects : script.GetPyObjects()) {
+      //         objects.attr("OnUpdate")();
+      //       }
+      //     }
+      //   });
+      //
+      auto view = m_Registry.view<Behaviour>();
+
+      view.each([](auto &behaviour) {
+        for (auto &obj: behaviour.pyObjects) {
+          obj.attr("OnUpdate")();
+        }
+      });
     }
   }
 
@@ -147,5 +166,27 @@ namespace Hamster {
     m_Path = std::filesystem::path("Scenes") /
              std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
                                    ".scene");
+  }
+
+  void Scene::RunSceneSimulation() {
+    m_IsSimulationPaused = false;
+
+    auto view = m_Registry.view<ID, Behaviour>();
+
+    view.each([](auto &ID, auto &behaviour) {
+      for (auto &script: behaviour.scripts) {
+        for (auto &obj: script->GetPyObjects()) {
+          behaviour.pyObjects.push_back(obj(ID.uuid));
+        }
+      }
+    });
+  }
+
+  void Scene::PauseSceneSimulation() {
+    m_IsSimulationPaused = true;
+
+    auto view = m_Registry.view<Behaviour>();
+
+    view.each([](auto &behaviour) { behaviour.pyObjects.clear(); });
   }
 } // namespace Hamster

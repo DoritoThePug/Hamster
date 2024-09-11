@@ -4,41 +4,45 @@
 
 #ifndef PROJECT_H
 #define PROJECT_H
-#include <string>
 #include <filesystem>
+#include <string>
 
 #include "Scene.h"
 
 namespace Hamster {
-    struct ProjectConfig {
-        std::string Name;
-        std::filesystem::path ProjectDirectory;
-        std::filesystem::path StartScenePath;
-    };
+class Scene;
 
-    class Project {
-    public:
-        Project(const ProjectConfig &config);
+struct ProjectConfig {
+  std::string Name;
+  std::filesystem::path ProjectDirectory;
+  std::filesystem::path StartScenePath;
+};
 
-        static bool New(ProjectConfig &config);
+class Project {
+public:
+  Project(const ProjectConfig &config);
 
-        static bool Open(std::filesystem::path projectPath);
+  static bool New(ProjectConfig &config);
 
-        static void SaveCurrentProject();
+  static bool Open(std::filesystem::path projectPath);
 
-        void SetStartScene(std::shared_ptr<Scene> scene);
+  static void SaveCurrentProject();
 
-        static std::shared_ptr<Project> GetCurrentProject() { return s_ActiveProject; }
+  void SetStartScene(std::shared_ptr<Scene> scene);
 
-        [[nodiscard]] ProjectConfig &GetConfig();
+  static std::shared_ptr<Project> GetCurrentProject() {
+    return s_ActiveProject;
+  }
 
-    private:
-        ProjectConfig m_Config;
+  [[nodiscard]] ProjectConfig &GetConfig();
 
-        inline static std::shared_ptr<Project> s_ActiveProject = nullptr;
+private:
+  ProjectConfig m_Config;
 
-        std::shared_ptr<Scene> m_StartScene = nullptr;
-    };
-} // Hamster
+  inline static std::shared_ptr<Project> s_ActiveProject = nullptr;
 
-#endif //PROJECT_H
+  std::shared_ptr<Scene> m_StartScene = nullptr;
+};
+} // namespace Hamster
+
+#endif // PROJECT_H

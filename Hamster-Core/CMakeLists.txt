@@ -86,6 +86,8 @@ set(Physics
 
 set(Scripting
         src/Scripting/Scripting.cpp src/Scripting/Scripting.h
+        src/Scripting/HamsterBehaviour.cpp src/Scripting/HamsterBehaviour.h
+        src/Scripting/HamsterScript.cpp src/Scripting/HamsterScript.h
 )
 
 set(sources

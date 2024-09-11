@@ -9,7 +9,7 @@ CXX_COMPILER="/usr/bin/clang++"
 EXECUTABLE="$BUILD_DIR/Hamster-Wheel/Hamster-Wheel"  # Update this path if needed
 
 
-$CMAKE_EXEC --build $BUILD_DIR --target clean
+# $CMAKE_EXEC --build $BUILD_DIR --target clean
 
 # Create build directory if it doesn't exist
 mkdir -p $BUILD_DIR
@@ -27,6 +27,17 @@ $CMAKE_EXEC --build $BUILD_DIR --target Hamster-Wheel -j 6
 
 # Optional: Clean up old build files
 
+
+BUILD_STATUS=$?
+
+
+if [ $BUILD_STATUS -eq 0 ]; then
+    echo "Build successful"
+else
+    echo "Build failed with status $BUILD_STATUS"
+    exit $BUILD_STATUS
+fi
+#
  if [ -f "$EXECUTABLE" ]; then
        echo "Running the executable..."
            "$EXECUTABLE"
