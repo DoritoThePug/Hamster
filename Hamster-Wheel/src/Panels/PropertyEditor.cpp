@@ -45,9 +45,9 @@ void PropertyEditor::Render() {
     ImGui::Text("Position");
     ImGui::SameLine();
 
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4) ImColor(230, 57, 70));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4) ImColor(216, 77, 89));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4) ImColor(220, 40, 52));
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(230, 57, 70));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor(216, 77, 89));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(220, 40, 52));
 
     ImGui::Button("X##P1", ImVec2(20, 20));
 
@@ -58,10 +58,10 @@ void PropertyEditor::Render() {
 
     ImGui::SameLine();
 
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4) ImColor(81, 152, 114));
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(81, 152, 114));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered,
-                          (ImVec4) ImColor(97, 193, 142));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4) ImColor(50, 145, 95));
+                          (ImVec4)ImColor(97, 193, 142));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(50, 145, 95));
 
     ImGui::Button("Y##P1", ImVec2(20, 20));
 
@@ -73,9 +73,9 @@ void PropertyEditor::Render() {
     ImGui::Text("Scale");
     ImGui::SameLine();
 
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4) ImColor(230, 57, 70));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4) ImColor(216, 77, 89));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4) ImColor(220, 40, 52));
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(230, 57, 70));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor(216, 77, 89));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(220, 40, 52));
 
     ImGui::Button("X##S1", ImVec2(20, 20));
 
@@ -86,10 +86,10 @@ void PropertyEditor::Render() {
 
     ImGui::SameLine();
 
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4) ImColor(81, 152, 114));
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(81, 152, 114));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered,
-                          (ImVec4) ImColor(97, 193, 142));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4) ImColor(50, 145, 95));
+                          (ImVec4)ImColor(97, 193, 142));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(50, 145, 95));
 
     ImGui::Button("Y##S1", ImVec2(20, 20));
 
@@ -120,7 +120,7 @@ void PropertyEditor::Render() {
     }
 
     if (ImGui::BeginPopup("Select Asset")) {
-      for (const auto &[uuid, texture]:
+      for (const auto &[uuid, texture] :
            Hamster::AssetManager::GetTextureMap()) {
         if (ImGui::Selectable(texture->GetName().c_str())) {
           m_Sprite->texture = texture;
@@ -136,7 +136,7 @@ void PropertyEditor::Render() {
 
     ImGui::PushItemWidth(80);
 
-    for (auto &script: m_Behaviour->scripts) {
+    for (auto &script : m_Behaviour->scripts) {
       ImGui::Text(script->GetScriptPath().string().c_str());
     }
   }

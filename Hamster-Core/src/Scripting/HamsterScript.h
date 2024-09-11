@@ -5,6 +5,8 @@
 //
 // #include "Core/Project.h"
 // #include "Core/Scene.h"
+#include <iostream>
+
 #include "Core/UUID.h"
 //
 namespace Hamster {
@@ -18,7 +20,7 @@ public:
                 const std::string &fileName);
 
   //
-  [[nodiscard]] std::filesystem::path GetScriptPath() { return m_ScriptPath; }
+  [[nodiscard]] std::filesystem::path GetScriptPath() { return m_ScriptPath; std::cout << m_ScriptPath << std::endl;}
   //
   void SetUUID(UUID uuid) { m_UUID = uuid; }
   UUID GetUUID() { return m_UUID; }
