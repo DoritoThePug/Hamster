@@ -168,6 +168,8 @@ namespace Hamster {
         for (uint32_t i = 0; i < scriptCount; i++) {
             UUID uuid = UUID::Deserialise(in);
 
+            std::cout << "Deserialising script with uuid " << uuid.GetUUIDString() << std::endl;
+
             std::size_t scriptPathLength;
             in.read(reinterpret_cast<char *>(&scriptPathLength),
                     sizeof(scriptPathLength));
