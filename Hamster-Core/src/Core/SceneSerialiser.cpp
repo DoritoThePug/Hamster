@@ -90,7 +90,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
 
   UUID::Serialise(out, entity_uuid);
 
-  if (m_Scene->GetRegistry().all_of<Transform>(entity)) {
+  if (m_Scene->EntityHasComponent<Transform>(entity_uuid)) {
     int id = static_cast<int>(Transform_ID);
 
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
@@ -105,7 +105,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
     SerialiseVec2(out, transform.size);
   }
 
-  if (m_Scene->GetRegistry().all_of<Sprite>(entity)) {
+  if (m_Scene->EntityHasComponent<Sprite>(entity_uuid)) {
     int id = static_cast<int>(Sprite_ID);
 
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
@@ -121,7 +121,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
     SerialiseVec3(out, sprite.colour);
   }
 
-  if (m_Scene->GetRegistry().all_of<Name>(entity)) {
+  if (m_Scene->EntityHasComponent<Name>(entity_uuid)) {
     int id = static_cast<int>(Name_ID);
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
@@ -132,7 +132,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
     out.write(reinterpret_cast<const char *>(name.name.data()), nameLength);
   }
 
-  if (m_Scene->GetRegistry().all_of<Rigidbody>(entity)) {
+  if (m_Scene->EntityHasComponent<Rigidbody>(entity_uuid)) {
     int id = static_cast<int>(Rigidbody_ID);
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
   }
