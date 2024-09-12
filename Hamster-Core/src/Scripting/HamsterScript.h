@@ -19,7 +19,8 @@ public:
   HamsterScript(const std::filesystem::path &scriptPath,
                 const std::string &fileName);
 
-  //
+  void ReloadScript();
+
   [[nodiscard]] std::filesystem::path GetScriptPath() {
     return m_ScriptPath;
     std::cout << m_ScriptPath << std::endl;

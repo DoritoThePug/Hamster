@@ -36,9 +36,9 @@ namespace Hamster {
     //   std::cout << num << std::endl;
     // }
 
-    if (!guard) {
-      guard = std::make_unique<pybind11::scoped_interpreter>();
-    }
+    // if (!guard) {
+    // guard = std::make_unique<pybind11::scoped_interpreter>();
+    // }
   }
 
   void Scripting::Terminate() { pybind11::finalize_interpreter(); }
@@ -70,14 +70,14 @@ namespace Hamster {
 
     scriptOut.close();
 
-    UUID uuidt = AssetManager::AddScript(scriptPath, fileName);
+    UUID scriptUUID = AssetManager::AddScript(scriptPath, fileName);
 
     if (!scene->EntityHasComponent<Behaviour>(entityUUID)) {
       scene->AddEntityComponent<Behaviour>(entityUUID);
     }
 
     scene->GetEntityComponent<Behaviour>(entityUUID)
-        .scripts.push_back(AssetManager::GetScript(uuidt));
+        .scripts.push_back(AssetManager::GetScript(scriptUUID));
 
     // Terminate();
 

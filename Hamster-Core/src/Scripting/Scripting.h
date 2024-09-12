@@ -27,9 +27,12 @@ namespace Hamster {
 
     static void ReadScript(std::string &scriptContent);
 
+    static void InitInterpreter() { pybind11::initialize_interpreter(); }
+    static void FinaliseInterpreter() { pybind11::finalize_interpreter(); }
+
   private:
     // inline static pybind11::scoped_interpreter m_Interpreter{};
-    inline static std::unique_ptr<pybind11::scoped_interpreter> guard = nullptr;
+    // inline static std::unique_ptr<pybind11::scoped_interpreter> guard = nullptr;
   };
 } // namespace Hamster
 
