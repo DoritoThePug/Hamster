@@ -15,6 +15,9 @@ public:
 void HamsterBehaviourBinding(pybind11::module_ m) {
   pybind11::class_<Hamster::HamsterBehaviour, PyHamsterBehaviour>(
       m, "HamsterBehaviour")
-      .def(pybind11::init<Hamster::UUID>())
-      .def("OnUpdate", &Hamster::HamsterBehaviour::OnUpdate);
+      .def(pybind11::init<Hamster::UUID, std::shared_ptr<Hamster::Scene>>())
+      .def("OnUpdate", &Hamster::HamsterBehaviour::OnUpdate)
+      // .def_property("transform", &);
+      .def_property("transform", &Hamster::HamsterBehaviour::GetTransform,
+                    &Hamster::HamsterBehaviour::SetTransform);
 }

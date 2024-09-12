@@ -61,10 +61,10 @@ namespace Hamster {
     std::string defaultContent = "import Hamster \n\n"
         "class test(Hamster.HamsterBehaviour):\n"
         "    def OnUpdate(self):\n"
-        "        print(' hi ')\n"
+        "        self.transform.position.x += 1\n"
         "class hi(Hamster.HamsterBehaviour):\n"
         "    def OnUpdate(self):\n"
-        "        pass\n";
+        "        pass";
 
     scriptOut << defaultContent;
 
@@ -76,7 +76,8 @@ namespace Hamster {
       scene->AddEntityComponent<Behaviour>(entityUUID);
     }
 
-    scene->GetEntityComponent<Behaviour>(entityUUID).scripts.push_back(AssetManager::GetScript(uuidt));
+    scene->GetEntityComponent<Behaviour>(entityUUID)
+        .scripts.push_back(AssetManager::GetScript(uuidt));
 
     // Terminate();
 

@@ -7,6 +7,7 @@
 #include <memory>
 #include <string>
 
+#include "Core/Project.h"
 #include "Scripting/HamsterScript.h"
 
 namespace Hamster {
@@ -44,14 +45,19 @@ namespace Hamster {
     static std::shared_ptr<HamsterScript> GetScript(UUID uuid);
 
     //
-    // static const std::unordered_map<UUID, std::shared_ptr<HamsterScript>> &
-    // GetScriptMap() {
-    //   return m_Scripts;
-    // }
+    static const std::unordered_map<UUID, std::shared_ptr<HamsterScript> > &
+    GetScriptMap() {
+      return m_Scripts;
+    }
+
     //
-    // static uint32_t GetScriptCount() {
-    //   return static_cast<uint32_t>(m_Scripts.size());
-    // }
+    static uint32_t GetScriptCount() {
+      return static_cast<uint32_t>(m_Scripts.size());
+    }
+
+    static void Serialise(std::ostream &out);
+
+    static void Deserialise(std::istream &in, const ProjectConfig &config);
 
     static void Terminate();
 

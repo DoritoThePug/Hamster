@@ -24,6 +24,9 @@ void Vec2Binding(py::module_ &m) {
 
       .def(py::init<float, float>())
 
+      .def_readwrite("x", &glm::vec2::x)
+      .def_readwrite("y", &glm::vec2::y)
+
       .def(py::self + py::self)
 
       .def(py::self * py::self)

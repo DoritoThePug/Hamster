@@ -10,6 +10,7 @@
 #include "Application.h"
 #include "ProjectSerialiser.h"
 #include "SceneSerialiser.h"
+#include "Utils/AssetManager.h"
 
 namespace Hamster {
     Project::Project(const ProjectConfig &config) : m_Config(config) {
@@ -77,17 +78,23 @@ namespace Hamster {
     }
 
     bool Project::Open(std::filesystem::path projectPath) {
-        std::ifstream projectFile(projectPath, std::ios::binary);
-
-        ProjectConfig config = ProjectSerialiser::Deserialise(projectFile);
-
-        projectFile.close();
-
         if (s_ActiveProject != nullptr) { Project::SaveCurrentProject(); }
 
         Application::GetApplicationInstance().StopActiveScene();
 
         Application::GetApplicationInstance().RemoveAllScenes();
+
+
+        std::ifstream projectFile(projectPath, std::ios::binary);
+
+        ProjectConfig config = ProjectSerialiser::Deserialise(projectFile);
+
+        s_ActiveProject = std::make_shared<Project>(config);
+
+        AssetManager::Deserialise(projectFile, config);
+
+        projectFile.close();
+
 
         std::shared_ptr<Scene> scene = std::make_shared<Scene>();
         SceneSerialiser sceneSerialiser(scene);
@@ -95,11 +102,12 @@ namespace Hamster {
         sceneSerialiser.Deserialise(sceneIn);
         sceneIn.close();
 
-        s_ActiveProject = std::make_shared<Project>(config);
 
         s_ActiveProject->SetStartScene(scene);
 
         Application::GetApplicationInstance().AddScene(scene);
+
+
         Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
 
         ProjectOpenedEvent e;
@@ -121,6 +129,8 @@ namespace Hamster {
             std::ofstream out(s_ActiveProject->GetConfig().Name + ".hamproj", std::ios::binary);
 
             serialiser.Serialise(out);
+
+            AssetManager::Serialise(out);
 
             out.close();
         }

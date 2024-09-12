@@ -7,44 +7,54 @@
 // #include <windows.h>
 // #include <shlobj.h>
 
-#include "tinyfiledialogs.h"
 #include "Utils/AssetManager.h"
+#include "tinyfiledialogs.h"
 
 void AssetBrowser::Render() {
-    if (!ImGui::Begin("AssetBrowser", &m_WindowOpen, ImGuiWindowFlags_MenuBar)) {
-        ImGui::End();
-        return;
-    }
-
-    for (const auto &[uuid, texture]: Hamster::AssetManager::GetTextureMap()) {
-        std::string buttonLabel = texture->GetName() + "##" + boost::uuids::to_string(uuid.GetUUID());
-
-        ImGui::Button(buttonLabel.c_str());
-    }
-
-    if (ImGui::BeginMenuBar()) {
-        if (ImGui::BeginMenu("File")) {
-            if (ImGui::MenuItem("Add Asset")) {
-                // HWND owner = glfwGetWin32Window(Hamster::Application::GetApplicationInstance().GetWindow());
-                //
-                // std::string chosenPath = OpenWindowsFileDialog(owner);
-
-                char const* filterPattern = {"*.png"};
-                const char* path = tinyfd_openFileDialog("Select asset", "", 1, &filterPattern, "PNG Files", 0);
-                std::string pathStr = path;
-
-                Hamster::UUID uuid;
-
-                Hamster::AssetManager::AddTexture(pathStr);
-            }
-
-            ImGui::EndMenu();
-        }
-
-        ImGui::EndMenuBar();
-    }
-
+  if (!ImGui::Begin("AssetBrowser", &m_WindowOpen, ImGuiWindowFlags_MenuBar)) {
     ImGui::End();
+    return;
+  }
+
+  for (const auto &[uuid, texture] : Hamster::AssetManager::GetTextureMap()) {
+    std::string buttonLabel =
+        texture->GetName() + "##" + boost::uuids::to_string(uuid.GetUUID());
+
+    ImGui::Button(buttonLabel.c_str());
+  }
+
+  for (const auto &[uuid, script] : Hamster::AssetManager::GetScriptMap()) {
+    std::string buttonLabel =
+        script->GetName() + "##" + boost::uuids::to_string(uuid.GetUUID());
+
+    ImGui::Button(buttonLabel.c_str());
+  }
+
+  if (ImGui::BeginMenuBar()) {
+    if (ImGui::BeginMenu("File")) {
+      if (ImGui::MenuItem("Add Asset")) {
+        // HWND owner =
+        // glfwGetWin32Window(Hamster::Application::GetApplicationInstance().GetWindow());
+        //
+        // std::string chosenPath = OpenWindowsFileDialog(owner);
+
+        char const *filterPattern = {"*.png"};
+        const char *path = tinyfd_openFileDialog(
+            "Select asset", "", 1, &filterPattern, "PNG Files", 0);
+        std::string pathStr = path;
+
+        Hamster::UUID uuid;
+
+        Hamster::AssetManager::AddTexture(pathStr);
+      }
+
+      ImGui::EndMenu();
+    }
+
+    ImGui::EndMenuBar();
+  }
+
+  ImGui::End();
 }
 
 // std::string AssetBrowser::OpenWindowsFileDialog(HWND owner) {
@@ -64,7 +74,8 @@ void AssetBrowser::Render() {
 //     ofn.lpstrFileTitle = NULL;
 //     ofn.nMaxFileTitle = 0;
 //     ofn.lpstrInitialDir = NULL;
-//     ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_EXPLORER | OFN_HIDEREADONLY;
+//     ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_EXPLORER |
+//     OFN_HIDEREADONLY;
 //
 //
 //     if (GetOpenFileName(&ofn) == TRUE) {

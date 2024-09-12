@@ -20,19 +20,25 @@ public:
                 const std::string &fileName);
 
   //
-  [[nodiscard]] std::filesystem::path GetScriptPath() { return m_ScriptPath; std::cout << m_ScriptPath << std::endl;}
+  [[nodiscard]] std::filesystem::path GetScriptPath() {
+    return m_ScriptPath;
+    std::cout << m_ScriptPath << std::endl;
+  }
   //
   void SetUUID(UUID uuid) { m_UUID = uuid; }
   UUID GetUUID() { return m_UUID; }
   //
   void SetName(const std::string &name) { m_ScriptName = name; }
   const std::string &GetName() { return m_ScriptName; }
+
+  const std::string &GetFileName() { return m_FileName; }
   //
   std::vector<pybind11::handle> const &GetPyObjects() { return m_PyObjects; }
   //
 private:
   const std::string m_ScriptPath;
   std::string m_ScriptName = "Untitled Scripts";
+  std::string m_FileName;
   UUID m_UUID;
   std::vector<pybind11::handle> m_PyObjects;
 };
