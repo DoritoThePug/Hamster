@@ -4,39 +4,49 @@
 
 #include "Physics.h"
 
-#include <Core/Components.h>
-#include <entt/entity/registry.hpp>
-
+#include "Core/Components.h"
+#include "Core/Scene.h"
 
 namespace Hamster {
-    b2WorldId Physics::InitBox2dWorld() {
-        b2WorldDef worldDef = b2DefaultWorldDef();
-        worldDef.gravity = (b2Vec2){0.0f, 1.0f};
+b2WorldId Physics::InitBox2dWorld() {
+  b2WorldDef worldDef = b2DefaultWorldDef();
+  worldDef.gravity = (b2Vec2){0.0f, 1.0f};
 
-        return b2CreateWorld(&worldDef);
-    }
+  return b2CreateWorld(&worldDef);
+}
 
-    void Physics::CreateBody(b2WorldId worldId, b2BodyType bodyType, entt::entity& entity, entt::registry& registry) {
-        b2BodyDef bodyDef = b2DefaultBodyDef();
-        bodyDef.type = bodyType;
+void Physics::CreateBody(const UUID &entityUUID, std::shared_ptr<Scene> scene,
+                         b2BodyType bodyType) {
+  b2BodyDef bodyDef = b2DefaultBodyDef();
+  bodyDef.type = bodyType;
 
-        Transform entityTransform = registry.get<Transform>(entity);
+  Transform &entityTransform = scene->GetEntityComponent<Transform>(entityUUID);
 
-        bodyDef.position = (b2Vec2){entityTransform.position.x/s_PixelsPerMeter, entityTransform.position.y/s_PixelsPerMeter};
-        bodyDef.rotation = b2MakeRot(glm::radians(entityTransform.rotation));
+  bodyDef.position = (b2Vec2){entityTransform.position.x / s_PixelsPerMeter,
+                              entityTransform.position.y / s_PixelsPerMeter};
+  bodyDef.rotation = b2MakeRot(glm::radians(entityTransform.rotation));
 
-        b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
+  b2BodyId bodyId = b2CreateBody(scene->GetWorldId(), &bodyDef);
 
-        b2Polygon bodyPolygon = b2MakeBox((entityTransform.size.x/s_PixelsPerMeter)/2, (entityTransform.size.y/s_PixelsPerMeter)/2);
+  b2Polygon bodyPolygon =
+      b2MakeBox((entityTransform.size.x / s_PixelsPerMeter) / 2,
+                (entityTransform.size.y / s_PixelsPerMeter) / 2);
 
-        b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
-        b2CreatePolygonShape(bodyId, &bodyShapeDef, &bodyPolygon);
+  b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
+  b2CreatePolygonShape(bodyId, &bodyShapeDef, &bodyPolygon);
 
-        registry.emplace<Rigidbody>(entity, bodyId);
-    }
+  scene->AddEntityComponent<Rigidbody>(entityUUID, bodyId);
+}
 
-    void Physics::Simulate(b2WorldId worldId) {
-        b2World_Step(worldId, m_TimeStep, m_SubStepCount);
-    }
+void Physics::Simulate(const b2WorldId &worldId) {
+  b2World_Step(worldId, m_TimeStep, m_SubStepCount);
+}
 
-} // Hamster
+void Physics::SetTransform(const b2BodyId &bodyId, Transform &transform) {
+  b2Body_SetTransform(bodyId,
+                      (b2Vec2){transform.position.x / s_PixelsPerMeter,
+                               transform.position.y / s_PixelsPerMeter},
+                      b2MakeRot(glm::radians(transform.rotation)));
+}
+
+} // namespace Hamster

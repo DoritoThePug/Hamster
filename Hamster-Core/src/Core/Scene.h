@@ -26,7 +26,8 @@ class SceneCreatedEvent;
 // class HamsterBehaviour;
 // class HamsterScript;
 // struct ID;
-// class UUID;
+// class UUID
+//
 
 class Scene {
 public:

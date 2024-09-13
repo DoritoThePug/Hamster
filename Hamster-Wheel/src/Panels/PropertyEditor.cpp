@@ -7,6 +7,8 @@
 #include <imgui.h>
 
 #include <Scripting/Scripting.h>
+
+#include <box2d/box2d.h>
 // #include "Scripting/Scripting.h"
 
 void PropertyEditor::Render() {
@@ -35,6 +37,11 @@ void PropertyEditor::Render() {
     if (m_Scene->EntityHasComponent<Hamster::Behaviour>(m_SelectedEntity)) {
       m_Behaviour =
           &m_Scene->GetEntityComponent<Hamster::Behaviour>(m_SelectedEntity);
+    }
+
+    if (m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) {
+      m_Rigidbody =
+          &m_Scene->GetEntityComponent<Hamster::Rigidbody>(m_SelectedEntity);
     }
   }
 
@@ -141,6 +148,10 @@ void PropertyEditor::Render() {
     }
   }
 
+  if (m_Rigidbody != nullptr) {
+    ImGui::SeparatorText("Rigidbody");
+  }
+
   // if (m_Script != nullptr) {
   //   ImGui::SeparatorText("Script");
   //
@@ -155,7 +166,9 @@ void PropertyEditor::Render() {
     ImGui::SeparatorText("Components");
 
     if (!m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) {
-      ImGui::Selectable("Rigidbody");
+      if (ImGui::Selectable("Rigidbody")) {
+        Hamster::Physics::CreateBody(m_SelectedEntity, m_Scene, b2_dynamicBody);
+      }
     }
 
     if (!m_Scene->EntityHasComponent<Hamster::Sprite>(m_SelectedEntity)) {
@@ -168,6 +181,7 @@ void PropertyEditor::Render() {
     if (ImGui::Selectable(("Script"))) {
       Hamster::Scripting::AddScriptComponent(m_SelectedEntity, m_Scene);
     }
+
     // }
 
     ImGui::EndPopup();
