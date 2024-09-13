@@ -38,7 +38,7 @@ public:
   //
 private:
   const std::string m_ScriptPath;
-  std::string m_ScriptName = "Untitled Scripts";
+  std::string m_ScriptName = "Untitled Script";
   std::string m_FileName;
   UUID m_UUID;
   std::vector<pybind11::handle> m_PyObjects;
