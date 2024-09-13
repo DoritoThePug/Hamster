@@ -116,18 +116,27 @@ void PropertyEditor::Render() {
 
     ImGui::PushItemWidth(80);
 
-    for (auto const &[uuid, script] : m_Behaviour->scripts) {
+    Hamster::UUID removeScriptUUID = Hamster::UUID::GetNil();
+
+    for (const auto &[uuid, script] : m_Behaviour->scripts) {
       ImGui::Button(script->GetScriptPath().string().c_str());
 
       if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
         ImGui::BeginPopup("Script Actions");
       }
+
+      if (ImGui::BeginPopupContextItem()) {
+        if (ImGui::Selectable("Remove")) {
+          removeScriptUUID = uuid;
+        }
+
+        ImGui::EndPopup();
+      }
     }
 
-    // if (ImGui::BeginPopupContextMenu()) {
-    //   if (ImGui::Selectable("Remove")) {
-    //   }
-    // }
+    if (!Hamster::UUID::IsNil(removeScriptUUID)) {
+      m_Behaviour->scripts.erase(removeScriptUUID);
+    }
 
     if (ImGui::Button("Add Script")) {
       ImGui::OpenPopup("Add Script");
@@ -135,8 +144,10 @@ void PropertyEditor::Render() {
 
     if (ImGui::BeginPopup("Add Script")) {
       for (const auto &[uuid, script] : Hamster::AssetManager::GetScriptMap()) {
-        if (ImGui::Selectable(script->GetName().c_str())) {
-          m_Behaviour->scripts.emplace(script->GetUUID(), script);
+        if (m_Behaviour->scripts.count(uuid) == 0) {
+          if (ImGui::Selectable(script->GetName().c_str())) {
+            m_Behaviour->scripts.emplace(script->GetUUID(), script);
+          }
         }
       }
 
