@@ -18,33 +18,6 @@ void PropertyEditor::Render() {
     return;
   }
 
-  if (!Hamster::UUID::IsNil(m_SelectedEntity)) {
-    if (m_Scene->EntityHasComponent<Hamster::Transform>(m_SelectedEntity)) {
-      m_Transform =
-          &m_Scene->GetEntityComponent<Hamster::Transform>(m_SelectedEntity);
-    }
-
-    if (m_Scene->EntityHasComponent<Hamster::Sprite>(m_SelectedEntity)) {
-      m_Sprite =
-          &m_Scene->GetEntityComponent<Hamster::Sprite>(m_SelectedEntity);
-    }
-
-    // if (m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
-    //   m_Script =
-    //   &m_Scene->GetEntityComponent<Hamster::Script>(m_SelectedEntity);
-    // }
-
-    if (m_Scene->EntityHasComponent<Hamster::Behaviour>(m_SelectedEntity)) {
-      m_Behaviour =
-          &m_Scene->GetEntityComponent<Hamster::Behaviour>(m_SelectedEntity);
-    }
-
-    if (m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) {
-      m_Rigidbody =
-          &m_Scene->GetEntityComponent<Hamster::Rigidbody>(m_SelectedEntity);
-    }
-  }
-
   if (m_Transform != nullptr) {
     ImGui::SeparatorText("Transform");
 
@@ -192,4 +165,39 @@ void PropertyEditor::Render() {
 
 void PropertyEditor::SetSelectedEntity(Hamster::UUID uuid) {
   m_SelectedEntity = uuid;
+
+  if (!Hamster::UUID::IsNil(m_SelectedEntity)) {
+    if (m_Scene->EntityHasComponent<Hamster::Transform>(m_SelectedEntity)) {
+      m_Transform =
+          &m_Scene->GetEntityComponent<Hamster::Transform>(m_SelectedEntity);
+    } else {
+      m_Transform = nullptr;
+    }
+
+    if (m_Scene->EntityHasComponent<Hamster::Sprite>(m_SelectedEntity)) {
+      m_Sprite =
+          &m_Scene->GetEntityComponent<Hamster::Sprite>(m_SelectedEntity);
+    } else {
+      m_Sprite = nullptr;
+    }
+
+    // if (m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
+    //   m_Script =
+    //   &m_Scene->GetEntityComponent<Hamster::Script>(m_SelectedEntity);
+    // }
+
+    if (m_Scene->EntityHasComponent<Hamster::Behaviour>(m_SelectedEntity)) {
+      m_Behaviour =
+          &m_Scene->GetEntityComponent<Hamster::Behaviour>(m_SelectedEntity);
+    } else {
+      m_Behaviour = nullptr;
+    }
+
+    if (m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) {
+      m_Rigidbody =
+          &m_Scene->GetEntityComponent<Hamster::Rigidbody>(m_SelectedEntity);
+    } else {
+      m_Rigidbody = nullptr;
+    }
+  }
 }
