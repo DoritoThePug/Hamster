@@ -14,40 +14,33 @@
 #include "HamsterBehaviour.h"
 
 namespace Hamster {
-  class Scripting {
-  public:
-    // static std::filesystem::path GenerateDefaultPythonScript(const
-    // std::filesystem::path& path, std::string& entityName, UUID& entityUUID);
+class AssetManager;
 
-    static void Init();
+class Scripting {
+public:
+  static void AddScriptComponent(UUID &uuid, std::shared_ptr<Scene> scene);
 
-    static void Terminate();
+  static std::filesystem::path GenerateDefaultScript(UUID *uuid);
 
-    static void AddScriptComponent(UUID &uuid, std::shared_ptr<Scene> scene);
+  static void InitInterpreter() {
+    if (!m_InterpreterInitialised) {
+      pybind11::initialize_interpreter();
 
-    static void ReadScript(std::string &scriptContent);
-
-    static void InitInterpreter() {
-      if (!m_InterpreterInitialised) {
-        pybind11::initialize_interpreter();
-
-        m_InterpreterInitialised = true;
-      }
+      m_InterpreterInitialised = true;
     }
+  }
 
-    static void FinaliseInterpreter() {
-      if (m_InterpreterInitialised) {
-        pybind11::finalize_interpreter();
+  static void FinaliseInterpreter() {
+    if (m_InterpreterInitialised) {
+      pybind11::finalize_interpreter();
 
-        m_InterpreterInitialised = false;
-      }
+      m_InterpreterInitialised = false;
     }
+  }
 
-  private:
-    // inline static pybind11::scoped_interpreter m_Interpreter{};
-    // inline static std::unique_ptr<pybind11::scoped_interpreter> guard = nullptr;
-    inline static bool m_InterpreterInitialised = false;
-  };
+private:
+  inline static bool m_InterpreterInitialised = false;
+};
 } // namespace Hamster
 
 #endif // SCRIPTING_H

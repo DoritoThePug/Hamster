@@ -197,7 +197,7 @@ void Scene::RunSceneSimulation() {
   auto reloadView = m_Registry.view<Behaviour>();
 
   reloadView.each([](auto &behaviour) {
-    for (auto &script : behaviour.scripts) {
+    for (auto const &[uuid, script] : behaviour.scripts) {
       script->ReloadScript();
     }
   });
@@ -207,24 +207,10 @@ void Scene::RunSceneSimulation() {
   auto view = m_Registry.view<ID, Behaviour>();
 
   view.each([](auto &ID, auto &behaviour) {
-    for (auto &script : behaviour.scripts) {
+    for (auto const &[uuid, script] : behaviour.scripts) {
       for (auto &obj : script->GetPyObjects()) {
-        // HamsterBehaviour *s = pybind11::cast<HamsterBehaviour *>(obj());
-
-        // obj(ID.uuid);
-
-        // pybind11::object instance = obj(ID.uuid);
-        // HamsterBehaviour s = obj(ID.uuid).cast<HamsterBehaviour>();
         behaviour.pyObjects.push_back(obj(
             ID.uuid, Application::GetApplicationInstance().GetActiveScene()));
-        // obj();
-        // pybind11::object class_type = obj.get_type();
-
-        // pybind11::str class_name = class_type.attr("__name__");
-
-        // std::cout << class_name.cast<std::string>() << std::endl;
-
-        // std::cout << ID.uuid.GetUUIDString() << std::endl;
       }
     }
   });

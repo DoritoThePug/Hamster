@@ -116,20 +116,37 @@ void PropertyEditor::Render() {
 
     ImGui::PushItemWidth(80);
 
-    for (auto &script : m_Behaviour->scripts) {
-      ImGui::Text(script->GetScriptPath().string().c_str());
+    for (auto const &[uuid, script] : m_Behaviour->scripts) {
+      ImGui::Button(script->GetScriptPath().string().c_str());
+
+      if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
+        ImGui::BeginPopup("Script Actions");
+      }
+    }
+
+    // if (ImGui::BeginPopupContextMenu()) {
+    //   if (ImGui::Selectable("Remove")) {
+    //   }
+    // }
+
+    if (ImGui::Button("Add Script")) {
+      ImGui::OpenPopup("Add Script");
+    }
+
+    if (ImGui::BeginPopup("Add Script")) {
+      for (const auto &[uuid, script] : Hamster::AssetManager::GetScriptMap()) {
+        if (ImGui::Selectable(script->GetName().c_str())) {
+          m_Behaviour->scripts.emplace(script->GetUUID(), script);
+        }
+      }
+
+      ImGui::EndPopup();
     }
   }
 
   if (m_Rigidbody != nullptr) {
     ImGui::SeparatorText("Rigidbody");
   }
-
-  // if (m_Script != nullptr) {
-  //   ImGui::SeparatorText("Script");
-  //
-  //   ImGui::Text(m_Script->scriptPath.c_str());
-  // }
 
   if (ImGui::Button("Add Component")) {
     ImGui::OpenPopup("Add Component");

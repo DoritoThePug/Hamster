@@ -4,11 +4,8 @@
 
 #include "AssetBrowser.h"
 
-// #include <windows.h>
-// #include <shlobj.h>
-
 #include "Utils/AssetManager.h"
-#include "tinyfiledialogs.h"
+#include <tinyfiledialogs.h>
 
 void AssetBrowser::Render() {
   if (!ImGui::Begin("AssetBrowser", &m_WindowOpen, ImGuiWindowFlags_MenuBar)) {
@@ -32,12 +29,7 @@ void AssetBrowser::Render() {
 
   if (ImGui::BeginMenuBar()) {
     if (ImGui::BeginMenu("File")) {
-      if (ImGui::MenuItem("Add Asset")) {
-        // HWND owner =
-        // glfwGetWin32Window(Hamster::Application::GetApplicationInstance().GetWindow());
-        //
-        // std::string chosenPath = OpenWindowsFileDialog(owner);
-
+      if (ImGui::MenuItem("Import Asset")) {
         char const *filterPattern = {"*.png"};
         const char *path = tinyfd_openFileDialog(
             "Select asset", "", 1, &filterPattern, "PNG Files", 0);
@@ -48,6 +40,10 @@ void AssetBrowser::Render() {
         Hamster::AssetManager::AddTexture(pathStr);
       }
 
+      if (ImGui::MenuItem("New Script")) {
+        Hamster::AssetManager::AddDefaultScript();
+      }
+
       ImGui::EndMenu();
     }
 
@@ -56,31 +52,3 @@ void AssetBrowser::Render() {
 
   ImGui::End();
 }
-
-// std::string AssetBrowser::OpenWindowsFileDialog(HWND owner) {
-//     OPENFILENAME ofn;
-//     char szFile[MAX_PATH];
-//
-//
-//     ZeroMemory(&ofn, sizeof(ofn));
-//     ofn.lStructSize = sizeof(ofn);
-//     ofn.hwndOwner = owner;
-//     ofn.lpstrFile = szFile;
-//     ofn.lpstrFile[0] = '\0';
-//     ofn.nMaxFile = sizeof(szFile);
-//
-//     ofn.lpstrFilter = "Sprite File\0*.png\0";
-//     ofn.nFilterIndex = 1;
-//     ofn.lpstrFileTitle = NULL;
-//     ofn.nMaxFileTitle = 0;
-//     ofn.lpstrInitialDir = NULL;
-//     ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_EXPLORER |
-//     OFN_HIDEREADONLY;
-//
-//
-//     if (GetOpenFileName(&ofn) == TRUE) {
-//         return std::string(ofn.lpstrFile);
-//     }
-//
-//     return "";
-// }

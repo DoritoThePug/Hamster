@@ -148,8 +148,8 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
     out.write(reinterpret_cast<const char *>(&scriptCount),
               sizeof(scriptCount));
 
-    for (auto &script : behaviour.scripts) {
-      UUID::Serialise(out, script->GetUUID());
+    for (auto const &[uuid, script] : behaviour.scripts) {
+      UUID::Serialise(out, uuid);
     }
   }
 
@@ -181,9 +181,6 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
 
       glm::vec2 size = DeserialiseVec2(in);
 
-      std::cout << pos.x << " " << pos.y << " " << rotation << " " << size.x
-                << " " << size.y << std::endl;
-
       m_Scene->AddEntityComponent<Transform>(uuid, pos, rotation, size);
 
       break;
@@ -194,10 +191,6 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
       std::cout << textureUUID.GetUUIDString() << std::endl;
 
       glm::vec3 colour = DeserialiseVec3(in);
-
-      std::cout << colour.r << " " << colour.g << std::endl;
-
-      std::cout << UUID::IsNil(textureUUID) << std::endl;
 
       if (!UUID::IsNil(textureUUID)) {
         m_Scene->AddEntityComponent<Sprite>(
@@ -235,7 +228,8 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
       for (uint32_t i = 0; i < scriptCount; i++) {
         UUID scriptUUID = UUID::Deserialise(in);
 
-        behaviour.scripts.push_back(AssetManager::GetScript(scriptUUID));
+        behaviour.scripts.emplace(scriptUUID,
+                                  AssetManager::GetScript(scriptUUID));
       }
 
       break;

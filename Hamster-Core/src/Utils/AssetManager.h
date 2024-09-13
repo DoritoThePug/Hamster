@@ -11,61 +11,66 @@
 #include "Scripting/HamsterScript.h"
 
 namespace Hamster {
-  class AssetManager {
-  public:
-    static std::shared_ptr<Shader>
-    AddShader(std::string name, const std::string &vertexShaderPath,
-              const std::string &fragmentShaderPath);
+class AssetManager {
+public:
+  static std::shared_ptr<Shader>
+  AddShader(std::string name, const std::string &vertexShaderPath,
+            const std::string &fragmentShaderPath);
 
-    static std::shared_ptr<Shader> GetShader(std::string name);
+  static std::shared_ptr<Shader> GetShader(std::string name);
 
-    static void AddTexture(const std::string &texturePath);
+  static void AddTexture(const std::string &texturePath);
 
-    static void AddTexture(UUID uuid, const std::string &texturePath,
-                           const std::string &textureName);
+  static void AddTexture(UUID uuid, const std::string &texturePath,
+                         const std::string &textureName);
 
-    static std::shared_ptr<Texture> GetTexture(UUID uuid);
+  static std::shared_ptr<Texture> GetTexture(UUID uuid);
 
-    static const std::unordered_map<UUID, std::shared_ptr<Texture> > &
-    GetTextureMap() {
-      return m_Textures;
-    }
+  static const std::unordered_map<UUID, std::shared_ptr<Texture>> &
+  GetTextureMap() {
+    return m_Textures;
+  }
 
-    static uint32_t GetTextureCount() {
-      return static_cast<uint32_t>(m_Textures.size());
-    }
+  static uint32_t GetTextureCount() {
+    return static_cast<uint32_t>(m_Textures.size());
+  }
 
-    static UUID AddScript(const std::filesystem::path &scriptPath,
-                          const std::string &fileName);
+  static UUID AddScript(const std::filesystem::path &scriptPath,
+                        const std::string &fileName);
 
-    static void AddScript(UUID uuid, const std::filesystem::path &scriptPath,
-                          const std::string &fileName,
-                          const std::string &scriptName);
+  static void AddScript(UUID uuid, const std::filesystem::path &scriptPath,
+                        const std::string &fileName,
+                        const std::string &scriptName);
 
-    static std::shared_ptr<HamsterScript> GetScript(UUID uuid);
+  static void AddScript(UUID uuid, const std::filesystem::path &scriptPath,
+                        const std::string &fileName);
 
-    //
-    static const std::unordered_map<UUID, std::shared_ptr<HamsterScript> > &
-    GetScriptMap() {
-      return m_Scripts;
-    }
+  static UUID AddDefaultScript();
 
-    //
-    static uint32_t GetScriptCount() {
-      return static_cast<uint32_t>(m_Scripts.size());
-    }
+  static std::shared_ptr<HamsterScript> GetScript(UUID uuid);
 
-    static void Serialise(std::ostream &out);
+  //
+  static const std::unordered_map<UUID, std::shared_ptr<HamsterScript>> &
+  GetScriptMap() {
+    return m_Scripts;
+  }
 
-    static void Deserialise(std::istream &in, const ProjectConfig &config);
+  //
+  static uint32_t GetScriptCount() {
+    return static_cast<uint32_t>(m_Scripts.size());
+  }
 
-    static void Terminate();
+  static void Serialise(std::ostream &out);
 
-  private:
-    inline static std::unordered_map<std::string, std::shared_ptr<Shader> >
-    m_Shaders;
-    inline static std::unordered_map<UUID, std::shared_ptr<Texture> > m_Textures;
-    inline static std::unordered_map<UUID, std::shared_ptr<HamsterScript> >
-    m_Scripts;
-  };
+  static void Deserialise(std::istream &in, const ProjectConfig &config);
+
+  static void Terminate();
+
+private:
+  inline static std::unordered_map<std::string, std::shared_ptr<Shader>>
+      m_Shaders;
+  inline static std::unordered_map<UUID, std::shared_ptr<Texture>> m_Textures;
+  inline static std::unordered_map<UUID, std::shared_ptr<HamsterScript>>
+      m_Scripts;
+};
 } // namespace Hamster
