@@ -95,7 +95,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
 
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Transform &transform = m_Scene->GetRegistry().get<Transform>(entity);
+    Transform &transform = m_Scene->GetEntityComponent<Transform>(entity);
 
     SerialiseVec2(out, transform.position);
 
@@ -110,7 +110,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
 
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Sprite &sprite = m_Scene->GetRegistry().get<Sprite>(entity);
+    Sprite &sprite = m_Scene->GetEntityComponent<Sprite>(entity);
 
     if (sprite.texture != nullptr) {
       UUID::Serialise(out, sprite.texture->GetUUID());
@@ -125,7 +125,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
     int id = static_cast<int>(Name_ID);
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Name &name = m_Scene->GetRegistry().get<Name>(entity);
+    Name &name = m_Scene->GetEntityComponent<Name>(entity);
 
     std::size_t nameLength = name.name.size();
     out.write(reinterpret_cast<const char *>(&nameLength), sizeof(nameLength));
