@@ -228,6 +228,9 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
       for (uint32_t i = 0; i < scriptCount; i++) {
         UUID scriptUUID = UUID::Deserialise(in);
 
+        std::cout << "trying to add script with uuid of: "
+                  << scriptUUID.GetUUIDString() << std::endl;
+
         behaviour.scripts.emplace(scriptUUID,
                                   AssetManager::GetScript(scriptUUID));
       }

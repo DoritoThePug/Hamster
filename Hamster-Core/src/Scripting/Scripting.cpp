@@ -48,18 +48,4 @@ std::filesystem::path Scripting::GenerateDefaultScript(UUID *uuidVal) {
   return scriptPath;
 }
 
-void Scripting::AddScriptComponent(UUID &entityUUID,
-                                   std::shared_ptr<Scene> scene) {
-
-  UUID scriptUUID = AssetManager::AddDefaultScript();
-
-  if (!scene->EntityHasComponent<Behaviour>(entityUUID)) {
-    scene->AddEntityComponent<Behaviour>(entityUUID);
-  }
-  std::shared_ptr<HamsterScript> script = AssetManager::GetScript(scriptUUID);
-
-  scene->GetEntityComponent<Behaviour>(entityUUID)
-      .scripts.emplace(script->GetUUID(), script);
-}
-
 } // namespace Hamster

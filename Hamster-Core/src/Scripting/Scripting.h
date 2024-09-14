@@ -18,8 +18,6 @@ class AssetManager;
 
 class Scripting {
 public:
-  static void AddScriptComponent(UUID &uuid, std::shared_ptr<Scene> scene);
-
   static std::filesystem::path GenerateDefaultScript(UUID *uuid);
 
   static void InitInterpreter() {

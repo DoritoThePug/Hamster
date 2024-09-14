@@ -180,7 +180,7 @@ void PropertyEditor::Render() {
 
     // if (!m_Scene->EntityHasComponent<Hamster::Script>(m_SelectedEntity)) {
     if (ImGui::Selectable(("Script"))) {
-      Hamster::Scripting::AddScriptComponent(m_SelectedEntity, m_Scene);
+      m_Scene->AddEntityComponent<Hamster::Behaviour>(m_SelectedEntity);
     }
 
     // }
