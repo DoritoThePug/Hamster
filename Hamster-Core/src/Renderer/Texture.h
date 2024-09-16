@@ -1,8 +1,6 @@
 #pragma once
 
-#include <iostream>
 #include <ostream>
-#include <string>
 
 #include "Core/UUID.h"
 
@@ -22,6 +20,8 @@ public:
 
   void SetName(const std::string &name) { m_TextureName = name; }
   const std::string &GetName() { return m_TextureName; }
+
+  unsigned int GetTextureId() { return m_ID; }
 
 private:
   unsigned int m_ID;

@@ -1,4 +1,4 @@
-#include <iostream>
+#include "HamsterPCH.h"
 
 #include <glad/glad.h>
 
@@ -65,17 +65,11 @@ void Window::SetWindowEventDispatcher(EventDispatcher *dispatcher) {
 void Window::Update(bool running) {
   glfwPollEvents();
 
-
-
-
-
-
-
-
   // if (show_another_window)
   // {
-  //   ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-  //   ImGui::Text("Hello from another window!");
+  //   ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer
+  //   to our bool variable (the window will have a closing button that will
+  //   clear the bool when clicked) ImGui::Text("Hello from another window!");
   //   if (ImGui::Button("Close Me"))
   //     show_another_window = false;
   //   ImGui::End();
@@ -98,7 +92,6 @@ void Window::Update(bool running) {
   // }
 
   glfwSwapBuffers(m_Window);
-  
 }
 
 void Window::TerminateAllWindows() { glfwTerminate(); }

@@ -1,6 +1,9 @@
 #pragma once
 
-#include <memory>
+#include <functional>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 #include "Events/Event.h"
 #include "Events/WindowEvents.h"
@@ -14,13 +17,8 @@
 #include "Gui/ImGuiLayer.h"
 #include "Renderer/Texture.h"
 #include "Scene.h"
-#include "UUID.h"
 
 namespace Hamster {
-class GameObject;
-
-// class EventDispatcher;
-
 class Application {
 public:
   Application();
@@ -93,8 +91,6 @@ private:
 
   ImGuiLayer m_ImGuiLayer;
 
-  // ID, GameObject
-  // Window m_Window;
   std::unique_ptr<Window> m_Window;
 
   std::unordered_map<UUID, std::shared_ptr<Scene>> m_Scenes;

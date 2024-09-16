@@ -2,13 +2,12 @@
 // Created by Jaden on 29/08/2024.
 //
 
+#include "HamsterPCH.h"
+
 #include "SceneSerialiser.h"
 
 #include <boost/uuid/uuid_io.hpp>
 #include <entt/entt.hpp>
-#include <iostream>
-#include <string>
-#include <utility>
 
 #include "Utils/AssetManager.h"
 
@@ -95,7 +94,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
 
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Transform &transform = m_Scene->GetEntityComponent<Transform>(entity);
+    Transform &transform = m_Scene->GetEntityComponent<Transform>(entity_uuid);
 
     SerialiseVec2(out, transform.position);
 
@@ -110,7 +109,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
 
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Sprite &sprite = m_Scene->GetEntityComponent<Sprite>(entity);
+    Sprite &sprite = m_Scene->GetEntityComponent<Sprite>(entity_uuid);
 
     if (sprite.texture != nullptr) {
       UUID::Serialise(out, sprite.texture->GetUUID());
@@ -125,7 +124,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
     int id = static_cast<int>(Name_ID);
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
 
-    Name &name = m_Scene->GetEntityComponent<Name>(entity);
+    Name &name = m_Scene->GetEntityComponent<Name>(entity_uuid);
 
     std::size_t nameLength = name.name.size();
     out.write(reinterpret_cast<const char *>(&nameLength), sizeof(nameLength));

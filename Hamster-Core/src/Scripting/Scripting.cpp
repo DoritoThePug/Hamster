@@ -2,11 +2,12 @@
 // Created by jaden on 07/09/24.
 //
 
+#include "HamsterPCH.h"
+
 #include "Scripting.h"
 
 #include "Core/Components.h"
 #include <entt/entity/entity.hpp>
-#include <fstream>
 #include <pybind11/embed.h>
 #include <pybind11/eval.h>
 #include <pybind11/pybind11.h>

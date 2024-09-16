@@ -6,14 +6,21 @@
 #define FILEBROWSER_H
 #include "Gui/Panel.h"
 
+#include <memory>
 
+#include <Renderer/Texture.h>
 class FileBrowser : public Hamster::Panel {
 public:
-    explicit FileBrowser(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(std::move(scene), true) {
-    };
+  explicit FileBrowser(std::shared_ptr<Hamster::Scene> scene);
 
-    void Render() override;
+  void Render() override;
+
+private:
+  std::unique_ptr<Hamster::Texture> m_FolderIcon;
+  std::unique_ptr<Hamster::Texture> m_FileIcon;
+
+  float m_IconSize = 64.0f;
+  float m_Padding = 16.0f;
 };
 
-
-#endif //FILEBROWSER_H
+#endif // FILEBROWSER_H

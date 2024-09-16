@@ -2,6 +2,8 @@
 // Created by Jaden on 31/08/2024.
 //
 
+#include "HamsterPCH.h"
+
 #include "ProjectSerialiser.h"
 
 #include "Utils/AssetManager.h"

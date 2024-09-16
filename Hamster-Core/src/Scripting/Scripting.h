@@ -4,10 +4,7 @@
 
 #ifndef SCRIPTING_H
 #define SCRIPTING_H
-#include "Core/UUID.h"
 #include <entt/entt.hpp>
-#include <filesystem>
-#include <memory>
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 

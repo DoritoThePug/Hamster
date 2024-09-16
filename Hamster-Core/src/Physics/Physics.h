@@ -5,14 +5,11 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
-#include <memory>
-
 #include <box2d/box2d.h>
 #include <entt/entity/entity.hpp>
 #include <glm/glm.hpp>
 
 #include "Core/Components.h"
-#include "Core/UUID.h"
 
 // #include "Core/Scene.h"
 

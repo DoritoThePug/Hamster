@@ -1,231 +1,233 @@
+#include "HamsterPCH.h"
+
 #include "AssetManager.h"
 
 #include "Core/Project.h"
 #include "Scripting/Scripting.h"
 
 namespace Hamster {
-  std::shared_ptr<Shader>
-  AssetManager::AddShader(std::string name, const std::string &vertexShaderPath,
-                          const std::string &fragmentShaderPath) {
-    std::shared_ptr<Shader> shader = std::make_shared<Shader>(
+std::shared_ptr<Shader>
+AssetManager::AddShader(std::string name, const std::string &vertexShaderPath,
+                        const std::string &fragmentShaderPath) {
+  std::shared_ptr<Shader> shader = std::make_shared<Shader>(
       vertexShaderPath.c_str(), fragmentShaderPath.c_str());
 
-    // m_Shaders.emplace(name, shader);
+  // m_Shaders.emplace(name, shader);
 
-    m_Shaders[name] = shader;
+  m_Shaders[name] = shader;
 
-    return shader;
+  return shader;
+}
+
+std::shared_ptr<Shader> AssetManager::GetShader(std::string name) {
+  if (name != "") {
+    return m_Shaders.at(name);
+  } else {
+    return nullptr;
   }
+}
 
-  std::shared_ptr<Shader> AssetManager::GetShader(std::string name) {
-    if (name != "") {
-      return m_Shaders.at(name);
-    } else {
-      return nullptr;
-    }
+void AssetManager::AddTexture(const std::string &texturePath) {
+  std::cout << "Add texture with path " << texturePath << std::endl;
+
+  std::shared_ptr<Texture> texture =
+      std::make_shared<Texture>(texturePath.c_str());
+
+  m_Textures.emplace(texture->GetUUID(), texture);
+}
+
+void AssetManager::AddTexture(UUID uuid, const std::string &texturePath,
+                              const std::string &textureName) {
+  std::shared_ptr<Texture> texture =
+      std::make_shared<Texture>(texturePath.c_str());
+
+  texture->SetUUID(uuid);
+  texture->SetName(textureName);
+
+  m_Textures.emplace(uuid, texture);
+
+  for (const auto &[uuid, texture] : m_Textures) {
+    std::cout << uuid.GetUUID() << " here" << std::endl;
   }
+}
 
-  void AssetManager::AddTexture(const std::string &texturePath) {
-    std::cout << "Add texture with path " << texturePath << std::endl;
+std::shared_ptr<Texture> AssetManager::GetTexture(UUID uuid) {
+  return m_Textures.at(uuid);
+}
 
-    std::shared_ptr<Texture> texture =
-        std::make_shared<Texture>(texturePath.c_str());
+UUID AssetManager::AddScript(const std::filesystem::path &scriptPath,
+                             const std::string &fileName) {
+  std::shared_ptr<HamsterScript> script =
+      std::make_shared<HamsterScript>(scriptPath, fileName);
 
-    m_Textures.emplace(texture->GetUUID(), texture);
-  }
+  m_Scripts.emplace(script->GetUUID(), script);
 
-  void AssetManager::AddTexture(UUID uuid, const std::string &texturePath,
-                                const std::string &textureName) {
-    std::shared_ptr<Texture> texture =
-        std::make_shared<Texture>(texturePath.c_str());
+  return script->GetUUID();
+}
 
-    texture->SetUUID(uuid);
-    texture->SetName(textureName);
+void AssetManager::AddScript(UUID uuid, const std::filesystem::path &scriptPath,
+                             const std::string &fileName,
+                             const std::string &scriptName) {
+  std::shared_ptr<HamsterScript> script =
+      std::make_shared<HamsterScript>(scriptPath, fileName);
 
-    m_Textures.emplace(uuid, texture);
+  script->SetUUID(uuid);
+  script->SetName(scriptName);
 
-    for (const auto &[uuid, texture]: m_Textures) {
-      std::cout << uuid.GetUUID() << " here" << std::endl;
-    }
-  }
+  m_Scripts.emplace(uuid, script);
+}
 
-  std::shared_ptr<Texture> AssetManager::GetTexture(UUID uuid) {
-    return m_Textures.at(uuid);
-  }
+void AssetManager::AddScript(UUID uuid, const std::filesystem::path &scriptPath,
+                             const std::string &fileName) {
+  std::shared_ptr<HamsterScript> script =
+      std::make_shared<HamsterScript>(scriptPath, fileName);
 
-  UUID AssetManager::AddScript(const std::filesystem::path &scriptPath,
-                               const std::string &fileName) {
-    std::shared_ptr<HamsterScript> script =
-        std::make_shared<HamsterScript>(scriptPath, fileName);
+  script->SetUUID(uuid);
 
-    m_Scripts.emplace(script->GetUUID(), script);
+  m_Scripts.emplace(uuid, script);
+}
 
-    return script->GetUUID();
-  }
+UUID AssetManager::AddDefaultScript() {
+  UUID scriptUUID;
 
-  void AssetManager::AddScript(UUID uuid, const std::filesystem::path &scriptPath,
-                               const std::string &fileName,
-                               const std::string &scriptName) {
-    std::shared_ptr<HamsterScript> script =
-        std::make_shared<HamsterScript>(scriptPath, fileName);
+  std::filesystem::path scriptPath =
+      Scripting::GenerateDefaultScript(&scriptUUID);
 
-    script->SetUUID(uuid);
-    script->SetName(scriptName);
+  std::shared_ptr<HamsterScript> script =
+      std::make_shared<HamsterScript>(scriptPath, scriptPath.stem().string());
 
-    m_Scripts.emplace(uuid, script);
-  }
+  script->SetUUID(scriptUUID);
 
-  void AssetManager::AddScript(UUID uuid, const std::filesystem::path &scriptPath,
-                               const std::string &fileName) {
-    std::shared_ptr<HamsterScript> script =
-        std::make_shared<HamsterScript>(scriptPath, fileName);
+  m_Scripts.emplace(scriptUUID, script);
 
-    script->SetUUID(uuid);
+  return scriptUUID;
+}
 
-    m_Scripts.emplace(uuid, script);
-  }
+std::shared_ptr<HamsterScript> AssetManager::GetScript(UUID uuid) {
+  return m_Scripts.at(uuid);
+}
 
-  UUID AssetManager::AddDefaultScript() {
-    UUID scriptUUID;
+void AssetManager::Serialise(std::ostream &out) {
+  uint32_t textureCount = m_Textures.size();
 
-    std::filesystem::path scriptPath =
-        Scripting::GenerateDefaultScript(&scriptUUID);
+  out.write(reinterpret_cast<const char *>(&textureCount),
+            sizeof(textureCount));
 
-    std::shared_ptr<HamsterScript> script =
-        std::make_shared<HamsterScript>(scriptPath, scriptPath.stem().string());
+  // serialise texture asset manager
+  for (auto const &[uuid, texture] : m_Textures) {
+    std::cout << "Serialising texture with uuid: " << uuid.GetUUID()
+              << std::endl;
 
-    script->SetUUID(scriptUUID);
+    UUID::Serialise(out, uuid);
 
-    m_Scripts.emplace(scriptUUID, script);
+    std::string texturePathStr = texture->GetTexturePath();
 
-    return scriptUUID;
-  }
-
-  std::shared_ptr<HamsterScript> AssetManager::GetScript(UUID uuid) {
-    return m_Scripts.at(uuid);
-  }
-
-  void AssetManager::Serialise(std::ostream &out) {
-    uint32_t textureCount = m_Textures.size();
-
-    out.write(reinterpret_cast<const char *>(&textureCount),
-              sizeof(textureCount));
-
-    // serialise texture asset manager
-    for (auto const &[uuid, texture]: m_Textures) {
-      std::cout << "Serialising texture with uuid: " << uuid.GetUUID()
-          << std::endl;
-
-      UUID::Serialise(out, uuid);
-
-      std::string texturePathStr = texture->GetTexturePath();
-
-      std::size_t texturePathLength = texturePathStr.size();
-      out.write(reinterpret_cast<const char *>(&texturePathLength),
-                sizeof(texturePathLength));
-      out.write(texturePathStr.data(), texturePathLength);
-
-      std::string textureNameStr = texture->GetName();
-      std::size_t textureNameLength = textureNameStr.size();
-      out.write(reinterpret_cast<const char *>(&textureNameLength),
-                sizeof(textureNameLength));
-      out.write(textureNameStr.data(), textureNameLength);
-    }
-
-    uint32_t scriptCount = m_Scripts.size();
-
-    out.write(reinterpret_cast<const char *>(&scriptCount), sizeof(scriptCount));
-
-    for (auto const &[uuid, script]: m_Scripts) {
-      std::cout << "Serialising script with uuid: " << uuid.GetUUID()
-          << std::endl;
-
-      UUID::Serialise(out, uuid);
-
-      std::string scriptPathStr = script->GetScriptPath().string();
-      std::size_t scriptPathLength = scriptPathStr.size();
-
-      out.write(reinterpret_cast<const char *>(&scriptPathLength),
-                sizeof(scriptPathLength));
-      out.write(scriptPathStr.data(), scriptPathLength);
-
-      std::string scriptNameStr = script->GetName();
-      std::size_t scriptNameLength = scriptNameStr.size();
-      out.write(reinterpret_cast<const char *>(&scriptNameLength),
-                sizeof(scriptNameLength));
-
-      out.write(scriptNameStr.data(), scriptNameLength);
-
-      std::string fileNameStr = script->GetFileName();
-      std::size_t fileNameStrLength = fileNameStr.size();
-
-      out.write(reinterpret_cast<const char *>(&fileNameStrLength),
-                sizeof(fileNameStrLength));
-      out.write(fileNameStr.data(), fileNameStrLength);
-    }
-  }
-
-  void AssetManager::Deserialise(std::istream &in, const ProjectConfig &config) {
-    uint32_t textureCount;
-    in.read(reinterpret_cast<char *>(&textureCount), sizeof(textureCount));
-
-    for (uint32_t i = 0; i < textureCount; i++) {
-      UUID uuid = UUID::Deserialise(in);
-
-      std::size_t texturePathLength;
-      in.read(reinterpret_cast<char *>(&texturePathLength),
+    std::size_t texturePathLength = texturePathStr.size();
+    out.write(reinterpret_cast<const char *>(&texturePathLength),
               sizeof(texturePathLength));
+    out.write(texturePathStr.data(), texturePathLength);
 
-      std::string texturePathStr(texturePathLength, '\0');
-      in.read(texturePathStr.data(), texturePathLength);
-
-      std::size_t textureNameLength;
-      in.read(reinterpret_cast<char *>(&textureNameLength),
+    std::string textureNameStr = texture->GetName();
+    std::size_t textureNameLength = textureNameStr.size();
+    out.write(reinterpret_cast<const char *>(&textureNameLength),
               sizeof(textureNameLength));
+    out.write(textureNameStr.data(), textureNameLength);
+  }
 
-      std::string textureNameStr(textureNameLength, '\0');
-      in.read(textureNameStr.data(), textureNameLength);
+  uint32_t scriptCount = m_Scripts.size();
 
-      AddTexture(uuid, texturePathStr, textureNameStr);
-    }
+  out.write(reinterpret_cast<const char *>(&scriptCount), sizeof(scriptCount));
 
-    uint32_t scriptCount;
-    in.read(reinterpret_cast<char *>(&scriptCount), sizeof(scriptCount));
+  for (auto const &[uuid, script] : m_Scripts) {
+    std::cout << "Serialising script with uuid: " << uuid.GetUUID()
+              << std::endl;
 
-    for (uint32_t i = 0; i < scriptCount; i++) {
-      UUID uuid = UUID::Deserialise(in);
+    UUID::Serialise(out, uuid);
 
-      std::cout << "Deserialising script with uuid " << uuid.GetUUIDString()
-          << std::endl;
+    std::string scriptPathStr = script->GetScriptPath().string();
+    std::size_t scriptPathLength = scriptPathStr.size();
 
-      std::size_t scriptPathLength;
-      in.read(reinterpret_cast<char *>(&scriptPathLength),
+    out.write(reinterpret_cast<const char *>(&scriptPathLength),
               sizeof(scriptPathLength));
+    out.write(scriptPathStr.data(), scriptPathLength);
 
-      std::string scriptPathStr(scriptPathLength, '\0');
-      in.read(scriptPathStr.data(), scriptPathLength);
-
-      std::size_t scriptNameLength; // here
-      in.read(reinterpret_cast<char *>(&scriptNameLength),
+    std::string scriptNameStr = script->GetName();
+    std::size_t scriptNameLength = scriptNameStr.size();
+    out.write(reinterpret_cast<const char *>(&scriptNameLength),
               sizeof(scriptNameLength));
 
-      std::string scriptNameStr(scriptNameLength, '\0');
-      in.read(scriptNameStr.data(), scriptNameLength);
+    out.write(scriptNameStr.data(), scriptNameLength);
 
-      std::filesystem::path path(scriptPathStr);
+    std::string fileNameStr = script->GetFileName();
+    std::size_t fileNameStrLength = fileNameStr.size();
 
-      std::size_t fileNameLength;
-      in.read(reinterpret_cast<char *>(&fileNameLength), sizeof(fileNameLength));
+    out.write(reinterpret_cast<const char *>(&fileNameStrLength),
+              sizeof(fileNameStrLength));
+    out.write(fileNameStr.data(), fileNameStrLength);
+  }
+}
 
-      std::string fileNameStr(fileNameLength, '\0');
-      in.read(fileNameStr.data(), fileNameLength);
+void AssetManager::Deserialise(std::istream &in, const ProjectConfig &config) {
+  uint32_t textureCount;
+  in.read(reinterpret_cast<char *>(&textureCount), sizeof(textureCount));
 
-      AddScript(uuid, path, fileNameStr, scriptNameStr);
-    }
+  for (uint32_t i = 0; i < textureCount; i++) {
+    UUID uuid = UUID::Deserialise(in);
+
+    std::size_t texturePathLength;
+    in.read(reinterpret_cast<char *>(&texturePathLength),
+            sizeof(texturePathLength));
+
+    std::string texturePathStr(texturePathLength, '\0');
+    in.read(texturePathStr.data(), texturePathLength);
+
+    std::size_t textureNameLength;
+    in.read(reinterpret_cast<char *>(&textureNameLength),
+            sizeof(textureNameLength));
+
+    std::string textureNameStr(textureNameLength, '\0');
+    in.read(textureNameStr.data(), textureNameLength);
+
+    AddTexture(uuid, texturePathStr, textureNameStr);
   }
 
-  void AssetManager::Terminate() {
-    m_Textures.clear();
-    m_Shaders.clear();
+  uint32_t scriptCount;
+  in.read(reinterpret_cast<char *>(&scriptCount), sizeof(scriptCount));
+
+  for (uint32_t i = 0; i < scriptCount; i++) {
+    UUID uuid = UUID::Deserialise(in);
+
+    std::cout << "Deserialising script with uuid " << uuid.GetUUIDString()
+              << std::endl;
+
+    std::size_t scriptPathLength;
+    in.read(reinterpret_cast<char *>(&scriptPathLength),
+            sizeof(scriptPathLength));
+
+    std::string scriptPathStr(scriptPathLength, '\0');
+    in.read(scriptPathStr.data(), scriptPathLength);
+
+    std::size_t scriptNameLength; // here
+    in.read(reinterpret_cast<char *>(&scriptNameLength),
+            sizeof(scriptNameLength));
+
+    std::string scriptNameStr(scriptNameLength, '\0');
+    in.read(scriptNameStr.data(), scriptNameLength);
+
+    std::filesystem::path path(scriptPathStr);
+
+    std::size_t fileNameLength;
+    in.read(reinterpret_cast<char *>(&fileNameLength), sizeof(fileNameLength));
+
+    std::string fileNameStr(fileNameLength, '\0');
+    in.read(fileNameStr.data(), fileNameLength);
+
+    AddScript(uuid, path, fileNameStr, scriptNameStr);
   }
+}
+
+void AssetManager::Terminate() {
+  m_Textures.clear();
+  m_Shaders.clear();
+}
 } // namespace Hamster

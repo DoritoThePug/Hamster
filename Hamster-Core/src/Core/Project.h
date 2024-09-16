@@ -4,8 +4,6 @@
 
 #ifndef PROJECT_H
 #define PROJECT_H
-#include <filesystem>
-#include <string>
 
 #include "Scene.h"
 

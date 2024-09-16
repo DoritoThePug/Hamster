@@ -2,10 +2,9 @@
 // Created by Jaden on 31/08/2024.
 //
 
-#include "Project.h"
+#include "HamsterPCH.h"
 
-#include <filesystem>
-#include <fstream>
+#include "Project.h"
 
 #include "Application.h"
 #include "ProjectSerialiser.h"
@@ -13,134 +12,131 @@
 #include "Utils/AssetManager.h"
 
 namespace Hamster {
-    Project::Project(const ProjectConfig &config) : m_Config(config) {
-        std::filesystem::create_directory(config.ProjectDirectory);
+Project::Project(const ProjectConfig &config) : m_Config(config) {
+  std::filesystem::create_directory(config.ProjectDirectory);
 
-        std::filesystem::current_path(config.ProjectDirectory);
-    }
+  std::filesystem::current_path(config.ProjectDirectory);
+}
 
+bool Project::New(ProjectConfig &config) {
+  if (std::filesystem::exists(config.ProjectDirectory) &&
+      std::filesystem::is_directory(config.ProjectDirectory)) {
+    std::runtime_error("Project directory already exists");
 
-    bool Project::New(ProjectConfig &config) {
-        if (std::filesystem::exists(config.ProjectDirectory) &&
-            std::filesystem::is_directory(config.ProjectDirectory)) {
-            std::runtime_error("Project directory already exists");
+    return false;
+  }
 
-            return false;
-        }
+  if (s_ActiveProject != nullptr) {
+    Hamster::Project::SaveCurrentProject();
+  }
 
+  Application::GetApplicationInstance().StopActiveScene();
 
-        if (s_ActiveProject != nullptr) { Hamster::Project::SaveCurrentProject(); }
+  Application::GetApplicationInstance().RemoveAllScenes();
 
-        Application::GetApplicationInstance().StopActiveScene();
+  std::filesystem::create_directory(config.ProjectDirectory);
+  std::filesystem::current_path(config.ProjectDirectory);
 
-        Application::GetApplicationInstance().RemoveAllScenes();
+  std::filesystem::create_directory("Scenes");
 
+  std::shared_ptr<Scene> scene = std::make_shared<Scene>();
 
-        std::filesystem::create_directory(config.ProjectDirectory);
-        std::filesystem::current_path(config.ProjectDirectory);
+  Application::GetApplicationInstance().AddScene(scene);
 
-        std::filesystem::create_directory("Scenes");
+  std::cout << scene->GetUUID().GetUUID() << std::endl;
 
+  SceneSerialiser sceneSerialiser(scene);
 
-        std::shared_ptr<Scene> scene = std::make_shared<Scene>();
+  std::filesystem::path scenePath = config.ProjectDirectory / scene->GetPath();
 
+  std::cout << scenePath << std::endl;
 
-        Application::GetApplicationInstance().AddScene(scene);
+  std::ofstream sceneOut(scenePath, std::ios::binary);
+  sceneSerialiser.Serialise(sceneOut);
+  sceneOut.close();
 
-        std::cout << scene->GetUUID().GetUUID() << std::endl;
+  config.StartScenePath = scenePath;
 
-        SceneSerialiser sceneSerialiser(scene);
+  Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
 
-        std::filesystem::path scenePath = config.ProjectDirectory / scene->GetPath();
+  s_ActiveProject = std::make_shared<Project>(config);
 
-        std::cout << scenePath << std::endl;
+  SaveCurrentProject();
 
-        std::ofstream sceneOut(scenePath, std::ios::binary);
-        sceneSerialiser.Serialise(sceneOut);
-        sceneOut.close();
+  Application::GetApplicationInstance().AddScene(scene);
+  Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
 
-        config.StartScenePath = scenePath;
+  ProjectOpenedEvent e;
 
-        Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
+  Application::GetApplicationInstance()
+      .GetEventDispatcher()
+      ->Post<ProjectOpenedEvent>(e);
 
-        s_ActiveProject = std::make_shared<Project>(config);
+  return true;
+}
 
-        SaveCurrentProject();
+bool Project::Open(std::filesystem::path projectPath) {
+  if (s_ActiveProject != nullptr) {
+    Project::SaveCurrentProject();
+  }
 
-        Application::GetApplicationInstance().AddScene(scene);
-        Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
+  Application::GetApplicationInstance().StopActiveScene();
 
-        ProjectOpenedEvent e;
+  Application::GetApplicationInstance().RemoveAllScenes();
 
-        Application::GetApplicationInstance().GetEventDispatcher()->Post<ProjectOpenedEvent>(e);
+  std::ifstream projectFile(projectPath, std::ios::binary);
 
-        return true;
-    }
+  ProjectConfig config = ProjectSerialiser::Deserialise(projectFile);
 
-    bool Project::Open(std::filesystem::path projectPath) {
-        if (s_ActiveProject != nullptr) { Project::SaveCurrentProject(); }
+  s_ActiveProject = std::make_shared<Project>(config);
 
-        Application::GetApplicationInstance().StopActiveScene();
+  AssetManager::Deserialise(projectFile, config);
 
-        Application::GetApplicationInstance().RemoveAllScenes();
+  projectFile.close();
 
+  std::shared_ptr<Scene> scene = std::make_shared<Scene>();
+  SceneSerialiser sceneSerialiser(scene);
+  std::ifstream sceneIn(config.StartScenePath, std::ios::binary);
+  sceneSerialiser.Deserialise(sceneIn);
+  sceneIn.close();
 
-        std::ifstream projectFile(projectPath, std::ios::binary);
+  s_ActiveProject->SetStartScene(scene);
 
-        ProjectConfig config = ProjectSerialiser::Deserialise(projectFile);
+  Application::GetApplicationInstance().AddScene(scene);
 
-        s_ActiveProject = std::make_shared<Project>(config);
+  Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
 
-        AssetManager::Deserialise(projectFile, config);
+  ProjectOpenedEvent e;
 
-        projectFile.close();
+  Application::GetApplicationInstance()
+      .GetEventDispatcher()
+      ->Post<ProjectOpenedEvent>(e);
 
+  std::filesystem::current_path(config.ProjectDirectory);
 
-        std::shared_ptr<Scene> scene = std::make_shared<Scene>();
-        SceneSerialiser sceneSerialiser(scene);
-        std::ifstream sceneIn(config.StartScenePath, std::ios::binary);
-        sceneSerialiser.Deserialise(sceneIn);
-        sceneIn.close();
+  return true;
+}
 
+void Project::SaveCurrentProject() {
+  if (s_ActiveProject != nullptr) {
+    ProjectSerialiser serialiser(s_ActiveProject);
 
-        s_ActiveProject->SetStartScene(scene);
+    std::cout << s_ActiveProject->GetConfig().Name << std::endl;
 
-        Application::GetApplicationInstance().AddScene(scene);
+    std::ofstream out(s_ActiveProject->GetConfig().Name + ".hamproj",
+                      std::ios::binary);
 
+    serialiser.Serialise(out);
 
-        Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
+    AssetManager::Serialise(out);
 
-        ProjectOpenedEvent e;
+    out.close();
+  }
+}
 
-        Application::GetApplicationInstance().GetEventDispatcher()->Post<ProjectOpenedEvent>(e);
+void Project::SetStartScene(std::shared_ptr<Scene> scene) {
+  m_StartScene = std::move(scene);
+}
 
-        std::filesystem::current_path(config.ProjectDirectory);
-
-        return true;
-    }
-
-
-    void Project::SaveCurrentProject() {
-        if (s_ActiveProject != nullptr) {
-            ProjectSerialiser serialiser(s_ActiveProject);
-
-            std::cout << s_ActiveProject->GetConfig().Name << std::endl;
-
-            std::ofstream out(s_ActiveProject->GetConfig().Name + ".hamproj", std::ios::binary);
-
-            serialiser.Serialise(out);
-
-            AssetManager::Serialise(out);
-
-            out.close();
-        }
-    }
-
-    void Project::SetStartScene(std::shared_ptr<Scene> scene) {
-        m_StartScene = std::move(scene);
-    }
-
-    ProjectConfig &Project::GetConfig() {
-        return m_Config;
-    }
-} // Hamster
+ProjectConfig &Project::GetConfig() { return m_Config; }
+} // namespace Hamster

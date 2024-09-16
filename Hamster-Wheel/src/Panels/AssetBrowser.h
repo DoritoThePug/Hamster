@@ -6,19 +6,17 @@
 #define ASSETBROWSER_H
 #include "Gui/Panel.h"
 
-
-// #include <GLFW/glfw3.h>
-// #include <GLFW/glfw3native.h>
+#include <Renderer/Texture.h>
+#include <memory>
 
 class AssetBrowser : public Hamster::Panel {
 public:
-    AssetBrowser(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(scene) {
-    };
+  AssetBrowser(std::shared_ptr<Hamster::Scene> scene);
 
-    void Render() override;
+  void Render() override;
 
-    // std::string OpenWindowsFileDialog(HWND owner);
+private:
+  std::unique_ptr<Hamster::Texture> m_PythonIcon;
 };
 
-
-#endif //ASSETBROWSER_H
+#endif // ASSETBROWSER_H

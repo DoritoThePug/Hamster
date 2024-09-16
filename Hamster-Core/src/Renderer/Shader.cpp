@@ -1,9 +1,7 @@
+#include "HamsterPCH.h"
+
 #include "Shader.h"
 
-// #include <string>
-#include <fstream>
-#include <iostream>
-#include <memory>
 #include <sstream>
 
 #include <glad/glad.h>

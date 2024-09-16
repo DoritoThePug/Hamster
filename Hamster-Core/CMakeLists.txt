@@ -24,8 +24,6 @@ set(Core
 
         src/Core/Scene.cpp src/Core/Scene.h
 
-        src/Core/Entity.cpp src/Core/Entity.h
-
         src/Core/UUID.cpp src/Core/UUID.h
 
         src/Core/SceneSerialiser.cpp src/Core/SceneSerialiser.h
@@ -99,15 +97,30 @@ set(sources
         ${Gui}
         ${Physics}
         ${Scripting}
-        Vendor/glad/src/glad.c
+        
+)
+
+set(c_sources
+Vendor/glad/src/glad.c
+
 
 )
+
+add_library(Hamster-C STATIC ${c_sources})
+
+target_include_directories(Hamster-C PUBLIC 
+Vendor/glad/include
+)
+
+
 
 set(HAMSTER_CORE_SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 
 add_library(Hamster-Core STATIC ${sources} src/Hamster.h)
 
 # find_package(Python COMPONENTS Interpreter Development REQUIRED)
+
+target_precompile_headers(Hamster-Core PRIVATE src/HamsterPCH.h)
 
 target_include_directories(Hamster-Core PUBLIC
         src
@@ -127,5 +140,5 @@ target_include_directories(Hamster-Core PUBLIC
 
 target_compile_definitions(Hamster-Core PRIVATE HAMSTER_CORE_SRC_DIR="${CMAKE_SOURCE_DIR}/Hamster-Core/src")
 
-target_link_libraries(Hamster-Core PUBLIC glfw imgui box2d)
+target_link_libraries(Hamster-Core PUBLIC glfw imgui box2d Hamster-C)
 

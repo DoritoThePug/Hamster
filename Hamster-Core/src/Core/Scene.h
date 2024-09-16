@@ -7,10 +7,8 @@
 
 #include <box2d/box2d.h>
 #include <entt/entt.hpp>
-#include <unordered_map>
 
 #include <boost/container_hash/hash.hpp>
-#include <filesystem>
 
 #include <boost/uuid/uuid_io.hpp>
 
@@ -19,7 +17,6 @@
 #include "Events/ApplicationEvents.h"
 #include "Events/WindowEvents.h"
 #include "Physics/Physics.h"
-#include "UUID.h"
 
 namespace Hamster {
 class SceneCreatedEvent;

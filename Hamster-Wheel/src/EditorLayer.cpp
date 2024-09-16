@@ -13,7 +13,7 @@
 #include "Core/Application.h"
 
 EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene)
-  : m_Scene(scene), m_FramebufferTexture(1920, 1080) {
+    : m_Scene(scene), m_FramebufferTexture(1920, 1080) {
   m_PropertyEditor = std::make_unique<PropertyEditor>(m_Scene);
   m_Hierarchy = std::make_unique<Hierarchy>(m_Scene);
   m_FileBrowser = std::make_unique<FileBrowser>(m_Scene);
@@ -54,8 +54,8 @@ void EditorLayer::OnUpdate() {
 
     if (selectedEntity != entt::null) {
       Hamster::Renderer::DrawGuizmo(
-        m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity),
-        Hamster::Translate, true);
+          m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity),
+          Hamster::Translate, true);
     }
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -93,14 +93,14 @@ void EditorLayer::OnUpdate() {
       xGuizmoHeld = true;
       mouseHeldOffsetX =
           mousePosX - m_Scene->GetRegistry()
-          .get<Hamster::Transform>(selectedEntity)
-          .position.x;
+                          .get<Hamster::Transform>(selectedEntity)
+                          .position.x;
     } else if (pickedID == YGuizmoID) {
       yGuizmoHeld = true;
       mouseHeldOffsetY =
           mousePosY - m_Scene->GetRegistry()
-          .get<Hamster::Transform>(selectedEntity)
-          .position.y;
+                          .get<Hamster::Transform>(selectedEntity)
+                          .position.y;
     }
   }
 
@@ -112,14 +112,14 @@ void EditorLayer::OnUpdate() {
   if (xGuizmoHeld) {
     Hamster::Transform *entityTransform =
         &m_Scene->GetRegistry().get<Hamster::Transform>(
-          m_Hierarchy->GetSelectedEntity());
+            m_Hierarchy->GetSelectedEntity());
 
     entityTransform->position.x =
         ImGui::GetMousePos().x - m_ViewportOffset.x - mouseHeldOffsetX;
   } else if (yGuizmoHeld) {
     Hamster::Transform *entityTransform =
         &m_Scene->GetRegistry().get<Hamster::Transform>(
-          m_Hierarchy->GetSelectedEntity());
+            m_Hierarchy->GetSelectedEntity());
 
     entityTransform->position.y =
         ImGui::GetMousePos().y - m_ViewportOffset.y - mouseHeldOffsetY;
@@ -141,8 +141,8 @@ void EditorLayer::OnUpdate() {
 
   if (selectedEntity != entt::null) {
     Hamster::Renderer::DrawGuizmo(
-      m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity),
-      Hamster::Translate, false);
+        m_Scene->GetRegistry().get<Hamster::Transform>(selectedEntity),
+        Hamster::Translate, false);
   }
 
   m_FramebufferTexture.Unbind();
@@ -150,7 +150,9 @@ void EditorLayer::OnUpdate() {
 }
 
 void EditorLayer::OnImGuiUpdate() {
-  ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(m_ViewportWidth + 16.0f, m_ViewportHeight + 35.0f));
+  ImGui::SetNextWindowSizeConstraints(
+      ImVec2(100, 100),
+      ImVec2(m_ViewportWidth + 16.0f, m_ViewportHeight + 35.0f));
   ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());
 
   if (!ImGui::Begin("Level Editor", &m_WindowOpen)) {
@@ -173,11 +175,11 @@ void EditorLayer::OnImGuiUpdate() {
   const ImVec2 pos = ImGui::GetCursorScreenPos();
 
   ImGui::GetWindowDrawList()->AddImage(
-    (void *) (intptr_t) m_FramebufferTexture.GetTextureID(),
-    ImVec2(pos.x, pos.y),
-    ImVec2(pos.x + m_LevelEditorAvailRegion.x,
-           pos.y + m_LevelEditorAvailRegion.y),
-    ImVec2(0, 1), ImVec2(1, 0));
+      (void *)(intptr_t)m_FramebufferTexture.GetTextureID(),
+      ImVec2(pos.x, pos.y),
+      ImVec2(pos.x + m_LevelEditorAvailRegion.x,
+             pos.y + m_LevelEditorAvailRegion.y),
+      ImVec2(0, 1), ImVec2(1, 0));
 
   // TODO background not transparent
 
@@ -221,4 +223,3 @@ void EditorLayer::FramebufferSizeChanged(Hamster::FramebufferResizeEvent &e) {
   m_ViewportHeight = e.GetHeight();
   m_ViewportWidth = e.GetWidth();
 }
-

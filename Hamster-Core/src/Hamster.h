@@ -11,11 +11,10 @@
 #include "Core/Components.h"
 #include "Core/Layer.h"
 #include "Core/Scene.h"
-#include "Core/Entity.h"
 
 // Events
-#include "Events/Event.h"
 #include "Events/ApplicationEvents.h"
+#include "Events/Event.h"
 #include "Events/GuiEvents.h"
 #include "Events/InputEvents.h"
 #include "Events/WindowEvents.h"
@@ -28,4 +27,4 @@
 // Utils
 #include "Utils/AssetManager.h"
 
-#endif //HAMSTER_H
+#endif // HAMSTER_H

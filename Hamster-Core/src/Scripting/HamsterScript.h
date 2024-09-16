@@ -1,14 +1,9 @@
 #pragma once
 
 #include <filesystem>
-#include <pybind11/pybind11.h>
-//
-// #include "Core/Project.h"
-// #include "Core/Scene.h"
-#include <iostream>
 
-#include "Core/UUID.h"
-//
+#include <pybind11/pybind11.h>
+
 namespace Hamster {
 class Scene;
 struct ID;
@@ -21,10 +16,7 @@ public:
 
   void ReloadScript();
 
-  [[nodiscard]] std::filesystem::path GetScriptPath() {
-    return m_ScriptPath;
-    std::cout << m_ScriptPath << std::endl;
-  }
+  [[nodiscard]] std::filesystem::path GetScriptPath() { return m_ScriptPath; }
   //
   void SetUUID(UUID uuid) { m_UUID = uuid; }
   UUID GetUUID() { return m_UUID; }

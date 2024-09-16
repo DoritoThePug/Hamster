@@ -1,10 +1,7 @@
 #pragma once
 
-#include <memory>
-
 #include "Core/Components.h"
 #include "Core/Scene.h"
-#include "Core/UUID.h"
 
 namespace Hamster {
 class Scene;

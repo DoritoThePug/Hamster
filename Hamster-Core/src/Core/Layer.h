@@ -7,23 +7,21 @@
 #include "Events/ApplicationEvents.h"
 
 namespace Hamster {
-    class Layer {
-    public:
-        virtual ~Layer() = default;
+// Pure virtual class, intended for internal use for major component lifecycly
+// events, will in future extend to user use
 
+class Layer {
+public:
+  virtual ~Layer() = default;
 
-        virtual void OnAttach() {
-        };
+  virtual void OnAttach() {};
 
-        virtual void OnDetach() {
-        };
+  virtual void OnDetach() {};
 
-        virtual void OnUpdate() {
-        };
+  virtual void OnUpdate() {};
 
-        virtual void OnImGuiUpdate() {
-        };
-    };
-} // Hamster
+  virtual void OnImGuiUpdate() {};
+};
+} // namespace Hamster
 
-#endif //LAYER_H
+#endif // LAYER_H

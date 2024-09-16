@@ -1,8 +1,6 @@
-#include <iostream>
+#include "HamsterPCH.h"
 
 #include <glad/glad.h>
-
-#include <functional>
 #include <glm/gtc/matrix_transform.hpp>
 #include <imgui.h>
 
@@ -12,15 +10,17 @@
 #include "Events/ApplicationEvents.h"
 #include "Layer.h"
 #include "Physics/Physics.h"
+#include "Project.h"
 #include "Renderer/FramebufferTexture.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Shader.h"
-#include "Utils/AssetManager.h"
-// #include "Gui/ImGuiLayer.h"
-#include "Project.h"
 #include "Scripting/Scripting.h"
+#include "Utils/AssetManager.h"
 
 namespace Hamster {
+// Singleton was chosen due to need for all systems to access the Application
+// class + there should only ever be 1 instance of Application even when
+// Hamster-Wheel is running
 Application *Application::s_Instance = nullptr;
 
 Application::Application() {
@@ -28,10 +28,13 @@ Application::Application() {
 
   s_Instance = this;
 
+  // Similarly, only 1 window is needed, ImGui can handle "sub-windows"
   m_Window = std::make_unique<Window>(m_WindowProps);
 
   Renderer::Init(m_ViewportHeight, m_ViewportWidth);
 
+  // Global dispatcher for all events, aren't many events posted, may create a
+  // dispatcher for user use serperate from internal use
   m_Dispatcher = std::make_shared<EventDispatcher>();
 
   PushLayer(&m_ImGuiLayer);
@@ -52,29 +55,25 @@ Application::Application() {
         dispatcher->Post<WindowCloseEvent>(e);
       });
 
-  // glfwSetWindowCloseCallback(m_Window->GetGLFWWindowPointer(),
-  // Application::Hi);
+  // glfwSetWindowSizeCallback(m_Window->GetGLFWWindowPointer(),
+  //                           [](GLFWwindow *windowGLFW, int width, int height)
+  //                           {
+  //                             auto *dispatcher =
+  //                                 static_cast<EventDispatcher
+  //                                 *>(glfwGetWindowUserPointer(
+  //                                   windowGLFW));
+  //
+  //                             WindowResizeEvent e(width, height);
+  //
+  //                             dispatcher->Post<WindowResizeEvent>(e);
+  //
+  //                             std::cout << "window size " << width << ", "
+  //                                       << height << std::endl;
+  //                           });
 
-  // m_Dispatcher->Subscribe(
-  //   FramebufferResize,
-  //   FORWARD_CALLBACK_FUNCTION(Application::ResizeWindow,
-  //   FramebufferResizeEvent));
-
-  glfwSetWindowSizeCallback(m_Window->GetGLFWWindowPointer(),
-                            [](GLFWwindow *windowGLFW, int width, int height) {
-                              // auto *dispatcher =
-                              //     static_cast<EventDispatcher
-                              //     *>(glfwGetWindowUserPointer(
-                              //       windowGLFW));
-                              //
-                              // WindowResizeEvent e(width, height);
-                              //
-                              // dispatcher->Post<WindowResizeEvent>(e);
-
-                              std::cout << "window size " << width << ", "
-                                        << height << std::endl;
-                            });
-
+  // Use of framebuffer resize to support high DPI displays + Linux framebuffer
+  // size and window size do not match unlike on Window, window resize callback
+  // commented above incase needed for gui resizing
   m_Dispatcher->Subscribe(FramebufferResize, FORWARD_CALLBACK_FUNCTION(
                                                  Application::ResizeFramebuffer,
                                                  FramebufferResizeEvent));
@@ -92,20 +91,21 @@ Application::Application() {
 }
 
 Application::~Application() {
+  // Most cleanup is actually handled by window closing rather than Application
+  // being destroyed due to designed destruction order
   std::cout << "Application destroyed" << std::endl;
 }
 
 void Application::Run() {
   std::cout << "Application running" << std::endl;
 
+  // Variables left for deltatime calculations, will move later to scene so can
+  // be passed to scripts
   float deltaTime = 0.0f;
   float lastFrame = 0.0f;
 
-  int width, height;
-
-  m_Projection =
-      glm::ortho(0.0f, static_cast<float>(m_ViewportWidth),
-                 static_cast<float>(m_ViewportHeight), 0.0f, -1.0f, 1.0f);
+  // Only 2 shaders used, one for rendering sprites and one for rendering flat
+  // colours used in selection
 
   AssetManager::GetShader("sprite")->use();
   AssetManager::GetShader("sprite")->setUniformi("image", 0);
@@ -118,14 +118,12 @@ void Application::Run() {
   Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 0.0f);
 
   while (m_Running) {
-    // glfwGetFramebufferSize(m_Window->GetGLFWWindowPointer(), &width,
-    // &height); std::cout << "Framebuffer size: " << width << ", " << height <<
-    // std::endl;
-
+    // Delta time calculations
     auto currentFrame = static_cast<float>(glfwGetTime());
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
 
+    // Normal layers updated before gui so gui can respond to changes
     for (Layer *layer : m_LayerStack) {
       layer->OnUpdate();
     }
@@ -159,7 +157,6 @@ void Application::Close(WindowCloseEvent &e) {
   }
 
   AssetManager::Terminate();
-  // Scripting::Terminate();
 
   std::cout << "Application closed" << std::endl;
 }
@@ -178,7 +175,11 @@ void Application::ResizeFramebuffer(FramebufferResizeEvent &e) {
 
   Renderer::SetViewport(e.GetWidth(), e.GetHeight());
 
-  std::cout << e.GetHeight() << ", " << e.GetWidth() << std::endl;
+  // Projection matrix adjusted to account for aspect ratio changes to avoid
+  // distortion in rendering
+  m_Projection =
+      glm::ortho(0.0f, static_cast<float>(m_ViewportWidth),
+                 static_cast<float>(m_ViewportHeight), 0.0f, -1.0f, 1.0f);
 }
 
 void Application::PushLayer(Layer *layer) { m_LayerStack.PushLayer(layer); }
@@ -188,6 +189,10 @@ void Application::PopLayer(Layer *layer) { m_LayerStack.PopLayer(layer); }
 glm::mat4 Application::GetProjectionMatrix() { return m_Projection; }
 
 glm::vec3 Application::IdToColour(int id) {
+  // Used to convert an entity handle to a colour, 1 is added to the handle so
+  // that 0 is an invalid id; OpenGL returns 0 as the colour for an invalid
+  // pixel selection
+
   id += 1;
 
   int r = (id & 0x000000FF) >> 0;
@@ -198,14 +203,8 @@ glm::vec3 Application::IdToColour(int id) {
 }
 
 int Application::ColourToId(const glm::vec3 colour) {
-  // int pickedID =
-  //         (colour.r +
-  //         colour.g * 256 +
-  //         colour.b * 256 * 256)-1;
-
-  // int id = static_cast<int>(colour.r * 255) +
-  //      static_cast<int>(colour.g * 255) * 256 +
-  //      static_cast<int>(colour.b * 255) * 256 * 256;
+  // Converts colour back to an entity handle used in ECS, 1 is subtracted to
+  // account for invalid id
 
   int id = static_cast<int>(colour.r) << 0 | static_cast<int>(colour.g) << 8 |
            static_cast<int>(colour.b) << 16;
@@ -226,11 +225,16 @@ void Application::AddScene(std::shared_ptr<Scene> scene) {
 void Application::RemoveScene(UUID uuid) { m_Scenes.erase(uuid); }
 
 void Application::RemoveAllScenes() {
+  // Used for resetting application to load new project
+
   m_ActiveScene = nullptr;
   m_Scenes.clear();
 }
 
 void Application::StopActiveScene() {
+  // Pauses running of active scene for loading in new scene or serialisation of
+  // current scene
+
   if (m_ActiveScene != nullptr) {
     m_ActiveScene->PauseScene();
     m_ActiveScene->PauseSceneSimulation();
@@ -238,6 +242,9 @@ void Application::StopActiveScene() {
 }
 
 void Application::SetSceneActive(UUID uuid) {
+  // Sets a scene as active, each application can only have 1 active scene, the
+  // active scene will be the scene that is rendered on screen
+
   if (m_ActiveScene != nullptr) {
     m_ActiveScene->PauseScene();
     m_ActiveScene->PauseSceneSimulation();
@@ -267,7 +274,4 @@ std::shared_ptr<Scene> Application::GetScene(UUID uuid) {
 }
 
 std::shared_ptr<Scene> Application::GetActiveScene() { return m_ActiveScene; }
-
-// TODO make it so that when you press play you start simulation, editor screen
-// goes full screen and you can edit like Unity
 } // namespace Hamster

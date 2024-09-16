@@ -2,10 +2,6 @@
 
 #include "Renderer/Shader.h"
 #include "Renderer/Texture.h"
-#include <filesystem>
-#include <map>
-#include <memory>
-#include <string>
 
 #include "Core/Project.h"
 #include "Scripting/HamsterScript.h"

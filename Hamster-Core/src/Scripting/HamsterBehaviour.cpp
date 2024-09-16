@@ -1,3 +1,5 @@
+#include "HamsterPCH.h"
+
 #include "HamsterBehaviour.h"
 
 #include "Core/Application.h"
