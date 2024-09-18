@@ -1,5 +1,7 @@
 #pragma once
 
+#include <mutex>
+
 #include "Renderer/Shader.h"
 #include "Renderer/Texture.h"
 
@@ -15,7 +17,7 @@ public:
 
   static std::shared_ptr<Shader> GetShader(std::string name);
 
-  static void AddTexture(const std::string &texturePath);
+  static void AddTextureAsync(const std::string &texturePath);
 
   static void AddTexture(UUID uuid, const std::string &texturePath,
                          const std::string &textureName);
@@ -63,10 +65,13 @@ public:
   static void Terminate();
 
 private:
+  static void AddTexture(const std::string &texturePath);
+
   inline static std::unordered_map<std::string, std::shared_ptr<Shader>>
       m_Shaders;
   inline static std::unordered_map<UUID, std::shared_ptr<Texture>> m_Textures;
   inline static std::unordered_map<UUID, std::shared_ptr<HamsterScript>>
       m_Scripts;
+  inline static std::mutex m_TextureLoadMutex;
 };
 } // namespace Hamster

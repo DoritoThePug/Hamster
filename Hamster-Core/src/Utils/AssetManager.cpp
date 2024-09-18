@@ -1,5 +1,7 @@
 #include "HamsterPCH.h"
 
+#include <future>
+
 #include "AssetManager.h"
 
 #include "Core/Project.h"
@@ -27,11 +29,20 @@ std::shared_ptr<Shader> AssetManager::GetShader(std::string name) {
   }
 }
 
+void AssetManager::AddTextureAsync(const std::string &texturePath) {
+  std::async(
+      std::launch::async,
+      static_cast<void (*)(const std::string &)>(&AssetManager::AddTexture),
+      texturePath);
+}
+
 void AssetManager::AddTexture(const std::string &texturePath) {
   std::cout << "Add texture with path " << texturePath << std::endl;
 
   std::shared_ptr<Texture> texture =
       std::make_shared<Texture>(texturePath.c_str());
+
+  std::lock_guard<std::mutex> lock(m_TextureLoadMutex);
 
   m_Textures.emplace(texture->GetUUID(), texture);
 }

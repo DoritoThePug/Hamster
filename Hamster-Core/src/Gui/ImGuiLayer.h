@@ -12,19 +12,20 @@
 
 namespace Hamster {
 
-
 class ImGuiLayer : public Layer {
-    public:
-    ~ImGuiLayer() override = default;
+public:
+  ~ImGuiLayer() override = default;
 
-    void Begin();
-    void End();
+  void Begin();
+  void End();
 
-     void OnAttach() override;
-     void OnDetach() override;
-    void OnUpdate() override;
+  void OnAttach() override;
+  void OnDetach() override;
+  void OnUpdate() override;
+
+  void AttachDefaultColourScheme();
 };
 
-} // Hamster
+} // namespace Hamster
 
-#endif //IMGUILAYER_H
+#endif // IMGUILAYER_H
