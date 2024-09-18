@@ -107,6 +107,10 @@ void Application::Run() {
   // Only 2 shaders used, one for rendering sprites and one for rendering flat
   // colours used in selection
 
+  m_Projection =
+      glm::ortho(0.0f, static_cast<float>(m_ViewportWidth),
+                 static_cast<float>(m_ViewportHeight), 0.0f, -1.0f, 1.0f);
+
   AssetManager::GetShader("sprite")->use();
   AssetManager::GetShader("sprite")->setUniformi("image", 0);
   AssetManager::GetShader("sprite")->setUniformMat4("projection", m_Projection);
@@ -180,6 +184,14 @@ void Application::ResizeFramebuffer(FramebufferResizeEvent &e) {
   m_Projection =
       glm::ortho(0.0f, static_cast<float>(m_ViewportWidth),
                  static_cast<float>(m_ViewportHeight), 0.0f, -1.0f, 1.0f);
+
+  AssetManager::GetShader("sprite")->use();
+  AssetManager::GetShader("sprite")->setUniformi("image", 0);
+  AssetManager::GetShader("sprite")->setUniformMat4("projection", m_Projection);
+
+  AssetManager::GetShader("flat")->use();
+  AssetManager::GetShader("flat")->setUniformi("image", 0);
+  AssetManager::GetShader("flat")->setUniformMat4("projection", m_Projection);
 }
 
 void Application::PushLayer(Layer *layer) { m_LayerStack.PushLayer(layer); }
