@@ -248,5 +248,7 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
     }
     }
   }
+
+  return uuid;
 }
 } // namespace Hamster

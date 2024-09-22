@@ -56,14 +56,14 @@ void FileBrowser::Render() {
                          (ImTextureID)m_FolderIcon->GetTextureId(),
                          {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
 
-      ImGui::TextWrapped(relativePath.c_str());
+      ImGui::TextWrapped("%s", relativePath.c_str());
     } else {
 
       ImGui::ImageButton(relativePath.c_str(),
                          (ImTextureID)m_FileIcon->GetTextureId(),
                          {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
 
-      ImGui::TextWrapped(directory.path().filename().string().c_str());
+      ImGui::TextWrapped("%s", directory.path().filename().string().c_str());
     }
 
     ImGui::PopStyleVar();

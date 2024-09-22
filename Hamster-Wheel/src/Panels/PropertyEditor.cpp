@@ -92,7 +92,7 @@ void PropertyEditor::Render() {
     if (m_Sprite->texture != nullptr) {
       ImGui::Text("Current Sprite: ");
       ImGui::SameLine();
-      ImGui::Text(m_Sprite->texture->GetName().c_str());
+      ImGui::Text("%s", m_Sprite->texture->GetName().c_str());
     }
 
     if (ImGui::Button("Select Sprite")) {

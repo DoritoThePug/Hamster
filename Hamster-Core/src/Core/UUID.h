@@ -17,12 +17,8 @@ public:
 
   UUID(boost::uuids::uuid uuid);
 
-  const std::string const GetUUIDString() {
-    return boost::uuids::to_string(m_UUID);
-  }
-  [[nodiscard]] const boost::uuids::uuid const GetUUID() const {
-    return m_UUID;
-  }
+  const std::string GetUUIDString() { return boost::uuids::to_string(m_UUID); }
+  [[nodiscard]] const boost::uuids::uuid GetUUID() const { return m_UUID; }
 
   [[nodiscard]] static bool IsNil(UUID uuid) { return uuid.GetUUID().is_nil(); }
   [[nodiscard]] static UUID GetNil() { return {boost::uuids::nil_uuid()}; }
