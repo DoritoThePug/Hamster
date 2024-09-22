@@ -39,7 +39,7 @@ void AssetBrowser::Render() {
         script->GetName() + "##" + boost::uuids::to_string(uuid.GetUUID());
 
     ImGui::ImageButton(script->GetName().c_str(),
-                       (ImTextureID)m_PythonIcon->GetTextureId(),
+                       (ImTextureID)(intptr_t)m_PythonIcon->GetTextureId(),
                        {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
   }
 

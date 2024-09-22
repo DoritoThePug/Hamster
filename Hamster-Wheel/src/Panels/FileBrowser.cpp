@@ -53,14 +53,14 @@ void FileBrowser::Render() {
 
     if (directory.is_directory()) {
       ImGui::ImageButton(relativePath.c_str(),
-                         (ImTextureID)m_FolderIcon->GetTextureId(),
+                         (ImTextureID)(intptr_t)m_FolderIcon->GetTextureId(),
                          {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
 
       ImGui::TextWrapped("%s", relativePath.c_str());
     } else {
 
       ImGui::ImageButton(relativePath.c_str(),
-                         (ImTextureID)m_FileIcon->GetTextureId(),
+                         (ImTextureID)(intptr_t)m_FileIcon->GetTextureId(),
                          {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
 
       ImGui::TextWrapped("%s", directory.path().filename().string().c_str());

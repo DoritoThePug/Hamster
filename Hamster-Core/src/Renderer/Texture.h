@@ -2,6 +2,8 @@
 
 #include <ostream>
 
+#include <glad/glad.h>
+
 #include "Core/UUID.h"
 
 namespace Hamster {
@@ -21,10 +23,10 @@ public:
   void SetName(const std::string &name) { m_TextureName = name; }
   const std::string &GetName() { return m_TextureName; }
 
-  unsigned int GetTextureId() { return m_ID; }
+  GLuint GetTextureId() { return m_ID; }
 
 private:
-  unsigned int m_ID;
+  GLuint m_ID;
   const std::string m_TexturePath;
   std::string m_TextureName = "Untitled Texture";
   UUID m_UUID;
