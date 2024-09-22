@@ -5,19 +5,20 @@
 #include "ProjectHubLayer.h"
 
 void ProjectHubLayer::OnAttach() {
-    Hamster::Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
-        Hamster::ProjectOpened, [this](Hamster::Event &e) {
-            m_EditorLayer = new EditorLayer(Hamster::Application::GetApplicationInstance().GetActiveScene());
+  Hamster::Application::GetApplicationInstance()
+      .GetEventDispatcher()
+      ->Subscribe(Hamster::ProjectOpened, [this](Hamster::Event &e) {
+        m_EditorLayer = new EditorLayer(
+            Hamster::Application::GetApplicationInstance().GetActiveScene());
 
-            Hamster::Application::GetApplicationInstance().PushLayer(m_EditorLayer);
-            Hamster::Application::GetApplicationInstance().PopLayer(this);
-        });
+        Hamster::Application::GetApplicationInstance().PushLayer(m_EditorLayer);
+        Hamster::Application::GetApplicationInstance().PopLayer(this);
+      });
 }
 
-
 void ProjectHubLayer::OnImGuiUpdate() {
-    Hamster::Renderer::Clear();
+  Hamster::Renderer::Clear();
 
-    m_ProjectSelector->Render();
-    m_ProjectCreator->Render();
+  m_ProjectSelector->Render();
+  m_ProjectCreator->Render();
 }

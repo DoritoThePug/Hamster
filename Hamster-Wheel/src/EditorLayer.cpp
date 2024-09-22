@@ -4,6 +4,7 @@
 
 #include "EditorLayer.h"
 
+#include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
@@ -23,6 +24,10 @@ EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene)
 }
 
 void EditorLayer::OnAttach() {
+  glfwGetFramebufferSize(
+      Hamster::Application::GetApplicationInstance().GetWindow(),
+      &m_ViewportWidth, &m_ViewportHeight);
+
   Hamster::Application::GetApplicationInstance()
       .GetEventDispatcher()
       ->Subscribe(Hamster::ActiveSceneChanged,
