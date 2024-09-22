@@ -10,6 +10,7 @@
 #include <entt/entt.hpp>
 
 #include "Utils/AssetManager.h"
+#include <chrono>
 
 namespace Hamster {
 SceneSerialiser::SceneSerialiser(std::shared_ptr<Scene> scene)
@@ -47,6 +48,7 @@ void SceneSerialiser::Deserialise(std::istream &in) {
   std::cout << "Entity count: " << count << std::endl;
 
   for (uint32_t i = 0; i < count; i++) {
+
     DeserialiseEntity(in);
   }
 }

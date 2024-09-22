@@ -6,20 +6,34 @@
 
 namespace Hamster {
 HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
-                                   std::shared_ptr<Scene> scene)
-    : m_UUID(entityUUID), m_Scene(std::move(scene)) {
+                                   std::shared_ptr<Scene> scene,
+                                   Application *app)
+    : m_UUID(entityUUID), m_Scene(std::move(scene)), m_App(app) {
   m_Transform = &m_Scene->GetEntityComponent<Transform>(m_UUID);
-  //
 
-  // if ( Application::GetApplicationInstance()) {
-  // std::cout << "asd" << std::endl;
-  // }
-  //    Application::GetApplicationInstance().GetActiveScene();
+  app->GetEventDispatcher()->Subscribe(
+      KeyPressed, FORWARD_CALLBACK_FUNCTION(HamsterBehaviour::OnKeyPressed,
+                                            KeyPressedEvent));
 
-  // Application::GetApplicationInstance();
+  app->GetEventDispatcher()->Subscribe(
+      KeyReleased, FORWARD_CALLBACK_FUNCTION(HamsterBehaviour::OnKeyReleased,
+                                             KeyReleasedEvent));
 
-  // m_Transform = &Application::GetApplicationInstance()
-  // .GetActiveScene()
-  // ->GetEntityComponent<Transform>(m_UUID);
+  // Application::GetApplicationInstance().GetEventDispatcher();
+}
+
+void HamsterBehaviour::OnKeyPressed(KeyPressedEvent &e) {
+  m_KeyPressed = e.GetKeyPressed();
+
+  // std::cout << m_KeyPressed << std::endl;
+}
+
+void HamsterBehaviour::OnKeyReleased(KeyReleasedEvent &e) {
+
+  if (e.GetKeyReleased() == m_KeyPressed) {
+    m_KeyPressed = NOT_PRESSED;
+  }
+
+  m_KeyReleased = e.GetKeyReleased();
 }
 } // namespace Hamster

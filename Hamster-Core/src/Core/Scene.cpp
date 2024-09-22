@@ -69,6 +69,10 @@ void Scene::DestroyEntity(UUID entityUUID) {
 
 void Scene::OnUpdate() {
   if (!m_IsSimulationPaused) {
+
+    auto currentFrame = static_cast<float>(glfwGetTime());
+    m_DeltaTime = currentFrame - m_LastFrame;
+    m_LastFrame = currentFrame;
     // auto scripts = m_Registry.view<Script>();
 
     // scripts.each(
@@ -102,9 +106,11 @@ void Scene::OnUpdate() {
     //
     auto view = m_Registry.view<Behaviour>();
 
-    view.each([](auto &behaviour) {
+    view.each([this](auto &behaviour) {
       for (auto &obj : behaviour.pyObjects) {
-        obj.attr("OnUpdate")();
+        obj.attr("on_update")(m_DeltaTime);
+
+        obj.attr("reset_input")();
       }
     });
 
@@ -209,8 +215,9 @@ void Scene::RunSceneSimulation() {
   view.each([](auto &ID, auto &behaviour) {
     for (auto const &[uuid, script] : behaviour.scripts) {
       for (auto &obj : script->GetPyObjects()) {
-        behaviour.pyObjects.push_back(obj(
-            ID.uuid, Application::GetApplicationInstance().GetActiveScene()));
+        behaviour.pyObjects.push_back(
+            obj(ID.uuid, Application::GetApplicationInstance().GetActiveScene(),
+                &Application::GetApplicationInstance()));
       }
     }
   });

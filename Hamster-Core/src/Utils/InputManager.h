@@ -10,10 +10,10 @@
 #include "Events/Event.h"
 
 namespace Hamster {
-enum KeyState { Pressed, Released, Held };
-
 // same as glfw keycodes
 enum KeyCodes {
+  NOT_PRESSED = 0,
+
   KEY_SPACE = 32,
   KEY_APOSTROPHE = 39, /* ' */
   KEY_COMMA = 44,      /* , */

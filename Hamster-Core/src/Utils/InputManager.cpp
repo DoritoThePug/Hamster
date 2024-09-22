@@ -30,7 +30,7 @@ InputManager::InputManager(GLFWwindow *window) : m_Window(window) {
 
     // std::cout << xpos << " " << ypos << std::endl;
 
-    if (action == Pressed) {
+    if (action == GLFW_PRESS) {
       MouseButtonClickedEvent e(static_cast<MouseButtons>(button), xpos, ypos);
 
       // std::cout << "hi" << std::endl;
@@ -39,6 +39,24 @@ InputManager::InputManager(GLFWwindow *window) : m_Window(window) {
     }
 
     // std::cout << "hi2" << std::endl;
+  });
+
+  glfwSetKeyCallback(m_Window, [](GLFWwindow *windowGLFW, int key, int scancode,
+                                  int action, int mods) {
+    auto *dispatcher =
+        static_cast<EventDispatcher *>(glfwGetWindowUserPointer(windowGLFW));
+
+    if (action == GLFW_PRESS) {
+      KeyPressedEvent e(static_cast<KeyCodes>(key));
+
+      dispatcher->Post<KeyPressedEvent>(e);
+    }
+
+    if (action == GLFW_RELEASE) {
+      KeyReleasedEvent e(static_cast<KeyCodes>(key));
+
+      dispatcher->Post<KeyReleasedEvent>(e);
+    }
   });
 }
 } // namespace Hamster

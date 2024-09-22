@@ -31,6 +31,9 @@ Application::Application() {
   // Similarly, only 1 window is needed, ImGui can handle "sub-windows"
   m_Window = std::make_unique<Window>(m_WindowProps);
 
+  m_InputManager =
+      std::make_unique<InputManager>(m_Window->GetGLFWWindowPointer());
+
   Renderer::Init(m_ViewportHeight, m_ViewportWidth);
 
   // Global dispatcher for all events, aren't many events posted, may create a

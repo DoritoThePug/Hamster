@@ -32,11 +32,8 @@ std::filesystem::path Scripting::GenerateDefaultScript(UUID *uuidVal) {
 
   std::string defaultContent = "import Hamster \n\n"
                                "class test(Hamster.HamsterBehaviour):\n"
-                               "    def OnUpdate(self):\n"
-                               "        self.transform.position.x += 1\n"
-                               "class hi(Hamster.HamsterBehaviour):\n"
-                               "    def OnUpdate(self):\n"
-                               "        pass";
+                               "    def on_update(self, delta_time):\n"
+                               "        pass\n";
 
   scriptOut << defaultContent;
 

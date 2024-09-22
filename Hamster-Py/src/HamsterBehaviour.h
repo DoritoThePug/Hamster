@@ -7,17 +7,23 @@ class PyHamsterBehaviour : Hamster::HamsterBehaviour {
 public:
   using Hamster::HamsterBehaviour::HamsterBehaviour;
 
-  void OnUpdate() override {
-    PYBIND11_OVERRIDE(void, Hamster::HamsterBehaviour, OnUpdate, );
+  void OnUpdate(float deltaTime) override {
+    PYBIND11_OVERRIDE(void, Hamster::HamsterBehaviour, OnUpdate, deltaTime);
   }
 };
 
 void HamsterBehaviourBinding(pybind11::module_ m) {
   pybind11::class_<Hamster::HamsterBehaviour, PyHamsterBehaviour>(
       m, "HamsterBehaviour")
-      .def(pybind11::init<Hamster::UUID, std::shared_ptr<Hamster::Scene>>())
-      .def("OnUpdate", &Hamster::HamsterBehaviour::OnUpdate)
+      .def(pybind11::init<Hamster::UUID, std::shared_ptr<Hamster::Scene>,
+                          Hamster::Application *>())
+      .def("on_update", &Hamster::HamsterBehaviour::OnUpdate)
+      .def("reset_input", &Hamster::HamsterBehaviour::ResetInput)
       // .def_property("transform", &);
       .def_property("transform", &Hamster::HamsterBehaviour::GetTransform,
-                    &Hamster::HamsterBehaviour::SetTransform);
+                    &Hamster::HamsterBehaviour::SetTransform)
+      .def_property_readonly("key_pressed",
+                             &Hamster::HamsterBehaviour::GetKeyPressed)
+      .def_property_readonly("key_released",
+                             &Hamster::HamsterBehaviour::GetKeyReleased);
 }

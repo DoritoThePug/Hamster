@@ -4,6 +4,7 @@
 #include "Components.h"
 #include "Core.h"
 #include "HamsterBehaviour.h"
+#include "Input.h"
 #include "Library.h"
 #include "UUID.h"
 
@@ -16,6 +17,13 @@ PYBIND11_MODULE(Hamster, m) {
   TransformBinding(m);
   HamsterBehaviourBinding(m);
   ScenePtrBinding(m);
+  AppInstanceBinding(m);
+  // EventDispatcherPtrBinding(m);
+  //
+  // TODO CHANGE APPLICATION TO A POINTER INSTEAD OF REFERENCE THATS WHY ITS
+  // FAILING
+  //
+  KeyCodeEnumBinding(m);
 
   m.def("add", &add);
 }

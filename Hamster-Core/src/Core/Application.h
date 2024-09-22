@@ -17,6 +17,7 @@
 #include "Gui/ImGuiLayer.h"
 #include "Renderer/Texture.h"
 #include "Scene.h"
+#include "Utils/InputManager.h"
 
 namespace Hamster {
 class Application {
@@ -92,6 +93,8 @@ private:
   ImGuiLayer m_ImGuiLayer;
 
   std::unique_ptr<Window> m_Window;
+
+  std::unique_ptr<InputManager> m_InputManager;
 
   std::unordered_map<UUID, std::shared_ptr<Scene>> m_Scenes;
   std::shared_ptr<Scene> m_ActiveScene = nullptr;
