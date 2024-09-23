@@ -7,6 +7,10 @@ class PyHamsterBehaviour : Hamster::HamsterBehaviour {
 public:
   using Hamster::HamsterBehaviour::HamsterBehaviour;
 
+  void OnCreate() override {
+    PYBIND11_OVERRIDE(void, Hamster::HamsterBehaviour, OnCreate, );
+  }
+
   void OnUpdate(float deltaTime) override {
     PYBIND11_OVERRIDE(void, Hamster::HamsterBehaviour, OnUpdate, deltaTime);
   }
@@ -17,6 +21,7 @@ void HamsterBehaviourBinding(pybind11::module_ m) {
       m, "HamsterBehaviour")
       .def(pybind11::init<Hamster::UUID, std::shared_ptr<Hamster::Scene>,
                           Hamster::Application *>())
+      .def("on_create", &Hamster::HamsterBehaviour::OnCreate)
       .def("on_update", &Hamster::HamsterBehaviour::OnUpdate)
       .def("reset_input", &Hamster::HamsterBehaviour::ResetInput)
       // .def_property("transform", &);

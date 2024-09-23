@@ -215,9 +215,13 @@ void Scene::RunSceneSimulation() {
   view.each([](auto &ID, auto &behaviour) {
     for (auto const &[uuid, script] : behaviour.scripts) {
       for (auto &obj : script->GetPyObjects()) {
-        behaviour.pyObjects.push_back(
+        pybind11::object pyObject =
             obj(ID.uuid, Application::GetApplicationInstance().GetActiveScene(),
-                &Application::GetApplicationInstance()));
+                &Application::GetApplicationInstance());
+
+        behaviour.pyObjects.push_back(pyObject);
+
+        pyObject.attr("on_create")();
       }
     }
   });

@@ -18,6 +18,7 @@ public:
   HamsterBehaviour(UUID entityUUID, std::shared_ptr<Scene> scene,
                    Application *app);
 
+  virtual void OnCreate() {}
   virtual void OnUpdate(float deltaTime) {}
 
   const Transform &GetTransform() { return *m_Transform; }
