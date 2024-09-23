@@ -35,6 +35,8 @@ void Renderer::Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
 void Renderer::SetClearColour(float r, float g, float b, float a) {
   glClearColor(r, g, b, a);
+
+  std::cout << a << std::endl;
 }
 
 void Renderer::InitRendererData() {

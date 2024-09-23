@@ -6,6 +6,8 @@
 
 #include <filesystem>
 
+#include <glad/glad.h>
+
 #include "Core/Project.h"
 
 FileBrowser::FileBrowser(std::shared_ptr<Hamster::Scene> scene)
@@ -24,6 +26,9 @@ void FileBrowser::Render() {
     ImGui::End();
     return;
   }
+
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   // std::cout <<
   // Hamster::Project::GetCurrentProject()->GetConfig().ProjectDirectory <<

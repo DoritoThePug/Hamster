@@ -6,6 +6,8 @@
 
 #include "Scene.h"
 
+#include <pybind11/pybind11.h>
+
 #include "Application.h"
 #include "Physics/Physics.h"
 #include "Renderer/Renderer.h"
@@ -73,46 +75,29 @@ void Scene::OnUpdate() {
     auto currentFrame = static_cast<float>(glfwGetTime());
     m_DeltaTime = currentFrame - m_LastFrame;
     m_LastFrame = currentFrame;
-    // auto scripts = m_Registry.view<Script>();
 
-    // scripts.each(
-    // [](auto &script) { script.scriptModule.attr("OnUpdate")(333); });
-
-    // Physics::Simulate(m_WorldId);
-    //
-    // auto view = m_Registry.view<Transform, Rigidbody>();
-    //
-    // view.each([this](auto &transform, auto &rb) {
-    //   b2Transform physicsTransform = b2Body_GetTransform(rb.id);
-    //   // std::cout << pos.x << ", " << pos.y << std::endl;
-    //
-    //   transform.position =
-    //       glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter,
-    //                 physicsTransform.p.y * Physics::s_PixelsPerMeter);
-    //
-    //   transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
-    // });
-    //
-
-    //   auto behaviours = m_Registry.view<Behaviour>();
-    //
-    //   behaviours.each([](auto &behaviour) {
-    //     for (auto &script : behaviour.scripts) {
-    //       for (auto &objects : script.GetPyObjects()) {
-    //         objects.attr("OnUpdate")();
-    //       }
-    //     }
-    //   });
-    //
     auto view = m_Registry.view<Behaviour>();
 
-    view.each([this](auto &behaviour) {
-      for (auto &obj : behaviour.pyObjects) {
-        obj.attr("on_update")(m_DeltaTime);
+    bool pythonError = false;
 
-        obj.attr("reset_input")();
+    view.each([this, &pythonError](auto &behaviour) mutable {
+      for (auto &obj : behaviour.pyObjects) {
+        try {
+          obj.attr("on_update")(m_DeltaTime);
+
+          obj.attr("reset_input")();
+        } catch (pybind11::error_already_set &e) {
+          pythonError = true;
+
+          std::cerr << "Python error " << e.what() << std::endl;
+
+          break;
+        }
       }
     });
+    if (pythonError) {
+      PauseSceneSimulation();
+    }
 
     auto updatePhysicsTransformView = m_Registry.view<Transform, Rigidbody>();
 
@@ -212,7 +197,7 @@ void Scene::RunSceneSimulation() {
 
   auto view = m_Registry.view<ID, Behaviour>();
 
-  view.each([](auto &ID, auto &behaviour) {
+  view.each([this](auto &ID, auto &behaviour) {
     for (auto const &[uuid, script] : behaviour.scripts) {
       for (auto &obj : script->GetPyObjects()) {
         pybind11::object pyObject =
@@ -221,7 +206,11 @@ void Scene::RunSceneSimulation() {
 
         behaviour.pyObjects.push_back(pyObject);
 
-        pyObject.attr("on_create")();
+        try {
+          pyObject.attr("on_create")();
+        } catch (pybind11::error_already_set &e) {
+          PauseSceneSimulation();
+        }
       }
     }
   });

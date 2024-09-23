@@ -134,7 +134,7 @@ void ImGuiLayer::AttachDefaultColourScheme() {
   colors[ImGuiCol_NavWindowingDimBg] = grey;
   colors[ImGuiCol_ModalWindowDimBg] = grey;
 
-  style->WindowPadding = ImVec2(16.0f, 32.0f);
+  style->WindowPadding = ImVec2(8.0f, 16.0f);
   style->WindowBorderSize = 8.0f;
 }
 
