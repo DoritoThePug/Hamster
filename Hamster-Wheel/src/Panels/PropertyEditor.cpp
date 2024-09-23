@@ -3,6 +3,8 @@
 
 #include "PropertyEditor.h"
 
+#include <cstdlib>
+
 #include <glm/gtc/type_ptr.hpp>
 #include <imgui.h>
 
@@ -119,7 +121,9 @@ void PropertyEditor::Render() {
     Hamster::UUID removeScriptUUID = Hamster::UUID::GetNil();
 
     for (const auto &[uuid, script] : m_Behaviour->scripts) {
-      ImGui::Button(script->GetScriptPath().string().c_str());
+      if (ImGui::Button(script->GetScriptPath().string().c_str())) {
+        OpenFile(script->GetScriptPath());
+      };
 
       if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
         ImGui::BeginPopup("Script Actions");
@@ -228,4 +232,20 @@ void PropertyEditor::SetSelectedEntity(Hamster::UUID uuid) {
       m_Rigidbody = nullptr;
     }
   }
+}
+
+void PropertyEditor::OpenFile(std::filesystem::path path) {
+#ifdef _WIN32
+  // Windows
+  std::string command = "start " + path.string();
+  system(command.c_str());
+#elif __APPLE__
+  // macOS
+  std::string command = "open " + path.string();
+  system(command.c_str());
+#elif __linux__
+  // Linux
+  std::string command = "xdg-open " + path.string();
+  system(command.c_str());
+#endif
 }

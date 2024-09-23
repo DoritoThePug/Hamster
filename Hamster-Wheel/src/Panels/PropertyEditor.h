@@ -4,6 +4,7 @@
 
 #ifndef PROPERTYEDITOR_H
 #define PROPERTYEDITOR_H
+#include <filesystem>
 #include <glm/glm.hpp>
 #include <iostream>
 #include <ostream>
@@ -21,6 +22,8 @@ public:
   void SetSelectedEntity(Hamster::UUID uuid);
 
 private:
+  void OpenFile(std::filesystem::path path);
+
   Hamster::UUID m_SelectedEntity = Hamster::UUID::GetNil();
   Hamster::Transform *m_Transform = nullptr;
   Hamster::Sprite *m_Sprite = nullptr;
