@@ -32,6 +32,8 @@ set(Core
 
         src/Core/Project.cpp
         src/Core/Project.h
+
+        src/Core/Log.h src/Core/Log.cpp
 )
 
 set(Events
