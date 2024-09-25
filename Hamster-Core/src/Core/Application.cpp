@@ -28,7 +28,7 @@ Application::Application() {
 
   s_Instance = this;
 
-  m_CoreLogger = std::make_unique<Logger>(5);
+  Log::Init();
 
   // Similarly, only 1 window is needed, ImGui can handle "sub-windows"
   m_Window = std::make_unique<Window>(m_WindowProps);
@@ -111,6 +111,8 @@ void Application::Run() {
 
   // Only 2 shaders used, one for rendering sprites and one for rendering flat
   // colours used in selection
+
+  HAMSTER_LOG(Info, "testing");
 
   m_Projection =
       glm::ortho(0.0f, static_cast<float>(m_ViewportWidth),

@@ -10,7 +10,7 @@ void Console::Render() {
   size_t index = m_Scene->GetClientLogger()->GetTailIndex();
   size_t bufSize = m_Scene->GetClientLogger()->GetBufferSize();
   const std::vector<Hamster::LogEntry> &buffer =
-      m_Scene->GetClientLogger()->GetBuffer();
+      Hamster::Log::GetClientLogger()->GetBuffer();
 
   for (int i = 0; i < bufSize; i++) {
     std::string mes = buffer[index].message;

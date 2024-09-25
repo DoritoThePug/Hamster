@@ -18,6 +18,7 @@
 
 // Game engine headers
 #include "Core/Base.h"
+#include "Core/Log.h"
 #include "Core/UUID.h"
 
 #endif // HamsterPCH_H

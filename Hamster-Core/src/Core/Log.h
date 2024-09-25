@@ -30,6 +30,23 @@ private:
   std::vector<LogEntry> m_Buffer;
   bool m_Full;
 };
+
+class Log {
+public:
+  static void Init(size_t maxBufSize = 100);
+
+  static std::shared_ptr<Logger> GetCoreLogger() { return m_CoreLogger; }
+  static std::shared_ptr<Logger> GetClientLogger() { return m_ClientLogger; }
+
+private:
+  static inline std::shared_ptr<Logger> m_CoreLogger;
+  static inline std::shared_ptr<Logger> m_ClientLogger;
+};
 } // namespace Hamster
+
+#define HAMSTER_CORE_LOG(type, message)                                        \
+  Hamster::Log::GetCoreLogger()->Log(type, message);
+#define HAMSTER_LOG(type, message)                                             \
+  Hamster::Log::GetClientLogger()->Log(type, message);
 
 #endif // !LOG_H
