@@ -17,6 +17,7 @@
 
 #include "Core/Scene.h"
 #include "Panels/AssetBrowser.h"
+#include "Panels/Console.h"
 #include "Panels/FileBrowser.h"
 #include "Panels/Hierarchy.h"
 #include "Panels/MenuBar.h"
@@ -49,6 +50,7 @@ private:
   std::unique_ptr<Hierarchy> m_Hierarchy;
   std::unique_ptr<FileBrowser> m_FileBrowser;
   std::unique_ptr<AssetBrowser> m_AssetBrowser;
+  std::unique_ptr<Console> m_Console;
 
   std::unique_ptr<StartPauseModal> m_StartPauseModal;
   std::unique_ptr<MenuBar> m_MenuBar;

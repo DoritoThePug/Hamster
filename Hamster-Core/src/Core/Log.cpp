@@ -6,8 +6,8 @@ namespace Hamster {
 Logger::Logger(size_t bufferSize)
     : m_BufferSize(bufferSize), m_Buffer(bufferSize) {}
 
-void Logger::Log(LogEntry &entry) {
-  m_Buffer[m_Tail] = entry;
+void Logger::Log(LogType type, const std::string &message) {
+  m_Buffer[m_Tail] = {type, message};
 
   m_Tail = (m_Tail + 1) % m_BufferSize;
 

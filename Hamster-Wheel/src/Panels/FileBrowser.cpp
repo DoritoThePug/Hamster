@@ -8,7 +8,7 @@
 
 #include <glad/glad.h>
 
-#include "Core/Project.h"
+#include <Core/Project.h>
 
 FileBrowser::FileBrowser(std::shared_ptr<Hamster::Scene> scene)
     : Panel(std::move(scene), true) {

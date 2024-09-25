@@ -15,8 +15,8 @@ class Logger {
 public:
   Logger(size_t bufferSize);
 
-  void Log(LogEntry &entry);
-  const std::vector<LogEntry> &Get() { return m_Buffer; }
+  void Log(LogType type, const std::string &message);
+  const std::vector<LogEntry> &GetBuffer() { return m_Buffer; }
 
   [[nodiscard]] bool IsFull() { return m_Full; }
   [[nodiscard]] size_t GetHeadIndex() { return m_Head; }

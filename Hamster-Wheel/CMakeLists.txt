@@ -29,7 +29,7 @@ set(PANELS
         src/Panels/FileBrowser.h
         src/Panels/AssetBrowser.cpp
         src/Panels/AssetBrowser.h
-
+        src/Panels/Console.h src/Panels/Console.cpp
 )
 
 add_executable(Hamster-Wheel ${PANELS} src/EditorLayer.cpp src/EditorLayer.h src/HamsterWheelApp.cpp)

@@ -109,15 +109,6 @@ void Application::Run() {
   float deltaTime = 0.0f;
   float lastFrame = 0.0f;
 
-  // size_t index = m_CoreLogger->GetTailIndex();
-  // const std::vector<LogEntry> buf = m_CoreLogger->Get();
-  //
-  // for (size_t i = 0; i < m_CoreLogger->GetBufferSize(); i++) {
-  //   std::cout << buf[index].message << std::endl;
-  //
-  //   index = (index + 1) % m_CoreLogger->GetBufferSize();
-  // }
-
   // Only 2 shaders used, one for rendering sprites and one for rendering flat
   // colours used in selection
 

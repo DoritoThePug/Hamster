@@ -16,6 +16,7 @@
 
 #include "Events/ApplicationEvents.h"
 #include "Events/WindowEvents.h"
+#include "Log.h"
 #include "Physics/Physics.h"
 
 namespace Hamster {
@@ -98,6 +99,8 @@ public:
 
   void OnSceneCreated(SceneCreatedEvent &e);
 
+  std::shared_ptr<Logger> GetClientLogger() { return m_ClientLogger; }
+
 private:
   bool m_IsRunning = false;
   bool m_IsSimulationPaused = true;
@@ -113,6 +116,8 @@ private:
 
   float m_DeltaTime = 0.0f;
   float m_LastFrame = 0.0f;
+
+  std::shared_ptr<Logger> m_ClientLogger;
 };
 } // namespace Hamster
 

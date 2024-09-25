@@ -21,6 +21,7 @@ EditorLayer::EditorLayer(std::shared_ptr<Hamster::Scene> scene)
   m_AssetBrowser = std::make_unique<AssetBrowser>(m_Scene);
   m_StartPauseModal = std::make_unique<StartPauseModal>(m_Scene);
   m_MenuBar = std::make_unique<MenuBar>(m_Scene);
+  m_Console = std::make_unique<Console>(m_Scene);
 }
 
 void EditorLayer::OnAttach() {
@@ -214,6 +215,10 @@ void EditorLayer::OnImGuiUpdate() {
 
   if (m_AssetBrowser->IsPanelOpen()) {
     m_AssetBrowser->Render();
+  }
+
+  if (m_Console->IsPanelOpen()) {
+    m_Console->Render();
   }
 
   m_StartPauseModal->Render();

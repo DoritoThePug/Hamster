@@ -4,7 +4,7 @@
 
 #ifndef FILEBROWSER_H
 #define FILEBROWSER_H
-#include "Gui/Panel.h"
+#include <Gui/Panel.h>
 
 #include <memory>
 

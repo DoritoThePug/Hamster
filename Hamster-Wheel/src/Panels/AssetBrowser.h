@@ -4,7 +4,7 @@
 
 #ifndef ASSETBROWSER_H
 #define ASSETBROWSER_H
-#include "Gui/Panel.h"
+#include <Gui/Panel.h>
 
 #include <Renderer/Texture.h>
 #include <memory>
