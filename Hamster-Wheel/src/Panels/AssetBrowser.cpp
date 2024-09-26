@@ -9,6 +9,8 @@
 
 #include <bits/stdc++.h>
 #include <iostream>
+#include <sstream>
+#include <string>
 
 AssetBrowser::AssetBrowser(std::shared_ptr<Hamster::Scene> scene)
     : Hamster::Panel(scene) {
@@ -48,27 +50,18 @@ void AssetBrowser::Render() {
   if (ImGui::BeginMenuBar()) {
     if (ImGui::BeginMenu("File")) {
       if (ImGui::MenuItem("Import Asset")) {
+
         char const *filterPattern = {"*.png"};
         const char *path = tinyfd_openFileDialog(
             "Select asset", "", 1, &filterPattern, "PNG Files", 1);
 
-        // Hamster::AssetManager::AddTextureAsync(pathStr);
-        const char *start = path;
-        const char *current = path;
+        std::stringstream pathSS(path);
+        std::string item;
 
-        while (*current != '\0') {
-          if (*current == '|') {
-            std::string pathStr = current;
-
-            Hamster::AssetManager::AddTextureAsync(pathStr);
-
-            start = current + 1;
-          }
-
-          current++;
+        while (std::getline(pathSS, item, '|')) {
+          Hamster::AssetManager::AddTextureAsync(item);
         }
       }
-
       if (ImGui::MenuItem("New Script")) {
         Hamster::AssetManager::AddDefaultScript();
       }
