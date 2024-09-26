@@ -21,6 +21,5 @@ void Logger::Log(LogType type, const std::string &message) {
 
 void Log::Init(size_t maxBufSize) {
   m_CoreLogger = std::make_shared<Logger>(maxBufSize);
-  m_ClientLogger = std::make_shared<Logger>(maxBufSize);
 }
 } // namespace Hamster

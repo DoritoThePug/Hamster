@@ -30,5 +30,6 @@ void HamsterBehaviourBinding(pybind11::module_ m) {
       .def_property_readonly("key_pressed",
                              &Hamster::HamsterBehaviour::GetKeyPressed)
       .def_property_readonly("key_released",
-                             &Hamster::HamsterBehaviour::GetKeyReleased);
+                             &Hamster::HamsterBehaviour::GetKeyReleased)
+      .def("log", &Hamster::HamsterBehaviour::Log);
 }

@@ -112,8 +112,6 @@ void Application::Run() {
   // Only 2 shaders used, one for rendering sprites and one for rendering flat
   // colours used in selection
 
-  HAMSTER_LOG(Info, "testing");
-
   m_Projection =
       glm::ortho(0.0f, static_cast<float>(m_ViewportWidth),
                  static_cast<float>(m_ViewportHeight), 0.0f, -1.0f, 1.0f);

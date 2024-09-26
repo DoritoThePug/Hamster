@@ -6,9 +6,8 @@
 #include "HamsterBehaviour.h"
 #include "Input.h"
 #include "Library.h"
+#include "Log.h"
 #include "UUID.h"
-
-int add(int a, int b) { return a + b; }
 
 PYBIND11_MODULE(Hamster, m) {
   Vec2Binding(m);
@@ -18,12 +17,6 @@ PYBIND11_MODULE(Hamster, m) {
   HamsterBehaviourBinding(m);
   ScenePtrBinding(m);
   AppInstanceBinding(m);
-  // EventDispatcherPtrBinding(m);
-  //
-  // TODO CHANGE APPLICATION TO A POINTER INSTEAD OF REFERENCE THATS WHY ITS
-  // FAILING
-  //
   KeyCodeEnumBinding(m);
-
-  m.def("add", &add);
+  LoggingEnumBinding(m);
 }

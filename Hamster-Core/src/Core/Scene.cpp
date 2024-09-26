@@ -18,24 +18,11 @@
 
 namespace Hamster {
 Scene::Scene() {
+  m_ClientLogger = std::make_shared<Logger>(100);
+
   Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
       SceneCreated,
       FORWARD_CALLBACK_FUNCTION(Scene::OnSceneCreated, SceneCreatedEvent));
-
-  m_ClientLogger = std::make_unique<Logger>(5);
-
-  m_ClientLogger->Log(Info, "hi");
-
-  m_ClientLogger->Log(Info, "hi1");
-  m_ClientLogger->Log(Info, "hi2");
-  m_ClientLogger->Log(Info, "hi3");
-  m_ClientLogger->Log(Info, "hi4");
-  m_ClientLogger->Log(Info, "hi5");
-  m_ClientLogger->Log(Info, "hi6");
-  m_ClientLogger->Log(Info, "hi7");
-  m_ClientLogger->Log(Info, "hi8");
-  m_ClientLogger->Log(Info, "hi9");
-  m_ClientLogger->Log(Info, "hi0");
 
   std::string sceneName = m_Name;
   std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
@@ -240,4 +227,5 @@ void Scene::PauseSceneSimulation() {
 
   Scripting::FinaliseInterpreter();
 }
+
 } // namespace Hamster

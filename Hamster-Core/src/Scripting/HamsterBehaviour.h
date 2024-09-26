@@ -37,6 +37,8 @@ public:
 
   void ResetInput() { m_KeyReleased = NOT_PRESSED; }
 
+  void Log(LogType type, std::string message);
+
 private:
   UUID m_UUID;
   std::shared_ptr<Scene> m_Scene;

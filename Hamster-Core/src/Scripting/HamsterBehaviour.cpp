@@ -36,4 +36,8 @@ void HamsterBehaviour::OnKeyReleased(KeyReleasedEvent &e) {
 
   m_KeyReleased = e.GetKeyReleased();
 }
+
+void HamsterBehaviour::Log(LogType type, std::string message) {
+  m_Scene->GetClientLogger()->Log(type, message);
+}
 } // namespace Hamster
