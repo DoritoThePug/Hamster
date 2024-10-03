@@ -104,7 +104,12 @@ void PropertyEditor::Render() {
     if (ImGui::BeginPopup("Select Asset")) {
       for (const auto &[uuid, texture] :
            Hamster::AssetManager::GetTextureMap()) {
-        if (ImGui::Selectable(texture->GetName().c_str())) {
+        std::string buttonText =
+            texture->GetName() + "##" + texture->GetUUID().GetUUIDString();
+
+        if (ImGui::Selectable(buttonText.c_str())) {
+          std::cout << "HI" << std::endl;
+
           m_Sprite->texture = texture;
         }
       }
