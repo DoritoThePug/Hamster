@@ -126,11 +126,16 @@ void Application::Run() {
 
   Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 1.0f);
 
+  // NOTE: TEXTURE DOESNT LOAD IF ADDED DURING RUNNING BUT WORKS AFTER
+  // RESTARTING APP
+
   while (m_Running) {
     // Delta time calculations
     auto currentFrame = static_cast<float>(glfwGetTime());
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
+
+    ExecuteMainThread();
 
     // Normal layers updated before gui so gui can respond to changes
     for (Layer *layer : m_LayerStack) {
@@ -291,4 +296,19 @@ std::shared_ptr<Scene> Application::GetScene(UUID uuid) {
 }
 
 std::shared_ptr<Scene> Application::GetActiveScene() { return m_ActiveScene; }
+
+void Application::AppendToMainThreadQueue(const std::function<void()> &func) {
+  std::lock_guard<std::mutex> lock(m_MainThreadMutex);
+
+  m_MainThreadQueue.push_back(func);
+}
+void Application::ExecuteMainThread() {
+  std::lock_guard<std::mutex> lock(m_MainThreadMutex);
+
+  for (auto &func : m_MainThreadQueue) {
+    func();
+  }
+
+  m_MainThreadQueue.clear();
+}
 } // namespace Hamster

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -77,6 +78,9 @@ public:
 
   std::shared_ptr<Scene> GetActiveScene();
 
+  void AppendToMainThreadQueue(const std::function<void()> &func);
+  void ExecuteMainThread();
+
 private:
   static Application *s_Instance;
 
@@ -101,5 +105,8 @@ private:
   std::shared_ptr<Scene> m_ActiveScene = nullptr;
 
   WindowProps m_WindowProps;
+
+  std::vector<std::function<void()>> m_MainThreadQueue;
+  std::mutex m_MainThreadMutex;
 };
 } // namespace Hamster

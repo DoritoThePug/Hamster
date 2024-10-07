@@ -2,8 +2,11 @@
 
 #include <future>
 
+#include <stb_image.h>
+
 #include "AssetManager.h"
 
+#include "Core/Application.h"
 #include "Core/Project.h"
 #include "Scripting/Scripting.h"
 
@@ -30,10 +33,55 @@ std::shared_ptr<Shader> AssetManager::GetShader(std::string name) {
 }
 
 void AssetManager::AddTextureAsync(const std::string &texturePath) {
-  std::async(
-      std::launch::async,
-      static_cast<void (*)(const std::string &)>(&AssetManager::AddTexture),
-      texturePath);
+  // auto future = std::async(
+  //     std::launch::async,
+  //     static_cast<void (*)(const std::string &)>(&AssetManager::AddTexture),
+  //     texturePath);
+  //
+  // try {
+  //   future.get();
+  // } catch (const std::exception e) {
+  //   std::cout << e.what() << std::endl;
+  // }
+
+  auto futurePtr = std::make_shared<std::shared_future<TextureData>>(
+      std::async(std::launch::async, [texturePath]() {
+        int width, height, nrChannels;
+
+        unsigned char *data = stbi_load(texturePath.c_str(), &width, &height,
+                                        &nrChannels, STBI_rgb_alpha);
+
+        if (!data) {
+          std::cerr << "Texture could not be loaded" << std::endl;
+        }
+
+        TextureData textData;
+
+        textData.data = data;
+        textData.width = width;
+        textData.height = height;
+        textData.nrChannels = nrChannels;
+
+        return textData;
+      }));
+
+  std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+
+  Application::GetApplicationInstance().AppendToMainThreadQueue(
+      [futurePtr, texture]() mutable {
+        TextureData textData = futurePtr->get();
+
+        texture->Init(textData);
+
+        {
+
+          std::lock_guard<std::mutex> lock(m_TextureLoadMutex);
+
+          m_Textures.emplace(texture->GetUUID(), texture);
+        }
+
+        stbi_image_free(textData.data);
+      });
 }
 
 void AssetManager::AddTexture(const std::string &texturePath) {

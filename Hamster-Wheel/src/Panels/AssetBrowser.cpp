@@ -14,7 +14,6 @@
 
 AssetBrowser::AssetBrowser(std::shared_ptr<Hamster::Scene> scene)
     : Hamster::Panel(scene) {
-
   std::string wheelPath = HAMSTER_WHEEL_SRC_DIR;
 
   m_PythonIcon = std::make_unique<Hamster::Texture>(
@@ -50,7 +49,6 @@ void AssetBrowser::Render() {
   if (ImGui::BeginMenuBar()) {
     if (ImGui::BeginMenu("File")) {
       if (ImGui::MenuItem("Import Asset")) {
-
         char const *filterPattern = {"*.png"};
         const char *path = tinyfd_openFileDialog(
             "Select asset", "", 1, &filterPattern, "PNG Files", 1);
@@ -59,6 +57,8 @@ void AssetBrowser::Render() {
         std::string item;
 
         while (std::getline(pathSS, item, '|')) {
+          std::cout << item << std::endl;
+
           Hamster::AssetManager::AddTextureAsync(item);
         }
       }

@@ -7,9 +7,17 @@
 #include "Core/UUID.h"
 
 namespace Hamster {
+struct TextureData {
+  unsigned char *data;
+  int width, height, nrChannels;
+};
+
 class Texture {
 public:
   Texture(const std::string &texturePath);
+  Texture() {};
+
+  void Init(const TextureData &textData);
 
   void BindTexture();
 
