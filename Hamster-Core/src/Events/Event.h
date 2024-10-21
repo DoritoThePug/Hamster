@@ -23,7 +23,9 @@ enum EventType {
   // Application Events
   ActiveSceneChanged,
   ProjectOpened,
-  SceneCreated
+  SceneCreated,
+  SceneSimulationStarted,
+  SceneSimulationPaused
 };
 
 class Event {

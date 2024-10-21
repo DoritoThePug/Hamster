@@ -33,17 +33,6 @@ std::shared_ptr<Shader> AssetManager::GetShader(std::string name) {
 }
 
 void AssetManager::AddTextureAsync(const std::string &texturePath) {
-  // auto future = std::async(
-  //     std::launch::async,
-  //     static_cast<void (*)(const std::string &)>(&AssetManager::AddTexture),
-  //     texturePath);
-  //
-  // try {
-  //   future.get();
-  // } catch (const std::exception e) {
-  //   std::cout << e.what() << std::endl;
-  // }
-
   auto futurePtr = std::make_shared<std::shared_future<TextureData>>(
       std::async(std::launch::async, [texturePath]() {
         int width, height, nrChannels;
@@ -61,6 +50,7 @@ void AssetManager::AddTextureAsync(const std::string &texturePath) {
         textData.width = width;
         textData.height = height;
         textData.nrChannels = nrChannels;
+        textData.path = texturePath;
 
         return textData;
       }));

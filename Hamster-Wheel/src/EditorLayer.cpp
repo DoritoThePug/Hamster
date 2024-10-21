@@ -48,7 +48,7 @@ void EditorLayer::OnAttach() {
 }
 
 void EditorLayer::OnUpdate() {
-  if (ImGui::IsMouseClicked(0)) {
+  if (ImGui::IsMouseClicked(0) && m_Scene->IsSceneSimulationPaused()) {
     glEnable(GL_SCISSOR_TEST);
     glScissor(0, 0, m_LevelEditorAvailRegion.x, m_LevelEditorAvailRegion.y);
 

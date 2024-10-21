@@ -10,6 +10,7 @@ namespace Hamster {
 struct TextureData {
   unsigned char *data;
   int width, height, nrChannels;
+  std::string path;
 };
 
 class Texture {
@@ -35,7 +36,7 @@ public:
 
 private:
   GLuint m_ID;
-  const std::string m_TexturePath;
+  std::string m_TexturePath;
   std::string m_TextureName = "Untitled Texture";
   UUID m_UUID;
 };

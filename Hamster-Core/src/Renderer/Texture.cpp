@@ -13,6 +13,8 @@ namespace Hamster {
 Texture::Texture(const std::string &texturePath) : m_TexturePath(texturePath) {
   int width, height, nrChannels;
 
+  std::cout << texturePath << std::endl;
+
   unsigned char *data = stbi_load(texturePath.c_str(), &width, &height,
                                   &nrChannels, STBI_rgb_alpha);
 
@@ -50,6 +52,8 @@ void Texture::Init(const TextureData &textData) {
   if (!textData.data) {
     std::cout << "Texture could not be loaded" << std::endl;
   }
+
+  m_TexturePath = textData.path;
 
   glGenTextures(1, &m_ID);
 
