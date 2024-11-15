@@ -34,5 +34,6 @@ private:
   std::string m_FileName;
   UUID m_UUID;
   std::vector<pybind11::handle> m_PyObjects;
+  pybind11::module_ m_Module;
 };
 } // namespace Hamster

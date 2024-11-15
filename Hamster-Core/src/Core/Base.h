@@ -13,6 +13,9 @@
 #define FORWARD_CALLBACK_FUNCTION(func, eventClass)                            \
   [this](Hamster::Event &e) { this->func(dynamic_cast<eventClass &>(e)); }
 
+#define FORWARD_STATIC_CALLBACK_FUNCTION(func, eventClass)                     \
+  [](Hamster::Event &e) { func(dynamic_cast<eventClass &>(e)); }
+
 // Definitions for the colour of the x and y guizmo used in the editor, the
 // largest and second largest possible entity handle to avoid collisions
 #define XGuizmoID 16777214

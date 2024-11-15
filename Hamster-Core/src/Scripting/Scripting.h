@@ -17,13 +17,7 @@ class Scripting {
 public:
   static std::filesystem::path GenerateDefaultScript(UUID *uuid);
 
-  static void InitInterpreter() {
-    if (!m_InterpreterInitialised) {
-      pybind11::initialize_interpreter();
-
-      m_InterpreterInitialised = true;
-    }
-  }
+  static void InitInterpreter();
 
   static void FinaliseInterpreter() {
     if (m_InterpreterInitialised) {
@@ -32,6 +26,8 @@ public:
       m_InterpreterInitialised = false;
     }
   }
+
+  static void AddPathToPy(ProjectOpenedEvent &e);
 
 private:
   inline static bool m_InterpreterInitialised = false;

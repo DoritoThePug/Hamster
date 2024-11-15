@@ -93,11 +93,23 @@ Application::Application() {
 
         dispatcher->Post<FramebufferResizeEvent>(e);
       });
+
+  Scripting::InitInterpreter();
 }
 
 Application::~Application() {
-  // Most cleanup is actually handled by window closing rather than Application
-  // being destroyed due to designed destruction order
+  Scripting::FinaliseInterpreter();
+
+  Project::SaveCurrentProject();
+
+  for (auto const &[uuid, scene] : m_Scenes) {
+    std::cout << "Currently saving scene with uuid: " << uuid.GetUUID()
+              << std::endl;
+    Scene::SaveScene(scene);
+  }
+
+  AssetManager::Terminate();
+
   std::cout << "Application destroyed" << std::endl;
 }
 
@@ -161,18 +173,6 @@ void Application::Run() {
 void Application::Close(WindowCloseEvent &e) {
   m_Running = false;
   m_Window.reset();
-
-  Project::SaveCurrentProject();
-
-  for (auto const &[uuid, scene] : m_Scenes) {
-    std::cout << "Currently saving scene with uuid: " << uuid.GetUUID()
-              << std::endl;
-    Scene::SaveScene(scene);
-  }
-
-  AssetManager::Terminate();
-
-  std::cout << "Application closed" << std::endl;
 }
 
 void Application::ResizeWindow(WindowResizeEvent &e) {

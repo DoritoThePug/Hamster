@@ -6,6 +6,7 @@
 
 #include "Scripting.h"
 
+#include "Core/Application.h"
 #include "Core/Components.h"
 #include <entt/entity/entity.hpp>
 #include <pybind11/embed.h>
@@ -44,6 +45,27 @@ std::filesystem::path Scripting::GenerateDefaultScript(UUID *uuidVal) {
   }
 
   return scriptPath;
+}
+
+void Scripting::InitInterpreter() {
+  if (!m_InterpreterInitialised) {
+    pybind11::initialize_interpreter();
+
+    m_InterpreterInitialised = true;
+
+    Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+        ProjectOpened, FORWARD_STATIC_CALLBACK_FUNCTION(Scripting::AddPathToPy,
+                                                        ProjectOpenedEvent));
+  }
+}
+
+void Scripting::AddPathToPy(ProjectOpenedEvent &e) {
+
+  pybind11::module_ sys = pybind11::module::import("sys");
+
+  pybind11::list path = sys.attr("path");
+
+  path.append(e.GetPath().string());
 }
 
 } // namespace Hamster

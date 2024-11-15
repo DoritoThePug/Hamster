@@ -66,7 +66,7 @@ bool Project::New(ProjectConfig &config) {
   Application::GetApplicationInstance().AddScene(scene);
   Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
 
-  ProjectOpenedEvent e;
+  ProjectOpenedEvent e(config.ProjectDirectory);
 
   Application::GetApplicationInstance()
       .GetEventDispatcher()
@@ -106,7 +106,7 @@ bool Project::Open(std::filesystem::path projectPath) {
 
   Application::GetApplicationInstance().SetSceneActive(scene->GetUUID());
 
-  ProjectOpenedEvent e;
+  ProjectOpenedEvent e(projectPath);
 
   Application::GetApplicationInstance()
       .GetEventDispatcher()

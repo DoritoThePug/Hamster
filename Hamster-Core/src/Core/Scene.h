@@ -118,6 +118,8 @@ private:
   float m_LastFrame = 0.0f;
 
   std::shared_ptr<Logger> m_ClientLogger;
+
+  uint8_t test = 0;
 };
 } // namespace Hamster
 
