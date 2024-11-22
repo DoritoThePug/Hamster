@@ -28,7 +28,9 @@ private:
   Hamster::Transform *m_Transform = nullptr;
   Hamster::Sprite *m_Sprite = nullptr;
   Hamster::Behaviour *m_Behaviour = nullptr;
+
   Hamster::Rigidbody *m_Rigidbody = nullptr;
+  bool m_BodyIsDynamic = true;
 };
 
 #endif // PROPERTYEDITOR_H

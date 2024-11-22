@@ -24,6 +24,9 @@ public:
   static void CreateBody(const UUID &entityUUID, std::shared_ptr<Scene> scene,
                          b2BodyType bodyType);
 
+  static void ChangeBodyType(const UUID &entityUUID,
+                             std::shared_ptr<Scene> scene, b2BodyType bodyType);
+
   inline static constexpr float s_PixelsPerMeter = 100.0f;
 
   static void Simulate(const b2WorldId &worldId);

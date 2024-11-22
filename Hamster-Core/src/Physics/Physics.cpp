@@ -40,6 +40,14 @@ void Physics::CreateBody(const UUID &entityUUID, std::shared_ptr<Scene> scene,
   scene->AddEntityComponent<Rigidbody>(entityUUID, bodyId);
 }
 
+void Physics::ChangeBodyType(const UUID &entityUUID,
+                             std::shared_ptr<Scene> scene,
+                             b2BodyType bodyType) {
+  Rigidbody &rb = scene->GetEntityComponent<Rigidbody>(entityUUID);
+
+  b2Body_SetType(rb.id, bodyType);
+}
+
 void Physics::Simulate(const b2WorldId &worldId) {
   b2World_Step(worldId, m_TimeStep, m_SubStepCount);
 }

@@ -166,6 +166,22 @@ void PropertyEditor::Render() {
 
   if (m_Rigidbody != nullptr) {
     ImGui::SeparatorText("Rigidbody");
+
+    ImGui::Text("Is Dynamic: ");
+    ImGui::SameLine();
+
+    ImGui::PushStyleColor(ImGuiCol_CheckMark, (ImVec4)ImColor(230, 57, 70));
+    if (ImGui::Checkbox("dynamicbodycheckbox", &m_BodyIsDynamic)) {
+      if (m_BodyIsDynamic) {
+        Hamster::Physics::ChangeBodyType(m_SelectedEntity, m_Scene,
+                                         b2_dynamicBody);
+      } else {
+        Hamster::Physics::ChangeBodyType(m_SelectedEntity, m_Scene,
+                                         b2_staticBody);
+      }
+    }
+
+    ImGui::PopStyleColor();
   }
 
   if (ImGui::Button("Add Component")) {
