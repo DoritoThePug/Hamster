@@ -229,7 +229,7 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
       uint32_t scriptCount;
       in.read(reinterpret_cast<char *>(&scriptCount), sizeof(scriptCount));
 
-      m_Scene->AddEntityComponent<Behaviour>(uuid);   
+      m_Scene->AddEntityComponent<Behaviour>(uuid);
 
       Behaviour &behaviour = m_Scene->GetEntityComponent<Behaviour>(uuid);
 

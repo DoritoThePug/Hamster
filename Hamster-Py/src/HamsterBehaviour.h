@@ -24,7 +24,6 @@ void HamsterBehaviourBinding(pybind11::module_ m) {
       .def("on_create", &Hamster::HamsterBehaviour::OnCreate)
       .def("on_update", &Hamster::HamsterBehaviour::OnUpdate)
       .def("reset_input", &Hamster::HamsterBehaviour::ResetInput)
-      .def("set_velocity", &Hamster::HamsterBehaviour::SetVelocity)
       // .def_property("transform", &);
       .def_property("transform", &Hamster::HamsterBehaviour::GetTransform,
                     &Hamster::HamsterBehaviour::SetTransform)
@@ -32,5 +31,7 @@ void HamsterBehaviourBinding(pybind11::module_ m) {
                              &Hamster::HamsterBehaviour::GetKeyPressed)
       .def_property_readonly("key_released",
                              &Hamster::HamsterBehaviour::GetKeyReleased)
-      .def("log", &Hamster::HamsterBehaviour::Log);
+      .def("log", &Hamster::HamsterBehaviour::Log)
+
+  .def("execute_external_script", &Hamster::HamsterBehaviour::CrossScriptExecute);
 }

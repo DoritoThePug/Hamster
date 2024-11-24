@@ -13,6 +13,8 @@ UUID::UUID() : m_UUID(boost::uuids::random_generator()()) {
 
 UUID::UUID(boost::uuids::uuid uuid) { m_UUID = uuid; }
 
+  UUID::UUID(std::string& uuid) : m_UUID(boost::uuids::string_generator()(uuid)) {};
+
 void UUID::Serialise(std::ostream &out, const UUID &uuid) {
   boost::uuids::uuid uuidValue = uuid.GetUUID();
 

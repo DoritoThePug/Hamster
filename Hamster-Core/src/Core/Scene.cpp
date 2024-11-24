@@ -108,6 +108,18 @@ void Scene::OnUpdate() {
         }
       }
     });
+
+
+    auto physicsUpdate = m_Registry.view<Transform, Rigidbody>();
+
+    physicsUpdate.each([physicsUpdate](auto entityA, auto &transformA, auto &rbA) mutable {
+      physicsUpdate.each([entityA, transformA, rbA](auto entityB, auto& transformB, auto &rbB) mutable {
+        if (entityA != entityB) {
+          Physics::ResolveCollision(transformA, rbA, transformB, rbB);
+        }
+      });
+    });
+
     if (pythonError) {
       PauseSceneSimulation();
     }

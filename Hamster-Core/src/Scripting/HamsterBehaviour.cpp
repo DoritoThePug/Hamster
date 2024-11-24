@@ -44,4 +44,15 @@ void HamsterBehaviour::OnKeyReleased(KeyReleasedEvent &e) {
 void HamsterBehaviour::Log(LogType type, std::string message) {
   m_Scene->GetClientLogger()->Log(type, message);
 }
+
+  void HamsterBehaviour::CrossScriptExecute(std::string& uuid, const char* funcName) {
+  auto& behaviour  = m_Scene->GetEntityComponent<Behaviour>(UUID(uuid));
+
+  for (auto& obj : behaviour.pyObjects) {
+    if (pybind11::hasattr(obj, funcName)) {
+      obj.attr(funcName)();
+      break;
+    }
+  }
+}
 } // namespace Hamster

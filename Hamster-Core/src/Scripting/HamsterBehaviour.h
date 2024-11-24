@@ -35,10 +35,14 @@ public:
   void OnKeyPressed(KeyPressedEvent &e);
   void OnKeyReleased(KeyReleasedEvent &e);
 
-  void ResetInput() { m_KeyReleased = NOT_PRESSED; }
+  void ResetInput() {
+    m_KeyReleased = NOT_PRESSED;
+    m_KeyReleased = NOT_PRESSED;
+  }
 
   void Log(LogType type, std::string message);
 
+  void CrossScriptExecute(std::string& uuid, const char* funcName);
 private:
   UUID m_UUID;
   std::shared_ptr<Scene> m_Scene;

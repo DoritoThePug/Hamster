@@ -17,6 +17,8 @@ public:
 
   UUID(boost::uuids::uuid uuid);
 
+  UUID(std::string& uuid);
+
   const std::string GetUUIDString() { return boost::uuids::to_string(m_UUID); }
   [[nodiscard]] const boost::uuids::uuid GetUUID() const { return m_UUID; }
 
@@ -29,7 +31,7 @@ public:
 
 private:
   boost::uuids::uuid m_UUID;
-  static boost::uuids::random_generator m_RandomGenerator;
+
 };
 } // namespace Hamster
 
