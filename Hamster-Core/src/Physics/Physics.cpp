@@ -35,17 +35,21 @@ void Physics::CreateBody(const UUID &entityUUID, std::shared_ptr<Scene> scene,
                 (entityTransform.size.y / s_PixelsPerMeter) / 2);
 
   b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
-  b2CreatePolygonShape(bodyId, &bodyShapeDef, &bodyPolygon);
+  b2ShapeId shapeId = b2CreatePolygonShape(bodyId, &bodyShapeDef, &bodyPolygon);
+
+  m_ShapeToEntity.emplace(shapeId, entityUUID);
 
   if (scene->EntityHasComponent<Rigidbody>(entityUUID)) {
     Rigidbody &entityRb = scene->GetEntityComponent<Rigidbody>(entityUUID);
 
     entityRb.id = bodyId;
+    entityRb.shapeId = shapeId;
 
-    entityRb.dynamic = (bodyType == b2_dynamicBody) ? true : false;
+    entityRb.dynamic = (bodyType == b2_kinematicBody) ? true : false;
   } else {
     scene->AddEntityComponent<Rigidbody>(
-        entityUUID, bodyId, (bodyType == b2_dynamicBody) ? true : false);
+        entityUUID, bodyId, shapeId,
+        (bodyType == b2_kinematicBody) ? true : false);
   }
 }
 
@@ -59,6 +63,17 @@ void Physics::ChangeBodyType(const UUID &entityUUID,
 
 void Physics::Simulate(const b2WorldId &worldId) {
   b2World_Step(worldId, m_TimeStep, m_SubStepCount);
+
+  b2ContactEvents contactEvents = b2World_GetContactEvents(worldId);
+
+  for (int i = 0; i < contactEvents.beginCount; i++) {
+    b2ContactBeginTouchEvent e = contactEvents.beginEvents[i];
+
+    std::cout << Physics::GetEntityFromShape(e.shapeIdA).GetUUIDString()
+              << " collided with "
+              << Physics::GetEntityFromShape(e.shapeIdB).GetUUIDString()
+              << std::endl;
+  }
 }
 
 void Physics::SetTransform(const b2BodyId &bodyId, Transform &transform) {

@@ -24,6 +24,7 @@ void HamsterBehaviourBinding(pybind11::module_ m) {
       .def("on_create", &Hamster::HamsterBehaviour::OnCreate)
       .def("on_update", &Hamster::HamsterBehaviour::OnUpdate)
       .def("reset_input", &Hamster::HamsterBehaviour::ResetInput)
+      .def("set_velocity", &Hamster::HamsterBehaviour::SetVelocity)
       // .def_property("transform", &);
       .def_property("transform", &Hamster::HamsterBehaviour::GetTransform,
                     &Hamster::HamsterBehaviour::SetTransform)

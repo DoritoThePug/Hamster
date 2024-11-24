@@ -3,6 +3,7 @@
 #include "HamsterBehaviour.h"
 
 #include "Core/Application.h"
+#include <box2d/box2d.h>
 
 namespace Hamster {
 HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
@@ -10,6 +11,10 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
                                    Application *app)
     : m_UUID(entityUUID), m_Scene(std::move(scene)), m_App(app) {
   m_Transform = &m_Scene->GetEntityComponent<Transform>(m_UUID);
+
+  if (m_Scene->EntityHasComponent<Rigidbody>(m_UUID)) {
+    m_Rigidbody = &m_Scene->GetEntityComponent<Rigidbody>(m_UUID);
+  }
 
   app->GetEventDispatcher()->Subscribe(
       KeyPressed, FORWARD_CALLBACK_FUNCTION(HamsterBehaviour::OnKeyPressed,
@@ -20,6 +25,12 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
                                              KeyReleasedEvent));
 
   // Application::GetApplicationInstance().GetEventDispatcher();
+}
+
+void HamsterBehaviour::SetVelocity(glm::vec2 &vec) {
+  std::cout << "setting velocity" << std::endl;
+
+  m_Scene->SetBodyVelocity(m_Rigidbody->id, vec);
 }
 
 void HamsterBehaviour::OnKeyPressed(KeyPressedEvent &e) {

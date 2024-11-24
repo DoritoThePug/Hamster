@@ -21,6 +21,8 @@ public:
   virtual void OnCreate() {}
   virtual void OnUpdate(float deltaTime) {}
 
+  void SetVelocity(glm::vec2 &vec);
+
   const Transform &GetTransform() { return *m_Transform; }
 
   void SetTransform(const Transform &transform) {
@@ -46,6 +48,7 @@ private:
   Application *m_App;
 
   Transform *m_Transform = nullptr;
+  Rigidbody *m_Rigidbody = nullptr;
   KeyCodes m_KeyPressed = NOT_PRESSED;
   KeyCodes m_KeyReleased = NOT_PRESSED;
 };

@@ -56,6 +56,7 @@ struct Name {
 // Contains a Box2D id for physics simulation
 struct Rigidbody {
   b2BodyId id;
+  b2ShapeId shapeId;
   bool dynamic;
 };
 

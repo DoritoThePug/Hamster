@@ -185,6 +185,9 @@ void Scene::SetUUID(const UUID &uuid) {
 
 void Scene::RunSceneSimulation() {
   if (m_IsSimulationPaused) {
+
+    b2DestroyWorld(m_WorldId);
+
     m_WorldId = Physics::InitBox2dWorld();
 
     auto physicsReloadView = m_Registry.view<ID, Rigidbody>();
@@ -240,8 +243,6 @@ void Scene::PauseSceneSimulation() {
     // view.each([](auto &behaviour) { behaviour.pyObjects.clear(); });
 
     // Scripting::FinaliseInterpreter();
-
-    b2DestroyWorld(m_WorldId);
 
     std::cout << "Scene paused" << std::endl;
   }

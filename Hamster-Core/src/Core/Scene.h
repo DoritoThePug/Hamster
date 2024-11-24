@@ -11,6 +11,7 @@
 #include <boost/container_hash/hash.hpp>
 
 #include <boost/uuid/uuid_io.hpp>
+#include <iostream>
 
 #include "Components.h"
 
@@ -100,6 +101,12 @@ public:
   void OnSceneCreated(SceneCreatedEvent &e);
 
   std::shared_ptr<Logger> GetClientLogger() { return m_ClientLogger; }
+
+  void SetBodyVelocity(b2BodyId id, glm::vec2 vec) {
+    // b2Body_SetLinearVelocity(id, b2Vec2{vec.x, vec.y});
+
+    std::cout << "hi" << std::endl;
+  }
 
 private:
   bool m_IsRunning = false;

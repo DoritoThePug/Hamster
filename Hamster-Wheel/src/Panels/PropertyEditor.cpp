@@ -20,6 +20,8 @@ void PropertyEditor::Render() {
     return;
   }
 
+  ImGui::Text("%s", m_SelectedEntity.GetUUIDString().c_str());
+
   if (m_Transform != nullptr) {
     ImGui::SeparatorText("Transform");
 
@@ -173,7 +175,7 @@ void PropertyEditor::Render() {
     ImGui::PushStyleColor(ImGuiCol_CheckMark, (ImVec4)ImColor(230, 57, 70));
     if (ImGui::Checkbox("dynamicbodycheckbox", &m_Rigidbody->dynamic)) {
       Hamster::Physics::ChangeBodyType(m_SelectedEntity, m_Scene,
-                                       (m_Rigidbody->dynamic) ? b2_dynamicBody
+                                       (m_Rigidbody->dynamic) ? b2_kinematicBody
                                                               : b2_staticBody);
     }
 
@@ -189,7 +191,8 @@ void PropertyEditor::Render() {
 
     if (!m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) {
       if (ImGui::Selectable("Rigidbody")) {
-        Hamster::Physics::CreateBody(m_SelectedEntity, m_Scene, b2_dynamicBody);
+        Hamster::Physics::CreateBody(m_SelectedEntity, m_Scene,
+                                     b2_kinematicBody);
       }
     }
 
