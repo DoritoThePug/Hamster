@@ -58,6 +58,8 @@ struct Rigidbody {
   b2BodyId id;
   b2ShapeId shapeId;
   bool dynamic;
+
+  b2Vec2 velocity = {0.0f, 0.0f};
 };
 
 // All entities must also have an ID which contains the UUID used to identify

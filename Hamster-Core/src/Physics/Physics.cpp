@@ -45,11 +45,11 @@ void Physics::CreateBody(const UUID &entityUUID, std::shared_ptr<Scene> scene,
     entityRb.id = bodyId;
     entityRb.shapeId = shapeId;
 
-    entityRb.dynamic = (bodyType == b2_kinematicBody) ? true : false;
+    entityRb.dynamic = (bodyType == b2_dynamicBody) ? true : false;
   } else {
     scene->AddEntityComponent<Rigidbody>(
         entityUUID, bodyId, shapeId,
-        (bodyType == b2_kinematicBody) ? true : false);
+        (bodyType == b2_dynamicBody) ? true : false);
   }
 }
 

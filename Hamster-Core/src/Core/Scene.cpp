@@ -102,8 +102,10 @@ void Scene::OnUpdate() {
 
     auto updatePhysicsTransformView = m_Registry.view<Transform, Rigidbody>();
 
-    updatePhysicsTransformView.each([](auto &transform, auto &rigidbody) {
+    updatePhysicsTransformView.each([](auto &transform, auto  &rigidbody) {
       Physics::SetTransform(rigidbody.id, transform);
+
+      b2Body_ApplyForceToCenter(rigidbody.id, rigidbody.velocity, true);
     });
 
     Physics::Simulate(m_WorldId);

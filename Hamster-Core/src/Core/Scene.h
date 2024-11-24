@@ -103,9 +103,7 @@ public:
   std::shared_ptr<Logger> GetClientLogger() { return m_ClientLogger; }
 
   void SetBodyVelocity(b2BodyId id, glm::vec2 vec) {
-    // b2Body_SetLinearVelocity(id, b2Vec2{vec.x, vec.y});
-
-    std::cout << "hi" << std::endl;
+    b2Body_SetLinearVelocity(id, b2Vec2{vec.x, vec.y});
   }
 
 private:

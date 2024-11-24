@@ -214,7 +214,7 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
       break;
     }
     case Rigidbody_ID: {
-      Physics::CreateBody(uuid, m_Scene, b2_kinematicBody);
+      Physics::CreateBody(uuid, m_Scene, b2_dynamicBody);
 
       break;
     }

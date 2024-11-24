@@ -191,7 +191,7 @@ void EditorLayer::OnImGuiUpdate() {
 
   ImGui::End();
 
-  ImGui::ShowDemoWindow();
+  // ImGui::ShowDemoWindow();
 
   if (m_Hierarchy->IsPanelOpen()) {
     m_Hierarchy->Render();

@@ -28,9 +28,9 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
 }
 
 void HamsterBehaviour::SetVelocity(glm::vec2 &vec) {
-  std::cout << "setting velocity" << std::endl;
 
-  m_Scene->SetBodyVelocity(m_Rigidbody->id, vec);
+  m_Rigidbody->velocity.x = vec.x;
+  m_Rigidbody->velocity.y = vec.y;
 }
 
 void HamsterBehaviour::OnKeyPressed(KeyPressedEvent &e) {
