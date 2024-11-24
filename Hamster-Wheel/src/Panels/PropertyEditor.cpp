@@ -171,11 +171,11 @@ void PropertyEditor::Render() {
   if (m_Rigidbody != nullptr) {
     ImGui::SeparatorText("Rigidbody");
 
-    ImGui::Text("Is Dynamic: ");
+    ImGui::Text("Is Static: ");
     ImGui::SameLine();
 
     ImGui::PushStyleColor(ImGuiCol_CheckMark, (ImVec4)ImColor(230, 57, 70));
-    ImGui::Checkbox("dynamicbodycheckbox", &m_Rigidbody->isStatic);
+    ImGui::Checkbox("##dynamicbodycheckbox", &m_Rigidbody->isStatic);
 
     ImGui::PopStyleColor();
   }

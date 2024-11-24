@@ -136,6 +136,10 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
   if (m_Scene->EntityHasComponent<Rigidbody>(entity_uuid)) {
     int id = static_cast<int>(Rigidbody_ID);
     out.write(reinterpret_cast<const char *>(&id), sizeof(id));
+
+    Rigidbody &rb = m_Scene->GetEntityComponent<Rigidbody>(entity_uuid);
+
+    out.write(reinterpret_cast<const char*>(&rb.isStatic), sizeof(rb.isStatic));
   }
 
   if (m_Scene->EntityHasComponent<Behaviour>(entity_uuid)) {
@@ -214,7 +218,10 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
       break;
     }
     case Rigidbody_ID: {
+      bool isStatic;
+      in.read(reinterpret_cast<char *>(&isStatic), sizeof(isStatic));
 
+      m_Scene->AddEntityComponent<Rigidbody>(uuid, isStatic);
 
       break;
     }
@@ -222,7 +229,7 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
       uint32_t scriptCount;
       in.read(reinterpret_cast<char *>(&scriptCount), sizeof(scriptCount));
 
-      m_Scene->AddEntityComponent<Behaviour>(uuid);
+      m_Scene->AddEntityComponent<Behaviour>(uuid);   
 
       Behaviour &behaviour = m_Scene->GetEntityComponent<Behaviour>(uuid);
 
