@@ -78,8 +78,6 @@ public:
   void PauseScene() { m_IsRunning = false; }
   void PauseSceneSimulation();
 
-  b2WorldId GetWorldId() { return m_WorldId; }
-
   UUID GetUUID() const { return m_UUID; }
 
   void SetUUID(const UUID &uuid);
@@ -101,19 +99,12 @@ public:
   void OnSceneCreated(SceneCreatedEvent &e);
 
   std::shared_ptr<Logger> GetClientLogger() { return m_ClientLogger; }
-
-  void SetBodyVelocity(b2BodyId id, glm::vec2 vec) {
-    b2Body_SetLinearVelocity(id, b2Vec2{vec.x, vec.y});
-  }
-
 private:
   bool m_IsRunning = false;
   bool m_IsSimulationPaused = true;
 
   entt::registry m_Registry;
   std::unordered_map<UUID, entt::entity> m_Entities;
-
-  b2WorldId m_WorldId = Physics::InitBox2dWorld();
 
   UUID m_UUID;
   std::string m_Name = "Untitled Scene";
@@ -123,8 +114,6 @@ private:
   float m_LastFrame = 0.0f;
 
   std::shared_ptr<Logger> m_ClientLogger;
-
-  uint8_t test = 0;
 };
 } // namespace Hamster
 

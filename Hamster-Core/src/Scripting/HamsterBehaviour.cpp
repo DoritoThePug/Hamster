@@ -26,13 +26,6 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
 
   // Application::GetApplicationInstance().GetEventDispatcher();
 }
-
-void HamsterBehaviour::SetVelocity(glm::vec2 &vec) {
-
-  m_Rigidbody->velocity.x = vec.x;
-  m_Rigidbody->velocity.y = vec.y;
-}
-
 void HamsterBehaviour::OnKeyPressed(KeyPressedEvent &e) {
   m_KeyPressed = e.GetKeyPressed();
 

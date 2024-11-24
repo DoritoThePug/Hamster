@@ -21,8 +21,6 @@ public:
   virtual void OnCreate() {}
   virtual void OnUpdate(float deltaTime) {}
 
-  void SetVelocity(glm::vec2 &vec);
-
   const Transform &GetTransform() { return *m_Transform; }
 
   void SetTransform(const Transform &transform) {

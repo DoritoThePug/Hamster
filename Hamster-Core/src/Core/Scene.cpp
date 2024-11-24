@@ -72,13 +72,12 @@ void Scene::DestroyEntity(UUID entityUUID) {
 // }
 
 void Scene::OnUpdate() {
-  auto test = m_Registry.view<Transform>();
+  auto test = m_Registry.view<Transform, Rigidbody>();
 
-  test.each([test](auto entityA, auto &transformA) {
-    test.each([entityA, transformA](auto entityB, auto& transformB) {
+  test.each([test](auto entityA, auto &transformA, auto &rbA) mutable {
+    test.each([entityA, transformA, rbA](auto entityB, auto& transformB, auto &rbB) mutable {
       if (entityA != entityB) {
-        if (Physics::IsColliding(transformA, transformB))
-        {std::cout << "colliding" << std::endl;}
+        Physics::ResolveCollision(transformA, rbA, transformB, rbB);
       }
     });
 
@@ -112,28 +111,6 @@ void Scene::OnUpdate() {
     if (pythonError) {
       PauseSceneSimulation();
     }
-
-    auto updatePhysicsTransformView = m_Registry.view<Transform, Rigidbody>();
-
-    updatePhysicsTransformView.each([](auto &transform, auto  &rigidbody) {
-      Physics::SetTransform(rigidbody.id, transform);
-
-      b2Body_ApplyForceToCenter(rigidbody.id, rigidbody.velocity, true);
-    });
-
-    Physics::Simulate(m_WorldId);
-
-    auto physicsView = m_Registry.view<Transform, Rigidbody>();
-
-    physicsView.each([](auto &transform, auto &rigidbody) {
-      b2Transform physicsTransform = b2Body_GetTransform(rigidbody.id);
-
-      transform.position =
-          glm::vec2(physicsTransform.p.x * Physics::s_PixelsPerMeter,
-                    physicsTransform.p.y * Physics::s_PixelsPerMeter);
-
-      transform.rotation = glm::degrees(b2Rot_GetAngle(physicsTransform.q));
-    });
   }
 }
 
@@ -200,19 +177,6 @@ void Scene::SetUUID(const UUID &uuid) {
 
 void Scene::RunSceneSimulation() {
   if (m_IsSimulationPaused) {
-
-    b2DestroyWorld(m_WorldId);
-
-    m_WorldId = Physics::InitBox2dWorld();
-
-    auto physicsReloadView = m_Registry.view<ID, Rigidbody>();
-
-    physicsReloadView.each([](auto &id, auto &rb) {
-      Physics::CreateBody(
-          id.uuid, Application::GetApplicationInstance().GetActiveScene(),
-          (rb.dynamic) ? b2_dynamicBody : b2_staticBody);
-    });
-
     auto scriptReloadView = m_Registry.view<Behaviour>();
 
     scriptReloadView.each([](auto &behaviour) {
@@ -252,12 +216,6 @@ void Scene::RunSceneSimulation() {
 void Scene::PauseSceneSimulation() {
   if (!m_IsSimulationPaused) {
     m_IsSimulationPaused = true;
-
-    // auto view = m_Registry.view<Behaviour>();
-    //
-    // view.each([](auto &behaviour) { behaviour.pyObjects.clear(); });
-
-    // Scripting::FinaliseInterpreter();
 
     std::cout << "Scene paused" << std::endl;
   }

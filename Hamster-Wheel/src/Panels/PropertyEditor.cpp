@@ -175,11 +175,7 @@ void PropertyEditor::Render() {
     ImGui::SameLine();
 
     ImGui::PushStyleColor(ImGuiCol_CheckMark, (ImVec4)ImColor(230, 57, 70));
-    if (ImGui::Checkbox("dynamicbodycheckbox", &m_Rigidbody->dynamic)) {
-      Hamster::Physics::ChangeBodyType(m_SelectedEntity, m_Scene,
-                                       (m_Rigidbody->dynamic) ? b2_dynamicBody
-                                                              : b2_staticBody);
-    }
+    ImGui::Checkbox("dynamicbodycheckbox", &m_Rigidbody->isStatic);
 
     ImGui::PopStyleColor();
   }
@@ -193,8 +189,7 @@ void PropertyEditor::Render() {
 
     if (!m_Scene->EntityHasComponent<Hamster::Rigidbody>(m_SelectedEntity)) {
       if (ImGui::Selectable("Rigidbody")) {
-        Hamster::Physics::CreateBody(m_SelectedEntity, m_Scene,
-                                     b2_dynamicBody);
+        m_Scene->AddEntityComponent<Hamster::Rigidbody>(m_SelectedEntity);
       }
     }
 
