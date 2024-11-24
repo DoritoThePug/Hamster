@@ -56,6 +56,7 @@ struct Name {
 // Contains a Box2D id for physics simulation
 struct Rigidbody {
   b2BodyId id;
+  bool dynamic;
 };
 
 // All entities must also have an ID which contains the UUID used to identify

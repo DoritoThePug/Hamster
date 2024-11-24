@@ -30,7 +30,6 @@ private:
   Hamster::Behaviour *m_Behaviour = nullptr;
 
   Hamster::Rigidbody *m_Rigidbody = nullptr;
-  bool m_BodyIsDynamic = true;
 };
 
 #endif // PROPERTYEDITOR_H

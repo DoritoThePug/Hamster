@@ -37,7 +37,16 @@ void Physics::CreateBody(const UUID &entityUUID, std::shared_ptr<Scene> scene,
   b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
   b2CreatePolygonShape(bodyId, &bodyShapeDef, &bodyPolygon);
 
-  scene->AddEntityComponent<Rigidbody>(entityUUID, bodyId);
+  if (scene->EntityHasComponent<Rigidbody>(entityUUID)) {
+    Rigidbody &entityRb = scene->GetEntityComponent<Rigidbody>(entityUUID);
+
+    entityRb.id = bodyId;
+
+    entityRb.dynamic = (bodyType == b2_dynamicBody) ? true : false;
+  } else {
+    scene->AddEntityComponent<Rigidbody>(
+        entityUUID, bodyId, (bodyType == b2_dynamicBody) ? true : false);
+  }
 }
 
 void Physics::ChangeBodyType(const UUID &entityUUID,

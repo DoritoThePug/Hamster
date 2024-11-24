@@ -184,21 +184,25 @@ void Scene::SetUUID(const UUID &uuid) {
 }
 
 void Scene::RunSceneSimulation() {
-  test++;
-
   if (m_IsSimulationPaused) {
-    std::cout << "0" << std::endl;
+    m_WorldId = Physics::InitBox2dWorld();
 
-    std::cout << "1" << std::endl;
+    auto physicsReloadView = m_Registry.view<ID, Rigidbody>();
 
-    auto reloadView = m_Registry.view<Behaviour>();
+    physicsReloadView.each([](auto &id, auto &rb) {
+      Physics::CreateBody(
+          id.uuid, Application::GetApplicationInstance().GetActiveScene(),
+          (rb.dynamic) ? b2_dynamicBody : b2_staticBody);
+    });
 
-    reloadView.each([](auto &behaviour) {
+    auto scriptReloadView = m_Registry.view<Behaviour>();
+
+    scriptReloadView.each([](auto &behaviour) {
       for (auto const &[uuid, script] : behaviour.scripts) {
         script->ReloadScript();
       }
     });
-    std::cout << "2" << std::endl;
+
     m_IsSimulationPaused = false;
 
     auto view = m_Registry.view<ID, Behaviour>();
@@ -236,6 +240,8 @@ void Scene::PauseSceneSimulation() {
     // view.each([](auto &behaviour) { behaviour.pyObjects.clear(); });
 
     // Scripting::FinaliseInterpreter();
+
+    b2DestroyWorld(m_WorldId);
 
     std::cout << "Scene paused" << std::endl;
   }
