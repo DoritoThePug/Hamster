@@ -4,6 +4,7 @@
 #include "Core/Scene.h"
 #include "Events/Event.h"
 #include "Events/InputEvents.h"
+#include "Events/SceneEvents.h"
 #include "Utils/InputManager.h"
 
 namespace Hamster {
@@ -40,6 +41,13 @@ public:
     m_KeyReleased = NOT_PRESSED;
   }
 
+  void OnCollision(CollisionEvent& e);
+
+  void AddCollisionEntity(const std::string& uuid);
+  void EmptyCollisionEntity();
+  [[nodiscard]] bool IsColliding() const { return m_Colliding;}
+  [[nodiscard]] std::set<std::string> GetCollisionEntites() const {return m_CollisionEntities;}
+
   void Log(LogType type, std::string message);
 
   void CrossScriptExecute(std::string& uuid, const char* funcName);
@@ -53,5 +61,8 @@ private:
   Rigidbody *m_Rigidbody = nullptr;
   KeyCodes m_KeyPressed = NOT_PRESSED;
   KeyCodes m_KeyReleased = NOT_PRESSED;
+
+  bool m_Colliding = false;
+  std::set<std::string> m_CollisionEntities;
 };
 } // namespace Hamster

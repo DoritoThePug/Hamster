@@ -72,12 +72,16 @@ void Scene::DestroyEntity(UUID entityUUID) {
 // }
 
 void Scene::OnUpdate() {
-  auto test = m_Registry.view<Transform, Rigidbody>();
+  auto test = m_Registry.view<Transform, Rigidbody, ID>();
 
-  test.each([test](auto entityA, auto &transformA, auto &rbA) mutable {
-    test.each([entityA, transformA, rbA](auto entityB, auto& transformB, auto &rbB) mutable {
+  test.each([this, test](auto entityA, auto &transformA, auto &rbA, auto& idA) mutable {
+    test.each([this, entityA, transformA, rbA, idA](auto entityB, auto& transformB, auto &rbB, auto& idB) mutable {
       if (entityA != entityB) {
-        Physics::ResolveCollision(transformA, rbA, transformB, rbB);
+        if (Physics::ResolveCollision(transformA, rbA, transformB, rbB)) {
+          CollisionEvent e(idA.uuid, idB.uuid);
+
+          Application::GetApplicationInstance().GetEventDispatcher()->Post<CollisionEvent>(e);
+        }
       }
     });
 
@@ -99,6 +103,7 @@ void Scene::OnUpdate() {
           obj.attr("on_update")(m_DeltaTime);
 
           obj.attr("reset_input")();
+          obj.attr("reset_collision_entities")();
         } catch (pybind11::error_already_set &e) {
           pythonError = true;
 

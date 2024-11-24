@@ -22,7 +22,7 @@ class Scene;
 class Physics {
 public:
   static bool IsColliding(const Transform& bodyA, const Transform& bodyB);
-  static void ResolveCollision(Transform& bodyA, Rigidbody& rbA, Transform& bodyB, Rigidbody& rbB);
+  static bool ResolveCollision(Transform& bodyA, Rigidbody& rbA, Transform& bodyB, Rigidbody& rbB);
 private:
 };
 } // namespace Hamster

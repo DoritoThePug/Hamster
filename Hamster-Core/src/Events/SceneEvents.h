@@ -6,22 +6,21 @@
 #define SCENEEVENTS_H
 
 #include "Event.h"
+#include "Core/UUID.h"
 
 namespace Hamster {
-class ActiveSceneChangedEvent : public Event {
-public:
-  explicit ActiveSceneChangedEvent(std::shared_ptr<Scene> scene)
-      : m_ActiveScene(std::move(scene)) {};
+  class CollisionEvent : public Event {
+  public:
+    CollisionEvent(UUID& uuidA, UUID& uuidB) : uuidA(uuidA), uuidB(uuidB) {};
 
-  [[nodiscard]] std::shared_ptr<Scene> GetActiveScene() {
-    return m_ActiveScene;
-  }
+    [[nodiscard]] UUID& GetUUIDA() const {return uuidA;}
+    [[nodiscard]] UUID& GetUUIDB() const {return uuidB;}
 
-  BIND_EVENT_TYPE(ActiveSceneChanged);
-
-private:
-  std::shared_ptr<Scene> m_ActiveScene;
-};
+    BIND_EVENT_TYPE(Collision);
+  private:
+    UUID& uuidA;
+    UUID& uuidB;
+  };
 } // namespace Hamster
 
 #endif // SCENEEVENTS_H

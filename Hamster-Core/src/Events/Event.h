@@ -25,7 +25,10 @@ enum EventType {
   ProjectOpened,
   SceneCreated,
   SceneSimulationStarted,
-  SceneSimulationPaused
+  SceneSimulationPaused,
+
+  // Game Events
+  Collision
 };
 
 class Event {

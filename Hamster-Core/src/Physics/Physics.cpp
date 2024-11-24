@@ -24,7 +24,7 @@ namespace Hamster {
   return true;
 }
 
-   void Physics::ResolveCollision(Transform& bodyA, Rigidbody& rbA, Transform& bodyB, Rigidbody& rbB) {
+   bool Physics::ResolveCollision(Transform& bodyA, Rigidbody& rbA, Transform& bodyB, Rigidbody& rbB) {
     if (IsColliding(bodyA, bodyB)) {
       glm::vec2 maxA{bodyA.position.x + bodyA.size.x, bodyA.position.y + bodyA.size.y};
       glm::vec2 maxB{bodyB.position.x + bodyB.size.x, bodyB.position.y + bodyB.size.y};
@@ -83,6 +83,10 @@ namespace Hamster {
           }
         }
       }
+
+      return true;
     }
+
+    return false;
   }
 } // namespace Hamster

@@ -5,6 +5,8 @@
 #include "Core/Application.h"
 #include <box2d/box2d.h>
 
+#include "Events/SceneEvents.h"
+
 namespace Hamster {
 HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
                                    std::shared_ptr<Scene> scene,
@@ -23,6 +25,10 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
   app->GetEventDispatcher()->Subscribe(
       KeyReleased, FORWARD_CALLBACK_FUNCTION(HamsterBehaviour::OnKeyReleased,
                                              KeyReleasedEvent));
+
+  app->GetEventDispatcher()->Subscribe(
+      Collision, FORWARD_CALLBACK_FUNCTION(HamsterBehaviour::OnCollision,
+                                             CollisionEvent));
 
   // Application::GetApplicationInstance().GetEventDispatcher();
 }
@@ -55,4 +61,25 @@ void HamsterBehaviour::Log(LogType type, std::string message) {
     }
   }
 }
+
+  void HamsterBehaviour::AddCollisionEntity(const std::string& uuid) {
+  m_CollisionEntities.insert(uuid);
+
+  m_Colliding = true;
+}
+
+  void HamsterBehaviour::EmptyCollisionEntity() {
+  m_CollisionEntities.clear();
+m_Colliding = false;
+  }
+
+  void HamsterBehaviour::OnCollision(CollisionEvent &e) {
+    if (e.GetUUIDA().GetUUID() == m_UUID.GetUUID()) {
+      AddCollisionEntity(e.GetUUIDB().GetUUIDString());
+    } else if (e.GetUUIDB().GetUUID() == m_UUID.GetUUID()) {
+      AddCollisionEntity(e.GetUUIDA().GetUUIDString());
+    }
+  }
+
+
 } // namespace Hamster
