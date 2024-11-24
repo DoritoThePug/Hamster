@@ -83,4 +83,15 @@ void Physics::SetTransform(const b2BodyId &bodyId, Transform &transform) {
                       b2MakeRot(glm::radians(transform.rotation)));
 }
 
+  bool Physics::IsColliding(const Transform& bodyA, const Transform& bodyB) {
+    if ( bodyA.position.x + bodyA.size.x < bodyB.position.x ||
+        bodyA.position.y + bodyA.size.y < bodyB.position.y ||
+        bodyB.position.x + bodyB.size.x < bodyA.position.x ||
+        bodyB.position.y + bodyB.size.y < bodyA.position.y
+    ) {
+      return false;
+    }
+
+  return true;
+}
 } // namespace Hamster

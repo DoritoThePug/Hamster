@@ -59,6 +59,8 @@ public:
     return m_ShapeToEntity.at(id);
   }
 
+  static bool IsColliding(const Transform& bodyA, const Transform& bodyB);
+
 private:
   inline static float m_TimeStep = 1.0f / 60.0f;
   inline static int m_SubStepCount = 4;

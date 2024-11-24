@@ -72,6 +72,19 @@ void Scene::DestroyEntity(UUID entityUUID) {
 // }
 
 void Scene::OnUpdate() {
+  auto test = m_Registry.view<Transform>();
+
+  test.each([test](auto entityA, auto &transformA) {
+    test.each([entityA, transformA](auto entityB, auto& transformB) {
+      if (entityA != entityB) {
+        if (Physics::IsColliding(transformA, transformB))
+        {std::cout << "colliding" << std::endl;}
+      }
+    });
+
+
+  });
+
   if (!m_IsSimulationPaused) {
     auto currentFrame = static_cast<float>(glfwGetTime());
     m_DeltaTime = currentFrame - m_LastFrame;
