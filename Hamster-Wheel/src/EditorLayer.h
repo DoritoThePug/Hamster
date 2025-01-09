@@ -62,6 +62,13 @@ private:
 
   bool xGuizmoHeld = false;
   bool yGuizmoHeld = false;
+  bool pickedHeld = false;
+
+  bool topLeftGrabberHeld = false;
+  bool topRightGrabberHeld = false;
+  bool bottomLeftGrabberHeld = false;
+  bool bottomRightGrabberHeld = false;
+
   float mouseHeldOffsetX = 0.0f;
   float mouseHeldOffsetY = 0.0f;
 };

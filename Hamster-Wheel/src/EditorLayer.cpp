@@ -90,45 +90,166 @@ void EditorLayer::OnUpdate() {
 
     auto pickedEntity = static_cast<entt::entity>(pickedID);
 
-    if (pickedID != -1 && m_Scene->GetRegistry().valid(pickedEntity)) {
-      m_Hierarchy->SetSelectedEntity(pickedEntity);
-    } else if (pickedID == -1) {
+    //   if (pickedID != -1 && m_Scene->GetRegistry().valid(pickedEntity)) {
+    //     m_Hierarchy->SetSelectedEntity(pickedEntity);
+    //   } else if (pickedID == -1) {
+    //     m_Hierarchy->SetSelectedEntity(entt::null);
+    //     m_PropertyEditor->SetSelectedEntity(boost::uuids::nil_uuid());
+    //   } else if (pickedID == XGuizmoID) {
+    //     xGuizmoHeld = true;
+    //     mouseHeldOffsetX =
+    //         mousePosX - m_Scene->GetRegistry()
+    //                         .get<Hamster::Transform>(selectedEntity)
+    //                         .position.x;
+    //   } else if (pickedID == YGuizmoID) {
+    //     yGuizmoHeld = true;
+    //     mouseHeldOffsetY =
+    //         mousePosY - m_Scene->GetRegistry()
+    //                         .get<Hamster::Transform>(selectedEntity)
+    //                         .position.y;
+    //   } else if (pickedID == GrabberGuizmoID) {
+    //     pickedHeld = true;
+    //
+    //     mouseHeldOffsetX =
+    //         mousePosX - m_Scene->GetRegistry()
+    //                         .get<Hamster::Transform>(selectedEntity)
+    //                         .position.x;
+    //
+    //     mouseHeldOffsetY =
+    //         mousePosY - m_Scene->GetRegistry()
+    //                         .get<Hamster::Transform>(selectedEntity)
+    //                         .position.y;
+    //   }
+    // }
+
+    switch (pickedID) {
+    case -1: {
       m_Hierarchy->SetSelectedEntity(entt::null);
       m_PropertyEditor->SetSelectedEntity(boost::uuids::nil_uuid());
-    } else if (pickedID == XGuizmoID) {
-      xGuizmoHeld = true;
-      mouseHeldOffsetX =
-          mousePosX - m_Scene->GetRegistry()
-                          .get<Hamster::Transform>(selectedEntity)
-                          .position.x;
-    } else if (pickedID == YGuizmoID) {
-      yGuizmoHeld = true;
-      mouseHeldOffsetY =
-          mousePosY - m_Scene->GetRegistry()
-                          .get<Hamster::Transform>(selectedEntity)
-                          .position.y;
+
+      break;
+    }
+    case TopLeftGrabberID: {
+      topLeftGrabberHeld = true;
+
+      // mouseHeldOffsetX =
+      //     mousePosX - m_Scene->GetRegistry()
+      //                     .get<Hamster::Transform>(selectedEntity)
+      //                     .position.x;
+
+      break;
+    }
+
+    case TopRightGrabberID: {
+      topRightGrabberHeld = true;
+
+      break;
+    }
+    case BottomLeftGrabberID: {
+      bottomLeftGrabberHeld = true;
+
+      break;
+    }
+    case BottomRightGrabberID: {
+      bottomRightGrabberHeld = true;
+
+      // mouseHeldOffsetX = mousePosX;
+      break;
+    }
+    default: {
+      if (m_Scene->GetRegistry().valid(pickedEntity)) {
+        m_Hierarchy->SetSelectedEntity(pickedEntity);
+      }
+
+      break;
+    }
     }
   }
 
   if (ImGui::IsMouseReleased(0)) {
     xGuizmoHeld = false;
     yGuizmoHeld = false;
+    pickedHeld = false;
+
+    topLeftGrabberHeld = false;
+    topRightGrabberHeld = false;
+    bottomLeftGrabberHeld = false;
+    bottomRightGrabberHeld = false;
   }
 
-  if (xGuizmoHeld) {
+  // if (xGuizmoHeld) {
+  //   Hamster::Transform *entityTransform =
+  //       &m_Scene->GetRegistry().get<Hamster::Transform>(
+  //           m_Hierarchy->GetSelectedEntity());
+  //
+  //   entityTransform->position.x =
+  //       ImGui::GetMousePos().x - m_ViewportOffset.x - mouseHeldOffsetX;
+  // } else if (yGuizmoHeld) {
+  //   Hamster::Transform *entityTransform =
+  //       &m_Scene->GetRegistry().get<Hamster::Transform>(
+  //           m_Hierarchy->GetSelectedEntity());
+  //
+  //   entityTransform->position.y =
+  //       ImGui::GetMousePos().y - m_ViewportOffset.y - mouseHeldOffsetY;
+  // } else if (pickedHeld) {
+  //
+  //   Hamster::Transform *entityTransform =
+  //       &m_Scene->GetRegistry().get<Hamster::Transform>(
+  //           m_Hierarchy->GetSelectedEntity());
+  //
+  //   entityTransform->size.x += ImGui::GetMouseDragDelta().x;
+  //
+  //   entityTransform->size.y += ImGui::GetMouseDragDelta().y;
+  // } else if (bottomRightGrabberHeld) {
+  if (bottomRightGrabberHeld) {
     Hamster::Transform *entityTransform =
         &m_Scene->GetRegistry().get<Hamster::Transform>(
             m_Hierarchy->GetSelectedEntity());
 
-    entityTransform->position.x =
-        ImGui::GetMousePos().x - m_ViewportOffset.x - mouseHeldOffsetX;
-  } else if (yGuizmoHeld) {
+    ImVec2 mouseDelta = ImGui::GetIO().MouseDelta;
+
+    entityTransform->size.x += mouseDelta.x;
+    entityTransform->size.y += mouseDelta.y;
+  } else if (topLeftGrabberHeld) {
     Hamster::Transform *entityTransform =
         &m_Scene->GetRegistry().get<Hamster::Transform>(
             m_Hierarchy->GetSelectedEntity());
 
-    entityTransform->position.y =
-        ImGui::GetMousePos().y - m_ViewportOffset.y - mouseHeldOffsetY;
+    std::cout << ImGui::GetMouseDragDelta().x << std::endl;
+
+    ImVec2 mouseDelta = ImGui::GetIO().MouseDelta;
+
+    entityTransform->size.x -= mouseDelta.x;
+    entityTransform->size.y -= mouseDelta.y;
+
+    entityTransform->position.x += mouseDelta.x;
+    entityTransform->position.y += mouseDelta.y;
+  } else if (topRightGrabberHeld) {
+    Hamster::Transform *entityTransform =
+        &m_Scene->GetRegistry().get<Hamster::Transform>(
+            m_Hierarchy->GetSelectedEntity());
+
+    std::cout << ImGui::GetMouseDragDelta().x << std::endl;
+
+    ImVec2 mouseDelta = ImGui::GetIO().MouseDelta;
+
+    entityTransform->size.x += mouseDelta.x;
+    entityTransform->size.y -= mouseDelta.y;
+
+    entityTransform->position.y += mouseDelta.y;
+  } else if (bottomLeftGrabberHeld) {
+    Hamster::Transform *entityTransform =
+        &m_Scene->GetRegistry().get<Hamster::Transform>(
+            m_Hierarchy->GetSelectedEntity());
+
+    std::cout << ImGui::GetMouseDragDelta().x << std::endl;
+
+    ImVec2 mouseDelta = ImGui::GetIO().MouseDelta;
+
+    entityTransform->size.x -= mouseDelta.x;
+    entityTransform->size.y += mouseDelta.y;
+
+    entityTransform->position.x += mouseDelta.x;
   }
 
   m_FramebufferTexture.ResizeFrameBuffer(m_LevelEditorAvailRegion.x,
@@ -191,7 +312,7 @@ void EditorLayer::OnImGuiUpdate() {
 
   ImGui::End();
 
-  // ImGui::ShowDemoWindow();
+  ImGui::ShowDemoWindow();
 
   if (m_Hierarchy->IsPanelOpen()) {
     m_Hierarchy->Render();

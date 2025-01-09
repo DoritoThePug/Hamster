@@ -14,34 +14,62 @@
 #include "ProjectHubLayer.h"
 
 int main() {
-    auto *app = new Hamster::Application();
+  auto *app = new Hamster::Application();
 
-    std::string srcPath = HAMSTER_WHEEL_SRC_DIR;
-    std::string filePath =
-            srcPath + "/../Resources/Fonts/segoe-ui-this/segoeuithis.ttf";
+  std::string srcPath = HAMSTER_WHEEL_SRC_DIR;
+  std::string filePath =
+      srcPath + "/../Resources/Fonts/segoe-ui-this/segoeuithis.ttf";
 
-    ImGuiIO &io = ImGui::GetIO();
-    io.Fonts->AddFontFromFileTTF(filePath.c_str(), 18.0f);
+  ImGuiIO &io = ImGui::GetIO();
+  io.Fonts->AddFontFromFileTTF(filePath.c_str(), 18.0f);
 
-    EditorLayer *editorLayer;
-    ProjectHubLayer *projectHubLayer = new ProjectHubLayer(editorLayer);
+  EditorLayer *editorLayer;
+  ProjectHubLayer *projectHubLayer = new ProjectHubLayer(editorLayer);
 
-    app->PushLayer(projectHubLayer);
+  app->PushLayer(projectHubLayer);
 
-    // app->PushLayer(new EditorLayer(scene));
+  // app->PushLayer(new EditorLayer(scene));
 
-    // //
-    // Hamster::UUID mario = scene->CreateEntity();
-    // scene->AddEntityComponent<Hamster::Transform>(mario, glm::vec2(400.0f,
-    // 0.0f), 0.0f, glm::vec2(300.0f, 300.0f));
-    // scene->AddEntityComponent<Hamster::Sprite>(mario, "mario",
-    // Hamster::AssetManager::GetTexture("mario"),
-    //                                            glm::vec3(1.0f, 1.0f, 1.0f));
-    // scene->AddEntityComponent<Hamster::Name>(mario, "Mario");
-    // Hamster::Physics::CreateBody(scene->GetWorldId(), b2_dynamicBody,
-    // scene->GetEntity(mario), scene->GetRegistry());
+  // //
+  // Hamster::UUID mario = scene->CreateEntity();
+  // scene->AddEntityComponent<Hamster::Transform>(mario, glm::vec2(400.0f,
+  // 0.0f), 0.0f, glm::vec2(300.0f, 300.0f));
+  // scene->AddEntityComponent<Hamster::Sprite>(mario, "mario",
+  // Hamster::AssetManager::GetTexture("mario"),
+  //                                            glm::vec3(1.0f, 1.0f, 1.0f));
+  // scene->AddEntityComponent<Hamster::Name>(mario, "Mario");
+  // Hamster::Physics::CreateBody(scene->GetWorldId(), b2_dynamicBody,
+  // scene->GetEntity(mario), scene->GetRegistry());
 
-    app->Run();
+  std::cout << Hamster::Application::IdToColour(TopLeftGrabberID).r * 255.0f
+            << " "
+            << Hamster::Application::IdToColour(TopLeftGrabberID).g * 255.0f
+            << " "
+            << Hamster::Application::IdToColour(TopLeftGrabberID).b * 255.0f
+            << std::endl;
 
-    delete app;
+  std::cout << Hamster::Application::IdToColour(TopRightGrabberID).r * 255.0f
+            << " "
+            << Hamster::Application::IdToColour(TopRightGrabberID).g * 255.0f
+            << " "
+            << Hamster::Application::IdToColour(TopRightGrabberID).b * 255.0f
+            << std::endl;
+
+  std::cout << Hamster::Application::IdToColour(BottomLeftGrabberID).r * 255.0f
+            << " "
+            << Hamster::Application::IdToColour(BottomLeftGrabberID).g * 255.0f
+            << " "
+            << Hamster::Application::IdToColour(BottomLeftGrabberID).b * 255.0f
+            << std::endl;
+
+  std::cout << Hamster::Application::IdToColour(BottomRightGrabberID).r * 255.0f
+            << " "
+            << Hamster::Application::IdToColour(BottomLeftGrabberID).g * 255.0f
+            << " "
+            << Hamster::Application::IdToColour(BottomRightGrabberID).b * 255.0f
+            << std::endl;
+
+  app->Run();
+
+  delete app;
 }

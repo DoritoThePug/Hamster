@@ -141,22 +141,74 @@ void Renderer::DrawGuizmo(Transform targetTransform, TransformType type,
   glDisable(GL_DEPTH_TEST);
 
   glm::mat4 model = glm::mat4(1.0f);
-  model =
-      glm::translate(model, glm::vec3(targetTransform.position.x +
-                                          0.5 * targetTransform.size.x - 5.0f,
-                                      targetTransform.position.y +
-                                          0.5 * targetTransform.size.y - 110.0f,
-                                      0.0f));
-  model = glm::scale(model, glm::vec3(10.0f, 100.0f, 1.0f));
+  // model =
+  //     glm::translate(model, glm::vec3(targetTransform.position.x +
+  //                                         0.5 * targetTransform.size.x
+  //                                         - 5.0f,
+  //                                     targetTransform.position.y +
+  //                                         0.5 * targetTransform.size.y -
+  //                                         110.0f,
+  //                                     0.0f));
+  // model = glm::scale(model, glm::vec3(10.0f, 100.0f, 1.0f));
+  // // model = glm::scale(model, glm::vec3(1000.0f));
+  //
+  // m_FlatShader->setUniformMat4("model", model);
+  //
+  // if (selectionColour) {
+  //   m_FlatShader->setUniformVec3("colour",
+  //   Application::IdToColour(YGuizmoID));
+  // } else {
+  //   m_FlatShader->setUniformVec3(
+  //       "colour", glm::vec3(230.0f / 255.0f, 57.0f / 255.0f, 70.0f /
+  //       255.0f));
+  // }
+  //
+  // glBindVertexArray(m_VAO);
+  // glDrawArrays(GL_TRIANGLES, 0, 6);
+  //
+  // glBindVertexArray(0);
+  //
+  // model = glm::mat4(1.0f);
+  // model =
+  //     glm::translate(model, glm::vec3(targetTransform.position.x +
+  //                                         0.5 * targetTransform.size.x
+  //                                         + 5.0f,
+  //                                     targetTransform.position.y +
+  //                                         0.5 * targetTransform.size.y
+  //                                         - 10.0f,
+  //                                     0.0f));
+  // model = glm::scale(model, glm::vec3(100.0f, 10.0f, 1.0f));
+  //
+  // m_FlatShader->setUniformMat4("model", model);
+  //
+  // if (selectionColour) {
+  //   m_FlatShader->setUniformVec3("colour",
+  //   Application::IdToColour(XGuizmoID));
+  // } else {
+  //   m_FlatShader->setUniformVec3(
+  //       "colour", glm::vec3(81.0f / 255.0f, 152.0f / 255.0f, 114.0f /
+  //       255.0f));
+  // }
+  //
+  // glBindVertexArray(m_VAO);
+  // glDrawArrays(GL_TRIANGLES, 0, 6);
+
+  glBindVertexArray(0);
+
+  model = glm::mat4(1.0f);
+  model = glm::translate(model, glm::vec3(targetTransform.position.x,
+                                          targetTransform.position.y, 0.0f));
+  model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
   // model = glm::scale(model, glm::vec3(1000.0f));
 
   m_FlatShader->setUniformMat4("model", model);
 
   if (selectionColour) {
-    m_FlatShader->setUniformVec3("colour", Application::IdToColour(YGuizmoID));
+    m_FlatShader->setUniformVec3("colour",
+                                 Application::IdToColour(TopLeftGrabberID));
   } else {
     m_FlatShader->setUniformVec3(
-        "colour", glm::vec3(230.0f / 255.0f, 57.0f / 255.0f, 70.0f / 255.0f));
+        "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
   }
 
   glBindVertexArray(m_VAO);
@@ -165,21 +217,67 @@ void Renderer::DrawGuizmo(Transform targetTransform, TransformType type,
   glBindVertexArray(0);
 
   model = glm::mat4(1.0f);
-  model =
-      glm::translate(model, glm::vec3(targetTransform.position.x +
-                                          0.5 * targetTransform.size.x + 5.0f,
-                                      targetTransform.position.y +
-                                          0.5 * targetTransform.size.y - 10.0f,
-                                      0.0f));
-  model = glm::scale(model, glm::vec3(100.0f, 10.0f, 1.0f));
+  model = glm::translate(model, glm::vec3(targetTransform.position.x +
+                                              targetTransform.size.x - 10.0f,
+                                          targetTransform.position.y, 0.0f));
+  model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
+  // model = glm::scale(model, glm::vec3(1000.0f));
 
   m_FlatShader->setUniformMat4("model", model);
 
   if (selectionColour) {
-    m_FlatShader->setUniformVec3("colour", Application::IdToColour(XGuizmoID));
+    m_FlatShader->setUniformVec3("colour",
+                                 Application::IdToColour(TopRightGrabberID));
   } else {
     m_FlatShader->setUniformVec3(
-        "colour", glm::vec3(81.0f / 255.0f, 152.0f / 255.0f, 114.0f / 255.0f));
+        "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
+  }
+
+  glBindVertexArray(m_VAO);
+  glDrawArrays(GL_TRIANGLES, 0, 6);
+
+  glBindVertexArray(0);
+
+  model = glm::mat4(1.0f);
+  model = glm::translate(model, glm::vec3(targetTransform.position.x,
+                                          targetTransform.position.y +
+                                              targetTransform.size.y - 10.0f,
+                                          0.0f));
+  model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
+  // model = glm::scale(model, glm::vec3(1000.0f));
+
+  m_FlatShader->setUniformMat4("model", model);
+
+  if (selectionColour) {
+    m_FlatShader->setUniformVec3("colour",
+                                 Application::IdToColour(BottomLeftGrabberID));
+  } else {
+    m_FlatShader->setUniformVec3(
+        "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
+  }
+
+  glBindVertexArray(m_VAO);
+  glDrawArrays(GL_TRIANGLES, 0, 6);
+
+  glBindVertexArray(0);
+
+  model = glm::mat4(1.0f);
+  model = glm::translate(
+      model,
+      glm::vec3(targetTransform.position.x + targetTransform.size.x - 10.0f,
+                targetTransform.position.y + targetTransform.size.y - 10.0f,
+                0.0f));
+  model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
+  // model = glm::scale(model, glm::vec3(1000.0f));
+
+  m_FlatShader->setUniformMat4("model", model);
+
+  if (selectionColour) {
+    m_FlatShader->setUniformVec3("colour",
+                                 Application::IdToColour(BottomRightGrabberID));
+  } else {
+    m_FlatShader->setUniformVec3(
+        "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
   }
 
   glBindVertexArray(m_VAO);

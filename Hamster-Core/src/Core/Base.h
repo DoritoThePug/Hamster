@@ -20,3 +20,8 @@
 // largest and second largest possible entity handle to avoid collisions
 #define XGuizmoID 16777214
 #define YGuizmoID 16777213
+#define TopLeftGrabberID 16777212
+#define TopRightGrabberID 16777211
+#define BottomLeftGrabberID 16777210
+#define BottomRightGrabberID 16777209
+#define GrabberGuizmoID 16777200
