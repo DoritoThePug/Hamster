@@ -41,34 +41,6 @@ int main() {
   // Hamster::Physics::CreateBody(scene->GetWorldId(), b2_dynamicBody,
   // scene->GetEntity(mario), scene->GetRegistry());
 
-  std::cout << Hamster::Application::IdToColour(TopLeftGrabberID).r * 255.0f
-            << " "
-            << Hamster::Application::IdToColour(TopLeftGrabberID).g * 255.0f
-            << " "
-            << Hamster::Application::IdToColour(TopLeftGrabberID).b * 255.0f
-            << std::endl;
-
-  std::cout << Hamster::Application::IdToColour(TopRightGrabberID).r * 255.0f
-            << " "
-            << Hamster::Application::IdToColour(TopRightGrabberID).g * 255.0f
-            << " "
-            << Hamster::Application::IdToColour(TopRightGrabberID).b * 255.0f
-            << std::endl;
-
-  std::cout << Hamster::Application::IdToColour(BottomLeftGrabberID).r * 255.0f
-            << " "
-            << Hamster::Application::IdToColour(BottomLeftGrabberID).g * 255.0f
-            << " "
-            << Hamster::Application::IdToColour(BottomLeftGrabberID).b * 255.0f
-            << std::endl;
-
-  std::cout << Hamster::Application::IdToColour(BottomRightGrabberID).r * 255.0f
-            << " "
-            << Hamster::Application::IdToColour(BottomLeftGrabberID).g * 255.0f
-            << " "
-            << Hamster::Application::IdToColour(BottomRightGrabberID).b * 255.0f
-            << std::endl;
-
   app->Run();
 
   delete app;

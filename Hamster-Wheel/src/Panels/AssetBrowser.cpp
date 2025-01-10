@@ -31,6 +31,14 @@ void AssetBrowser::Render() {
         texture->GetName() + "##" + boost::uuids::to_string(uuid.GetUUID());
 
     ImGui::Button(buttonLabel.c_str());
+
+    if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
+      std::cout << "hi" << std::endl;
+    }
+
+    if (ImGui::IsMouseDoubleClicked(0)) {
+      std::cout << "3" << std::endl;
+    }
   }
 
   ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, {0.0f, 0.0f});
