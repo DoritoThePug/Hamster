@@ -12,6 +12,7 @@
 
 #include <boost/uuid/uuid_io.hpp>
 #include <iostream>
+#include <memory>
 
 #include "Components.h"
 
@@ -28,7 +29,7 @@ class SceneCreatedEvent;
 // class UUID
 //
 
-class Scene {
+class Scene : public std::enable_shared_from_this<Scene> {
 public:
   Scene();
 
@@ -99,6 +100,7 @@ public:
   void OnSceneCreated(SceneCreatedEvent &e);
 
   std::shared_ptr<Logger> GetClientLogger() { return m_ClientLogger; }
+
 private:
   bool m_IsRunning = false;
   bool m_IsSimulationPaused = true;

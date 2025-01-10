@@ -199,6 +199,8 @@ void Scene::SetUUID(const UUID &uuid) {
 
 void Scene::RunSceneSimulation() {
   if (m_IsSimulationPaused) {
+    SaveScene(shared_from_this());
+
     auto scriptReloadView = m_Registry.view<Behaviour>();
 
     scriptReloadView.each([](auto &behaviour) {
