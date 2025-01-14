@@ -81,6 +81,8 @@ public:
   void AppendToMainThreadQueue(const std::function<void()> &func);
   void ExecuteMainThread();
 
+  static std::string GetExecutablePath();
+
 private:
   static Application *s_Instance;
 

@@ -311,4 +311,17 @@ void Application::ExecuteMainThread() {
 
   m_MainThreadQueue.clear();
 }
+
+std::string Application::GetExecutablePath() {
+  char path[FILENAME_MAX];
+#ifdef _WIN32
+  GetModuleFileNameA(nullptr, path, sizeof(path)); // For Windows
+#else
+  ssize_t count = readlink("/proc/self/exe", path, sizeof(path)); // For Linux
+  if (count == -1)
+    throw std::runtime_error("Failed to determine executable path");
+  path[count] = '\0';
+#endif
+  return std::filesystem::path(path).parent_path().string();
+}
 } // namespace Hamster

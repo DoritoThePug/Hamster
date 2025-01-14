@@ -74,11 +74,9 @@ void ProjectCreator::Render() {
       if (!m_DirectoryExists && !m_NoDirectorySelected) {
         Hamster::Project::New(m_ProjectConfig);
 
-        std::string wheelPath = HAMSTER_WHEEL_SRC_DIR;
-
         std::string hamLibPath =
-            wheelPath +
-            "/../Resources/Packages/Hamster.cpython-310-x86_64-linux-gnu.so";
+            Hamster::Application::GetExecutablePath() +
+            "/Resources/Packages/Hamster.cpython-310-x86_64-linux-gnu.so";
 
         std::filesystem::copy(hamLibPath, m_ProjectConfig.ProjectDirectory);
 

@@ -29,7 +29,7 @@ class SceneCreatedEvent;
 // class UUID
 //
 
-class Scene : public std::enable_shared_from_this<Scene> {
+class Scene {
 public:
   Scene();
 

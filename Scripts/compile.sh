@@ -18,6 +18,7 @@ mkdir -p $BUILD_DIR
 $CMAKE_EXEC -DCMAKE_BUILD_TYPE=Debug \
             -DCMAKE_C_COMPILER=$C_COMPILER \
             -DCMAKE_CXX_COMPILER=$CXX_COMPILER \
+            -DCMAKE_BUILD_TYPE=Debug\
             -G "Ninja" \
             -S $SOURCE_DIR \
             -B $BUILD_DIR

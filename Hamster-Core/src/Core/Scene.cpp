@@ -10,6 +10,7 @@
 
 #include "Application.h"
 #include "Physics/Physics.h"
+#include "Project.h"
 #include "Renderer/Renderer.h"
 #include "SceneSerialiser.h"
 
@@ -103,9 +104,15 @@ void Scene::OnUpdate() {
     view.each([this, &pythonError](auto &behaviour) mutable {
       for (auto &obj : behaviour.pyObjects) {
         try {
+          std::cout << "1" << std::endl;
+
           obj.attr("on_update")(m_DeltaTime);
 
+          std::cout << "1" << std::endl;
           obj.attr("reset_input")();
+
+          std::cout << "1" << std::endl;
+
           // obj.attr("reset_collision_entities")();
         } catch (pybind11::error_already_set &e) {
           pythonError = true;
@@ -199,16 +206,21 @@ void Scene::SetUUID(const UUID &uuid) {
 
 void Scene::RunSceneSimulation() {
   if (m_IsSimulationPaused) {
-    SaveScene(shared_from_this());
+    Project::SaveCurrentProject();
 
+    SaveScene(Application::GetApplicationInstance().GetActiveScene());
+
+    std::cout << "1" << std::endl;
     auto scriptReloadView = m_Registry.view<Behaviour>();
 
+    std::cout << "2" << std::endl;
     scriptReloadView.each([](auto &behaviour) {
       for (auto const &[uuid, script] : behaviour.scripts) {
         script->ReloadScript();
       }
     });
 
+    std::cout << "3" << std::endl;
     m_IsSimulationPaused = false;
 
     auto view = m_Registry.view<ID, Behaviour>();
@@ -218,14 +230,18 @@ void Scene::RunSceneSimulation() {
 
       for (auto const &[uuid, script] : behaviour.scripts) {
         for (auto &obj : script->GetPyObjects()) {
+
+          std::cout << "4" << std::endl;
+
           pybind11::object pyObject = obj(
               ID.uuid, Application::GetApplicationInstance().GetActiveScene(),
               &Application::GetApplicationInstance());
 
+          std::cout << "5" << std::endl;
           behaviour.pyObjects.push_back(pyObject);
 
           try {
-            pyObject.attr("on_create")();
+            // pyObject.attr("on_create")();
           } catch (pybind11::error_already_set &e) {
             PauseSceneSimulation();
           }

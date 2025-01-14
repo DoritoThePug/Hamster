@@ -144,3 +144,5 @@ target_compile_definitions(Hamster-Core PRIVATE HAMSTER_CORE_SRC_DIR="${CMAKE_SO
 
 target_link_libraries(Hamster-Core PUBLIC glfw imgui box2d Hamster-C)
 
+install(TARGETS Hamster-Core
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})

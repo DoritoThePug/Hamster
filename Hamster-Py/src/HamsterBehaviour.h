@@ -31,10 +31,14 @@ void HamsterBehaviourBinding(pybind11::module_ m) {
                              &Hamster::HamsterBehaviour::GetKeyPressed)
       .def_property_readonly("key_released",
                              &Hamster::HamsterBehaviour::GetKeyReleased)
-  .def_property_readonly("colliding", &Hamster::HamsterBehaviour::IsColliding)
-  .def_property_readonly("collision_entities", &Hamster::HamsterBehaviour::GetCollisionEntites)
-  .def("reset_collision_entities", &Hamster::HamsterBehaviour::EmptyCollisionEntity)
+      .def_property_readonly("colliding",
+                             &Hamster::HamsterBehaviour::IsColliding)
+      .def_property_readonly("collision_entities",
+                             &Hamster::HamsterBehaviour::GetCollisionEntites)
+      .def("reset_collision_entities",
+           &Hamster::HamsterBehaviour::EmptyCollisionEntity)
       .def("log", &Hamster::HamsterBehaviour::Log)
 
-  .def("execute_external_script", &Hamster::HamsterBehaviour::CrossScriptExecute);
+      .def("execute_external_script",
+           &Hamster::HamsterBehaviour::CrossScriptExecute);
 }

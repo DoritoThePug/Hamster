@@ -16,9 +16,11 @@
 int main() {
   auto *app = new Hamster::Application();
 
-  std::string srcPath = HAMSTER_WHEEL_SRC_DIR;
-  std::string filePath =
-      srcPath + "/../Resources/Fonts/segoe-ui-this/segoeuithis.ttf";
+  std::filesystem::path filePath =
+      Hamster::Application::GetExecutablePath() +
+      "/../share/Hamster-Wheel/Resources/Fonts/segoe-ui-this/segoeuithis.ttf";
+
+  std::cout << filePath << std::endl;
 
   ImGuiIO &io = ImGui::GetIO();
   io.Fonts->AddFontFromFileTTF(filePath.c_str(), 18.0f);
@@ -40,6 +42,8 @@ int main() {
   // scene->AddEntityComponent<Hamster::Name>(mario, "Mario");
   // Hamster::Physics::CreateBody(scene->GetWorldId(), b2_dynamicBody,
   // scene->GetEntity(mario), scene->GetRegistry());
+
+  std::cout << Hamster::Application::GetExecutablePath() << std::endl;
 
   app->Run();
 

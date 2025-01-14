@@ -12,13 +12,14 @@
 
 FileBrowser::FileBrowser(std::shared_ptr<Hamster::Scene> scene)
     : Panel(std::move(scene), true) {
-  std::string wheelPath = HAMSTER_WHEEL_SRC_DIR;
 
   m_FolderIcon = std::make_unique<Hamster::Texture>(
-      wheelPath + "/../Resources/Icons/folder.png");
+      Hamster::Application::GetExecutablePath() +
+      "/../share/Hamster-Wheel/Resources/Icons/folder.png");
 
   m_FileIcon = std::make_unique<Hamster::Texture>(
-      wheelPath + "/../Resources/Icons/file.png");
+      Hamster::Application::GetExecutablePath() +
+      "/../share/Hamster-Wheel/Resources/Icons/file.png");
 }
 
 void FileBrowser::Render() {
