@@ -176,4 +176,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+*.AppDir/
+squashfs-root/
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,clion,cmake,ninja,git
