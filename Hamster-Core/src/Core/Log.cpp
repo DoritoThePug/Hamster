@@ -7,7 +7,25 @@ Logger::Logger(size_t bufferSize)
     : m_BufferSize(bufferSize), m_Buffer(bufferSize) {}
 
 void Logger::Log(LogType type, const std::string &message) {
-  m_Buffer[m_Tail] = {type, message};
+  std::string logMes = "";
+
+  std::cout << "message" << std::endl;
+
+  switch (type) {
+  case Info:
+    logMes = "[INFO] " + message;
+
+    break;
+  case Error:
+    logMes = "[ERROR] " + message;
+
+    break;
+  case Warning:
+    logMes = "[WARNING] " + message;
+    break;
+  }
+
+  m_Buffer[m_Tail] = {type, logMes};
 
   m_Tail = (m_Tail + 1) % m_BufferSize;
 

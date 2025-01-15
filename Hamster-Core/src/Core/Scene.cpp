@@ -112,7 +112,7 @@ void Scene::OnUpdate() {
         } catch (pybind11::error_already_set &e) {
           pythonError = true;
 
-          std::cerr << "Python error " << e.what() << std::endl;
+          HAMSTER_LOG(Error, e.what())
 
           break;
         }
@@ -232,6 +232,8 @@ void Scene::RunSceneSimulation() {
           try {
             pyObject.attr("on_create")();
           } catch (pybind11::error_already_set &e) {
+            HAMSTER_LOG(Error, e.what())
+
             PauseSceneSimulation();
           }
         }
