@@ -18,7 +18,8 @@ int main() {
 
   std::filesystem::path filePath =
       Hamster::Application::GetExecutablePath() +
-      "/../share/Hamster-Wheel/Resources/Fonts/segoe-ui-this/segoeuithis.ttf";
+      "/../share/Resources/Hamster-Wheel/Resources/Fonts/segoe-ui-this/"
+      "segoeuithis.ttf";
 
   std::cout << filePath << std::endl;
 

@@ -27,15 +27,13 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
                                              KeyReleasedEvent));
 
   app->GetEventDispatcher()->Subscribe(
-      Collision, FORWARD_CALLBACK_FUNCTION(HamsterBehaviour::OnCollision,
-                                             CollisionEvent));
+      Collision,
+      FORWARD_CALLBACK_FUNCTION(HamsterBehaviour::OnCollision, CollisionEvent));
 
   // Application::GetApplicationInstance().GetEventDispatcher();
 }
 void HamsterBehaviour::OnKeyPressed(KeyPressedEvent &e) {
   m_KeyPressed = e.GetKeyPressed();
-
-  // std::cout << m_KeyPressed << std::endl;
 }
 
 void HamsterBehaviour::OnKeyReleased(KeyReleasedEvent &e) {
@@ -51,10 +49,11 @@ void HamsterBehaviour::Log(LogType type, std::string message) {
   m_Scene->GetClientLogger()->Log(type, message);
 }
 
-  void HamsterBehaviour::CrossScriptExecute(std::string& uuid, const char* funcName) {
-  auto& behaviour  = m_Scene->GetEntityComponent<Behaviour>(UUID(uuid));
+void HamsterBehaviour::CrossScriptExecute(std::string &uuid,
+                                          const char *funcName) {
+  auto &behaviour = m_Scene->GetEntityComponent<Behaviour>(UUID(uuid));
 
-  for (auto& obj : behaviour.pyObjects) {
+  for (auto &obj : behaviour.pyObjects) {
     if (pybind11::hasattr(obj, funcName)) {
       obj.attr(funcName)();
       break;
@@ -62,24 +61,23 @@ void HamsterBehaviour::Log(LogType type, std::string message) {
   }
 }
 
-  void HamsterBehaviour::AddCollisionEntity(const std::string& uuid) {
+void HamsterBehaviour::AddCollisionEntity(const std::string &uuid) {
   m_CollisionEntities.insert(uuid);
 
   m_Colliding = true;
 }
 
-  void HamsterBehaviour::EmptyCollisionEntity() {
+void HamsterBehaviour::EmptyCollisionEntity() {
   m_CollisionEntities.clear();
-m_Colliding = false;
-  }
+  m_Colliding = false;
+}
 
-  void HamsterBehaviour::OnCollision(CollisionEvent &e) {
-    if (e.GetUUIDA().GetUUID() == m_UUID.GetUUID()) {
-      AddCollisionEntity(e.GetUUIDB().GetUUIDString());
-    } else if (e.GetUUIDB().GetUUID() == m_UUID.GetUUID()) {
-      AddCollisionEntity(e.GetUUIDA().GetUUIDString());
-    }
+void HamsterBehaviour::OnCollision(CollisionEvent &e) {
+  if (e.GetUUIDA().GetUUID() == m_UUID.GetUUID()) {
+    AddCollisionEntity(e.GetUUIDB().GetUUIDString());
+  } else if (e.GetUUIDB().GetUUID() == m_UUID.GetUUID()) {
+    AddCollisionEntity(e.GetUUIDA().GetUUIDString());
   }
-
+}
 
 } // namespace Hamster

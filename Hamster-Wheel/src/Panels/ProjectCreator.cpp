@@ -76,7 +76,8 @@ void ProjectCreator::Render() {
 
         std::string hamLibPath =
             Hamster::Application::GetExecutablePath() +
-            "/Resources/Packages/Hamster.cpython-310-x86_64-linux-gnu.so";
+            "/../share/Resources/Hamster-Wheel/Resources/Packages/"
+            "Hamster.cpython-310-x86_64-linux-gnu.so";
 
         std::filesystem::copy(hamLibPath, m_ProjectConfig.ProjectDirectory);
 

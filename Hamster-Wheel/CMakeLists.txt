@@ -58,9 +58,11 @@ target_link_libraries(Hamster-Wheel PRIVATE Hamster-Core glfw imgui box2d tinyfi
 
 
 # Copy Resources to the build directory during development
-add_custom_command(TARGET Hamster-Wheel POST_BUILD
+add_custom_command(
+    TARGET Hamster-Wheel POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/Hamster-Wheel/Resources $<TARGET_FILE_DIR:Hamster-Wheel>/../share/Resources/Hamster-Wheel/Resources
+        ${CMAKE_SOURCE_DIR}/Hamster-Wheel/Resources 
+        $<TARGET_FILE_DIR:Hamster-Wheel>/../share/Resources/Hamster-Wheel/Resources
     COMMENT "Copying Resources directory to build output directory"
 )
 

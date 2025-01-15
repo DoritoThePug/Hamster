@@ -15,11 +15,11 @@ FileBrowser::FileBrowser(std::shared_ptr<Hamster::Scene> scene)
 
   m_FolderIcon = std::make_unique<Hamster::Texture>(
       Hamster::Application::GetExecutablePath() +
-      "/../share/Hamster-Wheel/Resources/Icons/folder.png");
+      "/../share/Resources/Hamster-Wheel/Resources/Icons/folder.png");
 
   m_FileIcon = std::make_unique<Hamster::Texture>(
       Hamster::Application::GetExecutablePath() +
-      "/../share/Hamster-Wheel/Resources/Icons/file.png");
+      "/../share/Resources/Hamster-Wheel/Resources/Icons/file.png");
 }
 
 void FileBrowser::Render() {

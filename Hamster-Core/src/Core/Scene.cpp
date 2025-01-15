@@ -201,6 +201,8 @@ void Scene::SetUUID(const UUID &uuid) {
 
 void Scene::RunSceneSimulation() {
   if (m_IsSimulationPaused) {
+    HAMSTER_LOG(Info, "hi")
+
     Project::SaveCurrentProject();
 
     SaveScene(Application::GetApplicationInstance().GetActiveScene());

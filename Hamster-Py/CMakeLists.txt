@@ -55,11 +55,10 @@ target_link_libraries(Hamster PUBLIC glfw)
 add_custom_command(
     TARGET Hamster
     POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
         $<TARGET_FILE:Hamster>  # Resolves to the generated .so file
         ${CMAKE_SOURCE_DIR}/Hamster-Wheel/Resources/Packages/
     COMMENT "Copying Hamster Python module to Hamster-Wheel"
 )
-
 # target_link_directories(Hamster-Py PUBLIC pybind11)
 
