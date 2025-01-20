@@ -25,8 +25,6 @@ void PropertyEditor::Render() {
   if (m_Transform != nullptr) {
     ImGui::SeparatorText("Transform");
 
-
-
     ImGui::PushItemWidth(80);
     ImGui::Text("Position");
     ImGui::SameLine();
@@ -55,6 +53,20 @@ void PropertyEditor::Render() {
     ImGui::SameLine();
 
     ImGui::InputFloat("##Y##P2", &m_Transform->position.y);
+
+    ImGui::SameLine();
+
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(72, 190, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered,
+                          (ImVec4)ImColor(63, 165, 221));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor(55, 138, 184));
+
+    ImGui::Button("Z##P1", ImVec2(20, 20));
+
+    ImGui::PopStyleColor(3);
+    ImGui::SameLine();
+
+    ImGui::InputFloat("##Z##P2", &m_Transform->position.z);
 
     ImGui::Text("Scale");
     ImGui::SameLine();

@@ -32,9 +32,6 @@ Scene::Scene() {
            std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
                                  ".scene");
 
-  m_Registry.sort<Transform>([](const Transform &lhs, const Transform &rhs) {
-    return lhs.position.x < rhs.position.x;
-  });
   m_RenderGroup = m_Registry.group<Sprite, Transform>();
 }
 
@@ -147,6 +144,12 @@ void Scene::OnRender(bool renderFlat) {
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   if (m_IsRunning) {
+
+    m_RenderGroup.sort<Transform>(
+        [](const Transform &lhs, const Transform &rhs) {
+          return lhs.position.z < rhs.position.z;
+        });
+
     if (!renderFlat) {
       m_RenderGroup.each([](auto &sprite, auto &transform) {
         if (sprite.texture != nullptr) {
@@ -164,9 +167,6 @@ void Scene::OnRender(bool renderFlat) {
 
       m_RenderGroup.each([](auto entity, auto &sprite, auto &transform) {
         if (sprite.texture != nullptr) {
-
-          std::cout << transform.position.x << std::endl;
-
           Renderer::DrawFlat(
               transform.position, transform.size, transform.rotation,
               Application::IdToColour(entt::to_integral(entity)));

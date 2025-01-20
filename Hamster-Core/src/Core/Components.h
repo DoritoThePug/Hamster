@@ -27,7 +27,7 @@ enum ComponentID {
 // Transform component holding all needed transforms, ntities wanting to be
 // rendered must have a transform, all entites on default have it
 struct Transform {
-  glm::vec2 position = glm::vec2(0.0f);
+  glm::vec3 position = glm::vec3(0.0f);
   float rotation = 0.0f;
   glm::vec2 size = glm::vec2(10.0f);
 };

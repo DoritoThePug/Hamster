@@ -98,7 +98,7 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
 
     Transform &transform = m_Scene->GetEntityComponent<Transform>(entity_uuid);
 
-    SerialiseVec2(out, transform.position);
+    SerialiseVec3(out, transform.position);
 
     out.write(reinterpret_cast<const char *>(&transform.rotation),
               sizeof(transform.rotation));
@@ -139,7 +139,8 @@ void SceneSerialiser::SerialiseEntity(std::ostream &out,
 
     Rigidbody &rb = m_Scene->GetEntityComponent<Rigidbody>(entity_uuid);
 
-    out.write(reinterpret_cast<const char*>(&rb.isStatic), sizeof(rb.isStatic));
+    out.write(reinterpret_cast<const char *>(&rb.isStatic),
+              sizeof(rb.isStatic));
   }
 
   if (m_Scene->EntityHasComponent<Behaviour>(entity_uuid)) {
@@ -178,7 +179,7 @@ UUID SceneSerialiser::DeserialiseEntity(std::istream &in) {
 
     switch (componentId) {
     case Transform_ID: {
-      glm::vec2 pos = DeserialiseVec2(in);
+      glm::vec3 pos = DeserialiseVec3(in);
 
       float rotation;
 
