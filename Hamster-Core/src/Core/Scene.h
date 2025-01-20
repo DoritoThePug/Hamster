@@ -108,6 +108,20 @@ private:
   entt::registry m_Registry;
   std::unordered_map<UUID, entt::entity> m_Entities;
 
+  entt::basic_group<
+      entt::owned_t<
+          entt::basic_sigh_mixin<
+              entt::basic_storage<Hamster::Sprite, entt::entity,
+                                  std::allocator<Hamster::Sprite>, void>,
+              entt::basic_registry<entt::entity, std::allocator<entt::entity>>>,
+          entt::basic_sigh_mixin<
+              entt::basic_storage<Hamster::Transform, entt::entity,
+                                  std::allocator<Hamster::Transform>, void>,
+              entt::basic_registry<entt::entity,
+                                   std::allocator<entt::entity>>>>,
+      entt::get_t<>, entt::exclude_t<>>
+      m_RenderGroup;
+
   UUID m_UUID;
   std::string m_Name = "Untitled Scene";
   std::filesystem::path m_Path;

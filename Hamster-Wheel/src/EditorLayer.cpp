@@ -159,6 +159,14 @@ void EditorLayer::OnUpdate() {
     default: {
       if (m_Scene->GetRegistry().valid(pickedEntity)) {
         m_Hierarchy->SetSelectedEntity(pickedEntity);
+
+        entityHeld = true;
+
+        Hamster::Transform &transform =
+            m_Scene->GetRegistry().get<Hamster::Transform>(pickedEntity);
+
+        mouseHeldTransformX = transform.position.x;
+        mouseHeldTransformY = transform.position.y;
       }
 
       break;
@@ -170,6 +178,8 @@ void EditorLayer::OnUpdate() {
     xGuizmoHeld = false;
     yGuizmoHeld = false;
     pickedHeld = false;
+
+    entityHeld = false;
 
     topLeftGrabberHeld = false;
     topRightGrabberHeld = false;
@@ -250,6 +260,16 @@ void EditorLayer::OnUpdate() {
     entityTransform->size.y += mouseDelta.y;
 
     entityTransform->position.x += mouseDelta.x;
+  } else if (entityHeld) {
+
+    Hamster::Transform *entityTransform =
+        &m_Scene->GetRegistry().get<Hamster::Transform>(
+            m_Hierarchy->GetSelectedEntity());
+
+    ImVec2 mouseDragDelta = ImGui::GetMouseDragDelta();
+
+    entityTransform->position.x = mouseHeldTransformX + mouseDragDelta.x;
+    entityTransform->position.y = mouseHeldTransformY + mouseDragDelta.y;
   }
 
   m_FramebufferTexture.ResizeFrameBuffer(m_LevelEditorAvailRegion.x,

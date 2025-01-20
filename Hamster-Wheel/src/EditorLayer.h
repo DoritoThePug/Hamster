@@ -64,6 +64,8 @@ private:
   bool yGuizmoHeld = false;
   bool pickedHeld = false;
 
+  bool entityHeld = false;
+
   bool topLeftGrabberHeld = false;
   bool topRightGrabberHeld = false;
   bool bottomLeftGrabberHeld = false;
@@ -71,6 +73,9 @@ private:
 
   float mouseHeldOffsetX = 0.0f;
   float mouseHeldOffsetY = 0.0f;
+
+  float mouseHeldTransformX = 0.0f;
+  float mouseHeldTransformY = 0.0f;
 };
 
 #endif // EDITOR_H

@@ -31,6 +31,11 @@ Scene::Scene() {
   m_Path = std::filesystem::path("Scenes") /
            std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
                                  ".scene");
+
+  m_Registry.sort<Transform>([](const Transform &lhs, const Transform &rhs) {
+    return lhs.position.x < rhs.position.x;
+  });
+  m_RenderGroup = m_Registry.group<Sprite, Transform>();
 }
 
 UUID Scene::CreateEntity() {
@@ -139,14 +144,13 @@ void Scene::OnUpdate() {
 }
 
 void Scene::OnRender(bool renderFlat) {
-  auto view = m_Registry.view<Sprite, Transform>();
-
-  // glEnable(GL_BLEND);
-  // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   if (m_IsRunning) {
     if (!renderFlat) {
-      view.each([](auto &sprite, auto &transform) {
+      m_RenderGroup.each([](auto &sprite, auto &transform) {
         if (sprite.texture != nullptr) {
+
           Renderer::DrawSprite(*sprite.texture, transform.position,
                                transform.size, transform.rotation,
                                sprite.colour);
@@ -158,8 +162,11 @@ void Scene::OnRender(bool renderFlat) {
 
       // std::cout << "hi" << std::endl;
 
-      view.each([](auto entity, auto &sprite, auto &transform) {
+      m_RenderGroup.each([](auto entity, auto &sprite, auto &transform) {
         if (sprite.texture != nullptr) {
+
+          std::cout << transform.position.x << std::endl;
+
           Renderer::DrawFlat(
               transform.position, transform.size, transform.rotation,
               Application::IdToColour(entt::to_integral(entity)));
