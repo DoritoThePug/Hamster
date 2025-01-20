@@ -28,9 +28,6 @@ void FileBrowser::Render() {
     return;
   }
 
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
   // std::cout <<
   // Hamster::Project::GetCurrentProject()->GetConfig().ProjectDirectory <<
   // std::endl;
@@ -56,22 +53,27 @@ void FileBrowser::Render() {
     // ImGui::Button(relativePath.c_str());
 
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, {0.0f, 0.0f});
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.f, 0.f, 0.f, 0.f));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.f, 0.f, 0.f, 0.f));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.f, 0.f, 0.f, 0.f));
 
     if (directory.is_directory()) {
       ImGui::ImageButton(relativePath.c_str(),
                          (ImTextureID)(intptr_t)m_FolderIcon->GetTextureId(),
-                         {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
+                         {64.0f, 64.0f}, {0.0f, 0.0f}, {1.0f, 1.0f},
+                         {0.0f, 0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f});
 
       ImGui::TextWrapped("%s", relativePath.c_str());
     } else {
 
       ImGui::ImageButton(relativePath.c_str(),
                          (ImTextureID)(intptr_t)m_FileIcon->GetTextureId(),
-                         {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
+                         {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 0});
 
       ImGui::TextWrapped("%s", directory.path().filename().string().c_str());
     }
 
+    ImGui::PopStyleColor(3);
     ImGui::PopStyleVar();
 
     ImGui::NextColumn();

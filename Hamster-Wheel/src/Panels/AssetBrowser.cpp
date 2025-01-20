@@ -42,6 +42,9 @@ void AssetBrowser::Render() {
   }
 
   ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, {0.0f, 0.0f});
+  ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.f, 0.f, 0.f, 0.f));
+  ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.f, 0.f, 0.f, 0.f));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.f, 0.f, 0.f, 0.f));
 
   for (const auto &[uuid, script] : Hamster::AssetManager::GetScriptMap()) {
     std::string buttonLabel =
@@ -51,7 +54,7 @@ void AssetBrowser::Render() {
                        (ImTextureID)(intptr_t)m_PythonIcon->GetTextureId(),
                        {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
   }
-
+  ImGui::PopStyleColor(3);
   ImGui::PopStyleVar();
 
   if (ImGui::BeginMenuBar()) {
