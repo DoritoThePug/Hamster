@@ -15,4 +15,4 @@
 	url = https://github.com/g-truc/glm.git
 [submodule "Hamster-Core/Vendor/box2d"]
 	path = Hamster-Core/Vendor/box2d
-	url = https://github.com/erincatto/box2d.g      it
+	url = https://github.com/erincatto/box2d.git
