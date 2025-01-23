@@ -20,6 +20,7 @@ void PropertyEditor::Render() {
     return;
   }
 
+
   ImGui::Text("%s", m_SelectedEntity.GetUUIDString().c_str());
 
   if (m_Transform != nullptr) {
@@ -226,6 +227,8 @@ void PropertyEditor::Render() {
 
 void PropertyEditor::SetSelectedEntity(Hamster::UUID uuid) {
   m_SelectedEntity = uuid;
+
+  std::cout << "changed selected entity" << std::endl;
 
   if (!Hamster::UUID::IsNil(m_SelectedEntity)) {
     if (m_Scene->EntityHasComponent<Hamster::Transform>(m_SelectedEntity)) {

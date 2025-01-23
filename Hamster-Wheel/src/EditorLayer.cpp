@@ -124,8 +124,11 @@ void EditorLayer::OnUpdate() {
 
     switch (pickedID) {
     case -1: {
-      m_Hierarchy->SetSelectedEntity(entt::null);
-      m_PropertyEditor->SetSelectedEntity(boost::uuids::nil_uuid());
+      if (m_WindowFocused)
+      {
+        m_Hierarchy->SetSelectedEntity(entt::null);
+        m_PropertyEditor->SetSelectedEntity(boost::uuids::nil_uuid());
+      }
 
       break;
     }
@@ -302,10 +305,14 @@ void EditorLayer::OnImGuiUpdate() {
       ImVec2(m_ViewportWidth + 16.0f, m_ViewportHeight + 35.0f));
   ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());
 
+
+
   if (!ImGui::Begin("Level Editor", &m_WindowOpen)) {
     ImGui::End();
     return;
   }
+
+  m_WindowFocused = ImGui::IsWindowFocused();
 
   m_LevelEditorAvailRegion = ImGui::GetContentRegionAvail();
   const ImVec2 windowPos = ImGui::GetWindowPos();
@@ -344,6 +351,8 @@ void EditorLayer::OnImGuiUpdate() {
     entt::registry &registry = m_Scene->GetRegistry();
 
     if (registry.valid(e)) {
+      std::cout << "if" << std::endl;
+
       m_PropertyEditor->SetSelectedEntity(m_Scene->GetEntityUUID(e));
     }
 

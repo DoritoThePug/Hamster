@@ -6,6 +6,6 @@ namespace py = pybind11;
 
 void TransformBinding(py::module_ &m) {
   py::class_<Hamster::Transform>(m, "Transform")
-      .def(py::init<glm::vec2, float, glm::vec2>())
+      .def(py::init<glm::vec3, float, glm::vec3>())
       .def_readwrite("position", &Hamster::Transform::position);
 }

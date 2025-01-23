@@ -7,7 +7,7 @@
 namespace Hamster {
 HamsterScript::HamsterScript(const std::filesystem::path &scriptPath,
                              const std::string &fileName)
-    : m_ScriptPath(scriptPath), m_FileName(fileName) {
+    : m_ScriptPath(scriptPath.string()), m_FileName(fileName) {
   m_Module = pybind11::module_::import(m_FileName.c_str());
 }
 

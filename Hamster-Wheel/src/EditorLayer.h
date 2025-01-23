@@ -38,6 +38,7 @@ public:
 
 private:
   bool m_WindowOpen = true;
+  bool m_WindowFocused = false;
 
   // std::function<void(bool)> m_RenderFn;
   std::shared_ptr<Hamster::Scene> m_Scene;

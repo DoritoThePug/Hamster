@@ -24,7 +24,7 @@ int main() {
   std::cout << filePath << std::endl;
 
   ImGuiIO &io = ImGui::GetIO();
-  io.Fonts->AddFontFromFileTTF(filePath.c_str(), 18.0f);
+  io.Fonts->AddFontFromFileTTF(filePath.string().c_str(), 18.0f);
 
   EditorLayer *editorLayer;
   ProjectHubLayer *projectHubLayer = new ProjectHubLayer(editorLayer);
