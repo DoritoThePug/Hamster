@@ -9,282 +9,276 @@
 #include "Utils/AssetManager.h"
 
 namespace Hamster {
-void Renderer::Init(int viewportHeight, int viewportWidth) {
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    std::cout << "Failed to initialise glad" << std::endl;
-  }
+    void Renderer::Init(int viewportHeight, int viewportWidth) {
+        if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
+            std::cout << "Failed to initialise glad" << std::endl;
+        }
 
-  Renderer::SetViewport(1920, 1080);
+        m_ViewportHeight = viewportHeight;
+        m_ViewportWidth = viewportWidth;
 
-  // glEnable(GL_DEPTH_TEST);
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-  Renderer::InitRendererData();
-}
+        // glEnable(GL_DEPTH_TEST);
+        glDisable(GL_DEPTH_TEST);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-void Renderer::Terminate() {}
+        Renderer::InitRendererData();
+    }
 
-void Renderer::SetViewport(uint16_t width, uint16_t height) {
-  glViewport(0, 0, width, height);
+    void Renderer::Terminate() {
+    }
 
-  // std::cout << width << ", " << height << std::endl;
-}
+    void Renderer::SetViewport(FramebufferResizeEvent &e) {
+        m_ViewportWidth = e.GetWidth();
+        m_ViewportHeight = e.GetHeight();
 
-void Renderer::Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
+        glViewport(0, 0, m_ViewportWidth, m_ViewportHeight);
 
-void Renderer::SetClearColour(float r, float g, float b, float a) {
-  glClearColor(r, g, b, a);
+        m_ViewMatrix = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight), 0.0f,
+                                  -1.0f, 1.0f);
 
-  std::cout << a << std::endl;
-}
+        m_SpriteShader->use();
+        m_SpriteShader->setUniformi("image", 0);
+        m_SpriteShader->setUniformMat4("projection", m_ViewMatrix);
 
-void Renderer::InitRendererData() {
-  std::string hamsterCorePath = HAMSTER_CORE_SRC_DIR;
+        m_FlatShader->use();
+        m_FlatShader->setUniformi("image", 0);
+        m_FlatShader->setUniformMat4("projection", m_ViewMatrix);
+    }
 
-  m_SpriteShader = AssetManager::AddShader(
-      "sprite", hamsterCorePath + "/Renderer/DefaultShaders/SpriteShader.vs",
-      hamsterCorePath + "/Renderer/DefaultShaders/SpriteShader.fs");
+    void Renderer::SetViewport(int height, int width) {
+        m_ViewportHeight = height;
+        m_ViewportWidth = width;
 
-  m_FlatShader = AssetManager::AddShader(
-      "flat", hamsterCorePath + "/Renderer/DefaultShaders/FlatShader.vs",
-      hamsterCorePath + "/Renderer/DefaultShaders/FlatShader.fs");
+        glViewport(0, 0, m_ViewportWidth, m_ViewportHeight);
 
-  // AssetManager::AddShader("sprite", shader);
+        m_ViewMatrix = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight), 0.0f,
+                                  -1.0f, 1.0f);
 
-  float vertices[] = {0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-                      1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+        m_SpriteShader->use();
+        m_SpriteShader->setUniformi("image", 0);
+        m_SpriteShader->setUniformMat4("projection", m_ViewMatrix);
 
-                      0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-                      0.0f, 0.0f, 0.0f, 0.0f, 0.0f
+        m_FlatShader->use();
+        m_FlatShader->setUniformi("image", 0);
+        m_FlatShader->setUniformMat4("projection", m_ViewMatrix);
+    }
 
-  };
+    void Renderer::Clear() {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
 
-  unsigned int VBO;
+    void Renderer::SetClearColour(float r, float g, float b, float a) {
+        glClearColor(r, g, b, a);
+    }
 
-  glGenVertexArrays(1, &m_VAO);
-  glGenBuffers(1, &VBO);
+    void Renderer::InitRendererData() {
+        std::string hamsterCorePath = HAMSTER_CORE_SRC_DIR;
 
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        m_SpriteShader = AssetManager::AddShader(
+            "sprite", hamsterCorePath + "/Renderer/DefaultShaders/SpriteShader.vs",
+            hamsterCorePath + "/Renderer/DefaultShaders/SpriteShader.fs");
 
-  glBindVertexArray(m_VAO);
-  glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)0);
+        m_FlatShader = AssetManager::AddShader(
+            "flat", hamsterCorePath + "/Renderer/DefaultShaders/FlatShader.vs",
+            hamsterCorePath + "/Renderer/DefaultShaders/FlatShader.fs");
 
-  // Unbind the VAO and VBO
-  glBindVertexArray(0);
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
+        Renderer::SetViewport(m_ViewportHeight, m_ViewportWidth);
+        Renderer::SetClearColour(0.0f, 0.0f, 0.0f, 1.0f);
 
-void Renderer::DrawSprite(Texture &texture, glm::vec2 position, glm::vec2 size,
-                          float rotation, glm::vec3 colour) {
-  m_SpriteShader->use();
+        m_SpriteShader->use();
+        m_SpriteShader->setUniformi("image", 0);
+        m_SpriteShader->setUniformMat4("projection", m_ViewMatrix);
 
-  glm::mat4 model = glm::mat4(1.0f);
-  model = glm::translate(model, glm::vec3(position, 0.0f));
-  //
-  // // Code from learnopengl.com, used to translate sprite so rotation is based
-  // // around centre of sprite
-  model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
-  model =
-      glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-  model =
-      glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+        m_FlatShader->use();
+        m_FlatShader->setUniformi("image", 0);
+        m_FlatShader->setUniformMat4("projection", m_ViewMatrix);
 
-  model = glm::scale(model, glm::vec3(size, 1.0f));
 
-  m_SpriteShader->setUniformMat4("model", model);
-  m_SpriteShader->setUniformVec3("spriteColour", colour);
+        // AssetManager::AddShader("sprite", shader);
 
-  glActiveTexture(GL_TEXTURE0);
-  texture.BindTexture();
+        float vertices[] = {
+            0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
 
-  glBindVertexArray(m_VAO);
-  glDrawArrays(GL_TRIANGLES, 0, 6);
+            0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 0.0f, 0.0f, 0.0f
 
-  glBindVertexArray(0);
+        };
 
-  // DrawGuizmo(position, Translate);
-}
+        unsigned int VBO;
 
-void Renderer::DrawFlat(glm::vec2 position, glm::vec2 size, float rotation,
-                        glm::vec3 colour) {
-  m_FlatShader->use();
+        glGenVertexArrays(1, &m_VAO);
+        glGenBuffers(1, &VBO);
 
-  glm::mat4 model = glm::mat4(1.0f);
-  model = glm::translate(model, glm::vec3(position, 0.0f));
-  //
-  // // Code from learnopengl.com, used to translate sprite so rotation is based
-  // // around centre of sprite
-  model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
-  model =
-      glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-  model =
-      glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-  model = glm::scale(model, glm::vec3(size, 1.0f));
+        glBindVertexArray(m_VAO);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *) 0);
 
-  m_FlatShader->setUniformMat4("model", model);
-  m_FlatShader->setUniformVec3("colour", colour);
+        // Unbind the VAO and VBO
+        glBindVertexArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+    }
 
-  glBindVertexArray(m_VAO);
-  glDrawArrays(GL_TRIANGLES, 0, 6);
+    void Renderer::DrawSprite(Texture &texture, glm::vec2 position, glm::vec2 size,
+                              float rotation, glm::vec3 colour) {
+        m_SpriteShader->use();
 
-  glBindVertexArray(0);
-}
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(position, 0.0f));
+        //
+        // // Code from learnopengl.com, used to translate sprite so rotation is based
+        // // around centre of sprite
+        model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+        model =
+                glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+        model =
+                glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
 
-void Renderer::DrawGuizmo(Transform targetTransform, TransformType type,
-                          bool selectionColour) {
-  m_FlatShader->use();
+        model = glm::scale(model, glm::vec3(size, 1.0f));
 
-  glDisable(GL_DEPTH_TEST);
+        m_SpriteShader->setUniformMat4("model", model);
+        m_SpriteShader->setUniformVec3("spriteColour", colour);
 
-  glm::mat4 model = glm::mat4(1.0f);
-  // model =
-  //     glm::translate(model, glm::vec3(targetTransform.position.x +
-  //                                         0.5 * targetTransform.size.x
-  //                                         - 5.0f,
-  //                                     targetTransform.position.y +
-  //                                         0.5 * targetTransform.size.y -
-  //                                         110.0f,
-  //                                     0.0f));
-  // model = glm::scale(model, glm::vec3(10.0f, 100.0f, 1.0f));
-  // // model = glm::scale(model, glm::vec3(1000.0f));
-  //
-  // m_FlatShader->setUniformMat4("model", model);
-  //
-  // if (selectionColour) {
-  //   m_FlatShader->setUniformVec3("colour",
-  //   Application::IdToColour(YGuizmoID));
-  // } else {
-  //   m_FlatShader->setUniformVec3(
-  //       "colour", glm::vec3(230.0f / 255.0f, 57.0f / 255.0f, 70.0f /
-  //       255.0f));
-  // }
-  //
-  // glBindVertexArray(m_VAO);
-  // glDrawArrays(GL_TRIANGLES, 0, 6);
-  //
-  // glBindVertexArray(0);
-  //
-  // model = glm::mat4(1.0f);
-  // model =
-  //     glm::translate(model, glm::vec3(targetTransform.position.x +
-  //                                         0.5 * targetTransform.size.x
-  //                                         + 5.0f,
-  //                                     targetTransform.position.y +
-  //                                         0.5 * targetTransform.size.y
-  //                                         - 10.0f,
-  //                                     0.0f));
-  // model = glm::scale(model, glm::vec3(100.0f, 10.0f, 1.0f));
-  //
-  // m_FlatShader->setUniformMat4("model", model);
-  //
-  // if (selectionColour) {
-  //   m_FlatShader->setUniformVec3("colour",
-  //   Application::IdToColour(XGuizmoID));
-  // } else {
-  //   m_FlatShader->setUniformVec3(
-  //       "colour", glm::vec3(81.0f / 255.0f, 152.0f / 255.0f, 114.0f /
-  //       255.0f));
-  // }
-  //
-  // glBindVertexArray(m_VAO);
-  // glDrawArrays(GL_TRIANGLES, 0, 6);
+        glActiveTexture(GL_TEXTURE0);
+        texture.BindTexture();
 
-  glBindVertexArray(0);
+        glBindVertexArray(m_VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
 
-  model = glm::mat4(1.0f);
-  model = glm::translate(model, glm::vec3(targetTransform.position.x,
-                                          targetTransform.position.y, 0.0f));
-  model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
-  // model = glm::scale(model, glm::vec3(1000.0f));
+        glBindVertexArray(0);
 
-  m_FlatShader->setUniformMat4("model", model);
+        // DrawGuizmo(position, Translate);
+    }
 
-  if (selectionColour) {
-    m_FlatShader->setUniformVec3("colour",
-                                 Application::IdToColour(TopLeftGrabberID));
-  } else {
-    m_FlatShader->setUniformVec3(
-        "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
-  }
+    void Renderer::DrawFlat(glm::vec2 position, glm::vec2 size, float rotation,
+                            glm::vec3 colour) {
+        m_FlatShader->use();
 
-  glBindVertexArray(m_VAO);
-  glDrawArrays(GL_TRIANGLES, 0, 6);
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(position, 0.0f));
+        //
+        // // Code from learnopengl.com, used to translate sprite so rotation is based
+        // // around centre of sprite
+        model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+        model =
+                glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+        model =
+                glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
 
-  glBindVertexArray(0);
+        model = glm::scale(model, glm::vec3(size, 1.0f));
 
-  model = glm::mat4(1.0f);
-  model = glm::translate(model, glm::vec3(targetTransform.position.x +
-                                              targetTransform.size.x - 10.0f,
-                                          targetTransform.position.y, 0.0f));
-  model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
-  // model = glm::scale(model, glm::vec3(1000.0f));
+        m_FlatShader->setUniformMat4("model", model);
+        m_FlatShader->setUniformVec3("colour", colour);
 
-  m_FlatShader->setUniformMat4("model", model);
+        glBindVertexArray(m_VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
 
-  if (selectionColour) {
-    m_FlatShader->setUniformVec3("colour",
-                                 Application::IdToColour(TopRightGrabberID));
-  } else {
-    m_FlatShader->setUniformVec3(
-        "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
-  }
+        glBindVertexArray(0);
+    }
 
-  glBindVertexArray(m_VAO);
-  glDrawArrays(GL_TRIANGLES, 0, 6);
+    void Renderer::DrawGuizmo(Transform targetTransform, TransformType type,
+                              bool selectionColour) {
+        m_FlatShader->use();
 
-  glBindVertexArray(0);
 
-  model = glm::mat4(1.0f);
-  model = glm::translate(model, glm::vec3(targetTransform.position.x,
-                                          targetTransform.position.y +
-                                              targetTransform.size.y - 10.0f,
-                                          0.0f));
-  model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
-  // model = glm::scale(model, glm::vec3(1000.0f));
+        glm::mat4 model = glm::mat4(1.0f);
 
-  m_FlatShader->setUniformMat4("model", model);
 
-  if (selectionColour) {
-    m_FlatShader->setUniformVec3("colour",
-                                 Application::IdToColour(BottomLeftGrabberID));
-  } else {
-    m_FlatShader->setUniformVec3(
-        "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
-  }
+        glBindVertexArray(0);
 
-  glBindVertexArray(m_VAO);
-  glDrawArrays(GL_TRIANGLES, 0, 6);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(targetTransform.position.x,
+                                                targetTransform.position.y, 0.0f));
+        model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
+        // model = glm::scale(model, glm::vec3(1000.0f));
 
-  glBindVertexArray(0);
+        m_FlatShader->setUniformMat4("model", model);
 
-  model = glm::mat4(1.0f);
-  model = glm::translate(
-      model,
-      glm::vec3(targetTransform.position.x + targetTransform.size.x - 10.0f,
-                targetTransform.position.y + targetTransform.size.y - 10.0f,
-                0.0f));
-  model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
-  // model = glm::scale(model, glm::vec3(1000.0f));
+        if (selectionColour) {
+            m_FlatShader->setUniformVec3("colour",
+                                         Application::IdToColour(TopLeftGrabberID));
+        } else {
+            m_FlatShader->setUniformVec3(
+                "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
+        }
 
-  m_FlatShader->setUniformMat4("model", model);
+        glBindVertexArray(m_VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
 
-  if (selectionColour) {
-    m_FlatShader->setUniformVec3("colour",
-                                 Application::IdToColour(BottomRightGrabberID));
-  } else {
-    m_FlatShader->setUniformVec3(
-        "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
-  }
+        glBindVertexArray(0);
 
-  glBindVertexArray(m_VAO);
-  glDrawArrays(GL_TRIANGLES, 0, 6);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(targetTransform.position.x +
+                                                targetTransform.size.x - 10.0f,
+                                                targetTransform.position.y, 0.0f));
+        model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
+        // model = glm::scale(model, glm::vec3(1000.0f));
 
-  glBindVertexArray(0);
+        m_FlatShader->setUniformMat4("model", model);
 
-  // glEnable(GL_DEPTH_TEST);
-}
+        if (selectionColour) {
+            m_FlatShader->setUniformVec3("colour",
+                                         Application::IdToColour(TopRightGrabberID));
+        } else {
+            m_FlatShader->setUniformVec3(
+                "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
+        }
+
+        glBindVertexArray(m_VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        glBindVertexArray(0);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(targetTransform.position.x,
+                                                targetTransform.position.y +
+                                                targetTransform.size.y - 10.0f,
+                                                0.0f));
+        model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
+        // model = glm::scale(model, glm::vec3(1000.0f));
+
+        m_FlatShader->setUniformMat4("model", model);
+
+        if (selectionColour) {
+            m_FlatShader->setUniformVec3("colour",
+                                         Application::IdToColour(BottomLeftGrabberID));
+        } else {
+            m_FlatShader->setUniformVec3(
+                "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
+        }
+
+        glBindVertexArray(m_VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        glBindVertexArray(0);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(
+            model,
+            glm::vec3(targetTransform.position.x + targetTransform.size.x - 10.0f,
+                      targetTransform.position.y + targetTransform.size.y - 10.0f,
+                      0.0f));
+        model = glm::scale(model, glm::vec3(10.0f, 10.0f, 1.0f));
+        // model = glm::scale(model, glm::vec3(1000.0f));
+
+        m_FlatShader->setUniformMat4("model", model);
+
+        if (selectionColour) {
+            m_FlatShader->setUniformVec3("colour",
+                                         Application::IdToColour(BottomRightGrabberID));
+        } else {
+            m_FlatShader->setUniformVec3(
+                "colour", glm::vec3(60.0f / 255.0f, 219.0f / 255.0f, 211.0f / 255.0f));
+        }
+
+        glBindVertexArray(m_VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        glBindVertexArray(0);
+    }
 } // namespace Hamster

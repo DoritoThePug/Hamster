@@ -22,93 +22,92 @@
 #include "Utils/InputManager.h"
 
 namespace Hamster {
-class Application {
-public:
-  Application();
+    class Application {
+    public:
+        Application();
 
-  ~Application();
+        ~Application();
 
-  void Run();
+        void Run();
 
-  void Close(WindowCloseEvent &e);
+        void Close(WindowCloseEvent &e);
 
-  glm::mat4 GetProjectionMatrix();
+        // glm::mat4 GetProjectionMatrix();
 
-  std::shared_ptr<EventDispatcher> GetEventDispatcher() { return m_Dispatcher; }
+        std::shared_ptr<EventDispatcher> GetEventDispatcher() { return m_Dispatcher; }
 
-  static Application &GetApplicationInstance() { return *s_Instance; }
+        static Application &GetApplicationInstance() { return *s_Instance; }
 
-  static void ResizeWindow(WindowResizeEvent &e);
+        static void ResizeWindow(WindowResizeEvent &e);
 
-  void ResizeFramebuffer(FramebufferResizeEvent &e);
+        void PauseSimulation();
 
-  void PauseSimulation();
+        void ResumeSimulation();
 
-  void ResumeSimulation();
+        bool IsSimulationPaused();
 
-  bool IsSimulationPaused();
+        GLFWwindow *GetWindow() { return m_Window->GetGLFWWindowPointer(); }
 
-  GLFWwindow *GetWindow() { return m_Window->GetGLFWWindowPointer(); }
+        void PushLayer(Layer *layer);
 
-  void PushLayer(Layer *layer);
+        void PopLayer(Layer *layer);
 
-  void PopLayer(Layer *layer);
+        // [[nodiscard]] int GetViewportHeight() const { return m_ViewportHeight; }
+        // [[nodiscard]] int GetViewportWidth() const { return m_ViewportWidth; }
+        //
+        // void SetViewportHeight(const int height) { m_ViewportHeight = height; }
+        // void SetViewportWidth(const int width) { m_ViewportWidth = width; }
 
-  [[nodiscard]] int GetViewportHeight() const { return m_ViewportHeight; }
-  [[nodiscard]] int GetViewportWidth() const { return m_ViewportWidth; }
+        static glm::vec3 IdToColour(int id);
 
-  void SetViewportHeight(const int height) { m_ViewportHeight = height; }
-  void SetViewportWidth(const int width) { m_ViewportWidth = width; }
+        static int ColourToId(glm::vec3 colour);
 
-  static glm::vec3 IdToColour(int id);
+        void AddScene(std::shared_ptr<Scene> scene);
 
-  static int ColourToId(glm::vec3 colour);
+        void RemoveScene(UUID uuid);
 
-  void AddScene(std::shared_ptr<Scene> scene);
+        void RemoveAllScenes();
 
-  void RemoveScene(UUID uuid);
+        void StopActiveScene();
 
-  void RemoveAllScenes();
+        void SetSceneActive(UUID uuid);
 
-  void StopActiveScene();
+        std::shared_ptr<Scene> GetScene(UUID uuid);
 
-  void SetSceneActive(UUID uuid);
+        std::shared_ptr<Scene> GetActiveScene();
 
-  std::shared_ptr<Scene> GetScene(UUID uuid);
+        void AppendToMainThreadQueue(const std::function<void()> &func);
 
-  std::shared_ptr<Scene> GetActiveScene();
+        void ExecuteMainThread();
 
-  void AppendToMainThreadQueue(const std::function<void()> &func);
-  void ExecuteMainThread();
+        static std::string GetExecutablePath();
 
-  static std::string GetExecutablePath();
+    private:
+        static Application *s_Instance;
 
-private:
-  static Application *s_Instance;
+        bool m_Running = true;
+        bool m_IsSimulationPaused = true;
 
-  bool m_Running = true;
-  bool m_IsSimulationPaused = true;
+        // int m_ViewportWidth = 1920;
+        // int m_ViewportHeight = 1080;
 
-  int m_ViewportWidth = 1920;
-  int m_ViewportHeight = 1080;
+        // glm::mat4 m_Projection;
 
-  glm::mat4 m_Projection;
+        std::shared_ptr<EventDispatcher> m_Dispatcher;
+        LayerStack m_LayerStack;
 
-  std::shared_ptr<EventDispatcher> m_Dispatcher;
-  LayerStack m_LayerStack;
+        ImGuiLayer m_ImGuiLayer;
 
-  ImGuiLayer m_ImGuiLayer;
+        std::unique_ptr<Window> m_Window;
 
-  std::unique_ptr<Window> m_Window;
+        std::unique_ptr<InputManager> m_InputManager;
 
-  std::unique_ptr<InputManager> m_InputManager;
+        std::unordered_map<UUID, std::shared_ptr<Scene> > m_Scenes;
+        std::shared_ptr<Scene> m_ActiveScene = nullptr;
 
-  std::unordered_map<UUID, std::shared_ptr<Scene>> m_Scenes;
-  std::shared_ptr<Scene> m_ActiveScene = nullptr;
+        WindowProps m_WindowProps;
 
-  WindowProps m_WindowProps;
-
-  std::vector<std::function<void()>> m_MainThreadQueue;
-  std::mutex m_MainThreadMutex;
-};
+        std::vector<std::function<void()> > m_MainThreadQueue;
+        std::mutex m_MainThreadMutex;
+    };
 } // namespace Hamster
