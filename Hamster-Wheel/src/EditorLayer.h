@@ -61,6 +61,10 @@ private:
   int m_ViewportWidth;
   int m_ViewportHeight;
 
+  float m_TopX = 0.0f;
+  float m_TopY = 0.0f;
+  float m_MouseDragSpeed = 1.0f;
+
   bool xGuizmoHeld = false;
   bool yGuizmoHeld = false;
   bool pickedHeld = false;
@@ -71,6 +75,7 @@ private:
   bool topRightGrabberHeld = false;
   bool bottomLeftGrabberHeld = false;
   bool bottomRightGrabberHeld = false;
+  bool sceneBackgroundHeld = false;
 
   float mouseHeldOffsetX = 0.0f;
   float mouseHeldOffsetY = 0.0f;

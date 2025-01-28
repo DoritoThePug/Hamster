@@ -35,16 +35,7 @@ namespace Hamster {
 
         glViewport(0, 0, m_ViewportWidth, m_ViewportHeight);
 
-        m_ViewMatrix = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight), 0.0f,
-                                  -1.0f, 1.0f);
-
-        m_SpriteShader->use();
-        m_SpriteShader->setUniformi("image", 0);
-        m_SpriteShader->setUniformMat4("projection", m_ViewMatrix);
-
-        m_FlatShader->use();
-        m_FlatShader->setUniformi("image", 0);
-        m_FlatShader->setUniformMat4("projection", m_ViewMatrix);
+        Renderer::UpdateViewMatrix();
     }
 
     void Renderer::SetViewport(int height, int width) {
@@ -53,16 +44,7 @@ namespace Hamster {
 
         glViewport(0, 0, m_ViewportWidth, m_ViewportHeight);
 
-        m_ViewMatrix = glm::ortho(0.0f, static_cast<float>(m_ViewportWidth), static_cast<float>(m_ViewportHeight), 0.0f,
-                                  -1.0f, 1.0f);
-
-        m_SpriteShader->use();
-        m_SpriteShader->setUniformi("image", 0);
-        m_SpriteShader->setUniformMat4("projection", m_ViewMatrix);
-
-        m_FlatShader->use();
-        m_FlatShader->setUniformi("image", 0);
-        m_FlatShader->setUniformMat4("projection", m_ViewMatrix);
+        Renderer::UpdateViewMatrix();
     }
 
     void Renderer::Clear() {
@@ -280,5 +262,36 @@ namespace Hamster {
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
         glBindVertexArray(0);
+    }
+
+    void Renderer::UpdateViewMatrix() {
+        // std::cout << m_CameraOffset.x << ", " << m_CameraOffset.y << std::endl;
+
+        m_ViewMatrix = glm::ortho(0.0f + m_CameraOffset.x,
+                                  static_cast<float>(m_ViewportWidth) + m_CameraOffset.x,
+                                  static_cast<float>(m_ViewportHeight) + m_CameraOffset.y,
+                                  0.0f + m_CameraOffset.y,
+                                  -1.0f, 1.0f);
+
+        m_SpriteShader->use();
+        m_SpriteShader->setUniformi("image", 0);
+        m_SpriteShader->setUniformMat4("projection", m_ViewMatrix);
+
+        m_FlatShader->use();
+        m_FlatShader->setUniformi("image", 0);
+        m_FlatShader->setUniformMat4("projection", m_ViewMatrix);
+    }
+
+    void Renderer::AdjustZoom(float factor) {
+        m_Zoom += factor;
+
+        UpdateViewMatrix();
+    }
+
+    void Renderer::ChangeCameraOffset(float offsetX, float offsetY) {
+        m_CameraOffset.x -= offsetX;
+        m_CameraOffset.y -= offsetY;
+
+        UpdateViewMatrix();
     }
 } // namespace Hamster

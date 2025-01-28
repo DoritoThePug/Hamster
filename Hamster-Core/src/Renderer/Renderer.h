@@ -35,6 +35,12 @@ namespace Hamster {
         static void DrawGuizmo(Transform targetTransform, TransformType type,
                                bool selectionColour);
 
+        static void AdjustZoom(float factor);
+
+        static void UpdateViewMatrix();
+
+        static void ChangeCameraOffset(float offsetX, float offsetY);
+
     private:
         static void InitRendererData();
 
@@ -45,6 +51,9 @@ namespace Hamster {
         inline static int m_ViewportHeight = 1080;
         inline static int m_ViewportWidth = 1920;
 
+        inline static int m_Zoom = 1.0f;
+
         inline static glm::mat4 m_ViewMatrix;
+        inline static glm::vec2 m_CameraOffset;
     };
 } // namespace Hamster
