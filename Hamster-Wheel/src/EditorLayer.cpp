@@ -54,6 +54,16 @@ void EditorLayer::OnAttach() {
         spriteFolderPath.string() + "/square.png");
 
     square->SetName("Square");
+
+    std::shared_ptr<Hamster::Texture> triangle = Hamster::AssetManager::AddTextureAsync(
+        spriteFolderPath.string() + "/triangle.png");
+
+    triangle->SetName("Triangle");
+
+    std::shared_ptr<Hamster::Texture> circle = Hamster::AssetManager::AddTextureAsync(
+        spriteFolderPath.string() + "/circle.png");
+
+    circle->SetName("Circle");
 }
 
 void EditorLayer::OnUpdate() {
@@ -133,7 +143,8 @@ void EditorLayer::OnUpdate() {
 
         switch (pickedID) {
             case -1: {
-                if (mousePosX > 0 && mousePosY > 0) {
+                if (mousePosX > 0 && mousePosY > 0 && mousePosX < m_LevelEditorAvailRegion.x && mousePosY <
+                    m_LevelEditorAvailRegion.y) {
                     m_Hierarchy->SetSelectedEntity(entt::null);
                     m_PropertyEditor->SetSelectedEntity(boost::uuids::nil_uuid());
                 }
