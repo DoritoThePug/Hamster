@@ -46,24 +46,7 @@ void EditorLayer::OnAttach() {
 
     ImGui::LoadIniSettingsFromDisk(iniPath.c_str());
 
-    std::filesystem::path spriteFolderPath =
-            Hamster::Application::GetExecutablePath() +
-            "/../share/Resources/Hamster-Wheel/Resources/Sprites";
-
-    std::shared_ptr<Hamster::Texture> square = Hamster::AssetManager::AddTextureAsync(
-        spriteFolderPath.string() + "/square.png");
-
-    square->SetName("Square");
-
-    std::shared_ptr<Hamster::Texture> triangle = Hamster::AssetManager::AddTextureAsync(
-        spriteFolderPath.string() + "/triangle.png");
-
-    triangle->SetName("Triangle");
-
-    std::shared_ptr<Hamster::Texture> circle = Hamster::AssetManager::AddTextureAsync(
-        spriteFolderPath.string() + "/circle.png");
-
-    circle->SetName("Circle");
+    // change this to somewhere thats only executed when a new project is created
 }
 
 void EditorLayer::OnUpdate() {

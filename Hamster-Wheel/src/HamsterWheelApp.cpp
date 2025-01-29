@@ -14,39 +14,37 @@
 #include "ProjectHubLayer.h"
 
 int main() {
-  auto *app = new Hamster::Application();
+    auto *app = new Hamster::Application();
 
-  std::filesystem::path filePath =
-      Hamster::Application::GetExecutablePath() +
-      "/../share/Resources/Hamster-Wheel/Resources/Fonts/segoe-ui-this/"
-      "segoeuithis.ttf";
+    std::filesystem::path filePath =
+            Hamster::Application::GetExecutablePath() +
+            "/../share/Resources/Hamster-Wheel/Resources/Fonts/segoe-ui-this/"
+            "segoeuithis.ttf";
 
-  std::cout << filePath << std::endl;
+    ImGuiIO &io = ImGui::GetIO();
+    io.Fonts->AddFontFromFileTTF(filePath.string().c_str(), 18.0f);
 
-  ImGuiIO &io = ImGui::GetIO();
-  io.Fonts->AddFontFromFileTTF(filePath.string().c_str(), 18.0f);
+    EditorLayer *editorLayer;
+    ProjectHubLayer *projectHubLayer = new ProjectHubLayer(editorLayer);
 
-  EditorLayer *editorLayer;
-  ProjectHubLayer *projectHubLayer = new ProjectHubLayer(editorLayer);
+    app->PushLayer(projectHubLayer);
 
-  app->PushLayer(projectHubLayer);
+    // app->PushLayer(new EditorLayer(scene));
 
-  // app->PushLayer(new EditorLayer(scene));
+    // //
+    // Hamster::UUID mario = scene->CreateEntity();
+    // scene->AddEntityComponent<Hamster::Transform>(mario, glm::vec2(400.0f,
+    // 0.0f), 0.0f, glm::vec2(300.0f, 300.0f));
+    // scene->AddEntityComponent<Hamster::Sprite>(mario, "mario",
+    // Hamster::AssetManager::GetTexture("mario"),
+    //                                            glm::vec3(1.0f, 1.0f, 1.0f));
+    // scene->AddEntityComponent<Hamster::Name>(mario, "Mario");
+    // Hamster::Physics::CreateBody(scene->GetWorldId(), b2_dynamicBody,
+    // scene->GetEntity(mario), scene->GetRegistry());
 
-  // //
-  // Hamster::UUID mario = scene->CreateEntity();
-  // scene->AddEntityComponent<Hamster::Transform>(mario, glm::vec2(400.0f,
-  // 0.0f), 0.0f, glm::vec2(300.0f, 300.0f));
-  // scene->AddEntityComponent<Hamster::Sprite>(mario, "mario",
-  // Hamster::AssetManager::GetTexture("mario"),
-  //                                            glm::vec3(1.0f, 1.0f, 1.0f));
-  // scene->AddEntityComponent<Hamster::Name>(mario, "Mario");
-  // Hamster::Physics::CreateBody(scene->GetWorldId(), b2_dynamicBody,
-  // scene->GetEntity(mario), scene->GetRegistry());
+    std::cout << Hamster::Application::GetExecutablePath() << std::endl;
 
-  std::cout << Hamster::Application::GetExecutablePath() << std::endl;
+    app->Run();
 
-  app->Run();
-
-  delete app;
+    delete app;
 }

@@ -61,6 +61,25 @@ namespace Hamster {
 
         s_ActiveProject = std::make_shared<Project>(config);
 
+        std::filesystem::path spriteFolderPath =
+                Hamster::Application::GetExecutablePath() +
+                "/../share/Resources/Hamster-Wheel/Resources/Sprites";
+
+        std::shared_ptr<Hamster::Texture> square = Hamster::AssetManager::AddTexture(
+            spriteFolderPath.string() + "/square.png");
+
+        square->SetName("Square");
+
+        std::shared_ptr<Hamster::Texture> triangle = Hamster::AssetManager::AddTexture(
+            spriteFolderPath.string() + "/triangle.png");
+
+        triangle->SetName("Triangle");
+
+        std::shared_ptr<Hamster::Texture> circle = Hamster::AssetManager::AddTexture(
+            spriteFolderPath.string() + "/circle.png");
+
+        circle->SetName("Circle");
+
         SaveCurrentProject();
 
         Application::GetApplicationInstance().AddScene(scene);
@@ -71,6 +90,7 @@ namespace Hamster {
         Application::GetApplicationInstance()
                 .GetEventDispatcher()
                 ->Post<ProjectOpenedEvent>(e);
+
 
         return true;
     }

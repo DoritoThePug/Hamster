@@ -17,7 +17,7 @@ namespace Hamster {
 
     static std::shared_ptr<Shader> GetShader(std::string name);
 
-    static void AddTextureAsync(const std::string &texturePath);
+    static std::shared_ptr<Texture> AddTextureAsync(const std::string &texturePath);
 
     static void AddTexture(UUID uuid, const std::string &texturePath,
                            const std::string &textureName);
@@ -64,7 +64,7 @@ namespace Hamster {
 
     static void Terminate();
 
-    static void AddTexture(const std::string &texturePath);
+    static std::shared_ptr<Texture> AddTexture(const std::string &texturePath);
 
   private:
     inline static std::unordered_map<std::string, std::shared_ptr<Shader> >
