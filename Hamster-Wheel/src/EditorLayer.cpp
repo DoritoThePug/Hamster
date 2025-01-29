@@ -257,7 +257,7 @@ void EditorLayer::OnUpdate() {
         entityTransform->position.x = mouseHeldTransformX + mouseDragDelta.x;
         entityTransform->position.y = mouseHeldTransformY + mouseDragDelta.y;
     } else if (sceneBackgroundHeld) {
-        Hamster::Renderer::ChangeCameraOffset(mouseDelta.x * m_MouseDragSpeed, mouseDelta.y * m_MouseDragSpeed);
+        Hamster::Renderer::ChangeCameraOffset({mouseDelta.x * m_MouseDragSpeed, mouseDelta.y * m_MouseDragSpeed});
     }
 
     m_FramebufferTexture.ResizeFrameBuffer(m_LevelEditorAvailRegion.x,
@@ -311,7 +311,17 @@ void EditorLayer::OnImGuiUpdate() {
             (m_ViewportHeight - m_LevelEditorAvailRegion.y);
 
     if (ImGui::IsWindowHovered()) {
-        Hamster::Renderer::AdjustZoom(ImGui::GetIO().MouseWheel * 0.5f);
+        float mouseWheelDelta = ImGui::GetIO().MouseWheel;
+
+
+        if (mouseWheelDelta != 0.0f) {
+            const ImVec2 imGuiMousePos = ImGui::GetMousePos();
+
+            float mousePosX = imGuiMousePos.x - m_ViewportOffset.x;
+            float mousePosY = imGuiMousePos.y - m_ViewportOffset.y;
+
+            Hamster::Renderer::AdjustZoom(mouseWheelDelta * m_MouseWheelZoomSpeed, mousePosX, mousePosY);
+        }
     }
 
     const ImVec2 pos = ImGui::GetCursorScreenPos();

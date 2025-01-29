@@ -64,6 +64,7 @@ private:
   float m_TopX = 0.0f;
   float m_TopY = 0.0f;
   float m_MouseDragSpeed = 1.0f;
+  float m_MouseWheelZoomSpeed = 0.1f;
 
   bool xGuizmoHeld = false;
   bool yGuizmoHeld = false;

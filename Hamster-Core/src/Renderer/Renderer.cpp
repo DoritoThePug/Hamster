@@ -268,8 +268,8 @@ namespace Hamster {
         // std::cout << m_CameraOffset.x << ", " << m_CameraOffset.y << std::endl;
 
         m_ViewMatrix = glm::ortho(0.0f + m_CameraOffset.x,
-                                  static_cast<float>(m_ViewportWidth) + m_CameraOffset.x,
-                                  static_cast<float>(m_ViewportHeight) + m_CameraOffset.y,
+                                  static_cast<float>(m_ViewportWidth) / m_Zoom + m_CameraOffset.x,
+                                  static_cast<float>(m_ViewportHeight) / m_Zoom + m_CameraOffset.y,
                                   0.0f + m_CameraOffset.y,
                                   -1.0f, 1.0f);
 
@@ -282,15 +282,32 @@ namespace Hamster {
         m_FlatShader->setUniformMat4("projection", m_ViewMatrix);
     }
 
-    void Renderer::AdjustZoom(float factor) {
+    void Renderer::AdjustZoom(float factor, float mousePosX, float mousePosY) {
+        glm::vec2 worldMousePos = ScreenToWorldPos({mousePosX, mousePosY});
+
         m_Zoom += factor;
 
+        glm::vec2 newWorldMousePos = ScreenToWorldPos({mousePosX, mousePosY});
+
         UpdateViewMatrix();
+
+        ChangeCameraOffset(newWorldMousePos - worldMousePos);
     }
 
-    void Renderer::ChangeCameraOffset(float offsetX, float offsetY) {
-        m_CameraOffset.x -= offsetX;
-        m_CameraOffset.y -= offsetY;
+    glm::vec2 Renderer::ScreenToWorldPos(const glm::vec2 &mousePos) {
+        float normalizedX = mousePos.x / static_cast<float>(m_ViewportWidth);
+        float normalizedY = mousePos.y / static_cast<float>(m_ViewportHeight);
+
+
+        float worldX = m_CameraOffset.x + (normalizedX * m_ViewportWidth) / m_Zoom;
+        float worldY = m_CameraOffset.y + (normalizedY * m_ViewportHeight) / m_Zoom;
+
+        return {worldX, worldY};
+    }
+
+    void Renderer::ChangeCameraOffset(const glm::vec2 &offset) {
+        m_CameraOffset.x -= offset.x;
+        m_CameraOffset.y -= offset.y;
 
         UpdateViewMatrix();
     }
