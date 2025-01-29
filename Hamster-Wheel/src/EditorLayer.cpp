@@ -45,6 +45,15 @@ void EditorLayer::OnAttach() {
     std::string iniPath = srcPath + "/default.ini";
 
     ImGui::LoadIniSettingsFromDisk(iniPath.c_str());
+
+    std::filesystem::path spriteFolderPath =
+            Hamster::Application::GetExecutablePath() +
+            "/../share/Resources/Hamster-Wheel/Resources/Sprites";
+
+    std::shared_ptr<Hamster::Texture> square = Hamster::AssetManager::AddTextureAsync(
+        spriteFolderPath.string() + "/square.png");
+
+    square->SetName("Square");
 }
 
 void EditorLayer::OnUpdate() {
@@ -84,7 +93,6 @@ void EditorLayer::OnUpdate() {
         int pickedID =
                 Hamster::Application::ColourToId(glm::vec3(data[0], data[1], data[2]));
 
-        std::cout << pickedID << std::endl;
         // std::cout << (float)data[0] << ", " << (float)data[1] << ", " <<
         // (float)data[2] << std::endl;
 
@@ -125,7 +133,7 @@ void EditorLayer::OnUpdate() {
 
         switch (pickedID) {
             case -1: {
-                if (m_WindowFocused) {
+                if (mousePosX > 0 && mousePosY > 0) {
                     m_Hierarchy->SetSelectedEntity(entt::null);
                     m_PropertyEditor->SetSelectedEntity(boost::uuids::nil_uuid());
                 }
