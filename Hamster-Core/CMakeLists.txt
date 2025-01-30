@@ -3,6 +3,8 @@ project(Hamster-Core)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -target x86_64-pc-win32")
+
 
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
@@ -99,21 +101,20 @@ set(sources
         ${Gui}
         ${Physics}
         ${Scripting}
-        
+
 )
 
 set(c_sources
-Vendor/glad/src/glad.c
+        Vendor/glad/src/glad.c
 
 
 )
 
 add_library(Hamster-C STATIC ${c_sources})
 
-target_include_directories(Hamster-C PUBLIC 
-Vendor/glad/include
+target_include_directories(Hamster-C PUBLIC
+        Vendor/glad/include
 )
-
 
 
 set(HAMSTER_CORE_SRC_DIR ${CMAKE_SOURCE_DIR}/src)

@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -target x86_64-pc-win32")
 
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
@@ -46,7 +47,7 @@ target_include_directories(Hamster-Wheel PRIVATE
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/imgui
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/box2d/include
         Vendor/tinyfiledialogs
-        Vendor/pybind11/includ  e
+        Vendor/pybind11/includ e
         #        ${CMAKE_SOURCE_DIR}/Hamster-Py/Vendor/pybind11/include
         ${Python_INCLUDE_DIRS}
 )
@@ -56,14 +57,13 @@ target_compile_definitions(Hamster-Wheel PRIVATE HAMSTER_WHEEL_SRC_DIR="${CMAKE_
 
 target_link_libraries(Hamster-Wheel PRIVATE Hamster-Core glfw imgui box2d tinyfiledialogs pybind11::embed)
 
-
 # Copy Resources to the build directory during development
 add_custom_command(
-    TARGET Hamster-Wheel POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/Hamster-Wheel/Resources 
+        TARGET Hamster-Wheel POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/Hamster-Wheel/Resources
         $<TARGET_FILE_DIR:Hamster-Wheel>/../share/Resources/Hamster-Wheel/Resources
-    COMMENT "Copying Resources directory to build output directory"
+        COMMENT "Copying Resources directory to build output directory"
 )
 
 

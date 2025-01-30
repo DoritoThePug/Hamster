@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <imgui.h>
-#include <libloaderapi.h>
+#include <windows.h>
 
 #include "Application.h"
 
@@ -22,7 +22,11 @@ namespace Hamster {
     // Singleton was chosen due to need for all systems to access the Application
     // class + there should only ever be 1 instance of Application even when
     // Hamster-Wheel is running
-    Application *Application::s_Instance = nullptr;
+    Application
+
+    *
+            Application::s_Instance =
+            nullptr;
 
     Application::Application() {
         std::cout << "Application created" << std::endl;
@@ -80,6 +84,8 @@ namespace Hamster {
             });
 
         Scripting::InitInterpreter();
+
+        m_Running = true;
     }
 
     Application::~Application() {
@@ -125,10 +131,34 @@ namespace Hamster {
 
             ExecuteMainThread();
 
+            for (Layer *layer: m_LayersPendingPop) {
+                {
+                    m_LayerStack.PopLayer(layer);
+                }
+            }
+
+            for (Layer *layer: m_LayersPendingPush) {
+                m_LayerStack.PushLayer(layer);
+            }
+
+            m_LayersPendingPop.clear();
+            m_LayersPendingPush.clear();
+
             // Normal layers updated before gui so gui can respond to changes
             for (Layer *layer: m_LayerStack) {
                 layer->OnUpdate();
             }
+
+            for (Layer *layer: m_LayersPendingPop) {
+                m_LayerStack.PopLayer(layer);
+            }
+
+            for (Layer *layer: m_LayersPendingPush) {
+                m_LayerStack.PushLayer(layer);
+            }
+
+            m_LayersPendingPop.clear();
+            m_LayersPendingPush.clear();
 
             m_ImGuiLayer.Begin();
 
@@ -159,9 +189,17 @@ namespace Hamster {
         // std::cout << "Window resized" << std::endl;
     }
 
-    void Application::PushLayer(Layer *layer) { m_LayerStack.PushLayer(layer); }
+    void Application::PushLayer(Layer *layer) {
+        if (m_Running) { m_LayersPendingPush.push_back(layer); } else {
+            m_LayerStack.PushLayer(layer);
+        }
+    }
 
-    void Application::PopLayer(Layer *layer) { m_LayerStack.PopLayer(layer); }
+    void Application::PopLayer(Layer *layer) {
+        if (m_Running) { m_LayersPendingPop.push_back(layer); } else {
+            m_LayerStack.PopLayer(layer);
+        }
+    }
 
     // glm::mat4 Application::GetProjectionMatrix() { return m_Projection; }
 

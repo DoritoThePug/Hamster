@@ -18,54 +18,52 @@
 #include "Utils/AssetManager.h"
 
 namespace Hamster {
-std::filesystem::path Scripting::GenerateDefaultScript(UUID *uuidVal) {
-  UUID scriptUUID;
+    std::filesystem::path Scripting::GenerateDefaultScript(UUID *uuidVal) {
+        UUID scriptUUID;
 
-  std::string fileName = "Untitled_Script_" + scriptUUID.GetUUIDString();
+        std::string fileName = "Untitled_Script_" + scriptUUID.GetUUIDString();
 
-  std::filesystem::path scriptPath =
-      Project::GetCurrentProject()->GetConfig().ProjectDirectory /
-      (fileName + ".py");
+        std::filesystem::path scriptPath =
+                Project::GetCurrentProject()->GetConfig().ProjectDirectory /
+                (fileName + ".py");
 
-  // Init();
+        // Init();
 
-  std::ofstream scriptOut(scriptPath);
+        std::ofstream scriptOut(scriptPath);
 
-  std::string defaultContent = "import Hamster \n\n"
-                               "class test(Hamster.HamsterBehaviour):\n"
-                               "    def on_update(self, delta_time):\n"
-                               "        pass\n";
+        std::string defaultContent = "import Hamster \n\n"
+                "class test(Hamster.HamsterBehaviour):\n"
+                "    def on_update(self, delta_time):\n"
+                "        pass\n";
 
-  scriptOut << defaultContent;
+        scriptOut << defaultContent;
 
-  scriptOut.close();
+        scriptOut.close();
 
-  if (uuidVal != nullptr) {
-    *uuidVal = scriptUUID;
-  }
+        if (uuidVal != nullptr) {
+            *uuidVal = scriptUUID;
+        }
 
-  return scriptPath;
-}
+        return scriptPath;
+    }
 
-void Scripting::InitInterpreter() {
-  if (!m_InterpreterInitialised) {
-    pybind11::initialize_interpreter();
+    void Scripting::InitInterpreter() {
+        if (!m_InterpreterInitialised) {
+            pybind11::initialize_interpreter();
 
-    m_InterpreterInitialised = true;
+            m_InterpreterInitialised = true;
 
-    Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
-        ProjectOpened, FORWARD_STATIC_CALLBACK_FUNCTION(Scripting::AddPathToPy,
-                                                        ProjectOpenedEvent));
-  }
-}
+            Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+                ProjectOpened, FORWARD_STATIC_CALLBACK_FUNCTION(Scripting::AddPathToPy,
+                                                                ProjectOpenedEvent));
+        }
+    }
 
-void Scripting::AddPathToPy(ProjectOpenedEvent &e) {
+    void Scripting::AddPathToPy(ProjectOpenedEvent &e) {
+        pybind11::module_ sys = pybind11::module::import("sys");
 
-  pybind11::module_ sys = pybind11::module::import("sys");
+        pybind11::list path = sys.attr("path");
 
-  pybind11::list path = sys.attr("path");
-
-  path.append(e.GetPath().string());
-}
-
+        path.append(e.GetPath().string());
+    }
 } // namespace Hamster

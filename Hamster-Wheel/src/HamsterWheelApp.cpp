@@ -10,6 +10,8 @@
 #include <EditorLayer.h>
 #include <Physics/Physics.h>
 #include <fstream>
+#include <filesystem>
+#include <iostream>
 
 #include "ProjectHubLayer.h"
 

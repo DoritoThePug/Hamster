@@ -4,9 +4,11 @@
 
 #include "ProjectCreator.h"
 
+#include <filesystem>
 #include <imgui.h>
 
 #include "tinyfiledialogs.h"
+
 // #include <GLFW/glfw3.h>
 // #include <GLFW/glfw3native.h>
 
@@ -45,15 +47,15 @@ void ProjectCreator::Render() {
   }
 
   if (m_NoDirectorySelected) {
-    ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor(230, 57, 70));
+    ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4) ImColor(230, 57, 70));
     ImGui::Text("You must choose a project directoy!");
     ImGui::PopStyleColor();
   }
 
   if (m_DirectoryExists) {
-    ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4)ImColor(230, 57, 70));
+    ImGui::PushStyleColor(ImGuiCol_Text, (ImVec4) ImColor(230, 57, 70));
     ImGui::Text(
-        "Folder with same name as project already exists at chosen directory!");
+      "Folder with same name as project already exists at chosen directory!");
     ImGui::PopStyleColor();
   }
 
@@ -74,10 +76,20 @@ void ProjectCreator::Render() {
       if (!m_DirectoryExists && !m_NoDirectorySelected) {
         Hamster::Project::New(m_ProjectConfig);
 
+#if defined(_WIN32)
         std::string hamLibPath =
             Hamster::Application::GetExecutablePath() +
             "/../share/Resources/Hamster-Wheel/Resources/Packages/"
-            "libHamster-Py.a";
+            "Hamster.cp313-win_amd64.pyd";
+
+#elif defined(__linux__)
+
+    std::string hamLibPath =
+                Hamster::Application::GetExecutablePath() +
+                "/../share/Resources/Hamster-Wheel/Resources/Packages/"
+                "Hamster.cpython-310-x86_64-linux-gnu.so";
+
+#endif
 
         std::filesystem::copy(hamLibPath, m_ProjectConfig.ProjectDirectory);
 
@@ -89,6 +101,7 @@ void ProjectCreator::Render() {
 
   ImGui::End();
 }
+
 //
 // std::string ProjectCreator::OpenWindowsFileDialog(HWND owner) {
 //     BROWSEINFO bi = {0};
@@ -109,4 +122,5 @@ void ProjectCreator::Render() {
 //     return "";
 // }
 
-void CreateProject() {}
+void CreateProject() {
+}

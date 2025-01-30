@@ -85,7 +85,7 @@ namespace Hamster {
     private:
         static Application *s_Instance;
 
-        bool m_Running = true;
+        bool m_Running = false;
         bool m_IsSimulationPaused = true;
 
         // int m_ViewportWidth = 1920;
@@ -109,5 +109,8 @@ namespace Hamster {
 
         std::vector<std::function<void()> > m_MainThreadQueue;
         std::mutex m_MainThreadMutex;
+
+        std::vector<Layer *> m_LayersPendingPush;
+        std::vector<Layer *> m_LayersPendingPop;
     };
 } // namespace Hamster

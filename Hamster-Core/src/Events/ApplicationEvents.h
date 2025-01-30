@@ -10,46 +10,49 @@
 #include "Event.h"
 
 namespace Hamster {
-class Scene;
+    class Scene;
 
-class ActiveSceneChangedEvent : public Event {
-public:
-  explicit ActiveSceneChangedEvent(std::shared_ptr<Scene> scene)
-      : m_ActiveScene(std::move(scene)) {};
+    class ActiveSceneChangedEvent : public Event {
+    public:
+        explicit ActiveSceneChangedEvent(std::shared_ptr<Scene> scene)
+            : m_ActiveScene(std::move(scene)) {
+        };
 
-  [[nodiscard]] std::shared_ptr<Scene> GetActiveScene() {
-    return m_ActiveScene;
-  }
+        [[nodiscard]] std::shared_ptr<Scene> GetActiveScene() {
+            return m_ActiveScene;
+        }
 
-  BIND_EVENT_TYPE(ActiveSceneChanged);
+        BIND_EVENT_TYPE(ActiveSceneChanged);
 
-private:
-  std::shared_ptr<Scene> m_ActiveScene;
-};
+    private:
+        std::shared_ptr<Scene> m_ActiveScene;
+    };
 
-class ProjectOpenedEvent : public Event {
-public:
-  explicit ProjectOpenedEvent(std::filesystem::path path) : m_Path(path) {};
+    class ProjectOpenedEvent : public Event {
+    public:
+        explicit ProjectOpenedEvent(std::filesystem::path path) : m_Path(path) {
+        };
 
-  [[nodiscard]] std::filesystem::path GetPath() { return m_Path; }
+        [[nodiscard]] std::filesystem::path GetPath() { return m_Path; }
 
-  BIND_EVENT_TYPE(ProjectOpened);
+        BIND_EVENT_TYPE(ProjectOpened);
 
-private:
-  std::filesystem::path m_Path;
-};
+    private:
+        std::filesystem::path m_Path;
+    };
 
-class SceneCreatedEvent : public Event {
-public:
-  SceneCreatedEvent(std::shared_ptr<Scene> scene) : m_Scene(scene) {};
+    class SceneCreatedEvent : public Event {
+    public:
+        SceneCreatedEvent(std::shared_ptr<Scene> scene) : m_Scene(scene) {
+        };
 
-  std::shared_ptr<Scene> GetScene() { return m_Scene; }
+        std::shared_ptr<Scene> GetScene() { return m_Scene; }
 
-  BIND_EVENT_TYPE(SceneCreated);
+        BIND_EVENT_TYPE(SceneCreated);
 
-private:
-  std::shared_ptr<Scene> m_Scene;
-};
+    private:
+        std::shared_ptr<Scene> m_Scene;
+    };
 } // namespace Hamster
 
 #endif // APPLICATIONEVENTS_H

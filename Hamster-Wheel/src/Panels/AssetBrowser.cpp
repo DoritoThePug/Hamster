@@ -7,17 +7,17 @@
 #include "Utils/AssetManager.h"
 #include <tinyfiledialogs.h>
 
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 #include <iostream>
 #include <sstream>
 #include <string>
 
 AssetBrowser::AssetBrowser(std::shared_ptr<Hamster::Scene> scene)
-    : Hamster::Panel(scene) {
+  : Hamster::Panel(scene) {
   std::string wheelPath = HAMSTER_WHEEL_SRC_DIR;
 
   m_PythonIcon = std::make_unique<Hamster::Texture>(
-      wheelPath + "/../Resources/Icons/python.png");
+    wheelPath + "/../Resources/Icons/python.png");
 };
 
 void AssetBrowser::Render() {
@@ -26,7 +26,7 @@ void AssetBrowser::Render() {
     return;
   }
 
-  for (const auto &[uuid, texture] : Hamster::AssetManager::GetTextureMap()) {
+  for (const auto &[uuid, texture]: Hamster::AssetManager::GetTextureMap()) {
     std::string buttonLabel =
         texture->GetName() + "##" + boost::uuids::to_string(uuid.GetUUID());
 
@@ -46,12 +46,12 @@ void AssetBrowser::Render() {
   ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.f, 0.f, 0.f, 0.f));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.f, 0.f, 0.f, 0.f));
 
-  for (const auto &[uuid, script] : Hamster::AssetManager::GetScriptMap()) {
+  for (const auto &[uuid, script]: Hamster::AssetManager::GetScriptMap()) {
     std::string buttonLabel =
         script->GetName() + "##" + boost::uuids::to_string(uuid.GetUUID());
 
     ImGui::ImageButton(script->GetName().c_str(),
-                       (ImTextureID)(intptr_t)m_PythonIcon->GetTextureId(),
+                       (ImTextureID) (intptr_t) m_PythonIcon->GetTextureId(),
                        {64.0f, 64.0f}, {0, 0}, {1, 1}, {0, 0, 0, 1});
   }
   ImGui::PopStyleColor(3);
@@ -62,7 +62,7 @@ void AssetBrowser::Render() {
       if (ImGui::MenuItem("Import Asset")) {
         char const *filterPattern = {"*.png"};
         const char *path = tinyfd_openFileDialog(
-            "Select asset", "", 1, &filterPattern, "PNG Files", 1);
+          "Select asset", "", 1, &filterPattern, "PNG Files", 1);
 
         std::stringstream pathSS(path);
         std::string item;
