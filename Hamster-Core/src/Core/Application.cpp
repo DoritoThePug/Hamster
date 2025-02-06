@@ -22,11 +22,7 @@ namespace Hamster {
     // Singleton was chosen due to need for all systems to access the Application
     // class + there should only ever be 1 instance of Application even when
     // Hamster-Wheel is running
-    Application
-
-    *
-            Application::s_Instance =
-            nullptr;
+    Application *Application::s_Instance = nullptr;
 
     Application::Application() {
         std::cout << "Application created" << std::endl;

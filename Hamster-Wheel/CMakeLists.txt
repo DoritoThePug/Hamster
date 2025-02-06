@@ -8,12 +8,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -target x86_64-pc-win32")
 
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
 add_compile_definitions(GLFW_EXPOSE_NATIVE_WIN32)
 add_compile_definitions(GLFW_INCLUDE_NONE)
+
 
 set(PANELS
         src/Panels/PropertyEditor.cpp src/Panels/PropertyEditor.h
@@ -47,7 +47,7 @@ target_include_directories(Hamster-Wheel PRIVATE
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/imgui
         ${CMAKE_SOURCE_DIR}/Hamster-Core/Vendor/box2d/include
         Vendor/tinyfiledialogs
-        Vendor/pybind11/includ e
+        Vendor/pybind11/include
         #        ${CMAKE_SOURCE_DIR}/Hamster-Py/Vendor/pybind11/include
         ${Python_INCLUDE_DIRS}
 )

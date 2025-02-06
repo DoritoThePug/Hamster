@@ -32,12 +32,12 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
 
   // Application::GetApplicationInstance().GetEventDispatcher();
 }
+
 void HamsterBehaviour::OnKeyPressed(KeyPressedEvent &e) {
   m_KeyPressed = e.GetKeyPressed();
 }
 
 void HamsterBehaviour::OnKeyReleased(KeyReleasedEvent &e) {
-
   if (e.GetKeyReleased() == m_KeyPressed) {
     m_KeyPressed = NOT_PRESSED;
   }
@@ -80,4 +80,7 @@ void HamsterBehaviour::OnCollision(CollisionEvent &e) {
   }
 }
 
+void HamsterBehaviour::RegisterEvent(pybind11::object &obj) {
+  m_Scene->GetEventDispatcher()->RegisterEvent(obj);
+}
 } // namespace Hamster

@@ -3,7 +3,6 @@ project(Hamster-Core)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -target x86_64-pc-win32")
 
 
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
@@ -49,6 +48,8 @@ set(Events
 
         src/Events/WindowEvents.h
         src/Events/SceneEvents.h
+        src/Events/ScriptingEvent.cpp
+        src/Events/ScriptingEvent.h
 )
 
 
@@ -90,6 +91,8 @@ set(Scripting
         src/Scripting/Scripting.cpp src/Scripting/Scripting.h
         src/Scripting/HamsterBehaviour.cpp src/Scripting/HamsterBehaviour.h
         src/Scripting/HamsterScript.cpp src/Scripting/HamsterScript.h
+        src/Scripting/HamsterEvent.cpp
+        src/Scripting/HamsterEvent.h
 )
 
 set(sources
