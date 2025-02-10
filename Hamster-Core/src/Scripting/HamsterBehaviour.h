@@ -1,4 +1,4 @@
-    #pragma once
+#pragma once
 
 #include "Core/Components.h"
 #include "Core/Scene.h"
@@ -20,6 +20,7 @@ public:
                    Application *app);
 
   virtual void OnCreate() {}
+
   virtual void OnUpdate(float deltaTime) {}
 
   const Transform &GetTransform() { return *m_Transform; }
@@ -34,6 +35,7 @@ public:
   const KeyCodes &GetKeyReleased() { return m_KeyPressed; }
 
   void OnKeyPressed(KeyPressedEvent &e);
+
   void OnKeyReleased(KeyReleasedEvent &e);
 
   void ResetInput() {
@@ -41,16 +43,27 @@ public:
     m_KeyReleased = NOT_PRESSED;
   }
 
-  void OnCollision(CollisionEvent& e);
+  void OnCollision(CollisionEvent &e);
 
-  void AddCollisionEntity(const std::string& uuid);
+  void AddCollisionEntity(const std::string &uuid);
+
   void EmptyCollisionEntity();
-  [[nodiscard]] bool IsColliding() const { return m_Colliding;}
-  [[nodiscard]] std::set<std::string> GetCollisionEntites() const {return m_CollisionEntities;}
+
+  [[nodiscard]] bool IsColliding() const { return m_Colliding; }
+  [[nodiscard]] std::set<std::string> GetCollisionEntites() const {
+    return m_CollisionEntities;
+  }
 
   void Log(LogType type, std::string message);
 
-  void CrossScriptExecute(std::string& uuid, const char* funcName);
+  void CrossScriptExecute(std::string &uuid, const char *funcName);
+
+  // void RegisterEvent(pybind11::object &obj);
+
+  void Subscribe(const pybind11::object &event, pybind11::function fn);
+
+  void Post(const pybind11::object &event);
+
 private:
   UUID m_UUID;
   std::shared_ptr<Scene> m_Scene;

@@ -17,6 +17,7 @@
 #include "Components.h"
 
 #include "Events/ApplicationEvents.h"
+#include "Events/ScriptingEvent.h"
 #include "Events/WindowEvents.h"
 #include "Log.h"
 #include "Physics/Physics.h"
@@ -74,9 +75,11 @@ public:
   bool IsSceneSimulationPaused() const { return m_IsSimulationPaused; }
 
   void RunScene() { m_IsRunning = true; }
+
   void RunSceneSimulation();
 
   void PauseScene() { m_IsRunning = false; }
+
   void PauseSceneSimulation();
 
   UUID GetUUID() const { return m_UUID; }
@@ -100,6 +103,10 @@ public:
   void OnSceneCreated(SceneCreatedEvent &e);
 
   std::shared_ptr<Logger> GetClientLogger() { return m_ClientLogger; }
+
+  std::shared_ptr<ScriptingEventDispatcher> GetEventDispatcher() {
+    return m_Dispatcher;
+  }
 
 private:
   bool m_IsRunning = false;
@@ -130,6 +137,10 @@ private:
   float m_LastFrame = 0.0f;
 
   std::shared_ptr<Logger> m_ClientLogger;
+
+  std::shared_ptr<ScriptingEventDispatcher> m_Dispatcher;
+
+  std::unordered_map<pybind11::object, int> test_t;
 };
 } // namespace Hamster
 

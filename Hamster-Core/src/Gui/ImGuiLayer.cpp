@@ -15,8 +15,6 @@
 
 namespace Hamster {
   void ImGuiLayer::OnAttach() {
-    std::cout << "ImGuiLayer::OnAttach()" << std::endl;
-
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();

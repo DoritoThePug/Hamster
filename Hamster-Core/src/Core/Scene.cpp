@@ -18,241 +18,245 @@
 #include "Scripting/Scripting.h"
 
 namespace Hamster {
-    Scene::Scene() {
-        m_ClientLogger = std::make_shared<Logger>(100);
+Scene::Scene() {
+  m_ClientLogger = std::make_shared<Logger>(100);
 
-        Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
-            SceneCreated,
-            FORWARD_CALLBACK_FUNCTION(Scene::OnSceneCreated, SceneCreatedEvent));
+  Application::GetApplicationInstance().GetEventDispatcher()->Subscribe(
+      SceneCreated,
+      FORWARD_CALLBACK_FUNCTION(Scene::OnSceneCreated, SceneCreatedEvent));
 
-        std::string sceneName = m_Name;
-        std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
+  std::string sceneName = m_Name;
+  std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
 
-        m_Path = std::filesystem::path("Scenes") /
-                 std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
-                                       ".scene");
+  m_Path = std::filesystem::path("Scenes") /
+           std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
+                                 ".scene");
 
-        m_RenderGroup = m_Registry.group<Sprite, Transform>();
-    }
+  m_RenderGroup = m_Registry.group<Sprite, Transform>();
 
-    UUID Scene::CreateEntity() {
-        auto entity = m_Registry.create();
+  m_Dispatcher = std::make_shared<ScriptingEventDispatcher>();
+}
 
-        UUID uuid;
+UUID Scene::CreateEntity() {
+  auto entity = m_Registry.create();
 
-        std::cout << "Created " << uuid.GetUUID() << std::endl;
+  UUID uuid;
 
-        m_Registry.emplace<ID>(entity, uuid);
-        m_Entities[uuid] = entity;
+  std::cout << "Created " << uuid.GetUUID() << std::endl;
 
-        AddEntityComponent<Transform>(uuid);
-        AddEntityComponent<Name>(uuid);
+  m_Registry.emplace<ID>(entity, uuid);
+  m_Entities[uuid] = entity;
 
-        return uuid;
-    }
+  AddEntityComponent<Transform>(uuid);
+  AddEntityComponent<Name>(uuid);
 
-    void Scene::CreateEntityWithUUID(UUID uuid) {
-        auto entity = m_Registry.create();
+  return uuid;
+}
 
-        m_Registry.emplace<ID>(entity, uuid);
-        m_Entities[uuid] = entity;
-    }
+void Scene::CreateEntityWithUUID(UUID uuid) {
+  auto entity = m_Registry.create();
 
-    void Scene::DestroyEntity(UUID entityUUID) {
-        m_Registry.destroy(m_Entities[entityUUID]);
-        m_Entities.erase(entityUUID);
-    }
+  m_Registry.emplace<ID>(entity, uuid);
+  m_Entities[uuid] = entity;
+}
 
-    // template<typename T>
-    // T Scene::GetEntityComponent(UUID uuid) {
-    //     return m_Registry.get<T>(uuid);
-    // }
-    //
-    // template<typename T, typename... Args>
-    // void Scene::AddEntityComponent(UUID entityUUID, Args &&... args) {
-    //     m_Registry.emplace<T>(m_Entities[entityUUID],
-    //     std::forward<Args>(args)...);
-    // }
+void Scene::DestroyEntity(UUID entityUUID) {
+  m_Registry.destroy(m_Entities[entityUUID]);
+  m_Entities.erase(entityUUID);
+}
 
-    void Scene::OnUpdate() {
-        auto test = m_Registry.view<Transform, Rigidbody, ID>();
+// template<typename T>
+// T Scene::GetEntityComponent(UUID uuid) {
+//     return m_Registry.get<T>(uuid);
+// }
+//
+// template<typename T, typename... Args>
+// void Scene::AddEntityComponent(UUID entityUUID, Args &&... args) {
+//     m_Registry.emplace<T>(m_Entities[entityUUID],
+//     std::forward<Args>(args)...);
+// }
 
-        test.each([this, test](auto entityA, auto &transformA, auto &rbA,
-                               auto &idA) mutable {
-            test.each([this, entityA, transformA, rbA, idA](auto entityB,
-                                                            auto &transformB, auto &rbB,
-                                                            auto &idB) mutable {
-                if (entityA != entityB) {
-                    if (Physics::ResolveCollision(transformA, rbA, transformB, rbB)) {
-                        CollisionEvent e(idA.uuid, idB.uuid);
+void Scene::OnUpdate() {
+  auto test = m_Registry.view<Transform, Rigidbody, ID>();
 
-                        Application::GetApplicationInstance()
-                                .GetEventDispatcher()
-                                ->Post<CollisionEvent>(e);
-                    }
-                }
-            });
+  test.each([this, test](auto entityA, auto &transformA, auto &rbA,
+                         auto &idA) mutable {
+    test.each([this, entityA, transformA, rbA, idA](auto entityB,
+                                                    auto &transformB, auto &rbB,
+                                                    auto &idB) mutable {
+      if (entityA != entityB) {
+        if (Physics::ResolveCollision(transformA, rbA, transformB, rbB)) {
+          CollisionEvent e(idA.uuid, idB.uuid);
+
+          Application::GetApplicationInstance()
+              .GetEventDispatcher()
+              ->Post<CollisionEvent>(e);
+        }
+      }
+    });
+  });
+
+  if (!m_IsSimulationPaused) {
+    auto currentFrame = static_cast<float>(glfwGetTime());
+    m_DeltaTime = currentFrame - m_LastFrame;
+    m_LastFrame = currentFrame;
+
+    auto view = m_Registry.view<Behaviour>();
+
+    bool pythonError = false;
+
+    view.each([this, &pythonError](auto &behaviour) mutable {
+      for (auto &obj : behaviour.pyObjects) {
+        try {
+          obj.attr("on_update")(m_DeltaTime);
+
+          obj.attr("reset_input")();
+
+          // test_t[obj] = 1;
+
+          // obj.attr("reset_collision_entities")();
+        } catch (pybind11::error_already_set &e) {
+          pythonError = true;
+
+          HAMSTER_LOG(Error, e.what())
+
+          break;
+        }
+      }
+    });
+
+    auto physicsUpdate = m_Registry.view<Transform, Rigidbody>();
+
+    physicsUpdate.each(
+        [physicsUpdate](auto entityA, auto &transformA, auto &rbA) mutable {
+          physicsUpdate.each([entityA, transformA, rbA](auto entityB,
+                                                        auto &transformB,
+                                                        auto &rbB) mutable {
+            if (entityA != entityB) {
+              Physics::ResolveCollision(transformA, rbA, transformB, rbB);
+            }
+          });
         });
 
-        if (!m_IsSimulationPaused) {
-            auto currentFrame = static_cast<float>(glfwGetTime());
-            m_DeltaTime = currentFrame - m_LastFrame;
-            m_LastFrame = currentFrame;
+    if (pythonError) {
+      PauseSceneSimulation();
+    }
+  }
+}
 
-            auto view = m_Registry.view<Behaviour>();
+void Scene::OnRender(bool renderFlat) {
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  if (m_IsRunning) {
+    m_RenderGroup.sort<Transform>(
+        [](const Transform &lhs, const Transform &rhs) {
+          return lhs.position.z < rhs.position.z;
+        });
 
-            bool pythonError = false;
-
-            view.each([this, &pythonError](auto &behaviour) mutable {
-                for (auto &obj: behaviour.pyObjects) {
-                    try {
-                        obj.attr("on_update")(m_DeltaTime);
-
-                        obj.attr("reset_input")();
-
-                        // obj.attr("reset_collision_entities")();
-                    } catch (pybind11::error_already_set &e) {
-                        pythonError = true;
-
-                        HAMSTER_LOG(Error, e.what())
-
-                        break;
-                    }
-                }
-            });
-
-            auto physicsUpdate = m_Registry.view<Transform, Rigidbody>();
-
-            physicsUpdate.each(
-                [physicsUpdate](auto entityA, auto &transformA, auto &rbA) mutable {
-                    physicsUpdate.each([entityA, transformA, rbA](auto entityB,
-                                                                  auto &transformB,
-                                                                  auto &rbB) mutable {
-                        if (entityA != entityB) {
-                            Physics::ResolveCollision(transformA, rbA, transformB, rbB);
-                        }
-                    });
-                });
-
-            if (pythonError) {
-                PauseSceneSimulation();
-            }
+    if (!renderFlat) {
+      m_RenderGroup.each([](auto &sprite, auto &transform) {
+        if (sprite.texture != nullptr) {
+          Renderer::DrawSprite(*sprite.texture, transform.position,
+                               transform.size, transform.rotation,
+                               sprite.colour);
         }
-    }
+      });
+    } else {
+      // render all sprites as a unique flat colour which can be used to
+      // identify to their id
 
-    void Scene::OnRender(bool renderFlat) {
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        if (m_IsRunning) {
-            m_RenderGroup.sort<Transform>(
-                [](const Transform &lhs, const Transform &rhs) {
-                    return lhs.position.z < rhs.position.z;
-                });
+      // std::cout << "hi" << std::endl;
 
-            if (!renderFlat) {
-                m_RenderGroup.each([](auto &sprite, auto &transform) {
-                    if (sprite.texture != nullptr) {
-                        Renderer::DrawSprite(*sprite.texture, transform.position,
-                                             transform.size, transform.rotation,
-                                             sprite.colour);
-                    }
-                });
-            } else {
-                // render all sprites as a unique flat colour which can be used to
-                // identify to their id
-
-                // std::cout << "hi" << std::endl;
-
-                m_RenderGroup.each([](auto entity, auto &sprite, auto &transform) {
-                    if (sprite.texture != nullptr) {
-                        Renderer::DrawFlat(
-                            transform.position, transform.size, transform.rotation,
-                            Application::IdToColour(entt::to_integral(entity)));
-                    }
-                });
-            }
+      m_RenderGroup.each([](auto entity, auto &sprite, auto &transform) {
+        if (sprite.texture != nullptr) {
+          Renderer::DrawFlat(
+              transform.position, transform.size, transform.rotation,
+              Application::IdToColour(entt::to_integral(entity)));
         }
+      });
     }
+  }
+}
 
-    void Scene::SaveScene(std::shared_ptr<Scene> scene) {
-        std::cout << "Saving scene" << std::endl;
+void Scene::SaveScene(std::shared_ptr<Scene> scene) {
+  std::cout << "Saving scene" << std::endl;
 
-        SceneSerialiser serialiser(scene);
+  SceneSerialiser serialiser(scene);
 
-        std::cout << scene->GetPath() << std::endl;
+  std::cout << scene->GetPath() << std::endl;
 
-        std::ofstream out(scene->GetPath(), std::ios::binary);
+  std::ofstream out(scene->GetPath(), std::ios::binary);
 
-        serialiser.Serialise(out);
+  serialiser.Serialise(out);
 
-        out.close();
-    }
+  out.close();
+}
 
-    void Scene::OnSceneCreated(SceneCreatedEvent &e) { SaveScene(e.GetScene()); }
+void Scene::OnSceneCreated(SceneCreatedEvent &e) { SaveScene(e.GetScene()); }
 
-    void Scene::SetUUID(const UUID &uuid) {
-        m_UUID = uuid;
+void Scene::SetUUID(const UUID &uuid) {
+  m_UUID = uuid;
 
-        std::cout << m_UUID.GetUUID() << std::endl;
+  std::cout << m_UUID.GetUUID() << std::endl;
 
-        std::string sceneName = m_Name;
+  std::string sceneName = m_Name;
 
-        std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
+  std::replace(sceneName.begin(), sceneName.end(), ' ', '_');
 
-        m_Path = std::filesystem::path("Scenes") /
-                 std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
-                                       ".scene");
-    }
+  m_Path = std::filesystem::path("Scenes") /
+           std::filesystem::path(sceneName + "_" + m_UUID.GetUUIDString() +
+                                 ".scene");
+}
 
-    void Scene::RunSceneSimulation() {
-        if (m_IsSimulationPaused) {
-            Project::SaveCurrentProject();
+void Scene::RunSceneSimulation() {
+  if (m_IsSimulationPaused) {
+    Project::SaveCurrentProject();
 
-            SaveScene(Application::GetApplicationInstance().GetActiveScene());
+    SaveScene(Application::GetApplicationInstance().GetActiveScene());
 
-            auto scriptReloadView = m_Registry.view<Behaviour>();
+    auto scriptReloadView = m_Registry.view<Behaviour>();
 
-            scriptReloadView.each([](auto &behaviour) {
-                for (auto const &[uuid, script]: behaviour.scripts) {
-                    script->ReloadScript();
-                }
-            });
+    scriptReloadView.each([](auto &behaviour) {
+      for (auto const &[uuid, script] : behaviour.scripts) {
+        script->ReloadScript();
+      }
+    });
 
-            m_IsSimulationPaused = false;
+    m_IsSimulationPaused = false;
 
-            auto view = m_Registry.view<ID, Behaviour>();
+    auto view = m_Registry.view<ID, Behaviour>();
 
-            view.each([this](auto &ID, auto &behaviour) {
-                behaviour.pyObjects.clear();
+    view.each([this](auto &ID, auto &behaviour) {
+      behaviour.pyObjects.clear();
 
-                for (auto const &[uuid, script]: behaviour.scripts) {
-                    for (auto &obj: script->GetPyObjects()) {
-                        pybind11::object pyObject = obj(
-                            ID.uuid, Application::GetApplicationInstance().GetActiveScene(),
-                            &Application::GetApplicationInstance());
+      for (auto const &[uuid, script] : behaviour.scripts) {
+        for (auto &obj : script->GetPyObjects()) {
+          pybind11::object pyObject = obj(
+              ID.uuid, Application::GetApplicationInstance().GetActiveScene(),
+              &Application::GetApplicationInstance());
 
-                        behaviour.pyObjects.push_back(pyObject);
+          behaviour.pyObjects.push_back(pyObject);
 
-                        try {
-                            pyObject.attr("on_create")();
-                        } catch (pybind11::error_already_set &e) {
-                            HAMSTER_LOG(Error, e.what())
+          try {
+            pyObject.attr("on_create")();
+          } catch (pybind11::error_already_set &e) {
+            HAMSTER_LOG(Error, e.what())
 
-                            PauseSceneSimulation();
-                        }
-                    }
-                }
-            });
-
-            std::cout << "Simulation unpaused" << std::endl;
+            PauseSceneSimulation();
+          }
         }
-    }
+      }
+    });
 
-    void Scene::PauseSceneSimulation() {
-        if (!m_IsSimulationPaused) {
-            m_IsSimulationPaused = true;
+    std::cout << "Simulation unpaused" << std::endl;
+  }
+}
 
-            std::cout << "Scene paused" << std::endl;
-        }
-    }
+void Scene::PauseSceneSimulation() {
+  if (!m_IsSimulationPaused) {
+    m_IsSimulationPaused = true;
+
+    std::cout << "Scene paused" << std::endl;
+  }
+}
 } // namespace Hamster
