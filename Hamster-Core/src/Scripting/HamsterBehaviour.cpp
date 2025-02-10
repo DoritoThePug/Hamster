@@ -34,14 +34,12 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
 }
 
 void HamsterBehaviour::OnKeyPressed(KeyPressedEvent &e) {
+  std::cout << "key pressed" << std::endl;
+
   m_KeyPressed = e.GetKeyPressed();
 }
 
 void HamsterBehaviour::OnKeyReleased(KeyReleasedEvent &e) {
-  if (e.GetKeyReleased() == m_KeyPressed) {
-    m_KeyPressed = NOT_PRESSED;
-  }
-
   m_KeyReleased = e.GetKeyReleased();
 }
 
@@ -49,17 +47,17 @@ void HamsterBehaviour::Log(LogType type, std::string message) {
   m_Scene->GetClientLogger()->Log(type, message);
 }
 
-void HamsterBehaviour::CrossScriptExecute(std::string &uuid,
-                                          const char *funcName) {
-  auto &behaviour = m_Scene->GetEntityComponent<Behaviour>(UUID(uuid));
-
-  for (auto &obj : behaviour.pyObjects) {
-    if (pybind11::hasattr(obj, funcName)) {
-      obj.attr(funcName)();
-      break;
-    }
-  }
-}
+// void HamsterBehaviour::CrossScriptExecute(std::string &uuid,
+//                                           const char *funcName) {
+//   auto &behaviour = m_Scene->GetEntityComponent<Behaviour>(UUID(uuid));
+//
+//   for (auto &obj : behaviour.pyObjects) {
+//     if (pybind11::hasattr(obj, funcName)) {
+//       obj.attr(funcName)();
+//       break;
+//     }
+//   }
+// }
 
 void HamsterBehaviour::AddCollisionEntity(const std::string &uuid) {
   m_CollisionEntities.insert(uuid);

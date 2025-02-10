@@ -38,9 +38,6 @@ void HamsterBehaviourBinding(pybind11::module_ m) {
       .def("reset_collision_entities",
            &Hamster::HamsterBehaviour::EmptyCollisionEntity)
       .def("log", &Hamster::HamsterBehaviour::Log)
-
-      .def("execute_external_script",
-           &Hamster::HamsterBehaviour::CrossScriptExecute)
       .def("subscribe", &Hamster::HamsterBehaviour::Subscribe)
       .def("post", &Hamster::HamsterBehaviour::Post);
 }

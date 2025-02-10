@@ -39,7 +39,7 @@ public:
   void OnKeyReleased(KeyReleasedEvent &e);
 
   void ResetInput() {
-    m_KeyReleased = NOT_PRESSED;
+    m_KeyPressed = NOT_PRESSED;
     m_KeyReleased = NOT_PRESSED;
   }
 
@@ -56,7 +56,7 @@ public:
 
   void Log(LogType type, std::string message);
 
-  void CrossScriptExecute(std::string &uuid, const char *funcName);
+  // void CrossScriptExecute(std::string &uuid, const char *funcName);
 
   // void RegisterEvent(pybind11::object &obj);
 

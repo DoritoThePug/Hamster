@@ -111,10 +111,6 @@ void Scene::OnUpdate() {
           obj.attr("on_update")(m_DeltaTime);
 
           obj.attr("reset_input")();
-
-          // test_t[obj] = 1;
-
-          // obj.attr("reset_collision_entities")();
         } catch (pybind11::error_already_set &e) {
           pythonError = true;
 
