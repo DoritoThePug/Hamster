@@ -70,6 +70,10 @@ void Vec3Binding(py::module_ &m) {
 
       .def(py::init<float, float, float>())
 
+      .def_readwrite("x", &glm::vec3::x)
+      .def_readwrite("y", &glm::vec3::y)
+      .def_readwrite("z", &glm::vec3::z)
+
       .def("__add__",
 
            [](const glm::vec3 &a, const glm::vec3 &b) { return a + b; })
