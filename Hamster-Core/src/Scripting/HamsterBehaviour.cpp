@@ -34,12 +34,12 @@ HamsterBehaviour::HamsterBehaviour(UUID entityUUID,
 }
 
 void HamsterBehaviour::OnKeyPressed(KeyPressedEvent &e) {
-  std::cout << "key pressed" << std::endl;
-
   m_KeyPressed = e.GetKeyPressed();
 }
 
 void HamsterBehaviour::OnKeyReleased(KeyReleasedEvent &e) {
+  std::cout << "Key released" << std::endl;
+
   m_KeyReleased = e.GetKeyReleased();
 }
 
