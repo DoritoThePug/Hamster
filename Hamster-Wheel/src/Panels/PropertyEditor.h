@@ -4,6 +4,8 @@
 
 #ifndef PROPERTYEDITOR_H
 #define PROPERTYEDITOR_H
+#include "RenameModal.h"
+
 #include <filesystem>
 #include <glm/glm.hpp>
 #include <iostream>
@@ -29,6 +31,9 @@ private:
   Hamster::Sprite *m_Sprite = nullptr;
   Hamster::Behaviour *m_Behaviour = nullptr;
   Hamster::Rigidbody *m_Rigidbody = nullptr;
+
+  std::shared_ptr<RenameModal> m_RenameModal;
+  bool m_RenameModalOpen = false;
 };
 
 #endif // PROPERTYEDITOR_H

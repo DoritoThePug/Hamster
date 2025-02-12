@@ -20,7 +20,6 @@ void PropertyEditor::Render() {
     return;
   }
 
-
   ImGui::Text("%s", m_SelectedEntity.GetUUIDString().c_str());
 
   if (m_Transform != nullptr) {
@@ -125,8 +124,6 @@ void PropertyEditor::Render() {
             texture->GetName() + "##" + texture->GetUUID().GetUUIDString();
 
         if (ImGui::Selectable(buttonText.c_str())) {
-          std::cout << "HI" << std::endl;
-
           m_Sprite->texture = texture;
         }
       }
@@ -142,8 +139,8 @@ void PropertyEditor::Render() {
 
     Hamster::UUID removeScriptUUID = Hamster::UUID::GetNil();
 
-    for (const auto &[uuid, script] : m_Behaviour->scripts) {
-      if (ImGui::Button(script->GetScriptPath().string().c_str())) {
+    for (auto &[uuid, script] : m_Behaviour->scripts) {
+      if (ImGui::Button(script->GetName().c_str())) {
         OpenFile(script->GetScriptPath());
       };
 
@@ -154,6 +151,11 @@ void PropertyEditor::Render() {
       if (ImGui::BeginPopupContextItem()) {
         if (ImGui::Selectable("Remove")) {
           removeScriptUUID = uuid;
+        }
+
+        if (ImGui::Selectable("Rename")) {
+          m_RenameModal = std::make_shared<RenameModal>(script->GetName());
+          m_RenameModalOpen = true;
         }
 
         ImGui::EndPopup();
@@ -178,6 +180,15 @@ void PropertyEditor::Render() {
       }
 
       ImGui::EndPopup();
+    }
+
+    if (m_RenameModalOpen) {
+      ImGui::OpenPopup("Rename Window");
+      m_RenameModalOpen = false;
+    }
+
+    if (m_RenameModal) {
+      m_RenameModal->Render();
     }
   }
 
