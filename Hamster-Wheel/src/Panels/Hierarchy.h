@@ -5,25 +5,29 @@
 #ifndef HIERARCHY_H
 #define HIERARCHY_H
 
+#include "RenameModal.h"
+
 #include <entt/entt.hpp>
 
-#include <Hamster.h>
 #include <Gui/Panel.h>
+#include <Hamster.h>
 
 class Hierarchy : public Hamster::Panel {
 public:
-    Hierarchy(std::shared_ptr<Hamster::Scene> scene) : Hamster::Panel(scene, true) {
-    };
+  Hierarchy(std::shared_ptr<Hamster::Scene> scene)
+      : Hamster::Panel(scene, true) {};
 
-    void SetSelectedEntity(entt::entity entity);
+  void SetSelectedEntity(entt::entity entity);
 
-    entt::entity GetSelectedEntity() const;
+  entt::entity GetSelectedEntity() const;
 
-    void Render() override;
+  void Render() override;
 
 private:
-    entt::entity m_SelectedEntity = entt::null;
+  entt::entity m_SelectedEntity = entt::null;
+  std::shared_ptr<RenameModal> m_RenameModal;
+
+  bool m_RenameModalOpen = false;
 };
 
-
-#endif //HIERARCHY_H
+#endif // HIERARCHY_H
